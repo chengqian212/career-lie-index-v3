@@ -40,44 +40,164 @@ st.set_page_config(
 # ============== 自定义CSS样式 ==============
 st.markdown("""
 <style>
-/* 全局字体设置 */
-body {
-    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+:root {
+    --cream: #fff7ea;
+    --cream-2: #fffaf2;
+    --pearl: #fffefd;
+    --pink: #f7b7c9;
+    --pink-soft: #ffe3ec;
+    --rose: #e783a5;
+    --lavender: #d9c6ff;
+    --mint: #ccebdc;
+    --ink: #403740;
+    --muted: #8b7b86;
+    --glass: rgba(255, 255, 255, 0.68);
+    --glass-strong: rgba(255, 255, 255, 0.82);
+    --line: rgba(224, 168, 190, 0.34);
+    --shadow: 0 22px 70px rgba(221, 147, 176, 0.20);
+    --glow: 0 0 32px rgba(248, 178, 205, 0.36), 0 0 70px rgba(214, 198, 255, 0.20);
 }
 
-/* 用户消息样式 - 大字体 */
-.user-message {
-    font-size: 1.3rem !important;
-    line-height: 1.8 !important;
-    color: #1a1a2e !important;
-    padding: 12px 16px !important;
-    border-radius: 12px !important;
-    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important;
-    border-left: 4px solid #2196f3 !important;
-    margin: 8px 0 !important;
+html, body, [class*="css"] {
+    font-family: "Inter", "SF Pro Display", "Hiragino Sans", "Yu Gothic", "PingFang SC", "Microsoft YaHei", sans-serif;
+    color: var(--ink);
 }
 
-/* AI消息样式 - 大字体 */
+.stApp {
+    background:
+        radial-gradient(circle at 16% 10%, rgba(255, 203, 220, 0.48) 0, rgba(255, 203, 220, 0) 28%),
+        radial-gradient(circle at 86% 14%, rgba(218, 201, 255, 0.36) 0, rgba(218, 201, 255, 0) 30%),
+        radial-gradient(circle at 72% 86%, rgba(204, 235, 220, 0.28) 0, rgba(204, 235, 220, 0) 32%),
+        linear-gradient(135deg, #fff7ea 0%, #fffefd 46%, #ffeef5 100%);
+}
+
+.stApp::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.30) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.30) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent 76%);
+}
+
+.main .block-container {
+    max-width: 1240px;
+    padding-top: 3.2rem;
+    padding-bottom: 4rem;
+}
+
+section[data-testid="stSidebar"] {
+    background:
+        linear-gradient(180deg, rgba(255, 251, 246, 0.82), rgba(255, 231, 240, 0.64)),
+        radial-gradient(circle at 28% 12%, rgba(255, 184, 211, 0.42), transparent 34%);
+    border-right: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow: 18px 0 55px rgba(222, 164, 186, 0.16);
+    backdrop-filter: blur(22px);
+}
+
+section[data-testid="stSidebar"] > div {
+    padding-top: 2rem;
+}
+
+h1, h2, h3 {
+    color: #352f38 !important;
+    letter-spacing: 0;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 4vw, 4.25rem) !important;
+    font-weight: 820 !important;
+    line-height: 1.08 !important;
+    text-shadow: 0 10px 34px rgba(218, 154, 180, 0.18);
+}
+
+div[data-testid="stTabs"] [role="tablist"] {
+    gap: 8px;
+    border-bottom: 1px solid rgba(220, 179, 196, 0.35);
+}
+
+div[data-testid="stTabs"] [role="tab"] {
+    border-radius: 999px;
+    color: var(--muted);
+    padding: 8px 16px;
+}
+
+div[data-testid="stTabs"] [aria-selected="true"] {
+    color: #d94980 !important;
+    background: rgba(255, 255, 255, 0.68);
+    box-shadow: 0 8px 24px rgba(232, 143, 176, 0.18);
+}
+
+div[data-testid="stTabs"] [data-baseweb="tab-highlight"] {
+    background: linear-gradient(90deg, #ff7daf, #d7b9ff) !important;
+}
+
+.chat-message {
+    margin-bottom: 18px;
+}
+
+.role-label {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: #8a7481;
+    margin: 0 0 7px 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.user-message,
 .ai-message {
-    font-size: 1.3rem !important;
-    line-height: 1.8 !important;
-    color: #1a1a2e !important;
-    padding: 12px 16px !important;
-    border-radius: 12px !important;
-    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%) !important;
-    border-left: 4px solid #9c27b0 !important;
+    position: relative;
+    font-size: 1.22rem !important;
+    line-height: 1.78 !important;
+    color: var(--ink) !important;
+    padding: 18px 22px !important;
+    border-radius: 24px !important;
     margin: 8px 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.74) !important;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px) saturate(1.18);
 }
 
-/* 流式输出光标效果 */
+.ai-message {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 224, 238, 0.74)),
+        radial-gradient(circle at 14% 20%, rgba(255, 126, 176, 0.23), transparent 32%) !important;
+    border-left: 5px solid rgba(225, 82, 136, 0.86) !important;
+}
+
+.user-message {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(236, 246, 255, 0.76)),
+        radial-gradient(circle at 92% 18%, rgba(165, 204, 255, 0.24), transparent 30%) !important;
+    border-left: 5px solid rgba(116, 168, 240, 0.86) !important;
+}
+
+.ai-message::after,
+.user-message::after,
+.monitor-shell::after,
+.stat-card::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(255,255,255,0.58), transparent 42%);
+}
+
 .streaming-cursor {
     display: inline-block;
     width: 2px;
     height: 1.2em;
-    background-color: #9c27b0;
+    background: linear-gradient(180deg, #ff7daf, #c7a7ff);
     animation: blink 0.8s infinite;
     vertical-align: text-bottom;
-    margin-left: 2px;
+    margin-left: 3px;
+    box-shadow: 0 0 16px rgba(255, 125, 175, 0.72);
 }
 
 @keyframes blink {
@@ -85,184 +205,217 @@ body {
     50% { opacity: 0; }
 }
 
-/* 消息容器 */
-.chat-message {
-    margin-bottom: 16px;
-}
-
-/* 角色标签 */
-.role-label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #666;
-    margin-bottom: 4px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-/* 侧边栏样式 */
 .sidebar-title {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #e0e0e0;
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: #4c4049;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(223, 178, 197, 0.48);
 }
 
-/* 统计卡片 */
 .stat-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 16px;
-    border-radius: 12px;
-    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(135deg, rgba(255, 176, 205, 0.96), rgba(196, 178, 255, 0.92)),
+        radial-gradient(circle at 22% 18%, rgba(255,255,255,0.78), transparent 28%);
+    color: #ffffff;
+    padding: 20px 16px;
+    border-radius: 24px;
+    margin-bottom: 16px;
     text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.56);
+    box-shadow: var(--glow), 0 18px 42px rgba(213, 143, 188, 0.25);
 }
 
 .stat-value {
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 2.25rem;
+    font-weight: 850;
+    line-height: 1;
 }
 
 .stat-label {
-    font-size: 0.85rem;
-    opacity: 0.9;
-}
-
-/* 风险等级指示器 */
-.risk-indicator {
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-weight: bold;
-    text-align: center;
-    margin: 8px 0;
-}
-
-.risk-low {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-}
-
-.risk-medium {
-    background-color: #fff3e0;
-    color: #ef6c00;
-}
-
-.risk-high {
-    background-color: #ffebee;
-    color: #c62828;
-}
-
-/* 分析过程折叠面板 */
-.analysis-panel {
-    background-color: #fafafa;
-    border-radius: 8px;
-    padding: 12px;
+    font-size: 0.88rem;
+    opacity: 0.94;
     margin-top: 8px;
 }
 
-/* 输入框样式 */
-.stTextInput > div > div > input {
-    font-size: 1.1rem !important;
-    padding: 12px 16px !important;
+.risk-indicator {
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-weight: 800;
+    text-align: center;
+    margin: 10px 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.64);
+    backdrop-filter: blur(16px);
 }
 
-/* 按钮样式 */
+.risk-low {
+    background: linear-gradient(135deg, rgba(231, 249, 238, 0.88), rgba(218, 243, 228, 0.76));
+    color: #2f8b57;
+}
+
+.risk-medium {
+    background: linear-gradient(135deg, rgba(255, 241, 210, 0.9), rgba(255, 224, 190, 0.74));
+    color: #c47b24;
+}
+
+.risk-high {
+    background: linear-gradient(135deg, rgba(255, 227, 234, 0.92), rgba(255, 194, 211, 0.78));
+    color: #c84d73;
+}
+
+.analysis-panel,
+.report-area,
+.monitor-shell,
+div[data-testid="stExpander"] {
+    background: var(--glass) !important;
+    border: 1px solid rgba(255, 255, 255, 0.68) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 18px 60px rgba(217, 155, 181, 0.16);
+    backdrop-filter: blur(20px) saturate(1.18);
+}
+
+.analysis-panel {
+    padding: 16px;
+    margin-top: 10px;
+}
+
+.report-area {
+    padding: 24px;
+    margin-top: 18px;
+    border-left: 5px solid rgba(255, 179, 101, 0.84) !important;
+}
+
+.stTextInput > div > div > input {
+    font-size: 1.08rem !important;
+    padding: 14px 18px !important;
+    border-radius: 18px !important;
+    background: rgba(255, 255, 255, 0.76) !important;
+    border: 1px solid rgba(229, 182, 202, 0.42) !important;
+    color: var(--ink) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.74), 0 12px 30px rgba(218, 164, 188, 0.12);
+}
+
+.stTextInput > div > div > input:focus {
+    border-color: rgba(255, 126, 176, 0.78) !important;
+    box-shadow: 0 0 0 3px rgba(255, 157, 194, 0.18), 0 0 28px rgba(255, 157, 194, 0.24) !important;
+}
+
 .stButton > button {
     font-size: 1rem !important;
-    padding: 8px 24px !important;
-    border-radius: 8px !important;
+    font-weight: 760 !important;
+    padding: 10px 24px !important;
+    border-radius: 18px !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,0.58) !important;
+    background: linear-gradient(135deg, #ff8eb8, #c6adff) !important;
+    box-shadow: 0 14px 36px rgba(232, 132, 177, 0.28), 0 0 24px rgba(210, 185, 255, 0.22);
 }
 
-/* 隐藏默认的streamlit元素 */
+.stButton > button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 42px rgba(232, 132, 177, 0.34), 0 0 34px rgba(210, 185, 255, 0.30);
+}
+
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 
-/* 欢迎区域 */
 .welcome-area {
     text-align: center;
-    padding: 40px 20px;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    border-radius: 16px;
-    margin-bottom: 24px;
+    padding: 42px 24px;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.72), rgba(255,226,237,0.66)),
+        radial-gradient(circle at 50% 0%, rgba(255, 171, 205, 0.34), transparent 36%);
+    border-radius: 30px;
+    margin-bottom: 26px;
+    border: 1px solid rgba(255,255,255,0.68);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
 }
 
 .welcome-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
+    font-size: 2.15rem;
+    font-weight: 850;
+    color: #3f3540;
     margin-bottom: 12px;
 }
 
 .welcome-subtitle {
-    font-size: 1.1rem;
-    color: #666;
+    font-size: 1.05rem;
+    color: var(--muted);
 }
 
-/* 报告区域 */
-.report-area {
-    background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 16px;
-    border-left: 4px solid #ffc107;
-}
-
-/* 专家标签 */
 .specialist-tag {
     display: inline-block;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    margin-right: 4px;
-    margin-bottom: 4px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 750;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    border: 1px solid rgba(255,255,255,0.62);
+    box-shadow: 0 8px 18px rgba(207, 155, 179, 0.12);
 }
 
-.specialist-semantic { background-color: #e3f2fd; color: #1565c0; }
-.specialist-logical { background-color: #e8f5e9; color: #2e7d32; }
-.specialist-domain { background-color: #fff3e0; color: #ef6c00; }
-.specialist-psycho { background-color: #f3e5f5; color: #7b1fa2; }
+.specialist-semantic { background: rgba(226, 241, 255, 0.82); color: #437cb8; }
+.specialist-logical { background: rgba(226, 247, 235, 0.84); color: #3b9162; }
+.specialist-domain { background: rgba(255, 238, 210, 0.86); color: #bd7930; }
+.specialist-psycho { background: rgba(247, 225, 255, 0.86); color: #a162c4; }
 
-/* Agent 思考监控 */
 .monitor-shell {
-    border: 1px solid #e4e7ec;
-    border-radius: 8px;
-    padding: 14px;
-    background: #ffffff;
-    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+    padding: 18px;
+    margin-bottom: 14px;
 }
 
 .thought-card {
-    border-left: 4px solid #64748b;
-    background: #f8fafc;
-    border-radius: 6px;
-    padding: 10px 12px;
-    margin: 8px 0;
-    line-height: 1.65;
-    color: #1f2937;
+    border-left: 5px solid #c7b6d8;
+    background: rgba(255, 255, 255, 0.68);
+    border-radius: 18px;
+    padding: 14px 16px;
+    margin: 10px 0;
+    line-height: 1.68;
+    color: #433943;
+    box-shadow: 0 10px 26px rgba(204, 157, 179, 0.10);
 }
 
 .thought-title {
-    font-weight: 700;
-    margin-right: 4px;
+    font-weight: 820;
+    margin-right: 5px;
+    color: #3d3440;
 }
 
 .thought-meta {
-    color: #667085;
+    color: #917f8c;
     font-size: 0.86rem;
-    margin-left: 4px;
+    margin-left: 6px;
 }
 
-.thought-semantic { border-left-color: #1565c0; }
-.thought-logical { border-left-color: #2e7d32; }
-.thought-domain { border-left-color: #ef6c00; }
-.thought-psycho { border-left-color: #7b1fa2; }
-.thought-routing { border-left-color: #0f766e; }
-.thought-risk { border-left-color: #c2410c; }
-.thought-strategy { border-left-color: #7c3aed; }
-.thought-report { border-left-color: #b45309; }
+.thought-semantic { border-left-color: #8ebff2; }
+.thought-logical { border-left-color: #8fd9ad; }
+.thought-domain { border-left-color: #f3b66b; }
+.thought-psycho { border-left-color: #d6a8ee; }
+.thought-routing { border-left-color: #91d8ce; }
+.thought-risk { border-left-color: #f39a72; }
+.thought-strategy { border-left-color: #bca2ff; }
+.thought-report { border-left-color: #f5c071; }
+
+div[data-testid="stAlert"] {
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.62);
+    background: rgba(255,255,255,0.72);
+    box-shadow: 0 10px 30px rgba(215, 154, 181, 0.12);
+}
+
+div[data-testid="stMetric"] {
+    background: rgba(255,255,255,0.62);
+    border-radius: 18px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255,255,255,0.60);
+}
 </style>
 """, unsafe_allow_html=True)
 
