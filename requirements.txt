@@ -1,0 +1,7 @@
+streamlit==1.56.0
+python-dotenv==1.2.2
+pydantic==2.12.4
+langchain-openai==1.2.1
+langgraph==1.2.0
+openai==2.36.0
+supabase>=2.10.0,<3.0.0

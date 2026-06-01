@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+*.env
+venv/
+.venv/
+distilbert/
+logs/
+*.log
+outputs/logs/
+.DS_Store

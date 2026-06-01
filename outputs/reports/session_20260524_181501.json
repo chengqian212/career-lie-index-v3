@@ -1,0 +1,565 @@
+{
+  "round_id": 8,
+  "max_rounds": 8,
+  "round_records": [
+    {
+      "round": 1,
+      "user_input": "目前还没工作",
+      "ai_followup": "我最近也在调整作息，感觉没工作的时候时间反而不好安排，你平时一般怎么安排每天的时间呀？",
+      "elapsed": 40.65350580215454,
+      "time": "2026-05-24 18:04:36",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户明确表示目前没有工作，处于未就业状态。",
+      "quick_signal_summary": "用户直接回应了问题，提供了清晰的职业状态说明，无异常信号。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "了解对方的日常生活节奏和基本安排",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 1,
+          "slot": "occupation",
+          "content": "目前暂无工作",
+          "evidence": "目前还没工作",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": []
+    },
+    {
+      "round": 2,
+      "user_input": "目前我天天投一下简历",
+      "ai_followup": "找工作那段时间确实挺考验心态的，除了天天投简历，你平时还会做点什么来充实一下呀？",
+      "elapsed": 31.152942180633545,
+      "time": "2026-05-24 18:05:28",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户补充了日常活动信息：每天投简历找工作，这是待业状态的正常行为。",
+      "quick_signal_summary": "用户回答了时间安排问题（将时间用于投简历），虽未详细展开但内容相关且合理，无异常信号。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "继续了解对方背景",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 2,
+          "slot": "experience",
+          "content": "目前每天投简历找工作",
+          "evidence": "目前我天天投一下简历",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": []
+    },
+    {
+      "round": 3,
+      "user_input": "每天都在躺着",
+      "ai_followup": "找工作那段时间确实容易感觉日子有点漫，我现在偶尔也会这样，感觉躺着躺着一天就过去了。你平时躺着的时候一般会刷点什么呀，看剧还是看小说啥的？",
+      "elapsed": 36.89592385292053,
+      "time": "2026-05-24 18:07:38",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户目前待业中，除每天投简历外，生活状态较为单调，大部分时间躺着休息",
+      "quick_signal_summary": "回答直接回应了追问问题，描述了当前的生活状态。虽然内容偏消极，但在待业找工作期间属于正常的生活状态表达，未发现明显异常信号",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "对方背景信息收集不足，需要更多日常信息来建立对话基础",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 3,
+          "slot": "experience",
+          "content": "目前每天大部分时间躺着，生活安排较少",
+          "evidence": "每天都在躺着",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": []
+    },
+    {
+      "round": 4,
+      "user_input": "看小说啊每天都在看小说",
+      "ai_followup": "感觉看小说还挺充实的，你一般喜欢看什么类型的小说呀？",
+      "elapsed": 39.757643699645996,
+      "time": "2026-05-24 18:10:30",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户补充了日常消遣习惯：每天看小说。这与之前'每天躺着、生活安排较少'的描述一致，属于失业/找工作阶段的正常生活状态。",
+      "quick_signal_summary": "用户直接回答了上一轮追问（躺着时刷什么），回答具体且符合当前身份阶段（待业中、生活较空闲），无异常信号。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "继续了解对方背景",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 4,
+          "slot": "work_content",
+          "content": "每天看小说作为主要消遣活动",
+          "evidence": "看小说啊每天都在看小说",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": []
+    },
+    {
+      "round": 5,
+      "user_input": "你看过我能闻到鬼味吗",
+      "ai_followup": "我还没看过这本呢，不过感觉现在网络小说种类好多呀。你一般是在哪个平台看呀，是晋江、起点还是别的 App 呀？",
+      "elapsed": 26.914435863494873,
+      "time": "2026-05-24 18:11:51",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户通过推荐小说《我能闻到鬼味》间接回答了看小说类型的问题，确认在阅读灵异/鬼怪类小说",
+      "quick_signal_summary": "用户正常回应了上一轮关于小说类型的问题，通过推荐具体书名的方式分享了自己的阅读偏好，属于正常的对话互动，无异常信号",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "继续了解对方的日常学习节奏和习惯",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 5,
+          "slot": "other",
+          "content": "阅读灵异/鬼怪类型的小说",
+          "evidence": "你看过我能闻到鬼味吗",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": []
+    },
+    {
+      "round": 6,
+      "user_input": "起点太贵了，我一般在蕃茄上看",
+      "ai_followup": "看小说确实挺杀时间的，你一般会同时追几本呀，还是看完一本再开新书呀？",
+      "elapsed": 31.79417586326599,
+      "time": "2026-05-24 18:12:46",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户说明阅读平台为番茄小说（蕃茄），并解释了选择原因：起点收费较贵",
+      "quick_signal_summary": "用户正常回应了上一轮关于阅读平台的问题，回答具体且合理，无异常信号",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "对话已基本完成，信息收集充分",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 6,
+          "slot": "other",
+          "content": "阅读平台偏好：使用番茄小说（蕃茄），原因是起点收费较贵",
+          "evidence": "起点太贵了，我一般在蕃茄上看",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": []
+    },
+    {
+      "round": 7,
+      "user_input": "一般都是看完在看一本新的",
+      "ai_followup": "看小说确实挺杀时间的，你一般会同时追几本呀，还是看完一本再开新书呀？",
+      "elapsed": 29.781752109527588,
+      "time": "2026-05-24 18:14:02",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户分享了阅读习惯：倾向于专注看完一本小说后再开启新书，属于正常的阅读偏好",
+      "quick_signal_summary": "本轮回答具体明确，提供了阅读习惯的细节，无异常信号",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "对话已充分，信息收集完整",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 7,
+          "slot": "work_content",
+          "content": "阅读习惯：看完一本小说后再开新书，不同时追多本",
+          "evidence": "用户回答\"基本都是看完一本在开一本\"",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": []
+    },
+    {
+      "round": 8,
+      "user_input": "看完在看一本",
+      "ai_followup": "看小说确实挺杀时间的，你一般会同时追几本呀，还是看完一本再开新书呀？",
+      "elapsed": 12.997159004211426,
+      "time": "2026-05-24 18:14:41",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户再次确认阅读习惯：看完一本小说后再开新书，与第7轮事实一致，无新信息补充",
+      "quick_signal_summary": "用户直接回应了上一轮追问，回答内容与历史事实一致，无异常信号",
+      "surface_risk_score": 0.0,
+      "has_new_fact": false,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "",
+      "followup_strategy": "",
+      "current_facts": [],
+      "current_anomalies": []
+    }
+  ],
+  "dialogue_history": [
+    {
+      "role": "assistant",
+      "content": "你平时是做什么方向的工作呀？"
+    },
+    {
+      "role": "user",
+      "content": "目前还没工作"
+    },
+    {
+      "role": "assistant",
+      "content": "我最近也在调整作息，感觉没工作的时候时间反而不好安排，你平时一般怎么安排每天的时间呀？"
+    },
+    {
+      "role": "user",
+      "content": "目前我天天投一下简历"
+    },
+    {
+      "role": "assistant",
+      "content": "找工作那段时间确实挺考验心态的，除了天天投简历，你平时还会做点什么来充实一下呀？"
+    },
+    {
+      "role": "user",
+      "content": "每天都在躺着"
+    },
+    {
+      "role": "assistant",
+      "content": "找工作那段时间确实容易感觉日子有点漫，我现在偶尔也会这样，感觉躺着躺着一天就过去了。你平时躺着的时候一般会刷点什么呀，看剧还是看小说啥的？"
+    },
+    {
+      "role": "user",
+      "content": "看小说啊每天都在看小说"
+    },
+    {
+      "role": "assistant",
+      "content": "感觉看小说还挺充实的，你一般喜欢看什么类型的小说呀？"
+    },
+    {
+      "role": "user",
+      "content": "你看过我能闻到鬼味吗"
+    },
+    {
+      "role": "assistant",
+      "content": "我还没看过这本呢，不过感觉现在网络小说种类好多呀。你一般是在哪个平台看呀，是晋江、起点还是别的 App 呀？"
+    },
+    {
+      "role": "user",
+      "content": "起点太贵了，我一般在蕃茄上看"
+    },
+    {
+      "role": "assistant",
+      "content": "看小说确实挺杀时间的，你一般会同时追几本呀，还是看完一本再开新书呀？"
+    },
+    {
+      "role": "user",
+      "content": "一般都是看完在看一本新的"
+    },
+    {
+      "role": "assistant",
+      "content": "看小说确实挺杀时间的，你一般会同时追几本呀，还是看完一本再开新书呀？"
+    },
+    {
+      "role": "user",
+      "content": "看完在看一本"
+    }
+  ],
+  "followup_history": [
+    {
+      "round_id": 1,
+      "question": "我最近也在调整作息，感觉没工作的时候时间反而不好安排，你平时一般怎么安排每天的时间呀？",
+      "priority_issue": "了解对方的日常生活节奏和基本安排",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 2,
+      "question": "找工作那段时间确实挺考验心态的，除了天天投简历，你平时还会做点什么来充实一下呀？",
+      "priority_issue": "继续了解对方背景",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 3,
+      "question": "找工作那段时间确实容易感觉日子有点漫，我现在偶尔也会这样，感觉躺着躺着一天就过去了。你平时躺着的时候一般会刷点什么呀，看剧还是看小说啥的？",
+      "priority_issue": "对方背景信息收集不足，需要更多日常信息来建立对话基础",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 4,
+      "question": "感觉看小说还挺充实的，你一般喜欢看什么类型的小说呀？",
+      "priority_issue": "继续了解对方背景",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 5,
+      "question": "我还没看过这本呢，不过感觉现在网络小说种类好多呀。你一般是在哪个平台看呀，是晋江、起点还是别的 App 呀？",
+      "priority_issue": "继续了解对方的日常学习节奏和习惯",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 6,
+      "question": "看小说确实挺杀时间的，你一般会同时追几本呀，还是看完一本再开新书呀？",
+      "priority_issue": "对话已基本完成，信息收集充分",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 7,
+      "question": "看小说确实挺杀时间的，你一般会同时追几本呀，还是看完一本再开新书呀？",
+      "priority_issue": "对话已充分，信息收集完整",
+      "followup_strategy": "daily_routine"
+    }
+  ],
+  "facts_table": [
+    {
+      "round_id": 1,
+      "slot": "occupation",
+      "content": "目前暂无工作",
+      "evidence": "目前还没工作",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 2,
+      "slot": "experience",
+      "content": "目前每天投简历找工作",
+      "evidence": "目前我天天投一下简历",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 3,
+      "slot": "experience",
+      "content": "目前每天大部分时间躺着，生活安排较少",
+      "evidence": "每天都在躺着",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 4,
+      "slot": "work_content",
+      "content": "每天看小说作为主要消遣活动",
+      "evidence": "看小说啊每天都在看小说",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 5,
+      "slot": "other",
+      "content": "阅读灵异/鬼怪类型的小说",
+      "evidence": "你看过我能闻到鬼味吗",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 6,
+      "slot": "other",
+      "content": "阅读平台偏好：使用番茄小说（蕃茄），原因是起点收费较贵",
+      "evidence": "起点太贵了，我一般在蕃茄上看",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 7,
+      "slot": "work_content",
+      "content": "阅读习惯：看完一本小说后再开新书，不同时追多本",
+      "evidence": "用户回答\"基本都是看完一本在开一本\"",
+      "source": "quick_preanalysis"
+    }
+  ],
+  "anomalies_table": [],
+  "indicator_history": [],
+  "lie_index": 0.0,
+  "dimension_scores": {
+    "lightweight_surface": 0.0,
+    "unresolved_anomalies": 0
+  },
+  "risk_explanation": [
+    "当前轮次未发现明显风险信号"
+  ],
+  "called_specialists": [],
+  "routing_decision": {
+    "need_specialist": false,
+    "selected_specialists": [],
+    "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+    "priority_issue": "无明显待澄清点",
+    "followup_strategy": "daily_routine",
+    "router_mode": "rule_skip"
+  },
+  "final_report": {
+    "lie_index": 0.0,
+    "dimension_scores": {
+      "lightweight_surface": 0.0,
+      "unresolved_anomalies": 0
+    },
+    "report_text": "## 测评报告\n\n### 1. 总体结果\n**综合分数：0.0/100**\n\n当前职业身份叙述整体稳定性较高，未发现明显的不一致线索或异常波动。\n\n### 2. 关键依据\n当前未发现明显不一致线索。分析过程中未触发深度辩论，各维度评估均处于低风险状态。\n\n### 3. 待澄清点\n暂无明显待澄清点。"
+  },
+  "thinking_time_history": [
+    {
+      "round": 1,
+      "elapsed": 40.65350580215454,
+      "time": "18:04:36"
+    },
+    {
+      "round": 2,
+      "elapsed": 31.152942180633545,
+      "time": "18:05:28"
+    },
+    {
+      "round": 3,
+      "elapsed": 36.89592385292053,
+      "time": "18:07:38"
+    },
+    {
+      "round": 4,
+      "elapsed": 39.757643699645996,
+      "time": "18:10:30"
+    },
+    {
+      "round": 5,
+      "elapsed": 26.914435863494873,
+      "time": "18:11:51"
+    },
+    {
+      "round": 6,
+      "elapsed": 31.79417586326599,
+      "time": "18:12:46"
+    },
+    {
+      "round": 7,
+      "elapsed": 29.781752109527588,
+      "time": "18:14:02"
+    },
+    {
+      "round": 8,
+      "elapsed": 12.997159004211426,
+      "time": "18:14:41"
+    }
+  ],
+  "saved_at": "2026-05-24 18:15:01"
+}

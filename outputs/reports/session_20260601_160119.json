@@ -1,0 +1,427 @@
+{
+  "round_id": 8,
+  "max_rounds": 8,
+  "round_records": [
+    {
+      "round": 1,
+      "user_input": "大学生",
+      "ai_followup": "哦哦，大学生活其实也挺充实的，那你平时除了上课，课余时间一般会忙些什么呀？",
+      "elapsed": 5.642008066177368,
+      "node_times": {
+        "quick_preanalysis_node": 2.492,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.745,
+        "followup_generation_node": 1.366
+      },
+      "time": "2026-06-01 16:00:09",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "quick_fact_summary": "用户当前身份为大学生，尚未进入正式职业阶段。",
+      "quick_signal_summary": "无异常信号。用户回答符合其学生身份，属于正常探索性表达。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "用户身份为大学生，需进一步了解其专业背景或日常学习内容，以判断是否与后续任务相关",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 1,
+          "slot": "occupation",
+          "content": "用户目前是大学生",
+          "evidence": "大学生",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户当前身份为大学生，尚未进入正式职业阶段。；无异常信号。用户回答符合其学生身份，属于正常探索性表达。",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:00:06"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:00:06"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:00:06"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前信息仅知用户为大学生，缺乏专业方向等关键背景，存在信息缺口，值得继续追问。），关注：用户身份为大学生，需进一步了解其专业背景或日常学习内容，以判断是否与后续任务相关，策略：daily_routine",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:00:07"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：哦哦，大学生活其实也挺充实的，那你平时除了上课，课余时间一般会忙些什么呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:00:09"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "user_input": "睡觉，玩游戏什么的",
+      "ai_followup": "哈哈，那也挺自在的，我大学那会儿也差不多，不过有时候玩久了也会觉得有点无聊。你玩游戏的话，是跟室友一起开黑比较多，还是自己玩单机呀？",
+      "elapsed": 5.987126350402832,
+      "node_times": {
+        "quick_preanalysis_node": 2.019,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.994,
+        "followup_generation_node": 1.898
+      },
+      "time": "2026-06-01 16:00:32",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "quick_fact_summary": "用户是大学生，课余时间主要进行睡觉和玩游戏等休闲活动。",
+      "quick_signal_summary": "未检测到异常信号。回答符合大学生身份，属于正常探索性表达。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "用户自称大学生，但回答过于简略，缺乏具体生活细节，可能存在身份虚构风险",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 2,
+          "slot": "other",
+          "content": "课余活动：睡觉、玩游戏",
+          "evidence": "睡觉，玩游戏什么的",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户是大学生，课余时间主要进行睡觉和玩游戏等休闲活动。；未检测到异常信号。回答符合大学生身份，属于正常探索性表达。",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:00:28"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:00:28"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:00:28"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前信息量极少，仅两轮对话，LieIndex为0但无实质内容，需进一步了解日常安排以验证身份真实性。），关注：用户自称大学生，但回答过于简略，缺乏具体生活细节，可能存在身份虚构风险，策略：daily_routine",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:00:30"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：哈哈，那也挺自在的，我大学那会儿也差不多，不过有时候玩久了也会觉得有点无聊。你玩游戏的话，是跟室友一起开黑比较多，还是自己玩单机呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:00:32"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "user_input": "都有吧，我玩金铲铲，喜欢自己单排，但有时候朋友叫我双排我也玩",
+      "ai_followup": "哈哈，那也挺自在的，我大学那会儿也差不多，不过有时候玩久了也会觉得有点无聊。你玩游戏的话，是跟室友一起开黑比较多，还是自己玩单机呀？",
+      "elapsed": 4.802483558654785,
+      "node_times": {
+        "quick_preanalysis_node": 1.951,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.423,
+        "report_generation_node": 1.346
+      },
+      "time": "2026-06-01 16:01:14",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0.",
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "quick_fact_summary": "用户补充了游戏偏好：玩金铲铲，以单排为主，偶尔和朋友双排。",
+      "quick_signal_summary": "本轮回答自然、具体，与历史事实一致，无异常信号。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "",
+      "followup_strategy": "",
+      "current_facts": [
+        {
+          "round_id": 3,
+          "slot": "other",
+          "content": "用户玩金铲铲游戏，喜欢自己单排，有时和朋友双排",
+          "evidence": "都有吧，我玩金铲铲，喜欢自己单排，但有时候朋友叫我双排我也玩",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户补充了游戏偏好：玩金铲铲，以单排为主，偶尔和朋友双排。；本轮回答自然、具体，与历史事实一致，无异常信号。",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:01:11"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:01:11"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:01:11"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "信息已足够，生成最终报告（对话已覆盖基本生活与娱乐信息，无异常或风险信号，LieIndex为0，继续追问价值低，建议生成报告。）",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:01:13"
+        },
+        {
+          "node": "report_generation",
+          "title": "报告生成",
+          "content": "最终测评报告已生成",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:01:14"
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "user_input": "（自动生成最终报告）",
+      "ai_followup": "",
+      "elapsed": 5.100716829299927,
+      "node_times": {
+        "quick_preanalysis_node": 2.181,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.576,
+        "report_generation_node": 1.247
+      },
+      "time": "2026-06-01 16:01:19",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0.",
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "selected_specialists": [],
+      "called_specialists": [],
+      "quick_fact_summary": "",
+      "quick_signal_summary": "",
+      "surface_risk_score": 0.0,
+      "has_new_fact": false,
+      "routing_decision": {},
+      "priority_issue": "",
+      "followup_strategy": "",
+      "current_facts": [],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认玩金铲铲游戏，偏好单排，也接受朋友邀请双排。；本轮无异常信号。用户回答自然、具体，与上一轮追问和已有事实一致，属于正常探索性表达。",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:01:16"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:01:16"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:01:16"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "信息已足够，生成最终报告（对话已达最大轮次，信息饱和且无异常，LieIndex=0，无需继续追问。）",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:01:18"
+        },
+        {
+          "node": "report_generation",
+          "title": "报告生成",
+          "content": "最终测评报告已生成",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 16:01:19"
+        }
+      ]
+    }
+  ],
+  "dialogue_history": [
+    {
+      "role": "assistant",
+      "content": "你平时是做什么方向的工作呀？"
+    },
+    {
+      "role": "user",
+      "content": "大学生"
+    },
+    {
+      "role": "assistant",
+      "content": "哦哦，大学生活其实也挺充实的，那你平时除了上课，课余时间一般会忙些什么呀？"
+    },
+    {
+      "role": "user",
+      "content": "睡觉，玩游戏什么的"
+    },
+    {
+      "role": "assistant",
+      "content": "哈哈，那也挺自在的，我大学那会儿也差不多，不过有时候玩久了也会觉得有点无聊。你玩游戏的话，是跟室友一起开黑比较多，还是自己玩单机呀？"
+    },
+    {
+      "role": "user",
+      "content": "都有吧，我玩金铲铲，喜欢自己单排，但有时候朋友叫我双排我也玩"
+    }
+  ],
+  "followup_history": [
+    {
+      "round_id": 1,
+      "question": "哦哦，大学生活其实也挺充实的，那你平时除了上课，课余时间一般会忙些什么呀？",
+      "priority_issue": "用户身份为大学生，需进一步了解其专业背景或日常学习内容，以判断是否与后续任务相关",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 2,
+      "question": "哈哈，那也挺自在的，我大学那会儿也差不多，不过有时候玩久了也会觉得有点无聊。你玩游戏的话，是跟室友一起开黑比较多，还是自己玩单机呀？",
+      "priority_issue": "用户自称大学生，但回答过于简略，缺乏具体生活细节，可能存在身份虚构风险",
+      "followup_strategy": "daily_routine"
+    }
+  ],
+  "facts_table": [
+    {
+      "round_id": 1,
+      "slot": "occupation",
+      "content": "用户目前是大学生",
+      "evidence": "大学生",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 2,
+      "slot": "other",
+      "content": "课余活动：睡觉、玩游戏",
+      "evidence": "睡觉，玩游戏什么的",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 3,
+      "slot": "other",
+      "content": "用户玩金铲铲游戏，喜欢自己单排，有时和朋友双排",
+      "evidence": "都有吧，我玩金铲铲，喜欢自己单排，但有时候朋友叫我双排我也玩",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 8,
+      "slot": "other",
+      "content": "用户玩金铲铲游戏，喜欢自己单排，有时和朋友双排",
+      "evidence": "都有吧，我玩金铲铲，喜欢自己单排，但有时候朋友叫我双排我也玩",
+      "source": "quick_preanalysis"
+    }
+  ],
+  "anomalies_table": [],
+  "indicator_history": [],
+  "lie_index": 0.0,
+  "dimension_scores": {},
+  "risk_explanation": [
+    "No active specialist evidence; LieIndex=0.",
+    "No active specialist evidence; LieIndex=0."
+  ],
+  "called_specialists": [],
+  "routing_decision": {
+    "selected_specialists": [],
+    "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+    "priority_issue": "无明显待澄清点",
+    "followup_strategy": "daily_routine",
+    "router_mode": "rule_skip"
+  },
+  "final_report": {
+    "lie_index": 0.0,
+    "dimension_scores": {},
+    "report_text": "好的，这是根据您提供的数据生成的测评报告。\n\n***\n\n### 测评报告\n\n**1. 总体结果**\n综合分数：0.0/100\n当前职业身份叙述整体稳定，未发现明显不一致线索。\n\n**2. 关键依据**\n当前未发现明显不一致线索。\n\n**3. 待澄清点**\n暂无明显待澄清点。"
+  },
+  "thinking_time_history": [
+    {
+      "round": 1,
+      "elapsed": 5.642008066177368,
+      "time": "16:00:09"
+    },
+    {
+      "round": 2,
+      "elapsed": 5.987126350402832,
+      "time": "16:00:32"
+    },
+    {
+      "round": 3,
+      "elapsed": 4.802483558654785,
+      "time": "16:01:14"
+    }
+  ],
+  "saved_at": "2026-06-01 16:01:19"
+}
