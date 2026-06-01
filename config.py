@@ -1,10 +1,34 @@
-"""Project configuration loaded from .env."""
+"""Project configuration loaded from .env or Streamlit Cloud secrets."""
 
 import os
 from dotenv import load_dotenv
 
 # 加载 .env
 load_dotenv(os.path.join(os.path.dirname(__file__), ".env"), override=False)
+
+
+def _get_setting(name: str, default: str = "") -> str:
+    """Read config from environment first, then Streamlit secrets."""
+    value = os.getenv(name)
+    if value is not None:
+        return str(value).strip()
+
+    try:
+        import streamlit as st
+
+        if name in st.secrets:
+            return str(st.secrets[name]).strip()
+        for section_name in ("deepseek", "supabase", "app"):
+            section = st.secrets.get(section_name, {})
+            try:
+                if name in section:
+                    return str(section[name]).strip()
+            except TypeError:
+                pass
+    except Exception:
+        pass
+
+    return default
 
 
 def disable_proxy():
@@ -35,22 +59,20 @@ disable_proxy()
 # --- LLM provider configuration ---
 
 # DeepSeek official OpenAI-compatible API configuration.
-DEEPSEEK_API_KEY: str = os.getenv("DEEPSEEK_API_KEY", "").strip()
-DEEPSEEK_BASE_URL: str = os.getenv(
-    "DEEPSEEK_BASE_URL", "https://api.deepseek.com"
-).strip()
+DEEPSEEK_API_KEY: str = _get_setting("DEEPSEEK_API_KEY")
+DEEPSEEK_BASE_URL: str = _get_setting("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
 
 # DeepSeek V3 non-thinking chat model name in the official OpenAI-compatible API.
-MODEL_NAME: str = os.getenv("MODEL_NAME", "deepseek-chat").strip()
-MAX_ROUNDS: int = int(os.getenv("MAX_ROUNDS", "8"))
-MIN_FOLLOWUP_ROUNDS: int = int(os.getenv("MIN_FOLLOWUP_ROUNDS", "5"))
-TEMPERATURE: float = float(os.getenv("TEMPERATURE", "0.2"))
+MODEL_NAME: str = _get_setting("MODEL_NAME", "deepseek-chat")
+MAX_ROUNDS: int = int(_get_setting("MAX_ROUNDS", "8"))
+MIN_FOLLOWUP_ROUNDS: int = int(_get_setting("MIN_FOLLOWUP_ROUNDS", "5"))
+TEMPERATURE: float = float(_get_setting("TEMPERATURE", "0.2"))
 
 # Optional Supabase output archive configuration.
-SUPABASE_URL: str = os.getenv("SUPABASE_URL", "").strip()
-SUPABASE_SERVICE_ROLE_KEY: str = os.getenv("SUPABASE_SERVICE_ROLE_KEY", "").strip()
-SUPABASE_ANON_KEY: str = os.getenv("SUPABASE_ANON_KEY", "").strip()
-SUPABASE_OUTPUTS_TABLE: str = os.getenv("SUPABASE_OUTPUTS_TABLE", "output_files").strip()
+SUPABASE_URL: str = _get_setting("SUPABASE_URL")
+SUPABASE_SERVICE_ROLE_KEY: str = _get_setting("SUPABASE_SERVICE_ROLE_KEY")
+SUPABASE_ANON_KEY: str = _get_setting("SUPABASE_ANON_KEY")
+SUPABASE_OUTPUTS_TABLE: str = _get_setting("SUPABASE_OUTPUTS_TABLE", "output_files")
 
 # 风险等级阈值
 RISK_LOW_THRESHOLD: int = 30
