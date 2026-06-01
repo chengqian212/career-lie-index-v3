@@ -41,163 +41,164 @@ st.set_page_config(
 st.markdown("""
 <style>
 :root {
-    --cream: #fff7ea;
-    --cream-2: #fffaf2;
-    --pearl: #fffefd;
-    --pink: #f7b7c9;
-    --pink-soft: #ffe3ec;
-    --rose: #e783a5;
-    --lavender: #d9c6ff;
-    --mint: #ccebdc;
-    --ink: #403740;
-    --muted: #8b7b86;
-    --glass: rgba(255, 255, 255, 0.68);
-    --glass-strong: rgba(255, 255, 255, 0.82);
-    --line: rgba(224, 168, 190, 0.34);
-    --shadow: 0 22px 70px rgba(221, 147, 176, 0.20);
-    --glow: 0 0 32px rgba(248, 178, 205, 0.36), 0 0 70px rgba(214, 198, 255, 0.20);
+    /* 严格参考原图调色盘 */
+    --pure-white: #FFFFFF;
+    --bg-pearl: #FCFAF7;          /* 更加白皙清透的底色 */
+    --japan-red: #E6002D;         /* 灵魂鲜红 */
+    --japan-red-hover: #C80024;
+    --navy-blue: #2B577A;         /* 稳重深海蓝 */
+    --ink-dark: #2B2525;          /* 雅致排版墨黑 */
+    --text-muted: #8E8585;        /* 辅助文字灰 */
+    
+    /* 极其细腻的日系阴影 */
+    --clean-line: 1px solid #EFEAE4;
+    --soft-shadow: 0 16px 40px rgba(230, 0, 45, 0.03), 0 2px 6px rgba(43, 37, 37, 0.01);
+    --hover-shadow: 0 24px 48px rgba(230, 0, 45, 0.06), 0 4px 12px rgba(43, 37, 37, 0.03);
 }
 
+/* 全局基调 */
 html, body, [class*="css"] {
-    font-family: "Inter", "SF Pro Display", "Hiragino Sans", "Yu Gothic", "PingFang SC", "Microsoft YaHei", sans-serif;
-    color: var(--ink);
+    font-family: "Hiragino Sans", "Yu Gothic", "PingFang SC", sans-serif;
+    color: var(--ink-dark);
 }
 
+/* 锁定横向，允许纵向滚动，解决空白和截断问题 */
 .stApp {
-    background:
-        radial-gradient(circle at 16% 10%, rgba(255, 203, 220, 0.48) 0, rgba(255, 203, 220, 0) 28%),
-        radial-gradient(circle at 86% 14%, rgba(218, 201, 255, 0.36) 0, rgba(218, 201, 255, 0) 30%),
-        radial-gradient(circle at 72% 86%, rgba(204, 235, 220, 0.28) 0, rgba(204, 235, 220, 0) 32%),
-        linear-gradient(135deg, #fff7ea 0%, #fffefd 46%, #ffeef5 100%);
+    background-color: var(--bg-pearl);
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
 }
 
+/* 2. 略微加深右侧粉红波浪的权重（从0.035调至0.07），让浪漫的有机曲线清晰显现 */
 .stApp::before {
     content: "";
     position: fixed;
-    inset: 0;
+    top: 0;
+    right: 0;
+    width: 60vw;
+    height: 70vh;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cpath fill='%23E6002D' fill-opacity='0.07' d='M550,0 C650,120 720,180 800,220 L800,0 Z M350,0 C450,180 620,280 800,380 L800,0 Z'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top right;
     pointer-events: none;
-    background-image:
-        linear-gradient(rgba(255,255,255,0.30) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.30) 1px, transparent 1px);
-    background-size: 44px 44px;
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent 76%);
+    z-index: -1;
 }
 
+/* 3. 略微加深左侧深蓝波浪的权重（从0.02调至0.04），与底部的大字呼应 */
+.stApp::after {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 50vw;
+    height: 60vh;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cpath fill='%232B577A' fill-opacity='0.04' d='M0,350 C120,400 250,320 380,450 C450,520 520,550 600,600 L0,600 Z'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* 1. 裁剪顶部的原生空白，让大标题往上提，显得排版紧凑专业 */
 .main .block-container {
-    max-width: 1240px;
-    padding-top: 3.2rem;
-    padding-bottom: 4rem;
+    max-width: 1180px;
+    padding-top: 1.5rem !important; /* 强制将原来的大空白压缩 */
+    position: relative;
+    z-index: 2; 
 }
 
+/* 侧边栏：清爽且自带微弱透光感 */
 section[data-testid="stSidebar"] {
-    background:
-        linear-gradient(180deg, rgba(255, 251, 246, 0.82), rgba(255, 231, 240, 0.64)),
-        radial-gradient(circle at 28% 12%, rgba(255, 184, 211, 0.42), transparent 34%);
-    border-right: 1px solid rgba(255, 255, 255, 0.72);
-    box-shadow: 18px 0 55px rgba(222, 164, 186, 0.16);
-    backdrop-filter: blur(22px);
+    background-color: rgba(249, 246, 242, 0.92) !important;
+    border-right: var(--clean-line) !important;
+    box-shadow: 6px 0 30px rgba(34, 30, 30, 0.01) !important;
+    z-index: 3 !important; /* 确保侧边栏在最前方 */
 }
 
 section[data-testid="stSidebar"] > div {
-    padding-top: 2rem;
+    padding-top: 2.5rem;
 }
 
+/* 标题：纯正明朝体气韵 */
 h1, h2, h3 {
-    color: #352f38 !important;
-    letter-spacing: 0;
+    color: var(--ink-dark) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.03em !important;
 }
 
 h1 {
-    font-size: clamp(2.5rem, 4vw, 4.25rem) !important;
-    font-weight: 820 !important;
-    line-height: 1.08 !important;
-    text-shadow: 0 10px 34px rgba(218, 154, 180, 0.18);
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem) !important;
+    font-family: "Hiragino Mincho ProN", serif !important;
+    color: var(--ink-dark) !important;
+    margin-bottom: 2.5rem !important;
 }
 
+/* Tabs 标签页 */
 div[data-testid="stTabs"] [role="tablist"] {
-    gap: 8px;
-    border-bottom: 1px solid rgba(220, 179, 196, 0.35);
+    border-bottom: var(--clean-line);
 }
 
 div[data-testid="stTabs"] [role="tab"] {
-    border-radius: 999px;
-    color: var(--muted);
-    padding: 8px 16px;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    padding: 10px 20px;
+    background: transparent !important;
 }
 
 div[data-testid="stTabs"] [aria-selected="true"] {
-    color: #d94980 !important;
-    background: rgba(255, 255, 255, 0.68);
-    box-shadow: 0 8px 24px rgba(232, 143, 176, 0.18);
+    color: var(--japan-red) !important;
+    font-weight: 700;
 }
 
 div[data-testid="stTabs"] [data-baseweb="tab-highlight"] {
-    background: linear-gradient(90deg, #ff7daf, #d7b9ff) !important;
+    background: var(--japan-red) !important;
+    height: 3px !important;
 }
 
+/* 聊天气泡：纯白卡片，全面向原图质感靠拢 */
 .chat-message {
-    margin-bottom: 18px;
+    margin-bottom: 24px;
 }
 
 .role-label {
-    font-size: 0.86rem;
-    font-weight: 700;
-    color: #8a7481;
-    margin: 0 0 7px 4px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-left: 8px;
+    margin-bottom: 6px;
 }
 
 .user-message,
 .ai-message {
-    position: relative;
-    font-size: 1.22rem !important;
-    line-height: 1.78 !important;
-    color: var(--ink) !important;
-    padding: 18px 22px !important;
-    border-radius: 24px !important;
-    margin: 8px 0 !important;
-    border: 1px solid rgba(255, 255, 255, 0.74) !important;
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(18px) saturate(1.18);
+    background-color: var(--pure-white) !important;
+    font-size: 1.15rem !important;
+    line-height: 1.8 !important;
+    padding: 22px 26px !important;
+    border-radius: 16px !important;
+    border: var(--clean-line) !important;
+    box-shadow: var(--soft-shadow) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.ai-message {
-    background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 224, 238, 0.74)),
-        radial-gradient(circle at 14% 20%, rgba(255, 126, 176, 0.23), transparent 32%) !important;
-    border-left: 5px solid rgba(225, 82, 136, 0.86) !important;
+.user-message:hover, .ai-message:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow) !important;
 }
 
-.user-message {
-    background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(236, 246, 255, 0.76)),
-        radial-gradient(circle at 92% 18%, rgba(165, 204, 255, 0.24), transparent 30%) !important;
-    border-left: 5px solid rgba(116, 168, 240, 0.86) !important;
-}
+.ai-message { border-left: 5px solid var(--japan-red) !important; }
+.user-message { border-left: 5px solid var(--navy-blue) !important; }
 
-.ai-message::after,
-.user-message::after,
-.monitor-shell::after,
-.stat-card::after {
-    content: "";
-    position: absolute;
-    inset: 1px;
-    border-radius: inherit;
-    pointer-events: none;
-    background: linear-gradient(135deg, rgba(255,255,255,0.58), transparent 42%);
-}
-
+/* 打字机细光标 */
 .streaming-cursor {
     display: inline-block;
     width: 2px;
-    height: 1.2em;
-    background: linear-gradient(180deg, #ff7daf, #c7a7ff);
-    animation: blink 0.8s infinite;
+    height: 1.1em;
+    background: var(--japan-red);
+    animation: blink 0.9s infinite;
     vertical-align: text-bottom;
-    margin-left: 3px;
-    box-shadow: 0 0 16px rgba(255, 125, 175, 0.72);
+    margin-left: 4px;
 }
 
 @keyframes blink {
@@ -205,217 +206,173 @@ div[data-testid="stTabs"] [data-baseweb="tab-highlight"] {
     50% { opacity: 0; }
 }
 
+/* 侧边栏卡片：重点突出数字 */
 .sidebar-title {
-    font-size: 1.08rem;
-    font-weight: 800;
-    color: #4c4049;
-    margin-bottom: 14px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(223, 178, 197, 0.48);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink-dark);
+    border-bottom: var(--clean-line);
+    padding-bottom: 8px;
+    margin-top: 1.8rem;
 }
 
 .stat-card {
-    position: relative;
-    overflow: hidden;
-    background:
-        linear-gradient(135deg, rgba(255, 176, 205, 0.96), rgba(196, 178, 255, 0.92)),
-        radial-gradient(circle at 22% 18%, rgba(255,255,255,0.78), transparent 28%);
-    color: #ffffff;
-    padding: 20px 16px;
-    border-radius: 24px;
-    margin-bottom: 16px;
+    background: var(--pure-white) !important;
+    padding: 20px 14px;
+    border-radius: 14px;
+    margin-bottom: 14px;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.56);
-    box-shadow: var(--glow), 0 18px 42px rgba(213, 143, 188, 0.25);
+    border: var(--clean-line) !important;
+    box-shadow: var(--soft-shadow) !important;
 }
 
 .stat-value {
-    font-size: 2.25rem;
-    font-weight: 850;
-    line-height: 1;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--japan-red);
 }
 
 .stat-label {
-    font-size: 0.88rem;
-    opacity: 0.94;
-    margin-top: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 4px;
 }
 
+/* 风险状态胶囊 */
 .risk-indicator {
-    padding: 12px 16px;
-    border-radius: 18px;
-    font-weight: 800;
+    padding: 12px;
+    border-radius: 99px;
+    font-weight: 700;
+    font-size: 0.9rem;
     text-align: center;
-    margin: 10px 0 16px;
-    border: 1px solid rgba(255, 255, 255, 0.64);
-    backdrop-filter: blur(16px);
+    margin: 15px 0;
 }
 
-.risk-low {
-    background: linear-gradient(135deg, rgba(231, 249, 238, 0.88), rgba(218, 243, 228, 0.76));
-    color: #2f8b57;
-}
+.risk-low { background-color: #E6F4EA !important; color: #137333 !important; }
+.risk-medium { background-color: #FEF7E0 !important; color: #B06000 !important; }
+.risk-high { background-color: #FCE8E6 !important; color: #C5221F !important; }
 
-.risk-medium {
-    background: linear-gradient(135deg, rgba(255, 241, 210, 0.9), rgba(255, 224, 190, 0.74));
-    color: #c47b24;
-}
-
-.risk-high {
-    background: linear-gradient(135deg, rgba(255, 227, 234, 0.92), rgba(255, 194, 211, 0.78));
-    color: #c84d73;
-}
-
+/* 核心看板区组件 */
 .analysis-panel,
 .report-area,
 .monitor-shell,
 div[data-testid="stExpander"] {
-    background: var(--glass) !important;
-    border: 1px solid rgba(255, 255, 255, 0.68) !important;
-    border-radius: 24px !important;
-    box-shadow: 0 18px 60px rgba(217, 155, 181, 0.16);
-    backdrop-filter: blur(20px) saturate(1.18);
-}
-
-.analysis-panel {
-    padding: 16px;
-    margin-top: 10px;
+    background: var(--pure-white) !important;
+    border: var(--clean-line) !important;
+    border-radius: 18px !important;
+    box-shadow: var(--soft-shadow) !important;
 }
 
 .report-area {
-    padding: 24px;
-    margin-top: 18px;
-    border-left: 5px solid rgba(255, 179, 101, 0.84) !important;
+    padding: 32px;
+    border-left: 6px solid var(--japan-red) !important;
 }
 
+/* 输入框 */
 .stTextInput > div > div > input {
-    font-size: 1.08rem !important;
+    font-size: 1.05rem !important;
     padding: 14px 18px !important;
-    border-radius: 18px !important;
-    background: rgba(255, 255, 255, 0.76) !important;
-    border: 1px solid rgba(229, 182, 202, 0.42) !important;
-    color: var(--ink) !important;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.74), 0 12px 30px rgba(218, 164, 188, 0.12);
+    border-radius: 14px !important;
+    background: var(--pure-white) !important;
+    border: var(--clean-line) !important;
 }
 
 .stTextInput > div > div > input:focus {
-    border-color: rgba(255, 126, 176, 0.78) !important;
-    box-shadow: 0 0 0 3px rgba(255, 157, 194, 0.18), 0 0 28px rgba(255, 157, 194, 0.24) !important;
+    border-color: var(--japan-red) !important;
+    box-shadow: 0 0 0 3px rgba(230, 0, 45, 0.08) !important;
 }
 
+/* 胶囊型经典日式按钮 */
 .stButton > button {
     font-size: 1rem !important;
-    font-weight: 760 !important;
-    padding: 10px 24px !important;
-    border-radius: 18px !important;
-    color: #ffffff !important;
-    border: 1px solid rgba(255,255,255,0.58) !important;
-    background: linear-gradient(135deg, #ff8eb8, #c6adff) !important;
-    box-shadow: 0 14px 36px rgba(232, 132, 177, 0.28), 0 0 24px rgba(210, 185, 255, 0.22);
+    font-weight: 600 !important;
+    padding: 12px 32px !important;
+    border-radius: 99px !important;
+    color: var(--pure-white) !important;
+    border: none !important;
+    background: var(--japan-red) !important;
+    box-shadow: 0 6px 20px rgba(230, 0, 45, 0.2) !important;
+    transition: all 0.25s ease;
 }
 
 .stButton > button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 18px 42px rgba(232, 132, 177, 0.34), 0 0 34px rgba(210, 185, 255, 0.30);
+    transform: translateY(-2px);
+    background: var(--japan-red-hover) !important;
+    box-shadow: 0 8px 26px rgba(230, 0, 45, 0.3) !important;
 }
 
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-
+/* 欢迎页 */
 .welcome-area {
     text-align: center;
-    padding: 42px 24px;
-    background:
-        linear-gradient(135deg, rgba(255,255,255,0.72), rgba(255,226,237,0.66)),
-        radial-gradient(circle at 50% 0%, rgba(255, 171, 205, 0.34), transparent 36%);
-    border-radius: 30px;
-    margin-bottom: 26px;
-    border: 1px solid rgba(255,255,255,0.68);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(20px);
+    padding: 60px 40px;
+    background: var(--pure-white) !important;
+    border-radius: 24px;
+    margin-bottom: 35px;
+    border: var(--clean-line) !important;
+    box-shadow: var(--soft-shadow);
 }
 
 .welcome-title {
-    font-size: 2.15rem;
-    font-weight: 850;
-    color: #3f3540;
-    margin-bottom: 12px;
+    font-family: "Hiragino Mincho ProN", serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--japan-red);
+    margin-bottom: 18px;
 }
 
 .welcome-subtitle {
     font-size: 1.05rem;
-    color: var(--muted);
+    color: var(--text-muted);
+    line-height: 1.8;
 }
 
+/* 统一收口突兀的 Streamlit 组件 */
+div[data-testid="stAlert"], div[data-testid="stNotification"] {
+    background-color: #FDFBF9 !important;
+    color: var(--ink-dark) !important;
+    border: var(--clean-line) !important;
+    border-radius: 12px !important;
+}
+div[data-testid="stAlert"] div { color: var(--ink-dark) !important; }
+
+/* 便签便签化标签 */
 .specialist-tag {
     display: inline-block;
-    padding: 5px 10px;
-    border-radius: 999px;
-    font-size: 0.76rem;
-    font-weight: 750;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
     margin-right: 6px;
-    margin-bottom: 6px;
-    border: 1px solid rgba(255,255,255,0.62);
-    box-shadow: 0 8px 18px rgba(207, 155, 179, 0.12);
+    margin-bottom: 8px;
+    border: var(--clean-line);
 }
+.specialist-semantic { background: #EBF4FA; color: #4A6B82; }
+.specialist-logical { background: #EEF5F1; color: #4A7356; }
+.specialist-domain { background: #F9F2EB; color: #8A653E; }
+.specialist-psycho { background: #F5EFF9; color: #724A82; }
 
-.specialist-semantic { background: rgba(226, 241, 255, 0.82); color: #437cb8; }
-.specialist-logical { background: rgba(226, 247, 235, 0.84); color: #3b9162; }
-.specialist-domain { background: rgba(255, 238, 210, 0.86); color: #bd7930; }
-.specialist-psycho { background: rgba(247, 225, 255, 0.86); color: #a162c4; }
-
-.monitor-shell {
-    position: relative;
-    overflow: hidden;
-    padding: 18px;
-    margin-bottom: 14px;
-}
-
+/* 思考卡片 */
 .thought-card {
-    border-left: 5px solid #c7b6d8;
-    background: rgba(255, 255, 255, 0.68);
-    border-radius: 18px;
-    padding: 14px 16px;
-    margin: 10px 0;
-    line-height: 1.68;
-    color: #433943;
-    box-shadow: 0 10px 26px rgba(204, 157, 179, 0.10);
+    border-left: 3px solid var(--text-muted);
+    background: #FAF8F5;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 0.95rem;
+    color: var(--ink-dark);
+}
+.thought-semantic { border-left-color: var(--navy-blue); }
+.thought-logical { border-left-color: #4A7356; }
+.thought-domain { border-left-color: #8A653E; }
+.thought-psycho { border-left-color: #724A82; }
+
+/* 进度条 */
+div[data-testid="stProgress"] > div > div > div > div {
+    background-color: var(--japan-red) !important;
 }
 
-.thought-title {
-    font-weight: 820;
-    margin-right: 5px;
-    color: #3d3440;
-}
-
-.thought-meta {
-    color: #917f8c;
-    font-size: 0.86rem;
-    margin-left: 6px;
-}
-
-.thought-semantic { border-left-color: #8ebff2; }
-.thought-logical { border-left-color: #8fd9ad; }
-.thought-domain { border-left-color: #f3b66b; }
-.thought-psycho { border-left-color: #d6a8ee; }
-.thought-routing { border-left-color: #91d8ce; }
-.thought-risk { border-left-color: #f39a72; }
-.thought-strategy { border-left-color: #bca2ff; }
-.thought-report { border-left-color: #f5c071; }
-
-div[data-testid="stAlert"] {
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,0.62);
-    background: rgba(255,255,255,0.72);
-    box-shadow: 0 10px 30px rgba(215, 154, 181, 0.12);
-}
-
-div[data-testid="stMetric"] {
-    background: rgba(255,255,255,0.62);
-    border-radius: 18px;
-    padding: 10px 12px;
-    border: 1px solid rgba(255,255,255,0.60);
-}
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -1046,7 +1003,7 @@ def main():
         st.divider()
 
         # 操作按钮
-        if st.button("🔄 重新开始", use_container_width=True):
+        if st.button("重新开始", use_container_width=True):
             st.session_state.messages = []
             st.session_state.state = create_initial_state()
             st.session_state.round_num = 0
@@ -1069,7 +1026,11 @@ def main():
             st.rerun()
 
     # ============== 主内容区 ==============
-    st.title("🤖 多 Agent 相亲对话小助手 v3.0")
+    st.markdown("""
+        <h1 style='position: relative; z-index: 2;'>
+             织心守护 <span style='font-size: 1.6rem; font-weight: 400; color: var(--text-muted); vertical-align: middle;'>· 多 Agent 职业身份真实性分析系统 v3.0</span>
+        </h1>
+    """, unsafe_allow_html=True)
     dialogue_tab, monitor_tab = st.tabs(["对话", "Agent 思考监控"])
 
     with monitor_tab:
@@ -1084,22 +1045,22 @@ def main():
 def render_dialogue_page(monitor_placeholder=None):
     """渲染主对话页；Agent 思考展示由监控 Tab 承担。"""
 
-    # 欢迎区域（仅在未开始时显示）
+# 欢迎区域（仅在未开始时显示）
     if not st.session_state.started:
         st.markdown(f"""
         <div class="welcome-area">
-            <div class="welcome-title">👋 欢迎使用风险指数测评系统</div>
-            <div class="welcome-subtitle">
-                本系统通过多 Agent 协作分析，评估对话中的风险指数。<br>
-                系统将自动进行语义分析、逻辑验证、领域知识检查和心理语言学分析。<br>
-                最大对话轮次：{MAX_ROUNDS}轮
+            <div class="welcome-title">✨ 欢迎使用 织心守护 · 多 Agent 职业身份真实性分析系统</div>
+            <div class="welcome-subtitle" style="margin-top: 12px;">  
+                本系统采用多 Agent 协同架构，从语义、逻辑、常识及行为特征四个维度为您客观分析职业身份的真实性。<br><br>
+                <strong>为了让算法评估更精准，请在接下来的对话中尽可能详细、充分地回答每一个问题。</strong>您提供的细节信息越丰富，系统推演的确定性就越高。<br><br>
+                <strong>建议对话轮次：{MAX_ROUNDS}轮</strong>
             </div>
         </div>
         """, unsafe_allow_html=True)
 
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
-            if st.button("🚀 开始测评", use_container_width=True, type="primary"):
+            if st.button("开始测评", use_container_width=True, type="primary"):
                 reset_logger()  # 新会话开始，重置日志
                 st.session_state.started = True
                 st.session_state.live_agent_thoughts = []

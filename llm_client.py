@@ -25,7 +25,7 @@ def get_llm(temperature: float | None = None, model: str | None = None) -> ChatO
 
     if not api_key:
         raise ValueError(
-            "缺少 API 密钥！请在 .env 文件中设置 DEEPSEEK_API_KEY 环境变量。"
+            "缺少 API 密钥！请在本地 .env、环境变量或 Streamlit Cloud Secrets 中设置 DEEPSEEK_API_KEY。"
         )
 
     return ChatOpenAI(

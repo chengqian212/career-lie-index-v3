@@ -10,17 +10,19 @@ V3_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(V3_ROOT))
 
 import config  # noqa: E402
-from utils.supabase_outputs import sync_outputs_dir  # noqa: E402
+from utils.supabase_outputs import iter_output_files, sync_outputs_dir, validate_supabase_config  # noqa: E402
 
 
 def main() -> int:
-    if not config.SUPABASE_URL or not (
-        config.SUPABASE_SERVICE_ROLE_KEY or config.SUPABASE_ANON_KEY
-    ):
-        print("Supabase is not configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY first.")
+    ok, reason = validate_supabase_config()
+    if not ok:
+        print(f"Supabase sync is not ready: {reason}")
         return 1
 
     outputs_dir = V3_ROOT / "outputs"
+    files = iter_output_files(outputs_dir)
+    print(f"Found output files: {len(files)}")
+
     uploaded, failed = sync_outputs_dir(outputs_dir)
 
     print(f"Uploaded files: {uploaded}")
