@@ -407,6 +407,15 @@ def create_initial_state(max_rounds: int = MAX_ROUNDS) -> dict:
         "schema_errors": [],
         "quick_preanalysis_retry_count": 0,
         "has_new_fact": False,
+        "specificity_level": "MEDIUM",
+        "experience_density": "MEDIUM",
+        "generic_answer_flag": False,
+        "generic_answer_reason": "",
+        "suggested_probe_angle": "",
+        "generic_answer_streak": 0,
+        "generic_answer_count": 0,
+        "last_probe_angle": "",
+        "used_probe_angles": [],
         "routing_decision": {},
         "selected_specialists": [],
         "priority_issue": "",
@@ -507,6 +516,14 @@ def _save_session_to_outputs(state: dict, thinking_history: list, round_records:
         "lie_index": state.get("lie_index", 0.0),
         "dimension_scores": state.get("dimension_scores", {}),
         "risk_explanation": state.get("risk_explanation", []),
+        "experience_density": state.get("experience_density", ""),
+        "specificity_level": state.get("specificity_level", ""),
+        "generic_answer_flag": state.get("generic_answer_flag", False),
+        "generic_answer_reason": state.get("generic_answer_reason", ""),
+        "suggested_probe_angle": state.get("suggested_probe_angle", ""),
+        "generic_answer_streak": state.get("generic_answer_streak", 0),
+        "generic_answer_count": state.get("generic_answer_count", 0),
+        "used_probe_angles": state.get("used_probe_angles", []),
         "called_specialists": state.get("called_specialists", []),
         "routing_decision": state.get("routing_decision", {}),
         "final_report": state.get("final_report"),
@@ -711,11 +728,18 @@ def extract_agent_thoughts(node_name: str, node_update: dict) -> str | None:
     if node_name == "quick_preanalysis":
         fact = node_update.get("quick_fact_summary", "")
         signal = node_update.get("quick_signal_summary", "")
+        density = node_update.get("experience_density", "")
+        generic = node_update.get("generic_answer_flag", False)
+        generic_reason = node_update.get("generic_answer_reason", "")
         parts = []
         if fact:
             parts.append(fact)
         if signal:
             parts.append(signal)
+        if density:
+            parts.append(f"经验密度：{density}")
+        if generic and generic_reason:
+            parts.append(f"泛泛回答：{generic_reason}")
         return "；".join(parts) if parts else None
 
     # 路由决策
@@ -1217,6 +1241,13 @@ def render_dialogue_page(monitor_placeholder=None):
                         "quick_signal_summary": st.session_state.state.get("quick_signal_summary", ""),
                         "surface_risk_score": st.session_state.state.get("surface_risk_score", 0.0),
                         "has_new_fact": st.session_state.state.get("has_new_fact", False),
+                        "specificity_level": st.session_state.state.get("specificity_level", ""),
+                        "experience_density": st.session_state.state.get("experience_density", ""),
+                        "generic_answer_flag": st.session_state.state.get("generic_answer_flag", False),
+                        "generic_answer_reason": st.session_state.state.get("generic_answer_reason", ""),
+                        "suggested_probe_angle": st.session_state.state.get("suggested_probe_angle", ""),
+                        "generic_answer_streak": st.session_state.state.get("generic_answer_streak", 0),
+                        "generic_answer_count": st.session_state.state.get("generic_answer_count", 0),
 
                         "selected_specialists": st.session_state.state.get("selected_specialists", []),
                         "called_specialists": st.session_state.state.get("called_specialists", []),

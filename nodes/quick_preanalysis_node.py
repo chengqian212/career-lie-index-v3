@@ -28,6 +28,7 @@ from utils.text_utils import (
     clean_llm_output,
 )
 from utils.score_utils import normalize_quick_risk_labels
+from utils.strategy_utils import normalize_probe_angle
 
 # 异常表更新工具
 from memory.anomaly_table import (
@@ -36,6 +37,8 @@ from memory.anomaly_table import (
 )
 
 logger = logging.getLogger(__name__)
+
+VALID_LEVELS = {"HIGH", "MEDIUM", "LOW"}
 
 
 def _ensure_list(value) -> list:
@@ -61,6 +64,11 @@ def _safe_float(value, default: float = 0.0) -> float:
         return float(value)
     except (TypeError, ValueError):
         return default
+
+
+def _normalize_level(value, default: str = "MEDIUM") -> str:
+    level = str(value or "").strip().upper()
+    return level if level in VALID_LEVELS else default
 
 
 def quick_preanalysis_node(state: DialogueState) -> dict:
@@ -156,6 +164,11 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
                 "anomalies_table": anomalies_table,
                 "current_anomalies": [],
                 "surface_risk_score": 0.0,
+                "specificity_level": "MEDIUM",
+                "experience_density": "MEDIUM",
+                "generic_answer_flag": False,
+                "generic_answer_reason": "",
+                "suggested_probe_angle": "",
                 "quick_fact_summary": "",
                 "quick_signal_summary": "",
                 "parse_error": "json_parse_failed",
@@ -176,6 +189,11 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
             "anomalies_table": anomalies_table,
             "current_anomalies": [],
             "surface_risk_score": 0.0,
+            "specificity_level": "MEDIUM",
+            "experience_density": "MEDIUM",
+            "generic_answer_flag": False,
+            "generic_answer_reason": "",
+            "suggested_probe_angle": "",
             "quick_fact_summary": "",
             "quick_signal_summary": "",
             "parse_error": "json_not_dict",
@@ -204,6 +222,25 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
     surface_risk_score = max(0.0, min(100.0, surface_risk_score))
     severity = result.get("severity")
     confidence = result.get("confidence")
+    specificity_level = _normalize_level(result.get("specificity_level"), "MEDIUM")
+    experience_density = _normalize_level(result.get("experience_density"), "MEDIUM")
+    generic_answer_flag = bool(result.get("generic_answer_flag", False))
+    generic_answer_reason = result.get("generic_answer_reason", "")
+    if not isinstance(generic_answer_reason, str):
+        generic_answer_reason = str(generic_answer_reason)
+
+    used_probe_angles = list(state.get("used_probe_angles", []) or [])
+    suggested_probe_angle = normalize_probe_angle(
+        result.get("suggested_probe_angle", ""),
+        used_probe_angles,
+    )
+
+    previous_streak = int(state.get("generic_answer_streak", 0) or 0)
+    previous_count = int(state.get("generic_answer_count", 0) or 0)
+    generic_answer_streak = previous_streak + 1 if generic_answer_flag else 0
+    generic_answer_count = previous_count + 1 if generic_answer_flag else previous_count
+    if generic_answer_flag and suggested_probe_angle not in used_probe_angles:
+        used_probe_angles.append(suggested_probe_angle)
 
     # 获取事实摘要
     quick_fact_summary = result.get("quick_fact_summary", "")
@@ -386,6 +423,15 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
         "surface_risk_score": surface_risk_score,
         "severity": severity,
         "confidence": confidence,
+        "specificity_level": specificity_level,
+        "experience_density": experience_density,
+        "generic_answer_flag": generic_answer_flag,
+        "generic_answer_reason": generic_answer_reason,
+        "suggested_probe_angle": suggested_probe_angle,
+        "generic_answer_streak": generic_answer_streak,
+        "generic_answer_count": generic_answer_count,
+        "last_probe_angle": suggested_probe_angle if generic_answer_flag else state.get("last_probe_angle", ""),
+        "used_probe_angles": used_probe_angles,
         "quick_fact_summary": quick_fact_summary,
         "quick_signal_summary": quick_signal_summary,
         "schema_error": quick_schema_error or "",

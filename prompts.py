@@ -853,7 +853,12 @@ QUICK_PREANALYSIS_TEMPLATE = """你是快速预分析助手（Quick Preanalysis 
   ],
   "surface_risk_score": 0,
   "quick_fact_summary": "本轮事实摘要（简要概括抽取到的关键事实）",
-  "quick_signal_summary": "本轮信号摘要（简要概括检测到的异常信号）"
+  "quick_signal_summary": "本轮信号摘要（简要概括检测到的异常信号）",
+  "specificity_level": "HIGH|MEDIUM|LOW",
+  "experience_density": "HIGH|MEDIUM|LOW",
+  "generic_answer_flag": true|false,
+  "generic_answer_reason": "如果回答正确但停留在常识层，说明缺少哪些真实经验痕迹；否则为空",
+  "suggested_probe_angle": "process_sequence|boundary_judgment|real_constraint|counterexample|term_clarification|output_evidence"
 }}
 
 【处理顺序】
@@ -862,7 +867,8 @@ QUICK_PREANALYSIS_TEMPLATE = """你是快速预分析助手（Quick Preanalysis 
 2. 再根据当前回答、上一轮追问、历史事实、历史异常，判断是否有表层异常；
 3. 对历史异常进行状态更新（如果当前回答有回应）；
 4. 添加本轮新发现的异常（如果有）；
-5. 计算表层风险分数并生成摘要。
+5. 判断当前回答的具体程度、经验密度和是否属于正确但泛泛的常识层回答；
+6. 计算表层风险分数并生成摘要。
 
 【限制条件】
 1. slot 必须从指定选项中选择（occupation/role/work_content/company/time_stage/experience/other）
@@ -872,6 +878,7 @@ QUICK_PREANALYSIS_TEMPLATE = """你是快速预分析助手（Quick Preanalysis 
 5. 不允许直接判定"用户说谎"
 6. 如无新事实，facts 为空数组，has_new_fact 为 false
 7. 如无异常，anomalies 和 anomaly_updates 均为空数组，surface_risk_score=0
+8. generic_answer_flag=true 不等于事实错误；它表示回答可能符合职业常识，但缺少真实经历痕迹，需要继续换角度了解
 
 【正常不确定性与探索性表达规则】
 在职业/学习经历对话中，不要把所有“不够具体”的回答都标记为异常。
@@ -886,6 +893,27 @@ QUICK_PREANALYSIS_TEMPLATE = """你是快速预分析助手（Quick Preanalysis 
 
 这类回答应视为“正常探索性表达”，可以抽取事实，但不要轻易添加异常。
 如果需要继续了解，应通过后续追问自然收集细节，而不是提高风险分。
+
+【经验密度判断规则】
+请单独判断回答是否具有真实经历密度。注意：事实正确和经验密度高是两件事。
+
+以下内容会提高 experience_density：
+1. 具体场景或对象类型；
+2. 操作顺序、流程、判断节点；
+3. 边界意识、限制条件、不能做什么；
+4. 工具、记录、复盘、协作或交付物；
+5. 反例、卡点、例外情况；
+6. 能承接上一轮追问，而不是只说行业常识。
+
+以下情况应标记 generic_answer_flag=true：
+1. 回答符合职业常识，但只停留在概括性职责、口号或行业常识；
+2. 对方声称有明确职业/项目/实践经历，但连续给不出过程、边界、限制或场景；
+3. 回答听起来“没毛病”，但换成没有亲身经历的人也容易说出来。
+
+generic_answer_flag=true 时：
+- severity 通常为 LOW 或 MEDIUM，不要单轮直接打成 HIGH；
+- confidence 可为 HIGH，因为“经验密度低”本身可以确定；
+- suggested_probe_angle 必须选择一个新的经验链角度，优先避免重复上一轮问题。
 
 只有在以下情况才标记为异常：
 1. 用户连续多轮拒绝回答同一核心事实；
@@ -931,6 +959,11 @@ QUICK_PREANALYSIS_TEMPLATE += """
 必须在顶层输出：
 - severity: CRITICAL|HIGH|MEDIUM|LOW
 - confidence: HIGH|LOW
+- specificity_level: HIGH|MEDIUM|LOW
+- experience_density: HIGH|MEDIUM|LOW
+- generic_answer_flag: true|false
+- generic_answer_reason: 字符串
+- suggested_probe_angle: process_sequence|boundary_judgment|real_constraint|counterexample|term_clarification|output_evidence
 surface_risk_score 可以继续输出作为兼容字段，但路由和后续硬规则不会使用它。
 每条 anomalies 中也应尽量带上 severity/confidence。
 如果无法判断 severity/confidence，不要输出该条 anomaly。
@@ -967,6 +1000,10 @@ LIGHTWEIGHT_ROUTING_SUPERVISOR_TEMPLATE = """你是轻量路由监督者（Light
 - facts_table: 已有的历史事实表
 - anomalies_table: 已有的历史异常表
 - surface_risk_score: 表层风险分数（0-100）
+- experience_density: 当前回答经验密度 HIGH|MEDIUM|LOW
+- generic_answer_flag: 当前回答是否正确但泛泛
+- generic_answer_streak: 连续泛泛回答轮数
+- suggested_probe_angle: quick_preanalysis 建议的经验链追问角度
 
 【输出要求】
 必须输出标准 JSON 格式：
@@ -974,7 +1011,7 @@ LIGHTWEIGHT_ROUTING_SUPERVISOR_TEMPLATE = """你是轻量路由监督者（Light
   "selected_specialists": ["semantic", "logical", "domain", "psycho_linguistic"],
   "routing_reason": "简短理由（20-50字）",
   "priority_issue": "最需要关注的问题",
-    "followup_strategy": "daily_routine|entry_experience|work_style|recent_memory|light_clarification|topic_shift_buffer|experience_probe|knowledge_probe|tool_workflow_probe|scenario_judgment_probe"
+    "followup_strategy": "daily_routine|entry_experience|work_style|recent_memory|light_clarification|topic_shift_buffer|experience_probe|knowledge_probe|tool_workflow_probe|scenario_judgment_probe|process_sequence|boundary_judgment|real_constraint|counterexample|term_clarification|output_evidence"
 }}
 
 【追问策略选择规则】
@@ -985,6 +1022,12 @@ followup_strategy 必须从以下选项中选择：
 - recent_memory：需要更多真实细节但不能深挖专业内容时使用，问最近小事；
 - light_clarification：信息有点模糊或存在轻微不一致时使用，只做温和澄清；
 - topic_shift_buffer：用户回答很短、不愿细说、连续追问同一方向后使用，用来降压。
+- process_sequence：经验密度不足时使用，问真实处理流程、先后顺序、判断节点；
+- boundary_judgment：经验密度不足时使用，问边界判断、什么时候继续/暂停/转介/升级；
+- real_constraint：经验密度不足时使用，问真实限制，如记录、时间、流程、协作、规范；
+- counterexample：经验密度不足时使用，问反例、卡点、常规方法不管用时怎么办；
+- term_clarification：经验密度不足时使用，追问用户自己说过的关键词在实际场景里具体指什么；
+- output_evidence：经验密度不足时使用，问产出、留痕、结果、复盘或如何判断有效。
 
 禁止输出 deep_dive、verify、investigate、interview、professional_probe、clarification、continue、expansion 等不受控策略。
 
@@ -993,6 +1036,7 @@ followup_strategy 必须从以下选项中选择：
 2. routing_reason 要简短，不输出完整推理过程
 3. 如果无法判断，selected_specialists 返回 ["semantic", "logical"]
 4. 不要默认调用全部专家，只在确实需要时才调用多个专家
+5. 如果 generic_answer_flag=true 但没有事实冲突或职业常识错误，不要为了“回答很空”默认调用 domain_agent；优先把 suggested_probe_angle 直接作为 followup_strategy 交给后续追问
 
 【失败处理】
 - 如果输入信息不足但系统已进入本节点，selected_specialists 返回 ["semantic", "logical"]
@@ -1017,6 +1061,18 @@ followup_strategy 必须从以下选项中选择：
 
 表层风险分数：
 {surface_risk_score}
+
+经验密度：
+{experience_density}
+
+泛泛回答标记：
+{generic_answer_flag}
+
+连续泛泛回答轮数：
+{generic_answer_streak}
+
+建议追问角度：
+{suggested_probe_angle}
 
 请输出 JSON：
 
@@ -1069,7 +1125,7 @@ STRATEGY_SUPERVISOR_TEMPLATE = """你是策略决策者（Strategy Supervisor）
 必须输出标准 JSON 格式：
 {{
   "priority_issue": "最需要追问的问题",
-  "followup_strategy": "daily_routine|entry_experience|work_style|recent_memory|light_clarification|topic_shift_buffer|experience_probe|knowledge_probe|tool_workflow_probe|scenario_judgment_probe",
+  "followup_strategy": "daily_routine|entry_experience|work_style|recent_memory|light_clarification|topic_shift_buffer|experience_probe|knowledge_probe|tool_workflow_probe|scenario_judgment_probe|process_sequence|boundary_judgment|real_constraint|counterexample|term_clarification|output_evidence",
   "target_anomaly_id": "如果本轮追问对应某个异常，填写 anomaly_id；否则为空",
   "reason_summary": "简短理由（20-50字）"
 }}
@@ -1089,6 +1145,12 @@ followup_strategy 必须从以下选项中选择：
 - knowledge_probe：知识理解型侧面探问。适合对方提到技术方向、行业概念、AI 热点时使用，用聊天方式问理解、判断或入门建议。
 - tool_workflow_probe：工具/流程习惯侧面探问。适合对方提到学习、写代码、查资料、调模型、做项目时使用，问平时怎么解决问题、哪种方式更管用。
 - scenario_judgment_probe：场景判断型侧面探问。适合需要观察真实经验和专业思维时使用，给一个轻量场景，让对方说一般会怎么处理。
+- process_sequence：经验链追问。问真实处理流程、先后顺序、判断节点。
+- boundary_judgment：经验链追问。问边界判断、什么时候继续/暂停/转介/升级。
+- real_constraint：经验链追问。问真实限制，如记录、时间、流程、协作、规范。
+- counterexample：经验链追问。问反例、卡点、常规方法不管用时怎么办。
+- term_clarification：经验链追问。追问用户自己说过的关键词在实际场景里具体指什么。
+- output_evidence：经验链追问。问产出、留痕、结果、复盘或如何判断有效。
 
 禁止输出 deep_dive、verify、investigate、interview、professional_probe、clarification、continue、expansion 等不受控策略。
 
@@ -1142,12 +1204,13 @@ Judge these dimensions:
 3. Quantitative risk: Current LieIndex is {lie_index}.
 4. Evidence quality: Specialist evidence and anomalies may be more important than the numeric score alone.
 5. Opportunity value: A low score can still justify ASK_MORE if there is a promising unresolved factual gap.
+6. Experience density: If the user keeps giving correct but generic answers, prefer ASK_MORE with a new probe angle until the minimum round budget is satisfied.
 
 Return strict JSON only:
 {{
   "decision": "ASK_MORE|GENERATE_REPORT",
   "priority_issue": "the most valuable issue to pursue next, or empty if generating report",
-  "followup_strategy": "daily_routine|entry_experience|work_style|recent_memory|light_clarification|topic_shift_buffer|experience_probe|knowledge_probe|tool_workflow_probe|scenario_judgment_probe",
+  "followup_strategy": "daily_routine|entry_experience|work_style|recent_memory|light_clarification|topic_shift_buffer|experience_probe|knowledge_probe|tool_workflow_probe|scenario_judgment_probe|process_sequence|boundary_judgment|real_constraint|counterexample|term_clarification|output_evidence",
   "target_anomaly_id": "anomaly_id if the next follow-up targets one, otherwise empty",
   "reason_summary": "short reason, 20-80 Chinese characters"
 }}
@@ -1176,6 +1239,21 @@ routing_decision:
 
 called_specialists:
 {called_specialists}
+
+experience_density:
+{experience_density}
+
+generic_answer_flag:
+{generic_answer_flag}
+
+generic_answer_streak:
+{generic_answer_streak}
+
+generic_answer_count:
+{generic_answer_count}
+
+suggested_probe_angle:
+{suggested_probe_angle}
 """
 
 STRATEGY_SUPERVISOR_PROMPT = ChatPromptTemplate.from_messages([

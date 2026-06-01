@@ -23,6 +23,7 @@ from utils.score_utils import (
 # 这些来源才会被纳入风险聚合计算
 RISK_EVIDENCE_SOURCES = {
     "quick_preanalysis",
+    "experience_density",
     "semantic",
     "logical",
     "domain",
@@ -32,6 +33,7 @@ RISK_EVIDENCE_SOURCES = {
 # 显示名称映射（用于生成日志或可视化）
 SOURCE_DISPLAY_NAMES = {
     "quick_preanalysis": "表层检测",
+    "experience_density": "经验密度",
     "semantic": "语义一致性",
     "logical": "逻辑时间线",
     "domain": "职业常识",
@@ -99,6 +101,39 @@ def _risk_events_from_anomalies(anomalies_table: list[dict]) -> list[dict]:
 
     return events
 
+
+def _experience_density_event(state: DialogueState) -> dict | None:
+    """Convert repeated generic answers into a weak, accumulating risk signal."""
+    if not state.get("generic_answer_flag"):
+        return None
+
+    streak = int(state.get("generic_answer_streak", 0) or 0)
+    density = str(state.get("experience_density") or "MEDIUM").upper()
+    reason = state.get("generic_answer_reason") or "回答符合常识但缺少具体场景、流程、边界或限制"
+
+    if streak >= 3:
+        severity = "MEDIUM"
+        confidence = "HIGH"
+    elif streak >= 2:
+        severity = "LOW"
+        confidence = "HIGH"
+    elif density == "LOW":
+        severity = "LOW"
+        confidence = "LOW"
+    else:
+        return None
+
+    return {
+        "source": "experience_density",
+        "display_source": SOURCE_DISPLAY_NAMES["experience_density"],
+        "anomaly_id": "",
+        "type": "generic_answer_low_experience_density",
+        "description": reason,
+        "severity": severity,
+        "confidence": confidence,
+        "risk_value": effective_risk_value(severity, confidence),
+    }
+
 def risk_aggregator_node(state: DialogueState) -> dict:
     """
     核心聚合函数：
@@ -129,6 +164,9 @@ def risk_aggregator_node(state: DialogueState) -> dict:
 
     # 3. 提取活跃专家事件，计算单条风险值
     risk_events = _risk_events_from_anomalies(updated_anomalies_table)
+    generic_event = _experience_density_event(state)
+    if generic_event:
+        risk_events.append(generic_event)
 
     # 4. LieIndex 聚合公式（独立事件概率叠加）
     lie_index = combine_independent_risk_values([

@@ -50,6 +50,15 @@ class DialogueState(TypedDict):
     schema_errors: List[str]            # 节点输出结构错误明细
     quick_preanalysis_retry_count: int  # quick_preanalysis schema 重试次数
     has_new_fact: bool                  # 是否检测到新事实
+    specificity_level: str              # 当前回答具体程度：HIGH/MEDIUM/LOW
+    experience_density: str             # 当前回答经验密度：HIGH/MEDIUM/LOW
+    generic_answer_flag: bool           # 当前回答是否属于正确但泛泛的常识层回答
+    generic_answer_reason: str          # 泛泛回答原因
+    suggested_probe_angle: str          # 建议下一轮经验链追问角度
+    generic_answer_streak: int          # 连续泛泛回答轮数
+    generic_answer_count: int           # 累计泛泛回答次数
+    last_probe_angle: str               # 上一轮使用的经验链追问角度
+    used_probe_angles: List[str]        # 已使用的经验链追问角度
 
     # ==================== v3 新增：路由决策 ====================
     routing_decision: Dict              # 路由决策详情，包含决策依据

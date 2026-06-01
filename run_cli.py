@@ -93,6 +93,15 @@ def create_initial_state(max_rounds: int = MAX_ROUNDS) -> dict:
         "schema_errors": [],
         "quick_preanalysis_retry_count": 0,
         "has_new_fact": False,
+        "specificity_level": "MEDIUM",
+        "experience_density": "MEDIUM",
+        "generic_answer_flag": False,
+        "generic_answer_reason": "",
+        "suggested_probe_angle": "",
+        "generic_answer_streak": 0,
+        "generic_answer_count": 0,
+        "last_probe_angle": "",
+        "used_probe_angles": [],
         
         # v3 新增：路由决策
         "routing_decision": {},

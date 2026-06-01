@@ -26,7 +26,10 @@ from utils.text_utils import (
     format_anomalies_table,     # 格式化异常表
     format_dialogue_history,    # 格式化对话历史
 )
-from utils.strategy_utils import normalize_followup_strategy  # 归一化策略
+from utils.strategy_utils import (
+    normalize_followup_strategy,
+    probe_angle_hint,
+)
 
 # -------------------------
 # 低风险排除词
@@ -258,6 +261,12 @@ def followup_generation_node(state: DialogueState) -> dict:
     priority_issue = state.get("priority_issue", "")
     followup_strategy = state.get("followup_strategy", "")
     target_anomaly_id = state.get("target_anomaly_id", "")
+    if state.get("generic_answer_flag"):
+        probe_angle = state.get("suggested_probe_angle", "")
+        followup_strategy = normalize_followup_strategy(probe_angle, has_risk=True)
+        angle_hint = probe_angle_hint(probe_angle)
+        generic_reason = state.get("generic_answer_reason") or "回答符合常识但经验密度不足"
+        priority_issue = f"{generic_reason}；{angle_hint}"
 
     # 自动推断 priority_issue
     if _is_invalid_priority_issue(priority_issue):

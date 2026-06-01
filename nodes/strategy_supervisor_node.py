@@ -112,6 +112,11 @@ def strategy_supervisor_node(state: DialogueState) -> dict:
             "max_rounds": max_rounds,
             "routing_decision": str(state.get("routing_decision", {}) or "None"),
             "called_specialists": ", ".join(state.get("called_specialists", [])) or "None",
+            "experience_density": state.get("experience_density", "MEDIUM"),
+            "generic_answer_flag": state.get("generic_answer_flag", False),
+            "generic_answer_streak": state.get("generic_answer_streak", 0),
+            "generic_answer_count": state.get("generic_answer_count", 0),
+            "suggested_probe_angle": state.get("suggested_probe_angle", ""),
         })
     )
 
@@ -149,10 +154,36 @@ def strategy_supervisor_node(state: DialogueState) -> dict:
         decision = "GENERATE_REPORT"
 
     # 规范化 followup_strategy
-    followup_strategy = normalize_followup_strategy(
-        result.get("followup_strategy", "daily_routine"),
-        has_risk=False,  # 这里没有使用风险信号判断
-    )
+    generic_answer_flag = bool(state.get("generic_answer_flag", False))
+    generic_answer_streak = int(state.get("generic_answer_streak", 0) or 0)
+    suggested_probe_angle = state.get("suggested_probe_angle", "")
+    has_risk = bool(state.get("lie_index", 0) and state.get("lie_index", 0) >= 30)
+
+    if decision != "GENERATE_REPORT" and generic_answer_flag:
+        followup_strategy = normalize_followup_strategy(suggested_probe_angle, has_risk=True)
+        if not result.get("priority_issue"):
+            result["priority_issue"] = (
+                state.get("generic_answer_reason")
+                or "回答符合常识但经验密度不足，需要换角度了解实际经历"
+            )
+    else:
+        followup_strategy = normalize_followup_strategy(
+            result.get("followup_strategy", "daily_routine"),
+            has_risk=has_risk,
+        )
+
+    if (
+        decision == "GENERATE_REPORT"
+        and generic_answer_flag
+        and generic_answer_streak < 3
+        and round_id < max_rounds
+    ):
+        decision = "ASK_MORE"
+        followup_strategy = normalize_followup_strategy(suggested_probe_angle, has_risk=True)
+        result["priority_issue"] = (
+            state.get("generic_answer_reason")
+            or "回答仍停留在常识层，需要再换一个经验角度确认"
+        )
 
     # 获取 LLM 给出的原因总结
     reason_summary = result.get("reason_summary", "")

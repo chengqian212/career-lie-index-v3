@@ -60,6 +60,8 @@ def should_skip_specialist(state: DialogueState) -> bool:
     facts_table = state.get("facts_table", [])
     has_new_fact = state.get("has_new_fact", False)
     round_id = state.get("round_id", 1)
+    generic_answer_flag = bool(state.get("generic_answer_flag", False))
+    suggested_probe_angle = state.get("suggested_probe_angle", "")
 
     # 筛选历史未解决异常
     historical_unresolved = [
@@ -78,6 +80,10 @@ def should_skip_specialist(state: DialogueState) -> bool:
         return False
     if historical_unresolved:
         return False
+
+    # 正确但泛泛的回答优先进入经验链追问，不必为了“空”立即调用职业常识专家。
+    if generic_answer_flag and severity in {"LOW", "MEDIUM"}:
+        return True
 
     # 核心事实判断
     core_slots = {"occupation", "role", "company", "time_stage", "experience", "work_content"}
@@ -116,6 +122,10 @@ def infer_default_specialists(state: DialogueState) -> list[str]:
     has_new_fact = state.get("has_new_fact", False)
     facts_table = state.get("facts_table", [])
     surface_risk_score = state.get("surface_risk_score", 0)
+    generic_answer_flag = bool(state.get("generic_answer_flag", False))
+    generic_answer_reason = state.get("generic_answer_reason", "")
+    suggested_probe_angle = state.get("suggested_probe_angle", "")
+    generic_answer_streak = int(state.get("generic_answer_streak", 0) or 0)
 
     selected: list[str] = []
 
@@ -237,6 +247,10 @@ def lightweight_routing_supervisor_node(state: DialogueState) -> dict:
     facts_table = state.get("facts_table", [])
     anomalies_table = state.get("anomalies_table", [])
     surface_risk_score = state.get("surface_risk_score", 0)
+    generic_answer_flag = bool(state.get("generic_answer_flag", False))
+    generic_answer_reason = state.get("generic_answer_reason", "")
+    suggested_probe_angle = state.get("suggested_probe_angle", "")
+    generic_answer_streak = int(state.get("generic_answer_streak", 0) or 0)
 
     # 快速预分析标签无效，尝试重跑
     if not _has_valid_quick_labels(state):
@@ -278,12 +292,23 @@ def lightweight_routing_supervisor_node(state: DialogueState) -> dict:
 
     # 规则跳过专家判断
     if should_skip_specialist(state):
+        if generic_answer_flag:
+            followup_strategy = normalize_followup_strategy(suggested_probe_angle, has_risk=True)
+            priority_issue = generic_answer_reason or "回答符合常识但经验密度不足，需要换角度了解实际处理过程"
+            routing_reason = "本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问"
+        else:
+            followup_strategy = "daily_routine"
+            priority_issue = "无明显待澄清点"
+            routing_reason = "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析"
         routing_decision = {
             "selected_specialists": [],
-            "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
-            "priority_issue": "无明显待澄清点",
-            "followup_strategy": "daily_routine",
+            "routing_reason": routing_reason,
+            "priority_issue": priority_issue,
+            "followup_strategy": followup_strategy,
             "router_mode": "rule_skip",
+            "generic_answer_flag": generic_answer_flag,
+            "suggested_probe_angle": suggested_probe_angle,
+            "generic_answer_streak": generic_answer_streak,
         }
         logger.info(
             f"[路由监督节点] 规则跳过专家 - "
@@ -321,6 +346,10 @@ def lightweight_routing_supervisor_node(state: DialogueState) -> dict:
             "facts_table": facts_str,
             "anomalies_table": anomalies_str,
             "surface_risk_score": surface_risk_score,
+            "experience_density": state.get("experience_density", "MEDIUM"),
+            "generic_answer_flag": generic_answer_flag,
+            "generic_answer_streak": generic_answer_streak,
+            "suggested_probe_angle": suggested_probe_angle,
         },
         max_retries=2,
     )
