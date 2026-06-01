@@ -498,6 +498,7 @@ FOLLOWUP_GENERATION_TEMPLATE = """你是对话追问生成器（Follow-up Genera
 - dimension_scores: 各维度分数（JSON）
 - anomalies_table: 已识别的异常表
 - dialogue_history: 完整对话历史
+- previous_questions: 已经问过的 AI 追问
 
 【输出要求】
 直接输出一句自然的相亲聊天式回应，字符串格式，不加引号、不加编号、不加其他标记。
@@ -608,6 +609,8 @@ FOLLOWUP_GENERATION_TEMPLATE = """你是对话追问生成器（Follow-up Genera
 10. 不要连续生成“你当时怎么……”这种很像复盘/面试的问题，可以多换成“这个一般怎么……”“哪种方式更……”“如果想入门是不是应该……”。
 11. 输出前必须自检中文是否自然、是否有错别字、语义漂移或不合语境的词。
 12. 不要为了口语化牺牲准确性；如果不确定某个表达是否自然，使用更稳妥的普通说法。
+13. 不能重复 previous_questions 中已经问过的问题；不仅不能逐字重复，也不能换一种说法问同一个意思、同一个信息点或同一个工作日常范围。
+14. 如果上一轮已经问过“平时主要忙什么/一天做什么/日常工作内容”，本轮必须换到新的信息角度，例如方法、判断标准、难点、边界、复盘、产出或成长路径。
 
 【推荐表达方式】
 更推荐这类开放式问法：
@@ -657,6 +660,9 @@ FOLLOWUP_GENERATION_TEMPLATE = """你是对话追问生成器（Follow-up Genera
 对话历史：
 {dialogue_history}
 
+已经问过的 AI 追问：
+{previous_questions}
+
 请直接输出一句自然的相亲聊天式回应，里面只能包含一个核心问题："""
 
 FOLLOWUP_GENERATION_PROMPT = ChatPromptTemplate.from_messages([
@@ -690,10 +696,13 @@ FOLLOWUP_POLISH_TEMPLATE = """你是中文对话质检与润色器。
 对话历史：
 {dialogue_history}
 
+已经问过的 AI 追问：
+{previous_questions}
+
 候选追问：
 {raw_question}
 
-请输出润色后的最终追问："""
+请输出润色后的最终追问。若候选追问与已问追问含义重复，必须换一个新的信息角度后再输出："""
 
 FOLLOWUP_POLISH_PROMPT = ChatPromptTemplate.from_messages([
     ("system", FOLLOWUP_POLISH_TEMPLATE),

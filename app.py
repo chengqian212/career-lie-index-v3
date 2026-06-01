@@ -1283,12 +1283,15 @@ def _generate_final_report(monitor_placeholder=None):
             st.session_state.round_records,
         )
         st.session_state.saved_filepath = saved_path
-        safe_sync_output_file(saved_path)
+        report_synced, report_sync_msg = safe_sync_output_file(saved_path)
+        if report_synced:
+            st.success("☁️ 报告已同步到 Supabase")
+        else:
+            st.warning(f"☁️ 报告未同步到 Supabase：{report_sync_msg}")
         st.success(f"💾 完整测试记录已保存至：{saved_path}")
 
         log_path = logger.finalize_session(st.session_state.state)
         st.session_state.saved_log_filepath = log_path
-        safe_sync_output_file(log_path)
         st.success(f"📝 详细日志已保存至：{log_path}")
 
     except Exception as e:

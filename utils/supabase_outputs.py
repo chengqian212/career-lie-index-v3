@@ -18,12 +18,22 @@ def _get_supabase_client():
     if not url or not key:
         return None
 
-    try:
-        from supabase import create_client
-    except ImportError:
-        return None
+    from supabase import create_client
 
     return create_client(url, key)
+
+
+def validate_supabase_config() -> tuple[bool, str]:
+    """Return whether Supabase sync can run, with a human-readable reason."""
+    if not config.SUPABASE_URL:
+        return False, "Missing SUPABASE_URL in .env or environment."
+    if not (config.SUPABASE_SERVICE_ROLE_KEY or config.SUPABASE_ANON_KEY):
+        return False, "Missing SUPABASE_SERVICE_ROLE_KEY in .env or environment."
+    try:
+        import supabase  # noqa: F401
+    except ImportError:
+        return False, "Python package 'supabase' is not installed. Run: pip install -r requirements.txt"
+    return True, "ok"
 
 
 def _build_output_payload(path: str | os.PathLike[str]) -> dict[str, Any]:
@@ -83,29 +93,32 @@ def sync_output_file(path: str | os.PathLike[str]) -> bool:
     return True
 
 
-def safe_sync_output_file(path: str | os.PathLike[str]) -> bool:
+def safe_sync_output_file(path: str | os.PathLike[str]) -> tuple[bool, str]:
     """Best-effort Supabase sync for UI code; never raises."""
+    ok, reason = validate_supabase_config()
+    if not ok:
+        return False, reason
+
     try:
-        return sync_output_file(path)
-    except Exception:
-        return False
+        uploaded = sync_output_file(path)
+    except Exception as exc:
+        return False, f"{type(exc).__name__}: {exc}"
+
+    if not uploaded:
+        return False, "Supabase client was not created."
+    return True, "uploaded"
 
 
 def iter_output_files(outputs_dir: str | os.PathLike[str]) -> list[Path]:
-    """List uploadable files under outputs, excluding placeholders and caches."""
+    """List uploadable report JSON files under outputs."""
     root = Path(outputs_dir)
     if not root.exists():
         return []
 
-    ignored_names = {".gitkeep"}
-    ignored_parts = {"__pycache__"}
     files = []
-    for path in root.rglob("*"):
+    reports_dir = root / "reports"
+    for path in reports_dir.glob("*.json"):
         if not path.is_file():
-            continue
-        if path.name in ignored_names:
-            continue
-        if any(part in ignored_parts for part in path.parts):
             continue
         files.append(path)
     return sorted(files)

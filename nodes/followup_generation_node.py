@@ -16,6 +16,8 @@ v3.3 改进：
 - 优先使用 strategy_supervisor 输出的状态字段
 """
 
+import re
+
 from llm_client import get_llm
 from prompts import FOLLOWUP_GENERATION_PROMPT, FOLLOWUP_POLISH_PROMPT
 from state_schema import DialogueState
@@ -40,6 +42,7 @@ _LOW_RISK_PHRASES = [
 def _polish_followup_question(
     raw_question: str,
     dialogue_text: str,
+    previous_questions_text: str,
     priority_issue: str,
     followup_strategy: str,
 ) -> str:
@@ -54,6 +57,7 @@ def _polish_followup_question(
             FOLLOWUP_POLISH_PROMPT.invoke({
                 "raw_question": raw_question,
                 "dialogue_history": dialogue_text,
+                "previous_questions": previous_questions_text,
                 "priority_issue": priority_issue,
                 "followup_strategy": followup_strategy,
             })
@@ -63,6 +67,70 @@ def _polish_followup_question(
         return raw_question
 
     return polished or raw_question
+
+
+def _collect_previous_questions(state: DialogueState) -> list[str]:
+    """Collect prior AI questions from followup history and dialogue history."""
+    questions = []
+    for item in state.get("followup_history", []):
+        if isinstance(item, dict):
+            question = clean_llm_output(str(item.get("question", "")))
+            if question:
+                questions.append(question)
+
+    for item in state.get("dialogue_history", []):
+        if not isinstance(item, dict) or item.get("role") != "assistant":
+            continue
+        question = clean_llm_output(str(item.get("content", "")))
+        if question:
+            questions.append(question)
+
+    deduped = []
+    seen = set()
+    for question in questions:
+        key = _normalize_question(question)
+        if key and key not in seen:
+            seen.add(key)
+            deduped.append(question)
+    return deduped
+
+
+def _format_previous_questions(questions: list[str], max_items: int = 8) -> str:
+    if not questions:
+        return "（暂无历史追问）"
+    return "\n".join(f"- {q}" for q in questions[-max_items:])
+
+
+def _normalize_question(question: str) -> str:
+    text = re.sub(r"[^\u4e00-\u9fffA-Za-z0-9]", "", question.lower())
+    for token in ("哈哈", "哦哦", "原来是这样", "那", "呀", "呢", "吗", "嘛"):
+        text = text.replace(token, "")
+    return text
+
+
+def _char_ngrams(text: str, n: int = 2) -> set[str]:
+    if len(text) <= n:
+        return {text} if text else set()
+    return {text[i:i + n] for i in range(len(text) - n + 1)}
+
+
+def _question_similarity(left: str, right: str) -> float:
+    left_norm = _normalize_question(left)
+    right_norm = _normalize_question(right)
+    if not left_norm or not right_norm:
+        return 0.0
+    if left_norm in right_norm or right_norm in left_norm:
+        return 1.0
+
+    left_grams = _char_ngrams(left_norm)
+    right_grams = _char_ngrams(right_norm)
+    if not left_grams or not right_grams:
+        return 0.0
+    return len(left_grams & right_grams) / len(left_grams | right_grams)
+
+
+def _is_repeated_question(question: str, previous_questions: list[str]) -> bool:
+    return any(_question_similarity(question, previous) >= 0.52 for previous in previous_questions)
 
 # -------------------------
 # 判断异常是否仍活跃
@@ -210,6 +278,8 @@ def followup_generation_node(state: DialogueState) -> dict:
     dimension_scores = state.get("dimension_scores", {})
     anomalies_text = format_anomalies_table(state.get("anomalies_table", []))
     dialogue_text = format_dialogue_history(state.get("dialogue_history", []))
+    previous_questions = _collect_previous_questions(state)
+    previous_questions_text = _format_previous_questions(previous_questions)
 
     # 调用 LLM 生成追问
     response = llm.invoke(
@@ -219,6 +289,7 @@ def followup_generation_node(state: DialogueState) -> dict:
             "dimension_scores": dimension_scores,
             "anomalies_table": anomalies_text,
             "dialogue_history": dialogue_text,
+            "previous_questions": previous_questions_text,
         })
     )
 
@@ -226,9 +297,20 @@ def followup_generation_node(state: DialogueState) -> dict:
     followup_question = _polish_followup_question(
         response.content,
         dialogue_text,
+        previous_questions_text,
         priority_issue,
         followup_strategy,
     )
+    if _is_repeated_question(followup_question, previous_questions):
+        followup_question = _polish_followup_question(
+            f"请基于当前对话换一个全新的信息角度追问，不要再问这些历史问题的同义问题。候选问题：{followup_question}",
+            dialogue_text,
+            previous_questions_text,
+            priority_issue,
+            followup_strategy,
+        )
+    if _is_repeated_question(followup_question, previous_questions):
+        followup_question = "那换个角度聊聊，这个方向里最需要经验积累的地方通常是什么呀？"
     if not followup_question:
         followup_question = "能再具体聊聊你的学习或项目经历吗？"
 
