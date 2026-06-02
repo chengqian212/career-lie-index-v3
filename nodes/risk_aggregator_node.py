@@ -123,19 +123,19 @@ def _experience_density_event(state: DialogueState) -> dict | None:
     if current_generic and (streak >= 4 or count >= 5):
         severity = "MEDIUM"
         confidence = "HIGH"
-        risk_value = 24.0
+        risk_value = 16.0
     elif current_generic and (streak >= 3 or count >= 4):
         severity = "MEDIUM"
         confidence = "HIGH"
-        risk_value = 20.0
+        risk_value = 12.0
     elif current_generic and streak >= 2:
         severity = "LOW"
         confidence = "HIGH"
-        risk_value = 16.0
+        risk_value = 8.0
     elif current_generic and density == "LOW":
         severity = "LOW"
         confidence = "LOW"
-        risk_value = 8.0
+        risk_value = 5.0
     elif not current_generic and count > 0:
         severity = "LOW" if count < 5 else "MEDIUM"
         confidence = "HIGH"
@@ -163,13 +163,13 @@ def _residual_experience_risk(generic_count: int, specificity: str) -> float:
     erase the pattern completely.
     """
     if generic_count >= 5:
-        base = 18.0
+        base = 14.0
     elif generic_count >= 3:
-        base = 16.0
+        base = 11.0
     elif generic_count == 2:
-        base = 12.0
-    else:
         base = 8.0
+    else:
+        base = 5.0
 
     if specificity == "HIGH":
         factor = 0.65
@@ -197,13 +197,13 @@ def _vagueness_persistence_event(anomalies_table: list[dict]) -> dict | None:
         return None
 
     if count >= 5:
-        risk_value = 22.0
+        risk_value = 13.0
         severity = "MEDIUM"
     elif count >= 3:
-        risk_value = 18.0
+        risk_value = 9.0
         severity = "MEDIUM"
     else:
-        risk_value = 12.0
+        risk_value = 4.0
         severity = "LOW"
 
     descriptions = [
