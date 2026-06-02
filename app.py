@@ -32,7 +32,7 @@ from utils.supabase_outputs import safe_sync_output_file
 
 # ============== 页面配置 ==============
 st.set_page_config(
-    page_title="多 Agent 相亲对话小助手 v3.0",
+    page_title="织心守护·多 Agent 相亲对话小助手 v3.0",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded",
