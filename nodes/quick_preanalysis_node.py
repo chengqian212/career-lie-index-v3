@@ -64,6 +64,43 @@ BROAD_OCCUPATION_TERMS = {
 }
 
 DETAIL_SLOTS = {"role", "work_content", "company", "experience"}
+DETAIL_SHORT_ANSWER_MAX_LEN = 24
+SOFT_DETAIL_TYPES = {"vague", "lack_of_detail"}
+CONCISE_FACT_SLOTS = {"occupation", "role", "company", "time_stage"}
+CONCRETE_WORK_CONTENT_MARKERS = {
+    "青少年",
+    "儿童",
+    "学生",
+    "家长",
+    "来访者",
+    "病人",
+    "患者",
+    "窗口",
+    "材料",
+    "执法",
+    "基层",
+    "税务",
+    "科室",
+    "门诊",
+    "住院",
+    "个体咨询",
+    "团体咨询",
+    "后端",
+    "前端",
+    "测试",
+    "算法",
+    "数据",
+    "财务",
+    "客户",
+    "渠道",
+}
+HARD_ANOMALY_TYPES = {
+    "avoidance",
+    "irrelevant_answer",
+    "over_explanation",
+    "self_correction",
+    "potential_fact_mismatch",
+}
 
 
 def _ensure_list(value) -> list:
@@ -134,6 +171,43 @@ def _is_broad_occupation_only(current_facts: list[dict], current_user_text: str)
         "算法", "测试", "财务", "渠道", "客户", "项目", "负责", "主要做", "具体",
     ]
     return not any(marker in text for marker in detail_markers)
+
+
+def _is_concise_but_valid_answer(
+    current_user_text: str,
+    current_facts: list[dict],
+    current_anomalies: list[dict],
+) -> bool:
+    """
+    A short answer should not be treated as risk when it directly contributes facts.
+
+    Brevity is only suspicious when it also avoids the question, contradicts history,
+    or repeatedly replaces expected detail with empty generalities.
+    """
+    text = str(current_user_text or "").strip()
+    if not text or len(text) > DETAIL_SHORT_ANSWER_MAX_LEN:
+        return False
+    if not current_facts:
+        return False
+
+    slots = {
+        str(f.get("slot", "")).strip()
+        for f in current_facts
+        if isinstance(f, dict)
+    }
+    if slots and slots.issubset(CONCISE_FACT_SLOTS):
+        pass
+    elif any(marker in text for marker in CONCRETE_WORK_CONTENT_MARKERS):
+        pass
+    else:
+        return False
+
+    anomaly_types = {
+        str(a.get("type", "")).strip()
+        for a in current_anomalies
+        if isinstance(a, dict)
+    }
+    return not bool(anomaly_types & HARD_ANOMALY_TYPES)
 
 
 def quick_preanalysis_node(state: DialogueState) -> dict:
@@ -475,19 +549,42 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
         if isinstance(a, dict)
     ):
         normalized_current_anomalies.append({
-            "type": "vague",
+            "type": "role_disambiguation",
             "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向，需要先澄清具体职业类型",
             "evidence": [current_user_text],
             "score": 5.0,
             "severity": "LOW",
             "confidence": "HIGH",
+            "risk_value": 0.0,
             "related_facts": [],
         })
         severity = "LOW"
         confidence = "HIGH"
-        surface_risk_score = max(surface_risk_score, 5.0)
         if not quick_signal_summary:
             quick_signal_summary = "用户只给出宽泛职业类别，需先澄清具体系统、岗位性质或职责方向。"
+
+    if _is_concise_but_valid_answer(
+        current_user_text,
+        normalized_current_facts,
+        normalized_current_anomalies,
+    ):
+        normalized_current_anomalies = [
+            anomaly for anomaly in normalized_current_anomalies
+            if str(anomaly.get("type", "")).strip() not in SOFT_DETAIL_TYPES
+        ]
+        if generic_answer_flag:
+            generic_answer_flag = False
+            generic_answer_reason = ""
+            experience_density = "MEDIUM"
+            generic_answer_streak = 0
+            generic_answer_count = previous_count
+            if suggested_probe_angle in used_probe_angles:
+                used_probe_angles = [angle for angle in used_probe_angles if angle != suggested_probe_angle]
+        if not normalized_current_anomalies:
+            severity = "LOW"
+            confidence = "HIGH"
+            surface_risk_score = 0.0
+            quick_signal_summary = "本轮回答简短但提供了有效事实，未发现明显异常。"
 
     # 把当前轮新异常加入异常表
     updated_anomalies_table = add_anomalies(

@@ -8,6 +8,7 @@
 """
 
 import json
+import copy
 import os
 import sys
 import time
@@ -24,6 +25,7 @@ from config import (
     MAX_ROUNDS,
 )
 from graph import build_graph
+from nodes.report_generation_node import report_generation_node
 from utils.logger import get_logger, reset_logger
 from utils.supabase_outputs import safe_sync_output_file
 
@@ -609,16 +611,100 @@ def render_thought_items(thoughts: list[dict]) -> None:
 
 
 def normalize_monitor_record(record: dict) -> dict:
-    """让历史监控中的追问展示严格跟随该轮保存的 ai_followup。"""
+    """用每轮快照字段重建监控内容，避免历史轮次被当前全局状态污染。"""
     if not isinstance(record, dict) or record.get("is_live"):
         return record
 
     normalized = dict(record)
-    thoughts = [
-        dict(t)
-        for t in normalized.get("agent_thoughts", [])
-        if isinstance(t, dict) and t.get("node") != "followup_generation"
-    ]
+    time_text = normalized.get("time", "")
+    node_times = normalized.get("node_times", {}) if isinstance(normalized.get("node_times"), dict) else {}
+    thoughts = []
+
+    quick_parts = []
+    if normalized.get("quick_fact_summary"):
+        quick_parts.append(str(normalized.get("quick_fact_summary")))
+    if normalized.get("quick_signal_summary"):
+        quick_parts.append(str(normalized.get("quick_signal_summary")))
+    if normalized.get("experience_density"):
+        quick_parts.append(f"经验密度：{normalized.get('experience_density')}")
+    if normalized.get("generic_answer_flag") and normalized.get("generic_answer_reason"):
+        quick_parts.append(f"泛泛回答：{normalized.get('generic_answer_reason')}")
+    if quick_parts:
+        thoughts.append({
+            "node": "quick_preanalysis",
+            "title": get_node_title("quick_preanalysis"),
+            "content": "；".join(quick_parts),
+            "elapsed_seconds": node_times.get("quick_preanalysis_node"),
+            "time": time_text,
+        })
+
+    rd = normalized.get("routing_decision", {})
+    if isinstance(rd, dict):
+        selected = normalized.get("selected_specialists", []) or rd.get("selected_specialists", [])
+        route_parts = []
+        if selected:
+            names = [get_specialist_name(s) for s in selected if s]
+            route_parts.append(f"调用专家：{', '.join(names) if names else '语义、逻辑'}")
+        else:
+            route_parts.append("系统判定本轮无需调用专家，直接进入风险聚合")
+        reason = rd.get("routing_reason") or rd.get("reason") or rd.get("decision_reason") or ""
+        if reason:
+            route_parts.append(f"原因：{reason}")
+        if normalized.get("priority_issue"):
+            route_parts.append(f"关注点：{normalized.get('priority_issue')}")
+        thoughts.append({
+            "node": "lightweight_routing_supervisor",
+            "title": get_node_title("lightweight_routing_supervisor"),
+            "content": "；".join(route_parts),
+            "elapsed_seconds": node_times.get("lightweight_routing_supervisor_node"),
+            "time": time_text,
+        })
+
+    original_thoughts = normalized.get("agent_thoughts", [])
+    specialist_nodes = {
+        "semantic_agent",
+        "logical_agent",
+        "domain_agent",
+        "psycho_linguistic_agent",
+    }
+    for thought in original_thoughts:
+        if isinstance(thought, dict) and thought.get("node") in specialist_nodes:
+            thoughts.append(dict(thought))
+
+    risk_explanation = normalized.get("risk_explanation", [])
+    if isinstance(risk_explanation, list):
+        risk_text = "；".join(str(item) for item in risk_explanation)
+    else:
+        risk_text = str(risk_explanation or "")
+    risk_parts = [f"风险指数 {normalized.get('lie_index', 0.0)}"]
+    if risk_text:
+        risk_parts.append(risk_text)
+    thoughts.append({
+        "node": "risk_aggregator",
+        "title": get_node_title("risk_aggregator"),
+        "content": "，".join(risk_parts),
+        "elapsed_seconds": node_times.get("risk_aggregator_node"),
+        "time": time_text,
+    })
+
+    stop_reason = str(normalized.get("stop_reason") or "")
+    priority_issue = str(normalized.get("priority_issue") or "")
+    followup_strategy = str(normalized.get("followup_strategy") or "")
+    next_action = str(normalized.get("next_action") or "")
+    if next_action == "final_report":
+        strategy_content = f"信息已足够，生成最终报告（{stop_reason}）"
+    else:
+        strategy_content = (
+            f"继续追问（{stop_reason or '本轮仍有可追问信息'}），"
+            f"关注：{priority_issue or '待澄清点'}，策略：{followup_strategy or '未指定'}"
+        )
+    thoughts.append({
+        "node": "strategy_supervisor",
+        "title": get_node_title("strategy_supervisor"),
+        "content": strategy_content,
+        "elapsed_seconds": node_times.get("strategy_supervisor_node"),
+        "time": time_text,
+    })
 
     followup = str(normalized.get("ai_followup") or "").strip()
     if followup:
@@ -626,8 +712,8 @@ def normalize_monitor_record(record: dict) -> dict:
             "node": "followup_generation",
             "title": get_node_title("followup_generation"),
             "content": f"生成追问：{followup}",
-            "elapsed_seconds": normalized.get("node_times", {}).get("followup_generation"),
-            "time": normalized.get("time", ""),
+            "elapsed_seconds": node_times.get("followup_generation_node"),
+            "time": time_text,
         })
 
     normalized["agent_thoughts"] = thoughts
@@ -1225,6 +1311,7 @@ def render_dialogue_page(monitor_placeholder=None):
                     })
 
                     # 构建 round_record
+                    frozen_agent_thoughts = copy.deepcopy(agent_thoughts)
                     round_record = {
                         "round": round_num,
                         "user_input": user_input,
@@ -1234,8 +1321,8 @@ def render_dialogue_page(monitor_placeholder=None):
                         "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
 
                         "lie_index": st.session_state.state.get("lie_index", 0.0),
-                        "dimension_scores": st.session_state.state.get("dimension_scores", {}),
-                        "risk_explanation": st.session_state.state.get("risk_explanation", []),
+                        "dimension_scores": copy.deepcopy(st.session_state.state.get("dimension_scores", {})),
+                        "risk_explanation": copy.deepcopy(st.session_state.state.get("risk_explanation", [])),
 
                         "quick_fact_summary": st.session_state.state.get("quick_fact_summary", ""),
                         "quick_signal_summary": st.session_state.state.get("quick_signal_summary", ""),
@@ -1249,17 +1336,19 @@ def render_dialogue_page(monitor_placeholder=None):
                         "generic_answer_streak": st.session_state.state.get("generic_answer_streak", 0),
                         "generic_answer_count": st.session_state.state.get("generic_answer_count", 0),
 
-                        "selected_specialists": st.session_state.state.get("selected_specialists", []),
-                        "called_specialists": st.session_state.state.get("called_specialists", []),
-                        "routing_decision": st.session_state.state.get("routing_decision", {}),
+                        "selected_specialists": copy.deepcopy(st.session_state.state.get("selected_specialists", [])),
+                        "called_specialists": copy.deepcopy(st.session_state.state.get("called_specialists", [])),
+                        "routing_decision": copy.deepcopy(st.session_state.state.get("routing_decision", {})),
 
                         "priority_issue": st.session_state.state.get("priority_issue", ""),
                         "followup_strategy": st.session_state.state.get("followup_strategy", ""),
+                        "stop_reason": st.session_state.state.get("stop_reason", ""),
+                        "next_action": st.session_state.state.get("next_action", ""),
 
-                        "current_facts": st.session_state.state.get("current_facts", []),
-                        "current_anomalies": st.session_state.state.get("current_anomalies", []),
+                        "current_facts": copy.deepcopy(st.session_state.state.get("current_facts", [])),
+                        "current_anomalies": copy.deepcopy(st.session_state.state.get("current_anomalies", [])),
 
-                        "agent_thoughts": agent_thoughts,
+                        "agent_thoughts": frozen_agent_thoughts,
                     }
                     st.session_state.round_records.append(round_record)
                     st.session_state.live_agent_thoughts = []
@@ -1355,10 +1444,7 @@ def _generate_final_report(monitor_placeholder=None):
         return
 
     display_round = st.session_state.get("round_num", 0)
-    # 内部仍用 MAX_ROUNDS 触发 graph 进入 report_generation，不把它作为真实对话轮次展示或保存。
-    st.session_state.state["round_id"] = MAX_ROUNDS
-    st.session_state.state["specialist_results"] = []
-    st.session_state.state["called_specialists"] = []
+    # 最终报告只汇总当前状态，不再重跑整张图，避免最后一条输入覆盖历史风险。
     st.session_state.state["next_action"] = "final_report"
     st.session_state.live_agent_round = display_round
     st.session_state.live_agent_thoughts = []
@@ -1373,25 +1459,22 @@ def _generate_final_report(monitor_placeholder=None):
         accumulated_state = dict(st.session_state.state)
         agent_thoughts = []
 
-        # 使用 stream 获取最终报告过程中的节点分析
-        for event in st.session_state.graph.stream(st.session_state.state, stream_mode="updates"):
-            for node_name, node_update in event.items():
-                merge_node_update(accumulated_state, node_update)
+        report_update = report_generation_node(st.session_state.state)
+        merge_node_update(accumulated_state, report_update)
 
-                thought_text = extract_agent_thoughts(node_name, node_update)
-
-                if thought_text:
-                    thought_entry = {
-                        "node": node_name,
-                        "title": get_node_title(node_name),
-                        "content": thought_text,
-                        "elapsed_seconds": None,
-                        "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                    }
-                    append_live_agent_thought(agent_thoughts, thought_entry)
-                    if monitor_placeholder is not None:
-                        with monitor_placeholder.container():
-                            render_live_agent_monitor(display_round, st.session_state.live_agent_thoughts)
+        thought_text = extract_agent_thoughts("report_generation", report_update)
+        if thought_text:
+            thought_entry = {
+                "node": "report_generation",
+                "title": get_node_title("report_generation"),
+                "content": thought_text,
+                "elapsed_seconds": None,
+                "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            }
+            append_live_agent_thought(agent_thoughts, thought_entry)
+            if monitor_placeholder is not None:
+                with monitor_placeholder.container():
+                    render_live_agent_monitor(display_round, st.session_state.live_agent_thoughts)
 
         t_end = time.time()
         elapsed = t_end - t_start

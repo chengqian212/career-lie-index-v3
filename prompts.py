@@ -389,7 +389,7 @@ PSYCHO_LINGUISTIC_AGENT_TEMPLATE = """你是心理语言学线索分析专家（
   "score": 0-100,
   "evidence_list": [
     {{
-      "type": "detail_missing|avoidance|irrelevant_answer|vague_expression|over_explanation|self_correction",
+      "type": "avoidance|irrelevant_answer|vague_expression|over_explanation|self_correction",
       "evidence": ["第1轮：...", "第3轮：..."],
       "explanation": "..."
     }}
@@ -898,6 +898,29 @@ QUICK_PREANALYSIS_TEMPLATE = """你是快速预分析助手（Quick Preanalysis 
 这类回答应视为“正常探索性表达”，可以抽取事实，但不要轻易添加异常。
 如果需要继续了解，应通过后续追问自然收集细节，而不是提高风险分。
 
+【简短但有效回答规则】
+回答短不等于风险，简短也不等于泛泛。
+如果用户用一句短话直接回答了上一轮问题，并且提供了新的有效事实，不要仅因为字数少就标记为 vague、lack_of_detail 或 generic_answer_flag=true。
+
+以下情况通常应视为简短但有效：
+1. 用户明确给出职业、岗位、专业、年级、项目方向、工作对象或职责方向；
+2. 用户用短句回答了上一轮具体问题，没有答非所问；
+3. 当前回答虽然不展开，但没有和历史事实冲突，也没有明显回避。
+
+但如果上一轮问题是在问“怎么处理、怎么判断、一般怎么做、先后流程、边界或后续步骤”，
+用户只回答一个很薄的动作，例如“先听他说”“先安抚”“顺着他说”“先沟通一下”，
+这类回答虽然方向可能正确，但不能直接算作经验密度高，也不要因为它短且看似合理就豁免 generic_answer_flag。
+它应被视为“正确但经验密度不足”，除非用户同时给出了判断依据、对象场景、边界条件或后续处理。
+
+此时应：
+- 抽取事实；
+- anomalies 输出空数组，或只输出非风险型澄清需求；
+- generic_answer_flag=false；
+- experience_density 可设为 MEDIUM，不要因为字数少自动设为 LOW；
+- surface_risk_score=0 或保持很低。
+
+只有当短回答同时存在“答非所问、回避核心问题、连续多轮拒绝展开、与历史事实冲突、只用口号替代应有基本信息”时，才把它作为风险线索。
+
 【职业大类过宽的澄清规则】
 如果用户只给出宽泛职业类别，而没有说明具体系统、岗位性质、职责方向或工作对象，
 例如“我是公务员”“我是老师”“我是医生”“做金融/运营/销售/咨询/工程师”等，
@@ -905,9 +928,9 @@ QUICK_PREANALYSIS_TEMPLATE = """你是快速预分析助手（Quick Preanalysis 
 
 此时应：
 1. 抽取 occupation 事实；
-2. 添加一个低风险 anomaly，type 使用 "vague" 或 "lack_of_detail"；
+2. 添加一个澄清型 anomaly，type 使用 "vague" 或 "lack_of_detail"；
 3. description 写明“职业身份粒度过粗，缺少具体系统、岗位性质或职责方向”；
-4. severity="LOW"，confidence="HIGH"，surface_risk_score 保持较低；
+4. severity="LOW"，confidence="HIGH"，surface_risk_score=0 或保持极低；
 5. generic_answer_flag=false，除非用户已经在明确岗位经历上连续给出空泛职责描述。
 
 后续追问目标应是先澄清具体职业类型，而不是追问工作流程或专业处置过程。

@@ -44,7 +44,6 @@ VAGUE_SIGNAL_TYPES = {
     "vague",
     "lack_of_detail",
     "vague_expression",
-    "detail_missing",
     "avoidance",
 }
 
@@ -87,10 +86,12 @@ def _risk_events_from_anomalies(anomalies_table: list[dict]) -> list[dict]:
         if severity not in VALID_SEVERITIES or confidence not in VALID_CONFIDENCES:
             continue
 
-        risk_value = float(
-            anomaly.get("risk_value")
-            or effective_risk_value(severity, confidence)
-        )
+        if "risk_value" in anomaly:
+            risk_value = float(anomaly.get("risk_value") or 0.0)
+        else:
+            risk_value = effective_risk_value(severity, confidence)
+        if risk_value <= 0:
+            continue
 
         # 生成标准化事件对象
         events.append({
@@ -112,30 +113,33 @@ def _risk_events_from_anomalies(anomalies_table: list[dict]) -> list[dict]:
 
 def _experience_density_event(state: DialogueState) -> dict | None:
     """Convert repeated generic answers into a visible accumulating risk signal."""
-    if not state.get("generic_answer_flag"):
-        return None
-
+    current_generic = bool(state.get("generic_answer_flag"))
     streak = int(state.get("generic_answer_streak", 0) or 0)
     count = int(state.get("generic_answer_count", 0) or 0)
     density = str(state.get("experience_density") or "MEDIUM").upper()
-    reason = state.get("generic_answer_reason") or "回答符合常识但缺少具体场景、流程、边界或限制"
+    specificity = str(state.get("specificity_level") or "MEDIUM").upper()
+    reason = state.get("generic_answer_reason") or "历史回答多次符合常识但缺少具体场景、流程、边界或限制"
 
-    if streak >= 4 or count >= 5:
+    if current_generic and (streak >= 4 or count >= 5):
         severity = "MEDIUM"
         confidence = "HIGH"
         risk_value = 24.0
-    elif streak >= 3 or count >= 4:
+    elif current_generic and (streak >= 3 or count >= 4):
         severity = "MEDIUM"
         confidence = "HIGH"
         risk_value = 20.0
-    elif streak >= 2:
+    elif current_generic and streak >= 2:
         severity = "LOW"
         confidence = "HIGH"
         risk_value = 16.0
-    elif density == "LOW":
+    elif current_generic and density == "LOW":
         severity = "LOW"
         confidence = "LOW"
         risk_value = 8.0
+    elif not current_generic and count > 0:
+        severity = "LOW" if count < 5 else "MEDIUM"
+        confidence = "HIGH"
+        risk_value = _residual_experience_risk(count, specificity)
     else:
         return None
 
@@ -149,6 +153,31 @@ def _experience_density_event(state: DialogueState) -> dict | None:
         "confidence": confidence,
         "risk_value": risk_value,
     }
+
+
+def _residual_experience_risk(generic_count: int, specificity: str) -> float:
+    """
+    Keep discounted historical experience-density risk after a concrete answer.
+
+    A later concrete detail can reduce prior generic-answer risk, but it should not
+    erase the pattern completely.
+    """
+    if generic_count >= 5:
+        base = 18.0
+    elif generic_count >= 3:
+        base = 16.0
+    elif generic_count == 2:
+        base = 12.0
+    else:
+        base = 8.0
+
+    if specificity == "HIGH":
+        factor = 0.65
+    elif specificity == "MEDIUM":
+        factor = 0.8
+    else:
+        factor = 1.0
+    return round(max(3.0, base * factor), 1)
 
 
 def _vagueness_persistence_event(anomalies_table: list[dict]) -> dict | None:
