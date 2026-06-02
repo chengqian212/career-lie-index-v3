@@ -611,6 +611,9 @@ FOLLOWUP_GENERATION_TEMPLATE = """你是对话追问生成器（Follow-up Genera
 12. 不要为了口语化牺牲准确性；如果不确定某个表达是否自然，使用更稳妥的普通说法。
 13. 不能重复 previous_questions 中已经问过的问题；不仅不能逐字重复，也不能换一种说法问同一个意思、同一个信息点或同一个工作日常范围。
 14. 如果上一轮已经问过“平时主要忙什么/一天做什么/日常工作内容”，本轮必须换到新的信息角度，例如方法、判断标准、难点、边界、复盘、产出或成长路径。
+15. 如果 priority_issue 表示“职业身份粒度过粗/职业大类过宽/缺少具体系统、岗位性质或职责方向”，本轮只做职业类型澄清：自然问对方更偏哪个系统、岗位方向、服务对象或职责类型；不要问“怎么处理公务/工作/客户/病人/项目”，也不要直接进入工作流程追问。
+16. 开场方式必须多样化。不要连续使用同一种口头回应或同一种句式开头；如果历史追问里已经多次以“哦/哦哦/原来/哈哈/听起来”开头，本轮必须换成直接接话、轻微自我披露、请教式或观点式开头。
+17. 允许没有寒暄开头，直接自然进入问题；不要每句话都写成“哦，xxx”或“哦哦，xxx”。
 
 【推荐表达方式】
 更推荐这类开放式问法：
@@ -687,6 +690,7 @@ FOLLOWUP_POLISH_TEMPLATE = """你是中文对话质检与润色器。
 - 如果候选追问里出现了上下文无法支撑的具体术语，优先改成更稳妥、宽泛、中性的说法；
 - 保持相亲聊天式、自然、轻松，不要改成正式面试问题；
 - 只能保留一个核心问题；
+- 开场方式要和最近历史问题错开；如果候选句沿用了高频口头开头，改成更自然的直接接话、请教式或轻微自我披露式；
 - 如果原句已经自然准确，原样返回。
 
 【当前上下文】
@@ -894,6 +898,20 @@ QUICK_PREANALYSIS_TEMPLATE = """你是快速预分析助手（Quick Preanalysis 
 这类回答应视为“正常探索性表达”，可以抽取事实，但不要轻易添加异常。
 如果需要继续了解，应通过后续追问自然收集细节，而不是提高风险分。
 
+【职业大类过宽的澄清规则】
+如果用户只给出宽泛职业类别，而没有说明具体系统、岗位性质、职责方向或工作对象，
+例如“我是公务员”“我是老师”“我是医生”“做金融/运营/销售/咨询/工程师”等，
+这不属于职业常识错误，也不应直接进入“怎么处理工作/公务/客户/病人”的经验追问。
+
+此时应：
+1. 抽取 occupation 事实；
+2. 添加一个低风险 anomaly，type 使用 "vague" 或 "lack_of_detail"；
+3. description 写明“职业身份粒度过粗，缺少具体系统、岗位性质或职责方向”；
+4. severity="LOW"，confidence="HIGH"，surface_risk_score 保持较低；
+5. generic_answer_flag=false，除非用户已经在明确岗位经历上连续给出空泛职责描述。
+
+后续追问目标应是先澄清具体职业类型，而不是追问工作流程或专业处置过程。
+
 【经验密度判断规则】
 请单独判断回答是否具有真实经历密度。注意：事实正确和经验密度高是两件事。
 
@@ -1037,6 +1055,7 @@ followup_strategy 必须从以下选项中选择：
 3. 如果无法判断，selected_specialists 返回 ["semantic", "logical"]
 4. 不要默认调用全部专家，只在确实需要时才调用多个专家
 5. 如果 generic_answer_flag=true 但没有事实冲突或职业常识错误，不要为了“回答很空”默认调用 domain_agent；优先把 suggested_probe_angle 直接作为 followup_strategy 交给后续追问
+6. 如果 current_anomalies 只是“职业身份粒度过粗/职业大类过宽/缺少具体系统、岗位性质或职责方向”，selected_specialists 返回 []，followup_strategy 返回 light_clarification；不要调用 domain_agent，因为这不是职业常识冲突。
 
 【失败处理】
 - 如果输入信息不足但系统已进入本节点，selected_specialists 返回 ["semantic", "logical"]
@@ -1205,6 +1224,7 @@ Judge these dimensions:
 4. Evidence quality: Specialist evidence and anomalies may be more important than the numeric score alone.
 5. Opportunity value: A low score can still justify ASK_MORE if there is a promising unresolved factual gap.
 6. Experience density: If the user keeps giving correct but generic answers, prefer ASK_MORE with a new probe angle until the minimum round budget is satisfied.
+7. Role disambiguation: If routing_decision says the occupation category is too broad, choose ASK_MORE with followup_strategy="light_clarification" unless the maximum round has been reached. Clarify the specific system, role type, duty direction, or work object before asking workflow/experience questions.
 
 Return strict JSON only:
 {{

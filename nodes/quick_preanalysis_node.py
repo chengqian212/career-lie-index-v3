@@ -40,6 +40,31 @@ logger = logging.getLogger(__name__)
 
 VALID_LEVELS = {"HIGH", "MEDIUM", "LOW"}
 
+BROAD_OCCUPATION_TERMS = {
+    "公务员",
+    "事业单位",
+    "老师",
+    "教师",
+    "医生",
+    "护士",
+    "律师",
+    "会计",
+    "审计",
+    "金融",
+    "运营",
+    "销售",
+    "工程师",
+    "程序员",
+    "产品经理",
+    "设计师",
+    "咨询师",
+    "心理咨询师",
+    "人事",
+    "行政",
+}
+
+DETAIL_SLOTS = {"role", "work_content", "company", "experience"}
+
 
 def _ensure_list(value) -> list:
     """
@@ -69,6 +94,46 @@ def _safe_float(value, default: float = 0.0) -> float:
 def _normalize_level(value, default: str = "MEDIUM") -> str:
     level = str(value or "").strip().upper()
     return level if level in VALID_LEVELS else default
+
+
+def _is_broad_occupation_only(current_facts: list[dict], current_user_text: str) -> bool:
+    """
+    Detect occupation categories that are too broad to support experience probing.
+
+    This is deliberately low-risk: it only asks the system to clarify role/system/duty
+    before moving into workflow questions.
+    """
+    if any(
+        isinstance(f, dict)
+        and f.get("slot") in DETAIL_SLOTS
+        and str(f.get("content", "")).strip()
+        for f in current_facts
+    ):
+        return False
+
+    text = str(current_user_text or "").strip()
+    if not text:
+        return False
+
+    occupation_values = [
+        str(f.get("content", "")).strip()
+        for f in current_facts
+        if isinstance(f, dict) and f.get("slot") == "occupation"
+    ]
+    if not occupation_values:
+        return False
+
+    occupation_text = " ".join(occupation_values)
+    has_broad_term = any(term in occupation_text or term in text for term in BROAD_OCCUPATION_TERMS)
+    if not has_broad_term:
+        return False
+
+    detail_markers = [
+        "窗口", "材料", "执法", "基层", "乡镇", "街道", "税务", "公安", "法院", "检察",
+        "科室", "门诊", "住院", "咨询流派", "个案", "班主任", "学科", "后端", "前端",
+        "算法", "测试", "财务", "渠道", "客户", "项目", "负责", "主要做", "具体",
+    ]
+    return not any(marker in text for marker in detail_markers)
 
 
 def quick_preanalysis_node(state: DialogueState) -> dict:
@@ -325,6 +390,11 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
     # 判断当前轮是否抽取到了新事实
     has_new_fact = bool(normalized_current_facts)
 
+    broad_occupation_only = _is_broad_occupation_only(
+        normalized_current_facts,
+        current_user_text,
+    )
+
     # 用于存放规范化后的异常更新信息
     normalized_anomaly_updates = []
 
@@ -398,6 +468,26 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
 
         # 加入当前轮异常列表
         normalized_current_anomalies.append(normalized_anomaly)
+
+    if broad_occupation_only and not any(
+        "职业身份粒度过粗" in str(a.get("description", ""))
+        for a in normalized_current_anomalies
+        if isinstance(a, dict)
+    ):
+        normalized_current_anomalies.append({
+            "type": "vague",
+            "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向，需要先澄清具体职业类型",
+            "evidence": [current_user_text],
+            "score": 5.0,
+            "severity": "LOW",
+            "confidence": "HIGH",
+            "related_facts": [],
+        })
+        severity = "LOW"
+        confidence = "HIGH"
+        surface_risk_score = max(surface_risk_score, 5.0)
+        if not quick_signal_summary:
+            quick_signal_summary = "用户只给出宽泛职业类别，需先澄清具体系统、岗位性质或职责方向。"
 
     # 把当前轮新异常加入异常表
     updated_anomalies_table = add_anomalies(

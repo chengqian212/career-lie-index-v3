@@ -1,0 +1,1647 @@
+{
+  "round_id": 8,
+  "max_rounds": 8,
+  "round_records": [
+    {
+      "round": 1,
+      "user_input": "我是一个公务员",
+      "ai_followup": "哦，公务员啊，那还挺稳定的。你是更偏行政综合、窗口服务，还是像政策研究、执法监管那种方向呀？",
+      "elapsed": 7.046347379684448,
+      "node_times": {
+        "quick_preanalysis_node": 2.8,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.25,
+        "followup_generation_node": 2.969
+      },
+      "time": "2026-06-02 10:16:17",
+      "lie_index": 2.4,
+      "dimension_scores": {
+        "表层检测": 2.4
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4"
+      ],
+      "quick_fact_summary": "用户自称是公务员，但未说明具体系统、岗位或职责方向。",
+      "quick_signal_summary": "职业身份粒度过粗，属于正常探索性表达，但需要进一步澄清具体类型。",
+      "surface_risk_score": 10.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": false,
+      "generic_answer_reason": "",
+      "suggested_probe_angle": "term_clarification",
+      "generic_answer_streak": 0,
+      "generic_answer_count": 0,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向",
+        "priority_issue": "职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+        "followup_strategy": "light_clarification",
+        "router_mode": "role_disambiguation_skip"
+      },
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 1,
+          "slot": "occupation",
+          "content": "公务员",
+          "evidence": "我是一个公务员",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "vague",
+          "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向",
+          "evidence": [
+            "我是一个公务员"
+          ],
+          "score": 0.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            "occupation: 公务员"
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户自称是公务员，但未说明具体系统、岗位或职责方向。；职业身份粒度过粗，属于正常探索性表达，但需要进一步澄清具体类型。；经验密度：LOW",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:16:13"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向；关注点：职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:16:13"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 2.4，表层检测:vague severity=LOW confidence=HIGH V=2.4",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:16:13"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前仅知用户是公务员，职业粒度过粗，需先澄清具体系统、岗位性质或职责方向，再深入追问工作流程。），关注：职业身份粒度过粗，缺少具体系统、岗位性质或职责方向，策略：light_clarification",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:16:14"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：哦，公务员啊，那还挺稳定的。你是更偏行政综合、窗口服务，还是像政策研究、执法监管那种方向呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:16:17"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "user_input": "我是偏行政的",
+      "ai_followup": "哦，行政方向啊，那你们单位平时主要对接的是内部事务还是对外服务呀？",
+      "elapsed": 7.5142905712127686,
+      "node_times": {
+        "quick_preanalysis_node": 3.657,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.484,
+        "followup_generation_node": 2.366
+      },
+      "time": "2026-06-02 10:16:40",
+      "lie_index": 5.3,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "经验密度": 0.6
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "经验密度:generic_answer_low_experience_density severity=LOW confidence=LOW V=0.6"
+      ],
+      "quick_fact_summary": "用户确认自己是公务员，偏行政方向",
+      "quick_signal_summary": "职业身份粒度过粗问题部分澄清但未完全解决，仍缺少具体系统、科室或职责细节",
+      "surface_risk_score": 10.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答停留在概括性方向描述，没有提供任何具体工作场景、流程、对象或限制条件，缺乏真实经验痕迹",
+      "suggested_probe_angle": "boundary_judgment",
+      "generic_answer_streak": 1,
+      "generic_answer_count": 1,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向",
+        "priority_issue": "职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+        "followup_strategy": "light_clarification",
+        "router_mode": "role_disambiguation_skip"
+      },
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 2,
+          "slot": "occupation",
+          "content": "公务员",
+          "evidence": "我是一个公务员",
+          "source": "quick_preanalysis"
+        },
+        {
+          "round_id": 2,
+          "slot": "role",
+          "content": "偏行政方向",
+          "evidence": "我是偏行政的",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "vague",
+          "description": "行政方向仍属宽泛类别，缺少具体系统（如政府办、街道办、某局）、科室或日常职责描述",
+          "evidence": [
+            "我是偏行政的"
+          ],
+          "score": 0.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            0,
+            1
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认自己是公务员，偏行政方向；职业身份粒度过粗问题部分澄清但未完全解决，仍缺少具体系统、科室或职责细节；经验密度：LOW；泛泛回答：回答停留在概括性方向描述，没有提供任何具体工作场景、流程、对象或限制条件，缺乏真实经验痕迹",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:16:36"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向；关注点：职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:16:36"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 5.3，表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；经验密度:generic_answer_low_experience_density severity=LOW confidence=LOW V=0.6",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:16:36"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前仅澄清至'行政'方向，仍属宽泛类别，缺少具体系统或科室信息，经验密度低，需进一步细化职业角色），关注：职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向，策略：boundary_judgment",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:16:38"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：哦，行政方向啊，那你们单位平时主要对接的是内部事务还是对外服务呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:16:40"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "user_input": "和其他部门的沟通协调，或者对下级单位的管理",
+      "ai_followup": "哦，行政协调这块确实挺锻炼人的，那你们单位主要是在哪个层级呀，是市里、区里还是乡镇街道？",
+      "elapsed": 11.93666124343872,
+      "node_times": {
+        "quick_preanalysis_node": 3.15,
+        "lightweight_routing_supervisor_node": 1.62,
+        "semantic_agent_node": 2.196,
+        "logical_agent_node": 3.328,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.596,
+        "followup_generation_node": 2.22
+      },
+      "time": "2026-06-02 10:17:26",
+      "lie_index": 7.0,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "逻辑时间线": 2.4
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4"
+      ],
+      "quick_fact_summary": "用户明确工作内容为跨部门沟通协调和对下级单位的管理，属于行政类公务员的常见职责",
+      "quick_signal_summary": "职业身份仍较宽泛，但工作内容描述具体，无新增异常信号",
+      "surface_risk_score": 15.0,
+      "has_new_fact": true,
+      "specificity_level": "MEDIUM",
+      "experience_density": "MEDIUM",
+      "generic_answer_flag": false,
+      "generic_answer_reason": "",
+      "suggested_probe_angle": "process_sequence",
+      "generic_answer_streak": 0,
+      "generic_answer_count": 1,
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "called_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "routing_decision": {
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ],
+        "routing_reason": "当前无新异常，历史异常为身份粒度过粗，非职业常识冲突，无需专家分析。",
+        "priority_issue": "用户职业身份仍较宽泛，需进一步细化具体系统、科室或职责方向。",
+        "followup_strategy": "light_clarification",
+        "router_mode": "rule_force_llm_select"
+      },
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 3,
+          "slot": "work_content",
+          "content": "与其他部门的沟通协调，以及对下级单位的管理",
+          "evidence": "和其他部门的沟通协调，或者对下级单位的管理",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户明确工作内容为跨部门沟通协调和对下级单位的管理，属于行政类公务员的常见职责；职业身份仍较宽泛，但工作内容描述具体，无新增异常信号；经验密度：MEDIUM",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:17:17"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：当前无新异常，历史异常为身份粒度过粗，非职业常识冲突，无需专家分析。；关注点：用户职业身份仍较宽泛，需进一步细化具体系统、科室或职责方向。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:17:19"
+        },
+        {
+          "node": "semantic_agent",
+          "title": "语义分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:17:21"
+        },
+        {
+          "node": "logical_agent",
+          "title": "逻辑分析专家",
+          "content": "该专家评分：2.4",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:17:22"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 7.0，表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:17:22"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（身份粒度过粗异常未解决，仅知行政方向，缺少具体系统科室；逻辑异常刚出现需先澄清身份再深入。），关注：用户职业身份仍较宽泛，需进一步细化具体系统、科室或职责方向，策略：light_clarification",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:17:24"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：哦，行政协调这块确实挺锻炼人的，那你们单位主要是在哪个层级呀，是市里、区里还是乡镇街道？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:17:26"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "user_input": "市里的",
+      "ai_followup": "哦，市里行政协调，那你们单位主要负责哪一块的业务领域呀？",
+      "elapsed": 7.849865674972534,
+      "node_times": {
+        "quick_preanalysis_node": 4.087,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.907,
+        "followup_generation_node": 1.836
+      },
+      "time": "2026-06-02 10:17:42",
+      "lie_index": 7.6,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "逻辑时间线": 2.4,
+        "经验密度": 0.6
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "经验密度:generic_answer_low_experience_density severity=LOW confidence=LOW V=0.6"
+      ],
+      "quick_fact_summary": "用户确认在市一级单位工作，行政方向，负责与其他部门沟通协调及对下级单位管理",
+      "quick_signal_summary": "职业身份仍较宽泛，缺少具体系统、科室和日常职责细节，但单位层级已明确",
+      "surface_risk_score": 20.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答符合公务员行政岗位的常识描述，但缺少具体系统名称、科室、日常事务细节、工作流程或具体案例，停留在概括性职责层面",
+      "suggested_probe_angle": "process_sequence",
+      "generic_answer_streak": 1,
+      "generic_answer_count": 2,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向",
+        "priority_issue": "职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+        "followup_strategy": "light_clarification",
+        "router_mode": "role_disambiguation_skip"
+      },
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 4,
+          "slot": "time_stage",
+          "content": "当前在市一级单位工作",
+          "evidence": "市里的",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "vague",
+          "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向",
+          "evidence": [
+            "我是一个公务员",
+            "我是偏行政的"
+          ],
+          "score": 30.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            "occupation:公务员",
+            "role:偏行政方向"
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认在市一级单位工作，行政方向，负责与其他部门沟通协调及对下级单位管理；职业身份仍较宽泛，缺少具体系统、科室和日常职责细节，但单位层级已明确；经验密度：LOW；泛泛回答：回答符合公务员行政岗位的常识描述，但缺少具体系统名称、科室、日常事务细节、工作流程或具体案例，停留在概括性职责层面",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:17:38"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向；关注点：职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:17:38"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 7.6，表层检测:vague severity=LOW confidence=HIGH V=2.4；逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；经验密度:generic_answer_low_experience_density severity=LOW confidence=LOW V=0.6",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:17:38"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前仅知市里行政协调，仍缺具体系统（如某局/委办）和科室职责，经验密度低且连续2次泛答，需先澄清身份再深挖。），关注：职业身份粒度过粗，缺少具体系统、岗位性质或职责方向，策略：process_sequence",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:17:40"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：哦，市里行政协调，那你们单位主要负责哪一块的业务领域呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:17:42"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "user_input": "农业方面的",
+      "ai_followup": "哦，农业这块挺有意思的，那你在单位里主要负责农业方面的哪一类工作呀？",
+      "elapsed": 8.632610321044922,
+      "node_times": {
+        "quick_preanalysis_node": 4.801,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.503,
+        "followup_generation_node": 2.32
+      },
+      "time": "2026-06-02 10:18:06",
+      "lie_index": 11.4,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "逻辑时间线": 2.4,
+        "经验密度": 2.4
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "经验密度:generic_answer_low_experience_density severity=LOW confidence=HIGH V=2.4"
+      ],
+      "quick_fact_summary": "用户补充了其所在单位负责的业务领域为农业方面。",
+      "quick_signal_summary": "用户回答了上一轮关于业务领域的问题，但回答仍然非常概括，仅提供了'农业方面'这一宽泛信息，未能说明具体单位、科室或岗位职责。职业身份粒度过粗的异常得到部分澄清但未解决。",
+      "surface_risk_score": 20.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答'农业方面的'符合职业常识，但仅停留在概括性业务领域描述，缺少任何具体工作内容、场景、流程或细节，没有真实经历痕迹。",
+      "suggested_probe_angle": "term_clarification",
+      "generic_answer_streak": 2,
+      "generic_answer_count": 3,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向",
+        "priority_issue": "职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+        "followup_strategy": "light_clarification",
+        "router_mode": "role_disambiguation_skip"
+      },
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 5,
+          "slot": "work_content",
+          "content": "农业方面",
+          "evidence": "农业方面的",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "vague",
+          "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向。用户仅补充了业务领域（农业），但未说明具体单位（如农业农村局、农业技术推广中心等）、科室或具体职责。",
+          "evidence": [
+            "农业方面的"
+          ],
+          "score": 20.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户补充了其所在单位负责的业务领域为农业方面。；用户回答了上一轮关于业务领域的问题，但回答仍然非常概括，仅提供了'农业方面'这一宽泛信息，未能说明具体单位、科室或岗位职责。职业身份粒度过粗的异常得到部分澄清但未解决。；经验密度：LOW；泛泛回答：回答'农业方面的'符合职业常识，但仅停留在概括性业务领域描述，缺少任何具体工作内容、场景、流程或细节，没有真实经历痕迹。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:18:02"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向；关注点：职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:18:02"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 11.4，表层检测:vague severity=LOW confidence=HIGH V=2.4；逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；经验密度:generic_answer_low_experience_density severity=LOW confidence=HIGH V=2.4",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:18:02"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（用户仅补充了农业领域，仍未说明具体单位或科室，职业身份仍过粗，且经验密度低、连续通用回答，需继续澄清。），关注：职业身份粒度过粗，缺少具体单位、科室或职责描述，策略：term_clarification",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:18:04"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：哦，农业这块挺有意思的，那你在单位里主要负责农业方面的哪一类工作呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:18:06"
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "user_input": "比如说规划农业收入指标什么的",
+      "ai_followup": "哦，规划农业收入指标，那你们单位主要对接的是市里其他部门还是直接跟乡镇打交道呀？",
+      "elapsed": 13.79763126373291,
+      "node_times": {
+        "quick_preanalysis_node": 4.272,
+        "lightweight_routing_supervisor_node": 1.28,
+        "logical_agent_node": 1.515,
+        "semantic_agent_node": 3.406,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.823,
+        "followup_generation_node": 2.984
+      },
+      "time": "2026-06-02 10:19:04",
+      "lie_index": 16.5,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "逻辑时间线": 2.4,
+        "经验密度": 8.0
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=8.0"
+      ],
+      "quick_fact_summary": "用户在市一级单位从事农业行政工作，具体职责包括规划农业收入指标。",
+      "quick_signal_summary": "本轮回答提供了具体工作内容，但职业身份和单位系统仍不明确，历史异常部分澄清但未完全解决。",
+      "surface_risk_score": 15.0,
+      "has_new_fact": true,
+      "specificity_level": "MEDIUM",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答'规划农业收入指标'虽然具体，但停留在职责描述层面，缺少真实工作场景、操作细节、约束条件或具体案例，例如如何收集数据、与哪些部门协调、指标如何制定等。",
+      "suggested_probe_angle": "real_constraint",
+      "generic_answer_streak": 3,
+      "generic_answer_count": 4,
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "called_specialists": [
+        "logical",
+        "semantic"
+      ],
+      "routing_decision": {
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ],
+        "routing_reason": "当前异常为职业身份粒度过粗，非职业常识冲突，无需调用专家。",
+        "priority_issue": "用户职业身份仍不明确，需澄清具体单位、科室或职责方向。",
+        "followup_strategy": "light_clarification",
+        "router_mode": "rule_force_llm_select"
+      },
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 6,
+          "slot": "work_content",
+          "content": "规划农业收入指标",
+          "evidence": "比如说规划农业收入指标什么的",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户在市一级单位从事农业行政工作，具体职责包括规划农业收入指标。；本轮回答提供了具体工作内容，但职业身份和单位系统仍不明确，历史异常部分澄清但未完全解决。；经验密度：LOW；泛泛回答：回答'规划农业收入指标'虽然具体，但停留在职责描述层面，缺少真实工作场景、操作细节、约束条件或具体案例，例如如何收集数据、与哪些部门协调、指标如何制定等。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:18:54"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：当前异常为职业身份粒度过粗，非职业常识冲突，无需调用专家。；关注点：用户职业身份仍不明确，需澄清具体单位、科室或职责方向。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:18:55"
+        },
+        {
+          "node": "logical_agent",
+          "title": "逻辑分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:18:57"
+        },
+        {
+          "node": "semantic_agent",
+          "title": "语义分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:18:59"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 16.5，表层检测:vague severity=LOW confidence=HIGH V=2.4；逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=8.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:18:59"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（经验密度低，用户连续给出笼统回答，职业身份仍不明确，需澄清具体单位和科室后再深入追问。），关注：用户仍未说明具体单位（如农业农村局、农业技术推广中心等）和科室，职业身份粒度过粗，需进一步澄清。，策略：real_constraint",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:19:01"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：哦，规划农业收入指标，那你们单位主要对接的是市里其他部门还是直接跟乡镇打交道呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:19:04"
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "user_input": "都有把",
+      "ai_followup": "哦，农业收入指标规划，那你们单位具体是农业农村局还是其他相关的农业系统单位呀？",
+      "elapsed": 12.607083797454834,
+      "node_times": {
+        "quick_preanalysis_node": 4.138,
+        "lightweight_routing_supervisor_node": 1.351,
+        "logical_agent_node": 1.576,
+        "semantic_agent_node": 3.391,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.799,
+        "followup_generation_node": 1.92
+      },
+      "time": "2026-06-02 10:19:24",
+      "lie_index": 7.0,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "逻辑时间线": 2.4
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4"
+      ],
+      "quick_fact_summary": "用户确认对接对象包括市里其他部门和乡镇，工作内容涉及跨层级协调",
+      "quick_signal_summary": "本轮回答简短但直接回应了追问，未发现新的异常信号；历史异常中关于具体单位/科室的疑问仍未解决",
+      "surface_risk_score": 15.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": false,
+      "generic_answer_reason": "",
+      "suggested_probe_angle": "counterexample",
+      "generic_answer_streak": 0,
+      "generic_answer_count": 4,
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "called_specialists": [
+        "logical",
+        "semantic"
+      ],
+      "routing_decision": {
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ],
+        "routing_reason": "当前回答仅补充对接对象，未触发语义冲突、逻辑矛盾或常识错误，无需调用专家。",
+        "priority_issue": "用户仍未说明具体单位、科室或岗位性质，职业身份粒度过粗问题持续存在。",
+        "followup_strategy": "light_clarification",
+        "router_mode": "rule_force_llm_select"
+      },
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 7,
+          "slot": "work_content",
+          "content": "对接对象包括市里其他部门和乡镇",
+          "evidence": "都有把",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认对接对象包括市里其他部门和乡镇，工作内容涉及跨层级协调；本轮回答简短但直接回应了追问，未发现新的异常信号；历史异常中关于具体单位/科室的疑问仍未解决；经验密度：LOW",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:19:16"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：当前回答仅补充对接对象，未触发语义冲突、逻辑矛盾或常识错误，无需调用专家。；关注点：用户仍未说明具体单位、科室或岗位性质，职业身份粒度过粗问题持续存在。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:19:17"
+        },
+        {
+          "node": "logical_agent",
+          "title": "逻辑分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:19:19"
+        },
+        {
+          "node": "semantic_agent",
+          "title": "语义分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:19:20"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 7.0，表层检测:vague severity=LOW confidence=HIGH V=2.4；逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:19:20"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前仅7轮，LieIndex较低，职业身份粒度过粗异常持续未澄清，且用户回答偏笼统，需追问具体单位或科室以提升证据质量），关注：用户仍未说明具体单位、科室或岗位性质，职业身份粒度过粗问题持续存在，策略：light_clarification",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:19:22"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：哦，农业收入指标规划，那你们单位具体是农业农村局还是其他相关的农业系统单位呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:19:24"
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "user_input": "农业农村局",
+      "ai_followup": "",
+      "elapsed": 9.252965927124023,
+      "node_times": {
+        "quick_preanalysis_node": 4.66,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.611,
+        "report_generation_node": 2.97
+      },
+      "time": "2026-06-02 10:20:01",
+      "lie_index": 9.3,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "逻辑时间线": 2.4
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4"
+      ],
+      "quick_fact_summary": "用户确认工作单位为市农业农村局，进一步明确了职业身份。",
+      "quick_signal_summary": "本轮回答直接回应了上一轮追问，但职业身份仍停留在单位层面，缺少具体科室或岗位性质描述，存在轻度模糊性。",
+      "surface_risk_score": 15.0,
+      "has_new_fact": true,
+      "specificity_level": "MEDIUM",
+      "experience_density": "LOW",
+      "generic_answer_flag": false,
+      "generic_answer_reason": "",
+      "suggested_probe_angle": "counterexample",
+      "generic_answer_streak": 0,
+      "generic_answer_count": 4,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向",
+        "priority_issue": "职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+        "followup_strategy": "light_clarification",
+        "router_mode": "role_disambiguation_skip"
+      },
+      "priority_issue": "",
+      "followup_strategy": "",
+      "current_facts": [
+        {
+          "round_id": 8,
+          "slot": "company",
+          "content": "农业农村局",
+          "evidence": "农业农村局",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "vague",
+          "description": "职业身份粒度过粗，缺少具体科室或岗位性质描述。用户仅补充了单位名称（农业农村局），但未说明具体科室（如种植业科、畜牧科、政策法规科等）或具体职责方向。",
+          "evidence": [
+            "农业农村局"
+          ],
+          "score": 15.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认工作单位为市农业农村局，进一步明确了职业身份。；本轮回答直接回应了上一轮追问，但职业身份仍停留在单位层面，缺少具体科室或岗位性质描述，存在轻度模糊性。；经验密度：LOW",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:19:57"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向；关注点：职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:19:57"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 9.3，表层检测:vague severity=LOW confidence=HIGH V=2.4；逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:19:57"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "信息已足够，生成最终报告（已到最大轮次8/8，用户已明确单位（农业农村局），虽未细化科室但继续追问可能陷入循环，LieIndex偏高，建议生成报告。）",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:19:58"
+        },
+        {
+          "node": "report_generation",
+          "title": "报告生成",
+          "content": "最终测评报告已生成",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:20:01"
+        }
+      ]
+    }
+  ],
+  "dialogue_history": [
+    {
+      "role": "assistant",
+      "content": "你平时是做什么方向的工作呀？"
+    },
+    {
+      "role": "user",
+      "content": "我是一个公务员"
+    },
+    {
+      "role": "assistant",
+      "content": "哦，公务员啊，那还挺稳定的。你是更偏行政综合、窗口服务，还是像政策研究、执法监管那种方向呀？"
+    },
+    {
+      "role": "user",
+      "content": "我是偏行政的"
+    },
+    {
+      "role": "assistant",
+      "content": "哦，行政方向啊，那你们单位平时主要对接的是内部事务还是对外服务呀？"
+    },
+    {
+      "role": "user",
+      "content": "和其他部门的沟通协调，或者对下级单位的管理"
+    },
+    {
+      "role": "assistant",
+      "content": "哦，行政协调这块确实挺锻炼人的，那你们单位主要是在哪个层级呀，是市里、区里还是乡镇街道？"
+    },
+    {
+      "role": "user",
+      "content": "市里的"
+    },
+    {
+      "role": "assistant",
+      "content": "哦，市里行政协调，那你们单位主要负责哪一块的业务领域呀？"
+    },
+    {
+      "role": "user",
+      "content": "农业方面的"
+    },
+    {
+      "role": "assistant",
+      "content": "哦，农业这块挺有意思的，那你在单位里主要负责农业方面的哪一类工作呀？"
+    },
+    {
+      "role": "user",
+      "content": "比如说规划农业收入指标什么的"
+    },
+    {
+      "role": "assistant",
+      "content": "哦，规划农业收入指标，那你们单位主要对接的是市里其他部门还是直接跟乡镇打交道呀？"
+    },
+    {
+      "role": "user",
+      "content": "都有把"
+    },
+    {
+      "role": "assistant",
+      "content": "哦，农业收入指标规划，那你们单位具体是农业农村局还是其他相关的农业系统单位呀？"
+    },
+    {
+      "role": "user",
+      "content": "农业农村局"
+    }
+  ],
+  "followup_history": [
+    {
+      "round_id": 1,
+      "question": "哦，公务员啊，那还挺稳定的。你是更偏行政综合、窗口服务，还是像政策研究、执法监管那种方向呀？",
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 2,
+      "question": "哦，行政方向啊，那你们单位平时主要对接的是内部事务还是对外服务呀？",
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 3,
+      "question": "哦，行政协调这块确实挺锻炼人的，那你们单位主要是在哪个层级呀，是市里、区里还是乡镇街道？",
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 4,
+      "question": "哦，市里行政协调，那你们单位主要负责哪一块的业务领域呀？",
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 5,
+      "question": "哦，农业这块挺有意思的，那你在单位里主要负责农业方面的哪一类工作呀？",
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 6,
+      "question": "哦，规划农业收入指标，那你们单位主要对接的是市里其他部门还是直接跟乡镇打交道呀？",
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 7,
+      "question": "哦，农业收入指标规划，那你们单位具体是农业农村局还是其他相关的农业系统单位呀？",
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    }
+  ],
+  "facts_table": [
+    {
+      "round_id": 1,
+      "slot": "occupation",
+      "content": "公务员",
+      "evidence": "我是一个公务员",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 2,
+      "slot": "occupation",
+      "content": "公务员",
+      "evidence": "我是一个公务员",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 2,
+      "slot": "role",
+      "content": "偏行政方向",
+      "evidence": "我是偏行政的",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 3,
+      "slot": "work_content",
+      "content": "与其他部门的沟通协调，以及对下级单位的管理",
+      "evidence": "和其他部门的沟通协调，或者对下级单位的管理",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 4,
+      "slot": "time_stage",
+      "content": "当前在市一级单位工作",
+      "evidence": "市里的",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 5,
+      "slot": "work_content",
+      "content": "农业方面",
+      "evidence": "农业方面的",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 6,
+      "slot": "work_content",
+      "content": "规划农业收入指标",
+      "evidence": "比如说规划农业收入指标什么的",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 7,
+      "slot": "work_content",
+      "content": "对接对象包括市里其他部门和乡镇",
+      "evidence": "都有把",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 8,
+      "slot": "company",
+      "content": "农业农村局",
+      "evidence": "农业农村局",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 8,
+      "slot": "company",
+      "content": "农业农村局",
+      "evidence": "农业农村局",
+      "source": "quick_preanalysis"
+    }
+  ],
+  "anomalies_table": [
+    {
+      "anomaly_id": "a_1_quick_preanalysis_0",
+      "round_id": 1,
+      "source": "quick_preanalysis",
+      "type": "vague",
+      "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向",
+      "evidence": [
+        "我是一个公务员"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "partial",
+      "followup_needed": true,
+      "followup_count": 1,
+      "stop_followup": false,
+      "related_facts": [
+        "occupation: 公务员"
+      ],
+      "created_round": 1,
+      "last_update_round": 8,
+      "update_history": [
+        {
+          "round_id": 2,
+          "update_type": "clarify",
+          "explanation": "用户回应了追问，确认了是偏行政方向，但未说明具体系统、科室或职责，粒度过粗问题未完全解决",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 3,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答补充了工作内容，但未提供具体系统或岗位性质，职业身份粒度过粗的问题仍未解决",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 3,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户描述了具体工作内容（与其他部门沟通协调、对下级单位管理），但未提供具体系统或岗位性质，原异常关于职业身份粒度过粗的问题仍未解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 4,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答确认了单位层级，但未提供具体系统或岗位性质，原异常（职业身份粒度过粗）仍未解决",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "update_type": "remain_unresolved",
+          "explanation": "用户仍未说明具体系统或单位名称，仅补充了业务领域，但职业身份粒度过粗的问题未解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "用户补充了具体工作内容，但职业身份（公务员）仍粒度过粗，未说明具体单位或系统。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户补充了具体职责（规划农业收入指标），但未提及具体系统或单位名称，原异常关于职业身份粒度过粗的问题仍未闭合。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及具体系统或岗位性质，仅补充了对接对象范围，未解决职业身份粒度过粗的问题",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户回答'都有把'仅补充了对接对象范围，未提供具体系统、岗位性质或职责方向，未回应该异常。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "update_type": "clarify",
+          "explanation": "用户本轮明确回答了单位是农业农村局，部分澄清了职业身份粒度过粗的问题，但岗位性质（科室、具体职责）仍不明确。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_2_quick_preanalysis_1",
+      "round_id": 2,
+      "source": "quick_preanalysis",
+      "type": "vague",
+      "description": "行政方向仍属宽泛类别，缺少具体系统（如政府办、街道办、某局）、科室或日常职责描述",
+      "evidence": [
+        "我是偏行政的"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "partial",
+      "followup_needed": true,
+      "followup_count": 2,
+      "stop_followup": true,
+      "related_facts": [
+        0,
+        1
+      ],
+      "created_round": 2,
+      "last_update_round": 8,
+      "update_history": [
+        {
+          "round_id": 3,
+          "update_type": "clarify",
+          "explanation": "用户补充了具体工作内容（沟通协调、下级管理），部分回应了行政方向过宽的问题，但未明确具体系统或科室",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 3,
+          "update_type": "clarify",
+          "explanation": "用户补充了行政方向下的具体职责（沟通协调、管理下级），部分细化了行政方向，但缺少具体系统或科室信息，原异常得到部分澄清但未完全解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 4,
+          "update_type": "clarify",
+          "explanation": "当前回答确认了单位层级为市级，部分澄清了行政方向的具体环境，但具体系统（如政府办、某局）和科室仍不明确",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "update_type": "clarify",
+          "explanation": "用户补充了业务领域（农业），部分明确了行政方向的具体领域，但具体系统、科室或岗位性质仍不明确。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "clarify",
+          "explanation": "用户从'行政方向'细化到了'农业方面'和'规划农业收入指标'，部分澄清了职责方向，但单位层级和具体科室仍不明确。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "clarify",
+          "explanation": "用户从‘行政方向’细化到‘农业方面’并具体到‘规划农业收入指标’，部分澄清了职责方向，但仍未说明具体系统或科室，异常未完全解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未提供具体系统、科室或日常职责描述，行政方向仍属宽泛",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户回答'都有把'仅补充了对接对象范围，未提供具体系统、科室或日常职责描述，未回应该异常。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "update_type": "clarify",
+          "explanation": "用户本轮明确了具体单位（农业农村局），部分澄清了行政方向过于宽泛的问题，但科室或日常职责仍不明确。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_3_logical_2",
+      "round_id": 3,
+      "source": "logical",
+      "type": "career_path_gap",
+      "description": "",
+      "evidence": [
+        "第1轮：我是一个公务员",
+        "第2轮：我是偏行政的",
+        "第3轮：和其他部门的沟通协调，或者对下级单位的管理"
+      ],
+      "score": 0.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "resolved",
+      "clarification_status": "sufficient",
+      "followup_needed": false,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [],
+      "created_round": 3,
+      "last_update_round": 8,
+      "update_history": [
+        {
+          "round_id": 4,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及职业路径相关内容，原异常状态不变",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及职业路径或发展逻辑，该异常状态不变。",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及职业路径或时间线，无法解决该异常。",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次未涉及职业路径或时间线信息，原异常状态保持不变。",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及职业路径或发展逻辑",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户回答'都有把'未涉及职业路径或时间线信息，未回应该异常。",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "update_type": "resolve",
+          "explanation": "该异常原为career_path_gap类型，但对话历史中并未发现任何职业路径断裂或转变的证据。用户从第1轮开始始终围绕公务员身份进行描述，逐步细化为行政方向、市一级、农业领域、农业农村局，时间线清晰、逻辑连贯，不存在职业路径的跳跃或断裂。因此该异常应被解决。",
+          "new_score": 0.0,
+          "followup_needed": false
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_4_quick_preanalysis_3",
+      "round_id": 4,
+      "source": "quick_preanalysis",
+      "type": "vague",
+      "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向",
+      "evidence": [
+        "我是一个公务员",
+        "我是偏行政的"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "partial",
+      "followup_needed": true,
+      "followup_count": 1,
+      "stop_followup": false,
+      "related_facts": [
+        "occupation:公务员",
+        "role:偏行政方向"
+      ],
+      "created_round": 4,
+      "last_update_round": 8,
+      "update_history": [
+        {
+          "round_id": 5,
+          "update_type": "clarify",
+          "explanation": "用户补充了业务领域（农业），部分明确了单位业务方向，但具体系统、岗位性质或职责方向仍不明确。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "clarify",
+          "explanation": "用户补充了具体工作内容（规划农业收入指标），部分澄清了职责，但单位系统仍不明确。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "clarify",
+          "explanation": "用户确认了市一级单位，并补充了农业领域的具体职责，但未说明具体系统或岗位性质，原异常部分澄清但未解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未提供具体系统、岗位性质或职责方向",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户回答'都有把'仅补充了对接对象范围，未提供具体系统、岗位性质或职责方向，未回应该异常。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "update_type": "clarify",
+          "explanation": "用户本轮明确了单位层级（市里）和具体单位（农业农村局），部分澄清了职业身份粒度过粗的问题。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_5_quick_preanalysis_4",
+      "round_id": 5,
+      "source": "quick_preanalysis",
+      "type": "vague",
+      "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向。用户仅补充了业务领域（农业），但未说明具体单位（如农业农村局、农业技术推广中心等）、科室或具体职责。",
+      "evidence": [
+        "农业方面的"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "partial",
+      "followup_needed": true,
+      "followup_count": 3,
+      "stop_followup": true,
+      "related_facts": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "created_round": 5,
+      "last_update_round": 8,
+      "update_history": [
+        {
+          "round_id": 6,
+          "update_type": "clarify",
+          "explanation": "用户补充了具体工作内容（规划农业收入指标），部分澄清了职责，但单位系统仍不明确。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "clarify",
+          "explanation": "用户补充了具体职责（规划农业收入指标），部分回应了关于具体单位或科室的追问，但未提供单位名称，异常未完全解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "clarify",
+          "explanation": "用户补充了对接对象范围（市里其他部门和乡镇），部分回应了关于具体工作对象的追问，但未说明具体单位名称或科室",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户回答'都有把'仅补充了对接对象范围，未提供具体单位、科室或具体职责，未回应该异常。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "update_type": "clarify",
+          "explanation": "用户本轮明确了具体单位（农业农村局），部分澄清了缺少具体系统的问题，但科室或具体职责仍不明确。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_8_quick_preanalysis_5",
+      "round_id": 8,
+      "source": "quick_preanalysis",
+      "type": "vague",
+      "description": "职业身份粒度过粗，缺少具体科室或岗位性质描述。用户仅补充了单位名称（农业农村局），但未说明具体科室（如种植业科、畜牧科、政策法规科等）或具体职责方向。",
+      "evidence": [
+        "农业农村局"
+      ],
+      "score": 0.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "resolved",
+      "clarification_status": "sufficient",
+      "followup_needed": false,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "created_round": 8,
+      "last_update_round": 8,
+      "update_history": [
+        {
+          "round_id": 8,
+          "update_type": "resolve",
+          "explanation": "用户本轮明确回答了单位名称（农业农村局），与上一轮追问一致，该异常已闭合。",
+          "new_score": 0.0,
+          "followup_needed": false
+        },
+        {
+          "round_id": 8,
+          "update_type": "resolve",
+          "explanation": "用户在第8轮明确回答单位为农业农村局，与之前所有轮次中关于行政协调、农业方向、规划农业收入指标等描述完全一致，语义上无矛盾，且单位名称与工作内容高度匹配，因此该异常可视为已解决。",
+          "new_score": 0.0,
+          "followup_needed": false
+        }
+      ]
+    }
+  ],
+  "indicator_history": [],
+  "lie_index": 4.7,
+  "dimension_scores": {
+    "表层检测": 2.4
+  },
+  "risk_explanation": [
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4",
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4"
+  ],
+  "experience_density": "LOW",
+  "specificity_level": "HIGH",
+  "generic_answer_flag": false,
+  "generic_answer_reason": "",
+  "suggested_probe_angle": "counterexample",
+  "generic_answer_streak": 0,
+  "generic_answer_count": 4,
+  "used_probe_angles": [
+    "boundary_judgment",
+    "process_sequence",
+    "term_clarification",
+    "real_constraint"
+  ],
+  "called_specialists": [
+    "semantic",
+    "logical"
+  ],
+  "routing_decision": {
+    "selected_specialists": [
+      "semantic",
+      "logical"
+    ],
+    "routing_reason": "用户已补充单位名称，异常已解决，无新异常，无需专家分析。",
+    "priority_issue": "用户已明确单位，但岗位职责仍较宽泛，需进一步细化具体科室或工作内容。",
+    "followup_strategy": "light_clarification",
+    "router_mode": "rule_force_llm_select"
+  },
+  "final_report": {
+    "lie_index": 4.7,
+    "dimension_scores": {
+      "表层检测": 2.4
+    },
+    "report_text": "好的，这是根据您提供的输入数据生成的测评报告。\n\n***\n\n### **测评结果**\n\n**1. 用户个人信息总结**\n\n用户当前身份为公务员，在市一级的农业农村局工作，岗位性质偏行政方向。其日常工作职责主要包括与其他部门的沟通协调、对下级单位的管理，以及规划农业收入指标等工作。对接对象涵盖市里其他部门和乡镇。用户的专业背景、具体入职时间、学历等信息未明确。\n\n**2. 总体结果**\n\n综合分数：**4.7/100**\n\n当前职业身份叙述整体稳定，未发现明显矛盾或逻辑冲突。\n\n**3. 关键依据**\n\n*   **职业身份与职责描述一致**：用户从“公务员”这一宽泛身份开始，逐步细化到“市农业农村局”的“行政方向”工作，并具体描述了“规划农业收入指标”和“对接其他部门与乡镇”等职责，整体逻辑链条清晰，未出现前后矛盾。\n*   **各维度检测分数极低**：语义和逻辑维度的检测分数均为0.0，表明在对话过程中未发现任何语义异常或逻辑断裂的证据，叙述流畅自然。\n\n**4. 待澄清点**\n\n*   用户对自身职业身份的叙述较为概括，具体属于农业农村局内哪个科室或具体岗位职责的边界仍不够清楚。\n*   用户未提及具体的入职年限、学历背景或职业发展路径，这些信息有助于更全面地评估其职业叙述的稳定性。"
+  },
+  "thinking_time_history": [
+    {
+      "round": 1,
+      "elapsed": 7.046347379684448,
+      "time": "10:16:17"
+    },
+    {
+      "round": 2,
+      "elapsed": 7.5142905712127686,
+      "time": "10:16:40"
+    },
+    {
+      "round": 3,
+      "elapsed": 11.93666124343872,
+      "time": "10:17:26"
+    },
+    {
+      "round": 4,
+      "elapsed": 7.849865674972534,
+      "time": "10:17:42"
+    },
+    {
+      "round": 5,
+      "elapsed": 8.632610321044922,
+      "time": "10:18:06"
+    },
+    {
+      "round": 6,
+      "elapsed": 13.79763126373291,
+      "time": "10:19:04"
+    },
+    {
+      "round": 7,
+      "elapsed": 12.607083797454834,
+      "time": "10:19:24"
+    },
+    {
+      "round": 8,
+      "elapsed": 9.252965927124023,
+      "time": "10:20:01"
+    }
+  ],
+  "saved_at": "2026-06-02 10:20:12"
+}

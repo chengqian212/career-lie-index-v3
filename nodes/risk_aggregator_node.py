@@ -40,6 +40,14 @@ SOURCE_DISPLAY_NAMES = {
     "psycho_linguistic": "心理语言",
 }
 
+VAGUE_SIGNAL_TYPES = {
+    "vague",
+    "lack_of_detail",
+    "vague_expression",
+    "detail_missing",
+    "avoidance",
+}
+
 def _is_active_specialist_evidence(anomaly: dict) -> bool:
     """
     判断异常是否属于“活跃专家证据”
@@ -103,23 +111,31 @@ def _risk_events_from_anomalies(anomalies_table: list[dict]) -> list[dict]:
 
 
 def _experience_density_event(state: DialogueState) -> dict | None:
-    """Convert repeated generic answers into a weak, accumulating risk signal."""
+    """Convert repeated generic answers into a visible accumulating risk signal."""
     if not state.get("generic_answer_flag"):
         return None
 
     streak = int(state.get("generic_answer_streak", 0) or 0)
+    count = int(state.get("generic_answer_count", 0) or 0)
     density = str(state.get("experience_density") or "MEDIUM").upper()
     reason = state.get("generic_answer_reason") or "回答符合常识但缺少具体场景、流程、边界或限制"
 
-    if streak >= 3:
+    if streak >= 4 or count >= 5:
         severity = "MEDIUM"
         confidence = "HIGH"
+        risk_value = 24.0
+    elif streak >= 3 or count >= 4:
+        severity = "MEDIUM"
+        confidence = "HIGH"
+        risk_value = 20.0
     elif streak >= 2:
         severity = "LOW"
         confidence = "HIGH"
+        risk_value = 16.0
     elif density == "LOW":
         severity = "LOW"
         confidence = "LOW"
+        risk_value = 8.0
     else:
         return None
 
@@ -131,7 +147,51 @@ def _experience_density_event(state: DialogueState) -> dict | None:
         "description": reason,
         "severity": severity,
         "confidence": confidence,
-        "risk_value": effective_risk_value(severity, confidence),
+        "risk_value": risk_value,
+    }
+
+
+def _vagueness_persistence_event(anomalies_table: list[dict]) -> dict | None:
+    """
+    Treat repeated vague/lack-of-detail signals as a separate persistence risk.
+
+    This covers cases where each answer is logically correct but the user keeps
+    avoiding concrete business, workflow, object, boundary, or output details.
+    """
+    active_vague = [
+        anomaly for anomaly in anomalies_table
+        if _is_active_specialist_evidence(anomaly)
+        and str(anomaly.get("type", "")).strip() in VAGUE_SIGNAL_TYPES
+    ]
+    count = len(active_vague)
+    if count < 2:
+        return None
+
+    if count >= 5:
+        risk_value = 22.0
+        severity = "MEDIUM"
+    elif count >= 3:
+        risk_value = 18.0
+        severity = "MEDIUM"
+    else:
+        risk_value = 12.0
+        severity = "LOW"
+
+    descriptions = [
+        str(item.get("description", "")).strip()
+        for item in active_vague[-3:]
+        if str(item.get("description", "")).strip()
+    ]
+    return {
+        "source": "experience_density",
+        "display_source": SOURCE_DISPLAY_NAMES["experience_density"],
+        "anomaly_id": "",
+        "type": "persistent_vague_or_low_detail_answers",
+        "description": "连续回答缺少具体业务、流程、对象或产出细节"
+        + (f"；近期线索：{'；'.join(descriptions)}" if descriptions else ""),
+        "severity": severity,
+        "confidence": "HIGH",
+        "risk_value": risk_value,
     }
 
 def risk_aggregator_node(state: DialogueState) -> dict:
@@ -167,6 +227,9 @@ def risk_aggregator_node(state: DialogueState) -> dict:
     generic_event = _experience_density_event(state)
     if generic_event:
         risk_events.append(generic_event)
+    vague_event = _vagueness_persistence_event(updated_anomalies_table)
+    if vague_event:
+        risk_events.append(vague_event)
 
     # 4. LieIndex 聚合公式（独立事件概率叠加）
     lie_index = combine_independent_risk_values([

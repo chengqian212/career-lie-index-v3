@@ -42,6 +42,19 @@ _LOW_RISK_PHRASES = [
     "暂无明显不一致",
 ]
 
+ROLE_DISAMBIGUATION_KEYWORDS = [
+    "职业身份粒度过粗",
+    "职业大类过宽",
+    "岗位性质",
+    "职责方向",
+    "具体职业类型",
+    "具体系统",
+]
+
+
+def _needs_role_disambiguation(text: str) -> bool:
+    return any(keyword in str(text or "") for keyword in ROLE_DISAMBIGUATION_KEYWORDS)
+
 def _polish_followup_question(
     raw_question: str,
     dialogue_text: str,
@@ -134,6 +147,37 @@ def _question_similarity(left: str, right: str) -> float:
 
 def _is_repeated_question(question: str, previous_questions: list[str]) -> bool:
     return any(_question_similarity(question, previous) >= 0.52 for previous in previous_questions)
+
+
+def _opening_bucket(question: str) -> str:
+    text = str(question or "").strip()
+    if not text:
+        return ""
+    for prefix in ("哦哦", "哦", "嗯嗯", "嗯", "哈哈", "原来", "听起来", "感觉"):
+        if text.startswith(prefix):
+            return prefix
+    return ""
+
+
+def _diversify_opening(question: str, previous_questions: list[str]) -> str:
+    """
+    Avoid repetitive conversational fillers without hardcoding domain-specific fixes.
+    """
+    question = clean_llm_output(question)
+    bucket = _opening_bucket(question)
+    if not bucket:
+        return question
+
+    recent_buckets = [_opening_bucket(item) for item in previous_questions[-3:]]
+    repeated_count = sum(1 for item in recent_buckets if item == bucket or (item and bucket in item))
+    if repeated_count == 0 and bucket not in {"哦", "哦哦"}:
+        return question
+
+    cleaned = re.sub(r"^(哦哦|哦|嗯嗯|嗯|哈哈)[，,、\s]*", "", question).strip()
+    cleaned = re.sub(r"^原来是?这样[，,、\s]*", "", cleaned).strip()
+    if not cleaned:
+        return question
+    return cleaned[0].upper() + cleaned[1:] if cleaned[:1].isascii() else cleaned
 
 # -------------------------
 # 判断异常是否仍活跃
@@ -261,7 +305,14 @@ def followup_generation_node(state: DialogueState) -> dict:
     priority_issue = state.get("priority_issue", "")
     followup_strategy = state.get("followup_strategy", "")
     target_anomaly_id = state.get("target_anomaly_id", "")
-    if state.get("generic_answer_flag"):
+    role_disambiguation = _needs_role_disambiguation(priority_issue)
+    if role_disambiguation:
+        followup_strategy = "light_clarification"
+        priority_issue = (
+            "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；"
+            "不要直接追问日常流程、处理公务、处理客户或处理病人。"
+        )
+    elif state.get("generic_answer_flag"):
         probe_angle = state.get("suggested_probe_angle", "")
         followup_strategy = normalize_followup_strategy(probe_angle, has_risk=True)
         angle_hint = probe_angle_hint(probe_angle)
@@ -310,6 +361,7 @@ def followup_generation_node(state: DialogueState) -> dict:
         priority_issue,
         followup_strategy,
     )
+    followup_question = _diversify_opening(followup_question, previous_questions)
     if _is_repeated_question(followup_question, previous_questions):
         followup_question = _polish_followup_question(
             f"请基于当前对话换一个全新的信息角度追问，不要再问这些历史问题的同义问题。候选问题：{followup_question}",
@@ -318,6 +370,7 @@ def followup_generation_node(state: DialogueState) -> dict:
             priority_issue,
             followup_strategy,
         )
+        followup_question = _diversify_opening(followup_question, previous_questions)
     if _is_repeated_question(followup_question, previous_questions):
         followup_question = "那换个角度聊聊，这个方向里最需要经验积累的地方通常是什么呀？"
     if not followup_question:

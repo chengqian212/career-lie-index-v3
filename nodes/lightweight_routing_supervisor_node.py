@@ -22,6 +22,15 @@ VALID_SPECIALISTS = ["semantic", "logical", "domain", "psycho_linguistic"]
 # 默认核心专家（语义 + 逻辑），用于兜底
 DEFAULT_CORE_SPECIALISTS = ["semantic", "logical"]
 
+ROLE_DISAMBIGUATION_KEYWORDS = [
+    "职业身份粒度过粗",
+    "职业大类过宽",
+    "岗位性质",
+    "职责方向",
+    "具体职业类型",
+    "具体系统",
+]
+
 def _has_valid_quick_labels(state: DialogueState) -> bool:
     """
     检查当前状态的快速风险标签是否有效
@@ -36,6 +45,17 @@ def _has_valid_quick_labels(state: DialogueState) -> bool:
     severity = str(state.get("severity") or "").strip().upper()
     confidence = str(state.get("confidence") or "").strip().upper()
     return severity in {"CRITICAL", "HIGH", "MEDIUM", "LOW"} and confidence in {"HIGH", "LOW"}
+
+
+def _has_role_disambiguation_need(anomalies: list[dict]) -> bool:
+    """Return True when the current issue is broad occupation category, not domain mismatch."""
+    for anomaly in anomalies:
+        if not isinstance(anomaly, dict):
+            continue
+        text = f"{anomaly.get('type', '')} {anomaly.get('description', '')}"
+        if any(keyword in text for keyword in ROLE_DISAMBIGUATION_KEYWORDS):
+            return True
+    return False
 
 
 def should_skip_specialist(state: DialogueState) -> bool:
@@ -288,6 +308,22 @@ def lightweight_routing_supervisor_node(state: DialogueState) -> dict:
             "followup_strategy": "daily_routine",
             "current_anomalies": [],
             "schema_error": "quick_risk_labels_invalid_after_retry",
+        }
+
+    if _has_role_disambiguation_need(current_anomalies):
+        routing_decision = {
+            "selected_specialists": [],
+            "routing_reason": "当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向",
+            "priority_issue": "职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+            "followup_strategy": "light_clarification",
+            "router_mode": "role_disambiguation_skip",
+        }
+        logger.info("[路由监督节点] 职业大类过宽，跳过专家并进入岗位澄清")
+        return {
+            "routing_decision": routing_decision,
+            "selected_specialists": [],
+            "priority_issue": routing_decision["priority_issue"],
+            "followup_strategy": routing_decision["followup_strategy"],
         }
 
     # 规则跳过专家判断
