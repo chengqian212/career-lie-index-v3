@@ -61,7 +61,7 @@ def format_facts_table(facts_table: List[dict]) -> str:
 def format_anomalies_table(anomalies_table: List[dict]) -> str:
     """格式化异常表为可读文本
 
-    v3 改进：输出 anomaly_id、source、score、clarification_status、followup_needed 等字段
+    v3 改进：输出 anomaly_id、source、severity、confidence、clarification_status、followup_needed 等字段
 
     Args:
         anomalies_table: 异常表列表，每项包含多维字段
@@ -79,17 +79,17 @@ def format_anomalies_table(anomalies_table: List[dict]) -> str:
         source = anomaly.get("source", "")#争议来自哪一个agent
         atype = anomaly.get("type", "")
         desc = anomaly.get("description", "")
-        score = anomaly.get("score", 0)
+
         status = anomaly.get("status", "unresolved")
         clarification_status = anomaly.get("clarification_status", "none")
         followup_needed = anomaly.get("followup_needed", True)
 
-        # 输出格式化一行
+        risk_value = anomaly.get("risk_value", 0)
         lines.append(
-            f"  [{i}] [{anomaly_id}] 第{round_id}轮 | 来源:{source} | 类型:{atype} | "
-            f"分数:{score} | 状态:{status} | 澄清:{clarification_status} | "
-            f"需追问:{followup_needed} | {desc}"
+            f"  [{i}] [{anomaly_id}] 第{round_id}轮 | 来源:{source} | 类型:{atype} | 风险值:{risk_value} | 状态:{status} | 澄清:{clarification_status} | 需追问:{followup_needed} | {desc}"
         )
+
+
     return "\n".join(lines)
 
 

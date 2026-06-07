@@ -1,4 +1,4 @@
-"""轻量级路由监督器（Lightweight Routing Supervisor）
+﻿"""轻量级路由监督器（Lightweight Routing Supervisor）
 作用：根据当前对话状态决定是否调用专家，以及调用哪些专家。
 """
 import random
@@ -40,11 +40,11 @@ def _has_valid_quick_labels(state: DialogueState) -> bool:
         True/False
     说明：
         - severity 必须在 CRITICAL/HIGH/MEDIUM/LOW
-        - confidence 必须在 HIGH/LOW
+        - confidence 必须在 CRITICAL/HIGH/MEDIUM/LOW
     """
     severity = str(state.get("severity") or "").strip().upper()
     confidence = str(state.get("confidence") or "").strip().upper()
-    return severity in {"CRITICAL", "HIGH", "MEDIUM", "LOW"} and confidence in {"HIGH", "LOW"}
+    return severity in {"CRITICAL", "HIGH", "MEDIUM", "LOW"} and confidence in {"CRITICAL", "HIGH", "MEDIUM", "LOW"}
 
 
 def _has_role_disambiguation_need(anomalies: list[dict]) -> bool:
@@ -361,15 +361,14 @@ def lightweight_routing_supervisor_node(state: DialogueState) -> dict:
         }
 
     # 将 facts_table/anomalies_table 转为文本供 LLM 使用
-    facts_str = format_facts_table(facts_table) if facts_table else "暂无事实记录"
     current_facts_str = "\n".join([
         f"- {f.get('content', '')}（类型:{f.get('slot', '')}）"
         for f in current_facts
-    ]) if current_facts else "本轮无新事实"
-    current_anomalies_str = "\n".join([
-        f"- {a.get('type', '')}: {a.get('description', '')}（分数:{a.get('score', 0)}）"
+    ]) if current_facts else "暂无新事实"
+    current_anomalies_str = "\n".join(
+        f"- {a.get('type', '')}: {a.get('description', '')}"
         for a in current_anomalies
-    ]) if current_anomalies else "本轮无新异常"
+    ) if current_anomalies else "本轮无新异常"
     anomalies_str = format_anomalies_table(anomalies_table) if anomalies_table else "暂无异常记录"
 
     llm = get_llm()
@@ -452,4 +451,5 @@ def lightweight_routing_supervisor_node(state: DialogueState) -> dict:
         "priority_issue": priority_issue,
         "followup_strategy": followup_strategy,
     }
+
 

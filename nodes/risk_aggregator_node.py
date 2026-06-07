@@ -16,7 +16,6 @@ from state_schema import DialogueState
 from utils.score_utils import (
     VALID_CONFIDENCES,
     VALID_SEVERITIES,
-    combine_independent_risk_values,      # 对独立风险值做加权归一化
     effective_risk_value,                 # 根据 severity/confidence 计算风险值
 )
 
@@ -120,29 +119,34 @@ def _experience_density_event(state: DialogueState) -> dict | None:
     specificity = str(state.get("specificity_level") or "MEDIUM").upper()
     reason = state.get("generic_answer_reason") or "历史回答多次符合常识但缺少具体场景、流程、边界或限制"
 
-    if current_generic and (streak >= 4 or count >= 5):
-        severity = "MEDIUM"
-        confidence = "HIGH"
-        risk_value = 16.0
-    elif current_generic and (streak >= 3 or count >= 4):
-        severity = "MEDIUM"
-        confidence = "HIGH"
-        risk_value = 12.0
-    elif current_generic and streak >= 2:
-        severity = "LOW"
-        confidence = "HIGH"
-        risk_value = 8.0
-    elif current_generic and density == "LOW":
-        severity = "LOW"
-        confidence = "LOW"
-        risk_value = 5.0
+    if streak >= 4 or count >= 5:
+        severity, confidence = "MEDIUM", "HIGH"
+    elif streak >= 3 or count >= 4:
+        severity, confidence = "MEDIUM", "MEDIUM"
+    elif streak >= 2:
+        severity, confidence = "LOW", "HIGH"
+    elif streak == 1 and density == "LOW":
+        severity, confidence = "LOW", "MEDIUM"
     elif not current_generic and count > 0:
         severity = "LOW" if count < 5 else "MEDIUM"
         confidence = "HIGH"
-        risk_value = _residual_experience_risk(count, specificity)
+        risk_value = effective_risk_value(severity, confidence)
+        discount = 0.7 if specificity == "HIGH" else 1.0
+        risk_value *= discount
+        return {
+            "source": "experience_density",
+            "display_source": SOURCE_DISPLAY_NAMES["experience_density"],
+            "anomaly_id": "",
+            "type": "generic_answer_low_experience_density",
+            "description": reason,
+            "severity": severity,
+            "confidence": confidence,
+            "risk_value": round(risk_value, 1),
+        }
     else:
         return None
 
+    risk_value = effective_risk_value(severity, confidence)
     return {
         "source": "experience_density",
         "display_source": SOURCE_DISPLAY_NAMES["experience_density"],
@@ -151,9 +155,8 @@ def _experience_density_event(state: DialogueState) -> dict | None:
         "description": reason,
         "severity": severity,
         "confidence": confidence,
-        "risk_value": risk_value,
+        "risk_value": round(risk_value, 1),
     }
-
 
 def _residual_experience_risk(generic_count: int, specificity: str) -> float:
     """
@@ -178,50 +181,6 @@ def _residual_experience_risk(generic_count: int, specificity: str) -> float:
     else:
         factor = 1.0
     return round(max(3.0, base * factor), 1)
-
-
-def _vagueness_persistence_event(anomalies_table: list[dict]) -> dict | None:
-    """
-    Treat repeated vague/lack-of-detail signals as a separate persistence risk.
-
-    This covers cases where each answer is logically correct but the user keeps
-    avoiding concrete business, workflow, object, boundary, or output details.
-    """
-    active_vague = [
-        anomaly for anomaly in anomalies_table
-        if _is_active_specialist_evidence(anomaly)
-        and str(anomaly.get("type", "")).strip() in VAGUE_SIGNAL_TYPES
-    ]
-    count = len(active_vague)
-    if count < 2:
-        return None
-
-    if count >= 5:
-        risk_value = 13.0
-        severity = "MEDIUM"
-    elif count >= 3:
-        risk_value = 9.0
-        severity = "MEDIUM"
-    else:
-        risk_value = 4.0
-        severity = "LOW"
-
-    descriptions = [
-        str(item.get("description", "")).strip()
-        for item in active_vague[-3:]
-        if str(item.get("description", "")).strip()
-    ]
-    return {
-        "source": "experience_density",
-        "display_source": SOURCE_DISPLAY_NAMES["experience_density"],
-        "anomaly_id": "",
-        "type": "persistent_vague_or_low_detail_answers",
-        "description": "连续回答缺少具体业务、流程、对象或产出细节"
-        + (f"；近期线索：{'；'.join(descriptions)}" if descriptions else ""),
-        "severity": severity,
-        "confidence": "HIGH",
-        "risk_value": risk_value,
-    }
 
 def risk_aggregator_node(state: DialogueState) -> dict:
     """
@@ -256,20 +215,33 @@ def risk_aggregator_node(state: DialogueState) -> dict:
     generic_event = _experience_density_event(state)
     if generic_event:
         risk_events.append(generic_event)
-    vague_event = _vagueness_persistence_event(updated_anomalies_table)
-    if vague_event:
-        risk_events.append(vague_event)
 
-    # 4. LieIndex 聚合公式（独立事件概率叠加）
-    lie_index = combine_independent_risk_values([
-        event["risk_value"] for event in risk_events
-    ])
+    # 4. 6 维度加权求和计算 LieIndex
+    WEIGHTS = {
+        "semantic": 0.25,
+        "logical": 0.20,
+        "domain": 0.15,
+        "psycho_linguistic": 0.15,
+        "experience_density": 0.15,
+        "unresolved_followup": 0.10,
+    }
+    dimension_max: dict[str, float] = {}
+    for event in risk_events:
+        source = event.get("source", "")
+        v = float(event.get("risk_value", 0))
+        dimension_max[source] = max(dimension_max.get(source, 0), v)
+
+    raw_sum = sum(
+        WEIGHTS.get(source, 0) * v / 45.0 * 100
+        for source, v in dimension_max.items()
+    )
+    lie_index = round(min(100.0, max(0.0, raw_sum)), 1)
 
     # ----------------------------
     # 5. 维度分数计算（每个来源取最大 risk_value）
     dimension_scores: dict[str, float] = {}
     for event in risk_events:
-        source = event["display_source"]
+        source = event["source"]
         dimension_scores[source] = round(
             max(dimension_scores.get(source, 0.0), event["risk_value"]),
             1,

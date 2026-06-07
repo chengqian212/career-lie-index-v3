@@ -334,8 +334,7 @@ def print_detailed_node_log(logger, round_id: int) -> None:
                 if not isinstance(result, dict):
                     continue
                 agent = get_specialist_label(result.get("agent", "?"))
-                score = result.get("score", "?")
-                print(f"│     [{agent}] 分数: {score}")
+                
                 evidence = result.get("evidence_list") or result.get("findings") or []
                 if isinstance(evidence, list):
                     for item in evidence[:2]:

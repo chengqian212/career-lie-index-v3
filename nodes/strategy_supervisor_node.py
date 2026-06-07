@@ -68,7 +68,6 @@ def _specialist_results_text(results: list[dict]) -> str:
         evidence_list = result.get("evidence_list", [])
         # 输出每个专家的分数和证据数量
         lines.append(
-            f"[{result.get('agent', '?')}] score={result.get('score', 0)} "
             f"evidence_count={len(evidence_list) if isinstance(evidence_list, list) else 0}"
         )
         if isinstance(evidence_list, list):

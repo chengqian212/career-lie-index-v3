@@ -78,14 +78,6 @@ SUPABASE_OUTPUTS_TABLE: str = _get_setting("SUPABASE_OUTPUTS_TABLE", "output_fil
 RISK_LOW_THRESHOLD: int = 30
 RISK_HIGH_THRESHOLD: int = 60
 
-# 谎言指数权重
-WEIGHT_SEMANTIC: float = 0.30           # 语义一致性权重
-WEIGHT_LOGICAL: float = 0.25            # 逻辑一致性权重
-WEIGHT_DOMAIN: float = 0.20             # 领域一致性权重
-WEIGHT_PSYCHO_LINGUISTIC: float = 0.15  # 心理语言学权重
-WEIGHT_UNRESOLVED_FOLLOWUP: float = 0.10  # 未解决追问权重
-
-UNRESOLVED_FOLLOWUP_PER_SCORE: int = 20    # 未解决追问每项扣分：每个未解决的追问按此分值计入谎言指数
 
 # ---- v3 新增：路由配置 ----
 # 是否启用按需专家调用

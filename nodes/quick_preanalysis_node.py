@@ -513,10 +513,10 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
         evidence = [str(e) for e in evidence if e is not None]
 
         # 获取异常分数
-        score = _safe_float(anomaly.get("score", 0), 0.0)
+
 
         # 限制异常分数范围在 0 到 100 之间
-        score = max(0.0, min(100.0, score))
+
 
         # 获取相关事实
         related_facts = anomaly.get("related_facts", [])
@@ -530,7 +530,7 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
             "type": str(anomaly.get("type", "未分类")),
             "description": str(anomaly.get("description", "")),
             "evidence": evidence,
-            "score": score,
+
             "severity": anomaly.get("severity", severity),
             "confidence": anomaly.get("confidence", confidence),
             "related_facts": related_facts,
@@ -552,7 +552,7 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
             "type": "role_disambiguation",
             "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向，需要先澄清具体职业类型",
             "evidence": [current_user_text],
-            "score": 5.0,
+
             "severity": "LOW",
             "confidence": "HIGH",
             "risk_value": 0.0,
@@ -560,9 +560,6 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
         })
         severity = "LOW"
         confidence = "HIGH"
-        if not quick_signal_summary:
-            quick_signal_summary = "用户只给出宽泛职业类别，需先澄清具体系统、岗位性质或职责方向。"
-
     if _is_concise_but_valid_answer(
         current_user_text,
         normalized_current_facts,
@@ -582,9 +579,15 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
                 used_probe_angles = [angle for angle in used_probe_angles if angle != suggested_probe_angle]
         if not normalized_current_anomalies:
             severity = "LOW"
-            confidence = "HIGH"
-            surface_risk_score = 0.0
-            quick_signal_summary = "本轮回答简短但提供了有效事实，未发现明显异常。"
+    # 如果 generic_answer_flag True，过滤掉 vague/lack_of_detail 避免重复计分
+    if generic_answer_flag:
+        normalized_current_anomalies = [
+            a for a in normalized_current_anomalies
+            if str(a.get("type", "")).strip() not in SOFT_DETAIL_TYPES
+        ]
+        confidence = "HIGH"
+        surface_risk_score = 0.0
+
 
     # 把当前轮新异常加入异常表
     updated_anomalies_table = add_anomalies(

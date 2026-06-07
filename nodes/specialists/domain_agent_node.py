@@ -46,10 +46,10 @@ def domain_agent_node(state: DialogueState) -> dict:
     anomalies_str = format_anomalies_table(anomalies_table) if anomalies_table else "暂无异常记录"
 
     # 格式化当前异常
-    current_anomalies_str = "\n".join([
-        f"- {a.get('type', '')}: {a.get('description', '')}（分数:{a.get('score', 0)}）"
+    current_anomalies_str = "\n".join(
+        f"- {a.get('type', '')}: {a.get('description', '')}"
         for a in current_anomalies
-    ]) if current_anomalies else "本轮无新异常"
+    ) if current_anomalies else "本轮无新异常"
 
     # 调用 LLM（使用 ChatPromptTemplate 的 invoke 方法）
     response = llm.invoke(
@@ -67,7 +67,6 @@ def domain_agent_node(state: DialogueState) -> dict:
         raw_output,
         default={
             "agent": "domain",
-            "score": 0,
             "evidence_list": [],
         },
         node_name="职业常识分析专家"
@@ -81,7 +80,7 @@ def domain_agent_node(state: DialogueState) -> dict:
         )
     
     logger.info(
-        f"[职业常识分析专家] 分析完成 - score={result.get('score', 0)}, evidence数量={len(result.get('evidence_list', []))}"
+        f"[分析完成]"
     )
 
     return {

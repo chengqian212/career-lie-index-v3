@@ -10,7 +10,7 @@ import json
 import os
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from typing import get_type_hints
+from typing import Any, Dict, List, Optional
 
 
 class DetailedLogger:
@@ -284,14 +284,9 @@ class DetailedLogger:
             lines.append("专家分析结果:")
             for result in output["specialist_results"]:
                 if isinstance(result, dict):
-                    agent = result.get("agent", "unknown")
-                    score = result.get("score", 0)
-                    lines.append(f"  - [{agent}] 分数: {score}")
-        
-        return "\n".join(lines)
-
-
-# 全局日志实例
+                    agent_name = result.get("agent", "unknown")
+                    evidence_count = len(result.get("evidence_list", []) or [])
+                    lines.append(f"  - {agent_name}: {evidence_count} 条证据")
 _logger_instance: Optional[DetailedLogger] = None
 
 

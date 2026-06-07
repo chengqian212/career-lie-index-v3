@@ -1,0 +1,13 @@
+{
+  "total_raw": 45,
+  "discarded": 5,
+  "total_valid": 40,
+  "real_count": 22,
+  "fake_count": 18,
+  "accuracy_pct": 72.5,
+  "fake_recall_pct": 61.1,
+  "false_alarm_pct": 18.2,
+  "real_avg_score": 15.7,
+  "fake_avg_score": 43.8,
+  "risk_gap": 28.2
+}

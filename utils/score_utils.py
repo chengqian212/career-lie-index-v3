@@ -1,4 +1,4 @@
-"""
+﻿"""
 风险评分工具：基于 severity（严重度）和 confidence（置信度）标签计算风险值
 """
 
@@ -25,8 +25,8 @@ CONFIDENCE_WEIGHT = {
 # 合法严重度和置信度集合
 VALID_SEVERITIES = set(SEVERITY_BASE_SCORE)
 VALID_CONFIDENCES = set(CONFIDENCE_WEIGHT)
-# 快速风险标签仅使用 HIGH / LOW
-QUICK_CONFIDENCES = {"HIGH", "LOW"}
+
+
 
 
 def normalize_severity(value: Any, default: str = "LOW") -> str:
@@ -97,7 +97,7 @@ def combine_independent_risk_values(values: List[float]) -> float:
 
 def normalize_quick_risk_labels(result: Dict[str, Any]) -> Dict[str, Any]:
     """
-    对快速风险标签进行标准化，仅允许 HIGH / LOW
+    对快速风险标签进行标准化，仅允许 CRITICAL / HIGH / MEDIUM / LOW
     并在非法时记录 schema 错误
 
     Args:
@@ -125,7 +125,7 @@ def normalize_quick_risk_labels(result: Dict[str, Any]) -> Dict[str, Any]:
             severity = "LOW"
         normalized["severity"] = severity
 
-    if confidence not in QUICK_CONFIDENCES:
+    if confidence not in VALID_CONFIDENCES:
         has_assessment_text = bool(
             normalized.get("quick_fact_summary")
             or normalized.get("quick_signal_summary")
@@ -135,22 +135,7 @@ def normalize_quick_risk_labels(result: Dict[str, Any]) -> Dict[str, Any]:
         confidence = "HIGH" if has_assessment_text else "LOW"
         normalized["confidence"] = confidence
 
-    schema_errors = []
-    if severity not in VALID_SEVERITIES:
-        schema_errors.append("missing_or_invalid_severity")
-    else:
-        normalized["severity"] = severity
-
-    if confidence not in QUICK_CONFIDENCES:
-        schema_errors.append("missing_or_invalid_confidence")
-    else:
-        normalized["confidence"] = confidence
-
-    if schema_errors:
-        normalized["schema_error"] = "quick_risk_labels_invalid"
-        normalized["schema_errors"] = schema_errors
     return normalized
-
 
 def normalize_evidence_item(item: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -190,7 +175,6 @@ def normalize_specialist_result(result: Any, agent: str) -> Dict[str, Any]:
     标准化专家结果：
         - 规范每条证据
         - 丢弃非法证据并记录
-        - 计算总评分（score = 最大 risk_value）
 
     Args:
         result: 原始专家输出
@@ -227,11 +211,6 @@ def normalize_specialist_result(result: Any, agent: str) -> Dict[str, Any]:
         normalized["dropped_evidence_count"] = len(invalid_items)
         normalized["dropped_evidence"] = invalid_items
 
-    # 总分 = 有效证据中最大 risk_value
-    normalized["score"] = round(
-        max((item["risk_value"] for item in normalized["evidence_list"]), default=0.0),
-        1,
-    )
     return normalized
 
 

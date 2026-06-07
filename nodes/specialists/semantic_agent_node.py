@@ -47,10 +47,10 @@ def semantic_agent_node(state: DialogueState) -> dict:
     anomalies_str = format_anomalies_table(anomalies_table) if anomalies_table else "暂无异常记录"
 
     # 格式化当前异常
-    current_anomalies_str = "\n".join([
-        f"- {a.get('type', '')}: {a.get('description', '')}（分数:{a.get('score', 0)}）"
+    current_anomalies_str = "\n".join(
+        f"- {a.get('type', '')}: {a.get('description', '')}"
         for a in current_anomalies
-    ]) if current_anomalies else "本轮无新异常"
+    ) if current_anomalies else "本轮无新异常"
 
     # 调用 LLM（使用 ChatPromptTemplate 的 invoke 方法）
     response = llm.invoke(
@@ -68,7 +68,6 @@ def semantic_agent_node(state: DialogueState) -> dict:
         raw_output, 
         default={
             "agent": "semantic",
-            "score": 0,
             "evidence_list": [],
         },
         node_name="语义分析专家"
@@ -83,7 +82,7 @@ def semantic_agent_node(state: DialogueState) -> dict:
         )
     
     logger.info(
-        f"[语义分析专家] 分析完成 - score={result.get('score', 0)}, evidence数量={len(result.get('evidence_list', []))}"
+        f"[分析完成]"
     )
 
     return {

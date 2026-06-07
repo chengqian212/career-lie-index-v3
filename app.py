@@ -431,7 +431,7 @@ def create_initial_state(max_rounds: int = MAX_ROUNDS) -> dict:
 
 def get_risk_level(lie_index: float) -> tuple[str, str]:
     """根据谎言指数返回风险等级和样式类"""
-    if lie_index >= 70:
+    if lie_index >= 60:
         return "高风险", "risk-high"
     elif lie_index >= 30:
         return "中风险", "risk-medium"
@@ -874,14 +874,9 @@ def extract_agent_thoughts(node_name: str, node_update: dict) -> str | None:
                         summary = evidence_list[0].get("description", "")
                 if summary:
                     return summary
-                score = r.get("score")
-                if score is not None:
-                    return f"该专家评分：{score}"
+
                 return None
-        # 直接看 score
-        score = node_update.get("score")
-        if score is not None:
-            return f"专家评分：{score}"
+
         return None
 
     # risk_aggregator
@@ -1076,6 +1071,8 @@ def main():
                 "domain": "职业常识",
                 "psycho_linguistic": "心理语言",
                 "lightweight_surface": "表层风险",
+                "experience_density": "经验密度",
+                "quick_preanalysis": "表层风险",
                 "unresolved_anomalies": "未澄清异常",
             }
             for key, score in dimension_scores.items():

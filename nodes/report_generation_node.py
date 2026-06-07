@@ -42,7 +42,6 @@ def report_generation_node(state: DialogueState) -> dict:
 
     # 格式化各 Specialist Agent 主要发现
     specialist_text = "\n".join(
-        f"  [{r.get('agent', '?')}] 分数: {r.get('score', 0)}\n"
         f"    证据: {json.dumps(r.get('evidence_list', []), ensure_ascii=False)}"
         for r in specialist_results
         if isinstance(r, dict)

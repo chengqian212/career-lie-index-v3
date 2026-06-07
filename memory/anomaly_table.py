@@ -1,14 +1,13 @@
 """异常表模块：管理对话中发现的异常记录
 
-v3 改进：
+v3 改进未分类?
 - 支持五类来源：quick_detection / semantic / logical / domain / psycho_linguistic
-- 统一使用 score 表示风险强度，删除 severity
-- 新增 update_anomalies_status、get_active_anomalies 等函数
+- 新增 update_anomalies_status、get_active_anomalies 等函未分类?
 - 新增 apply_specialist_anomaly_updates、add_specialist_results_as_anomalies
 
-v3.3 改进：
-- 新增 followup_count 和 stop_followup 字段，用于追踪对该异常的追问次数
-- get_active_anomalies 排除 stop_followup=True 的异常
+v3.3 改进未分类?
+- 新增 followup_count 未分类?stop_followup 字段，用于追踪对该异常的追问次数
+- get_active_anomalies 排除 stop_followup=True 的异未分类?
 """
 
 import logging
@@ -21,7 +20,6 @@ from utils.score_utils import (
 )
 
 logger = logging.getLogger(__name__)
-
 
 # ============================================================
 # v3 新增常量
@@ -57,20 +55,17 @@ SPECIALIST_WRITE_ORDER = [
     "psycho_linguistic",
 ]
 
-
 # ============================================================
 # 基础函数（保持兼容）
 # ============================================================
 
-
 def init_anomaly_table() -> List[Dict]:
-    """初始化空异常表
+    """初始化空异常未分类?
 
     Returns:
         空异常表
     """
     return []
-
 
 def normalize_anomaly(
     anomaly: dict,
@@ -78,18 +73,18 @@ def normalize_anomaly(
     source: str,
     index: int | None = None,
 ) -> dict:
-    """v3 新增：归一化异常记录格式
+    """v3 新增：归一化异常记录格未分类?
     
-    补齐异常记录的所有必需字段，包括 v3.3 的 followup_count / stop_followup
+    补齐异常记录的所有必需字段，包未分类?v3.3 未分类?followup_count / stop_followup
     
     Args:
         anomaly: 原始异常数据
         round_id: 当前轮次
         source: 异常来源
-        index: 在表中的索引（用于生成 anomaly_id）
+        index: 在表中的索引（用于生未分类?anomaly_id未分类?
     
     Returns:
-        归一化后的异常记录
+        归一化后的异常记未分类?
     """
     # 生成 anomaly_id
     anomaly_id = anomaly.get("anomaly_id")
@@ -99,15 +94,13 @@ def normalize_anomaly(
         else:
             anomaly_id = f"a_{round_id}_{source}_unknown"
     
-    # 确保 evidence 是 list
+    # 确保 evidence 未分类?list
     evidence = anomaly.get("evidence", [])
     if isinstance(evidence, str):
         evidence = [evidence]
     elif not isinstance(evidence, list):
         evidence = []
     
-    # 确保 score 是 float
-    score = float(anomaly.get("score", 0))
     severity = str(anomaly.get("severity") or "").strip().upper()
     confidence = str(anomaly.get("confidence") or "").strip().upper()
     has_valid_labels = severity in VALID_SEVERITIES and confidence in VALID_CONFIDENCES
@@ -119,7 +112,6 @@ def normalize_anomaly(
         "type": anomaly.get("type", "未分类"),
         "description": anomaly.get("description", ""),
         "evidence": evidence,
-        "score": score,
         "severity": severity if has_valid_labels else "",
         "confidence": confidence if has_valid_labels else "",
         "risk_value": effective_risk_value(severity, confidence) if has_valid_labels else 0.0,
@@ -135,7 +127,6 @@ def normalize_anomaly(
         "update_history": [],
     }
 
-
 def add_anomalies(
     anomalies_table: List[Dict],
     new_anomalies: List[Dict],
@@ -144,7 +135,7 @@ def add_anomalies(
 ) -> List[Dict]:
     """v3 改进：向异常表中添加新异常（使用归一化）
 
-    每条异常格式：
+    每条异常格式未分类?
     {
         "anomaly_id": str,
         "round_id": int,
@@ -152,7 +143,6 @@ def add_anomalies(
         "type": str,
         "description": str,
         "evidence": List[str],
-        "score": float,
         "status": str,
         "clarification_status": str,
         "followup_needed": bool,
@@ -165,12 +155,12 @@ def add_anomalies(
     }
 
     Args:
-        anomalies_table: 当前异常表
+        anomalies_table: 当前异常未分类?
         new_anomalies: 新发现的异常列表
         round_id: 当前轮次
         source: 异常来源
     Returns:
-        更新后的异常表
+        更新后的异常未分类?
     """
     updated = list(anomalies_table)
 
@@ -185,32 +175,30 @@ def add_anomalies(
 
     return updated
 
-
 def update_anomalies_status(
     anomalies_table: List[Dict],
     updates: List[Dict],
     round_id: int,
 ) -> List[Dict]:
-    """v3 新增：更新旧异常状态
+    """v3 新增：更新旧异常状未分类?
     
-    根据专家的 anomaly_updates 更新现有异常的状态
+    根据专家未分类?anomaly_updates 更新现有异常的状未分类?
     
     Args:
-        anomalies_table: 当前异常表
+        anomalies_table: 当前异常未分类?
         updates: 异常更新列表，每项包含：
             - target_anomaly_id: 目标异常ID
             - update_type: clarify|resolve|reinforce|remain_unresolved
             - explanation: 更新原因
-            - new_score: 新分数
             - followup_needed: 是否仍需关注
         round_id: 当前轮次
     
     Returns:
-        更新后的异常表
+        更新后的异常未分类?
     """
     updated = list(anomalies_table)
     
-    # 按 target_anomaly_id 分组更新
+    # 未分类?target_anomaly_id 分组更新
     updates_by_target: Dict[str, List[Dict]] = {}
     for update in updates:
         target_id = update.get("target_anomaly_id")
@@ -219,69 +207,69 @@ def update_anomalies_status(
                 updates_by_target[target_id] = []
             updates_by_target[target_id].append(update)
     
-    # 对每个目标异常进行更新
+    # 对每个目标异常进行更未分类?
     for i, anomaly in enumerate(updated):
         anomaly_id = anomaly.get("anomaly_id")
         if anomaly_id not in updates_by_target:
             continue
         
-        # 获取该异常的所有更新
+        # 获取该异常的所有更未分类?
         target_updates = updates_by_target[anomaly_id]
         
         # v3: 如果有多个更新，按优先级裁决
         if len(target_updates) > 1:
             # 按优先级排序：reinforce > remain_unresolved > clarify > resolve
-            # 同一 update_type 下，按 source 优先级
+            # 同一 update_type 下，未分类?source 优先未分类?
             def sort_key(u):
                 update_type = u.get("update_type", "remain_unresolved")
                 source = u.get("source", "quick_detection")
-                score = float(u.get("new_score", 0))
                 return (
                     UPDATE_TYPE_PRIORITY.get(update_type, 0),
                     SOURCE_PRIORITY.get(source, 0),
-                    score,
                 )
             
             final_update = max(target_updates, key=sort_key)
         else:
             final_update = target_updates[0]
         
+        # 映射 update_type 未分类?status
+        # v3 补充修改：先保留原分数，再根未分类?update_type 裁决分数
         # 映射 update_type 到 status
-        # v3 补充修改：先保留原分数，再根据 update_type 裁决分数
-        old_score = float(anomaly.get("score", 0) or 0)
-        raw_new_score = float(final_update.get("new_score", old_score) or 0)
-        
         update_type = final_update.get("update_type", "remain_unresolved")
         followup_needed = final_update.get("followup_needed", True)
         explanation = final_update.get("explanation", "")
-        
+
         if update_type == "resolve":
             status = "resolved"
             clarification_status = "sufficient"
             followup_needed = False
-            new_score = min(20.0, raw_new_score)  # resolve：分数最多 20
         elif update_type == "clarify":
             status = "unresolved"
             clarification_status = "partial"
             followup_needed = True
-            new_score = max(30.0, raw_new_score)  # clarify：分数至少 30
         elif update_type == "reinforce":
             status = "reinforced"
             clarification_status = "insufficient"
             followup_needed = True
-            new_score = max(old_score, raw_new_score)  # reinforce：不能比原分更低
         else:  # remain_unresolved
             status = "unresolved"
             clarification_status = "none"
             followup_needed = True
-            new_score = max(old_score, raw_new_score)  # remain_unresolved：不能比原分更低
-        
+
         # 更新异常记录
         updated[i] = dict(anomaly)
         updated[i]["status"] = status
         updated[i]["clarification_status"] = clarification_status
         updated[i]["followup_needed"] = followup_needed
-        updated[i]["score"] = new_score
+        
+        # 未分类未分类 new_severity / new_confidence 未分类未分类未分类未分类 risk_value
+        new_severity = str(final_update.get('new_severity', '') or '').strip().upper()
+        new_confidence = str(final_update.get('new_confidence', '') or '').strip().upper()
+        if new_severity in VALID_SEVERITIES and new_confidence in VALID_CONFIDENCES:
+            updated[i]['severity'] = new_severity
+            updated[i]['confidence'] = new_confidence
+            updated[i]['risk_value'] = effective_risk_value(new_severity, new_confidence)
+        
         updated[i]["last_update_round"] = round_id
         
         # 追加更新历史
@@ -289,7 +277,6 @@ def update_anomalies_status(
             "round_id": round_id,
             "update_type": update_type,
             "explanation": explanation,
-            "new_score": new_score,
             "followup_needed": followup_needed,
         }
         if "update_history" not in updated[i]:
@@ -298,17 +285,16 @@ def update_anomalies_status(
     
     return updated
 
-
 def get_active_anomalies(anomalies_table: List[Dict]) -> List[Dict]:
-    """v3.3 改进：获取仍需关注的异常
+    """v3.3 改进：获取仍需关注的异未分类?
 
     排除 stop_followup=True 的异常，即便其状态为 unresolved / reinforced
 
     Args:
-        anomalies_table: 异常表
+        anomalies_table: 异常未分类?
     
     Returns:
-        仍需关注的异常列表
+        仍需关注的异常列未分类?
     """
     return [
         a for a in anomalies_table
@@ -319,37 +305,33 @@ def get_active_anomalies(anomalies_table: List[Dict]) -> List[Dict]:
         )
     ]
 
-
 def count_unresolved(anomalies_table: List[Dict]) -> int:
     """统计未解决的异常数量
 
-    v3.3 改进：统计 active anomalies（仍需关注的异常，排除 stop_followup=True）
+    v3.3 改进：统未分类?active anomalies（仍需关注的异常，排除 stop_followup=True未分类?
 
     Args:
-        anomalies_table: 异常表
+        anomalies_table: 异常未分类?
     Returns:
-        未解决异常数量
+        未解决异常数未分类?
     """
     return len(get_active_anomalies(anomalies_table))
 
-
 def get_unresolved_anomalies(anomalies_table: List[Dict]) -> List[Dict]:
-    """获取所有未解决的异常
+    """获取所有未解决的异未分类?
 
-    v3.3 改进：返回 active anomalies
+    v3.3 改进：返未分类?active anomalies
 
     Args:
-        anomalies_table: 异常表
+        anomalies_table: 异常未分类?
     Returns:
         未解决的异常列表
     """
     return get_active_anomalies(anomalies_table)
 
-
 # ============================================================
-# v3 新增：专家结果处理函数
+# v3 新增：专家结果处理函未分类?
 # ============================================================
-
 
 def apply_specialist_anomaly_updates(
     anomalies_table: List[Dict],
@@ -359,9 +341,9 @@ def apply_specialist_anomaly_updates(
     """v3 新增：应用专家的 anomaly_updates
 
     1. 遍历 specialist_results
-    2. 提取 agent 和 anomaly_updates
-    3. 按 target_anomaly_id 分组
-    4. 对同一个 target_anomaly_id 的多个更新进行优先级裁决
+    2. 提取 agent 未分类?anomaly_updates
+    3. 未分类?target_anomaly_id 分组
+    4. 对同一未分类?target_anomaly_id 的多个更新进行优先级裁决
     5. 选择最高优先级更新
     6. 更新 anomalies_table
 
@@ -370,14 +352,14 @@ def apply_specialist_anomaly_updates(
     - 同一 update_type 下：semantic = logical > domain > psycho_linguistic > quick_detection
     
     Args:
-        anomalies_table: 当前异常表
+        anomalies_table: 当前异常未分类?
         specialist_results: 专家结果列表
         round_id: 当前轮次
     
     Returns:
-        更新后的异常表
+        更新后的异常未分类?
     """
-    # 收集所有更新
+    # 收集所有更未分类?
     all_updates: List[Dict] = []
     
     for result in specialist_results:
@@ -399,7 +381,6 @@ def apply_specialist_anomaly_updates(
         round_id=round_id,
     )
 
-
 def convert_legacy_items_to_anomalies(legacy_items: List[Dict], result: Dict) -> List[Dict]:
     """Convert legacy evidence-like items to anomalies.
 
@@ -407,13 +388,12 @@ def convert_legacy_items_to_anomalies(legacy_items: List[Dict], result: Dict) ->
 
     Args:
         legacy_items: legacy item list
-        result: 专家结果，包含 agent 和 score
     
     Returns:
         转换后的 anomalies 列表
     """
     source = result.get("agent", "unknown")
-    base_score = result.get("score", 0)
+
     
     anomalies = []
     for legacy_item in legacy_items:
@@ -427,33 +407,32 @@ def convert_legacy_items_to_anomalies(legacy_items: List[Dict], result: Dict) ->
             "evidence": legacy_item.get("evidence", []),
             "severity": legacy_item.get("severity"),
             "confidence": legacy_item.get("confidence"),
-            "score": base_score,
+
             "related_facts": legacy_item.get("related_facts", []),
         })
     
     return anomalies
-
 
 def add_specialist_results_as_anomalies(
     anomalies_table: List[Dict],
     specialist_results: List[Dict],
     round_id: int,
 ) -> List[Dict]:
-    """v3 新增：将专家的 evidence_list/new_anomalies 添加到异常表
+    """v3 新增：将专家未分类?evidence_list/new_anomalies 添加到异常表
 
-    处理顺序：semantic → logical → domain → psycho_linguistic
+    处理顺序：semantic 未分类?logical 未分类?domain 未分类?psycho_linguistic
 
     Args:
-        anomalies_table: 当前异常表
+        anomalies_table: 当前异常未分类?
         specialist_results: 专家结果列表
         round_id: 当前轮次
     
     Returns:
-        更新后的异常表
+        更新后的异常未分类?
     """
     updated = list(anomalies_table)
     
-    # 按指定顺序处理
+    # 按指定顺序处未分类?
     for source in SPECIALIST_WRITE_ORDER:
         # 查找该专家的结果
         result = None
@@ -488,7 +467,7 @@ def add_specialist_results_as_anomalies(
                     f"confidence={new_anomaly.get('confidence')}"
                 )
                 continue
-            # 检查是否重复
+            # 检查是否重未分类?
             is_duplicate = False
             atype = new_anomaly.get("type", "")
             evidence = new_anomaly.get("evidence", [])
