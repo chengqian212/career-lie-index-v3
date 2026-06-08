@@ -365,6 +365,7 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
     experience_density = _normalize_level(result.get("experience_density"), "MEDIUM")
     generic_answer_flag = bool(result.get("generic_answer_flag", False))
     generic_answer_reason = result.get("generic_answer_reason", "")
+    occupation_too_broad = bool(result.get("occupation_too_broad", False))
     if not isinstance(generic_answer_reason, str):
         generic_answer_reason = str(generic_answer_reason)
 
@@ -463,11 +464,6 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
 
     # 判断当前轮是否抽取到了新事实
     has_new_fact = bool(normalized_current_facts)
-
-    broad_occupation_only = _is_broad_occupation_only(
-        normalized_current_facts,
-        current_user_text,
-    )
 
     # 用于存放规范化后的异常更新信息
     normalized_anomaly_updates = []
@@ -615,6 +611,7 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
         "confidence": confidence,
         "specificity_level": specificity_level,
         "experience_density": experience_density,
+        "occupation_too_broad": occupation_too_broad,
         "generic_answer_flag": generic_answer_flag,
         "generic_answer_reason": generic_answer_reason,
         "suggested_probe_angle": suggested_probe_angle,

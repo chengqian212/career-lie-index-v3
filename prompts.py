@@ -853,6 +853,7 @@ QUICK_PREANALYSIS_TEMPLATE = """你是快速预分析助手（Quick Preanalysis 
   "experience_density": "HIGH|MEDIUM|LOW",
   "generic_answer_flag": true|false,
   "generic_answer_reason": "如果回答正确但停留在常识层，说明缺少哪些真实经验痕迹；否则为。,
+  "occupation_too_broad": true|false,
   "suggested_probe_angle": "process_sequence|boundary_judgment|real_constraint|counterexample|term_clarification|output_evidence"
 }}
 

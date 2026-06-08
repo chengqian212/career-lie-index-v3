@@ -1,11 +1,12 @@
-"""
+﻿"""
 风险聚合节点（risk_aggregator_node.py）
 
 此节点功能：
 1. 将各专家产生的异常更新和新发现写入 anomalies_table；
 2. 计算 LieIndex（谎言指数）：
    - 每条活跃专家异常事件的风险值 V = severity_base_score * confidence_weight
-   - LieIndex = 100 * (1 - product(1 - V_i / 100))
+   - LieIndex = 100 * (1 - ∏(1 - V_i / 100))
+   - 去掉维度权重系统，各异常直接通过独立风险叠加公式组合，自然不超过100
 """
 
 from memory.anomaly_table import (
@@ -16,7 +17,8 @@ from state_schema import DialogueState
 from utils.score_utils import (
     VALID_CONFIDENCES,
     VALID_SEVERITIES,
-    effective_risk_value,                 # 根据 severity/confidence 计算风险值
+    effective_risk_value,
+    combine_independent_risk_values,
 )
 
 # 这些来源才会被纳入风险聚合计算
@@ -48,7 +50,7 @@ VAGUE_SIGNAL_TYPES = {
 
 def _is_active_specialist_evidence(anomaly: dict) -> bool:
     """
-    判断异常是否属于“活跃专家证据”
+    判断异常是否属于"活跃专家证据"
     条件：
     1. anomaly 是 dict
     2. source 属于 RISK_EVIDENCE_SOURCES
@@ -111,42 +113,40 @@ def _risk_events_from_anomalies(anomalies_table: list[dict]) -> list[dict]:
 
 
 def _experience_density_event(state: DialogueState) -> dict | None:
-    """Convert repeated generic answers into a visible accumulating risk signal."""
+    """Convert repeated generic answers into a progressive risk signal.
+
+    - 当前轮为泛泛回答时：风险值随 streak 递增（streak×7+3，上限50）
+    - 当前轮已给出具体回答，但历史有泛泛记录：按 count 计算残余风险
+    - 无泛泛历史时返回 None
+    """
     current_generic = bool(state.get("generic_answer_flag"))
     streak = int(state.get("generic_answer_streak", 0) or 0)
     count = int(state.get("generic_answer_count", 0) or 0)
-    density = str(state.get("experience_density") or "MEDIUM").upper()
     specificity = str(state.get("specificity_level") or "MEDIUM").upper()
     reason = state.get("generic_answer_reason") or "历史回答多次符合常识但缺少具体场景、流程、边界或限制"
 
-    if streak >= 4 or count >= 5:
-        severity, confidence = "MEDIUM", "HIGH"
-    elif streak >= 3 or count >= 4:
-        severity, confidence = "MEDIUM", "MEDIUM"
-    elif streak >= 2:
-        severity, confidence = "LOW", "HIGH"
-    elif streak == 1 and density == "LOW":
-        severity, confidence = "LOW", "MEDIUM"
-    elif not current_generic and count > 0:
-        severity = "LOW" if count < 5 else "MEDIUM"
+    if current_generic and streak >= 1:
+        # 连续泛泛轮数越多，风险越高
+        # streak=1→10, 2→17, 3→24, 4→31, 5→38, 6→45, 7→50
+        risk_value = min(50.0, streak * 7.0 + 3.0)
+        severity = "HIGH" if risk_value >= 25 else "MEDIUM"
         confidence = "HIGH"
-        risk_value = effective_risk_value(severity, confidence)
-        discount = 0.7 if specificity == "HIGH" else 1.0
-        risk_value *= discount
-        return {
-            "source": "experience_density",
-            "display_source": SOURCE_DISPLAY_NAMES["experience_density"],
-            "anomaly_id": "",
-            "type": "generic_answer_low_experience_density",
-            "description": reason,
-            "severity": severity,
-            "confidence": confidence,
-            "risk_value": round(risk_value, 1),
-        }
+    elif not current_generic and count > 0:
+        # 虽然本轮不泛泛，但历史泛泛记录仍产生残余风险
+        # count=1→5, 2→10, 3→15, 4→20, 5→25, 6→30
+        base = min(50.0, count * 5.0)
+        if specificity == "HIGH":
+            factor = 0.6
+        elif specificity == "MEDIUM":
+            factor = 0.7
+        else:
+            factor = 1.0
+        risk_value = round(max(3.0, base * factor), 1)
+        severity = "HIGH" if risk_value >= 25 else "MEDIUM"
+        confidence = "HIGH"
     else:
         return None
 
-    risk_value = effective_risk_value(severity, confidence)
     return {
         "source": "experience_density",
         "display_source": SOURCE_DISPLAY_NAMES["experience_density"],
@@ -158,29 +158,6 @@ def _experience_density_event(state: DialogueState) -> dict | None:
         "risk_value": round(risk_value, 1),
     }
 
-def _residual_experience_risk(generic_count: int, specificity: str) -> float:
-    """
-    Keep discounted historical experience-density risk after a concrete answer.
-
-    A later concrete detail can reduce prior generic-answer risk, but it should not
-    erase the pattern completely.
-    """
-    if generic_count >= 5:
-        base = 14.0
-    elif generic_count >= 3:
-        base = 11.0
-    elif generic_count == 2:
-        base = 8.0
-    else:
-        base = 5.0
-
-    if specificity == "HIGH":
-        factor = 0.65
-    elif specificity == "MEDIUM":
-        factor = 0.8
-    else:
-        factor = 1.0
-    return round(max(3.0, base * factor), 1)
 
 def risk_aggregator_node(state: DialogueState) -> dict:
     """
@@ -188,7 +165,7 @@ def risk_aggregator_node(state: DialogueState) -> dict:
     1. 应用专家异常更新
     2. 将专家产生的新异常写入表
     3. 提取活跃异常事件
-    4. 计算 LieIndex
+    4. 计算 LieIndex（独立风险叠加公式，自然不超过100）
     5. 生成维度分数与风险解释
     """
     round_id = state.get("round_id", 1)
@@ -216,29 +193,18 @@ def risk_aggregator_node(state: DialogueState) -> dict:
     if generic_event:
         risk_events.append(generic_event)
 
-    # 4. 6 维度加权求和计算 LieIndex
-    WEIGHTS = {
-        "semantic": 0.25,
-        "logical": 0.20,
-        "domain": 0.15,
-        "psycho_linguistic": 0.15,
-        "experience_density": 0.15,
-        "unresolved_followup": 0.10,
-    }
-    dimension_max: dict[str, float] = {}
-    for event in risk_events:
-        source = event.get("source", "")
-        v = float(event.get("risk_value", 0))
-        dimension_max[source] = max(dimension_max.get(source, 0), v)
-
-    raw_sum = sum(
-        WEIGHTS.get(source, 0) * v / 45.0 * 100
-        for source, v in dimension_max.items()
-    )
-    lie_index = round(min(100.0, max(0.0, raw_sum)), 1)
+    # 4. 独立风险叠加计算 LieIndex
+    #    去掉维度权重，每个活跃异常事件独立贡献风险分
+    #    公式：LieIndex = 100 * (1 - ∏(1 - V_i / 100))
+    #    效果：单维度连续泛泛 streak=6 得 45 分，多维度叠加自然不超过 100
+    risk_values = [float(e["risk_value"]) for e in risk_events if e.get("risk_value", 0) > 0]
+    if risk_values:
+        lie_index = combine_independent_risk_values(risk_values)
+    else:
+        lie_index = 0.0
 
     # ----------------------------
-    # 5. 维度分数计算（每个来源取最大 risk_value）
+    # 5. 维度分数（每个来源取最大 risk_value，用于展示）
     dimension_scores: dict[str, float] = {}
     for event in risk_events:
         source = event["source"]

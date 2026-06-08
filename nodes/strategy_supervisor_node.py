@@ -113,6 +113,7 @@ def strategy_supervisor_node(state: DialogueState) -> dict:
             "called_specialists": ", ".join(state.get("called_specialists", [])) or "None",
             "experience_density": state.get("experience_density", "MEDIUM"),
             "generic_answer_flag": state.get("generic_answer_flag", False),
+            "occupation_too_broad": state.get("occupation_too_broad", False),
             "generic_answer_streak": state.get("generic_answer_streak", 0),
             "generic_answer_count": state.get("generic_answer_count", 0),
             "suggested_probe_angle": state.get("suggested_probe_angle", ""),

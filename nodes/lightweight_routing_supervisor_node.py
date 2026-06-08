@@ -342,6 +342,7 @@ def lightweight_routing_supervisor_node(state: DialogueState) -> dict:
             "priority_issue": priority_issue,
             "followup_strategy": followup_strategy,
             "router_mode": "rule_skip",
+            "occupation_too_broad": occupation_too_broad,
             "generic_answer_flag": generic_answer_flag,
             "suggested_probe_angle": suggested_probe_angle,
             "generic_answer_streak": generic_answer_streak,
@@ -370,6 +371,8 @@ def lightweight_routing_supervisor_node(state: DialogueState) -> dict:
         for a in current_anomalies
     ) if current_anomalies else "本轮无新异常"
     anomalies_str = format_anomalies_table(anomalies_table) if anomalies_table else "暂无异常记录"
+    facts_str = format_facts_table(facts_table) if facts_table else "暂无事实记录"
+
 
     llm = get_llm()
     result = invoke_router_with_retry(
@@ -383,6 +386,7 @@ def lightweight_routing_supervisor_node(state: DialogueState) -> dict:
             "surface_risk_score": surface_risk_score,
             "experience_density": state.get("experience_density", "MEDIUM"),
             "generic_answer_flag": generic_answer_flag,
+            "occupation_too_broad": occupation_too_broad,
             "generic_answer_streak": generic_answer_streak,
             "suggested_probe_angle": suggested_probe_angle,
         },

@@ -1,13 +1,13 @@
 {
-  "total_raw": 45,
-  "discarded": 5,
-  "total_valid": 40,
-  "real_count": 22,
-  "fake_count": 18,
-  "accuracy_pct": 72.5,
-  "fake_recall_pct": 61.1,
-  "false_alarm_pct": 18.2,
-  "real_avg_score": 15.7,
-  "fake_avg_score": 43.8,
-  "risk_gap": 28.2
+  "total_raw": 50,
+  "discarded": 6,
+  "total_valid": 44,
+  "real_count": 25,
+  "fake_count": 19,
+  "accuracy_pct": 72.7,
+  "fake_recall_pct": 57.9,
+  "false_alarm_pct": 16.0,
+  "real_avg_score": 14.3,
+  "fake_avg_score": 43.0,
+  "risk_gap": 28.6
 }

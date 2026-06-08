@@ -1,4 +1,4 @@
-"""状态定义模块：定义 LangGraph State 的 TypedDict"""
+﻿"""状态定义模块：定义 LangGraph State 的 TypedDict"""
 
 from typing import TypedDict, List, Dict, Optional, Annotated
 import operator
@@ -56,7 +56,8 @@ class DialogueState(TypedDict):
     generic_answer_reason: str          # 泛泛回答原因
     suggested_probe_angle: str          # 建议下一轮经验链追问角度
     generic_answer_streak: int          # 连续泛泛回答轮数
-    generic_answer_count: int           # 累计泛泛回答次数
+    generic_answer_count: int
+    occupation_too_broad: bool           # 当前职业是否过于宽泛，需要先澄清
     last_probe_angle: str               # 上一轮使用的经验链追问角度
     used_probe_angles: List[str]        # 已使用的经验链追问角度
 

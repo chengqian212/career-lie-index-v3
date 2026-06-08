@@ -4,7 +4,7 @@
     "claimed_job": "目前暂无工作",
     "true_label": "real",
     "baseline_label": "fake",
-    "baseline_reason": "用户自称无业，但对话中无任何职业身份信息。",
+    "baseline_reason": "用户未自称任何职业身份，仅描述无业状态。",
     "system_score": 0.0,
     "system_label": "safe"
   },
@@ -31,7 +31,7 @@
     "claimed_job": "本科在读大学生",
     "true_label": "real",
     "baseline_label": "real",
-    "baseline_reason": "专业课程和实验细节具体，符合食品安全检验专业特点。",
+    "baseline_reason": "专业课程和实验细节具体真实，符合食品安全检验专业特点。",
     "system_score": 0.0,
     "system_label": "safe"
   },
@@ -40,7 +40,7 @@
     "claimed_job": "心理咨询师",
     "true_label": "fake",
     "baseline_label": "fake",
-    "baseline_reason": "回答过于笼统，缺乏专业细节和具体经验。",
+    "baseline_reason": "回答笼统模糊，缺乏专业细节和具体经验。",
     "system_score": 82.7,
     "system_label": "risk"
   },
@@ -49,7 +49,7 @@
     "claimed_job": "教师",
     "true_label": "real",
     "baseline_label": "real",
-    "baseline_reason": "对话细节符合教师日常工作流程，回答自然一致。",
+    "baseline_reason": "对话细节符合教师日常工作流程。",
     "system_score": 0.0,
     "system_label": "safe"
   },
@@ -58,7 +58,7 @@
     "claimed_job": "机械修理",
     "true_label": "real",
     "baseline_label": "real",
-    "baseline_reason": "描述符合工厂设备检修流程，细节真实专业。",
+    "baseline_reason": "描述符合工厂设备检修流程，细节具体且专业。",
     "system_score": 0.0,
     "system_label": "safe"
   },
@@ -67,7 +67,7 @@
     "claimed_job": "游戏主播",
     "true_label": "fake",
     "baseline_label": "fake",
-    "baseline_reason": "前后矛盾，先称超常能力后承认用双屏。",
+    "baseline_reason": "前后矛盾，先称超常能力后承认双屏。",
     "system_score": 0.0,
     "system_label": "safe"
   },
@@ -76,7 +76,7 @@
     "claimed_job": "食品营养师",
     "true_label": "fake",
     "baseline_label": "real",
-    "baseline_reason": "回答具体专业，符合营养师工作流程。",
+    "baseline_reason": "回答具体且符合营养师工作逻辑。",
     "system_score": 0.0,
     "system_label": "safe"
   },
@@ -94,7 +94,7 @@
     "claimed_job": "用户目前是大学生",
     "true_label": "real",
     "baseline_label": "fake",
-    "baseline_reason": "用户自称大学生但回答缺乏专业细节，且回避技术问题。",
+    "baseline_reason": "用户回避技术细节，用模糊回答冒充专业人士。",
     "system_score": 0.0,
     "system_label": "safe"
   },
@@ -130,7 +130,7 @@
     "claimed_job": "机械设计类",
     "true_label": "real",
     "baseline_label": "fake",
-    "baseline_reason": "机械工艺人员通常不编写加工中心代码，描述矛盾。",
+    "baseline_reason": "机械工艺人员通常不编写加工中心代码。",
     "system_score": 57.6,
     "system_label": "risk"
   },
@@ -138,8 +138,8 @@
     "filename": "session_20260601_171654.json",
     "claimed_job": "学生",
     "true_label": "real",
-    "baseline_label": "fake",
-    "baseline_reason": "用户自称大三，但项目描述缺乏专业细节，且AI重复提问。",
+    "baseline_label": "real",
+    "baseline_reason": "对话细节具体，项目描述符合计算机专业学生水平。",
     "system_score": 0.0,
     "system_label": "safe"
   },
@@ -157,7 +157,7 @@
     "claimed_job": "学生",
     "true_label": "real",
     "baseline_label": "real",
-    "baseline_reason": "对话细节专业，符合计算机保研生实际。",
+    "baseline_reason": "对话细节专业，符合计算机保研学生真实情况。",
     "system_score": 0.0,
     "system_label": "safe"
   },
@@ -175,7 +175,7 @@
     "claimed_job": "食品营养师",
     "true_label": "fake",
     "baseline_label": "fake",
-    "baseline_reason": "回答笼统缺乏专业细节，回避具体方法。",
+    "baseline_reason": "回答笼统，缺乏专业细节，回避具体方法。",
     "system_score": 88.5,
     "system_label": "risk"
   },
@@ -184,7 +184,7 @@
     "claimed_job": "本科在读大学生",
     "true_label": "real",
     "baseline_label": "real",
-    "baseline_reason": "对话细节具体一致，符合本科实验课真实场景。",
+    "baseline_reason": "对话细节具体一致，符合本科实践课真实场景。",
     "system_score": 29.6,
     "system_label": "safe"
   },
@@ -193,7 +193,7 @@
     "claimed_job": "电商运营",
     "true_label": "real",
     "baseline_label": "real",
-    "baseline_reason": "对话细节专业，选品逻辑与工具使用一致。",
+    "baseline_reason": "对话细节专业，选品逻辑和工具使用一致。",
     "system_score": 0.0,
     "system_label": "safe"
   },
@@ -219,8 +219,8 @@
     "filename": "session_20260602_064126.json",
     "claimed_job": "企业管理",
     "true_label": "fake",
-    "baseline_label": "fake",
-    "baseline_reason": "战略规划描述过于笼统，缺乏专业细节。",
+    "baseline_label": "real",
+    "baseline_reason": "细节具体，符合高管战略规划实际工作逻辑。",
     "system_score": 52.3,
     "system_label": "risk"
   },
@@ -229,7 +229,7 @@
     "claimed_job": "用户自称是富二代",
     "true_label": "fake",
     "baseline_label": "real",
-    "baseline_reason": "细节真实，符合富二代挥霍心态和商业常识。",
+    "baseline_reason": "对话细节真实，符合富二代挥霍、投资随意的典型特征。",
     "system_score": 42.8,
     "system_label": "risk"
   },
@@ -247,7 +247,7 @@
     "claimed_job": "大学辅导员",
     "true_label": "fake",
     "baseline_label": "real",
-    "baseline_reason": "对话细节专业，处理矛盾流程真实可信。",
+    "baseline_reason": "对话细节专业，处理矛盾方法符合辅导员实际工作。",
     "system_score": 9.2,
     "system_label": "safe"
   },
@@ -255,8 +255,8 @@
     "filename": "session_20260602_100108.json",
     "claimed_job": "机械类",
     "true_label": "real",
-    "baseline_label": "fake",
-    "baseline_reason": "回答笼统，缺乏工艺制造专业细节。",
+    "baseline_label": "real",
+    "baseline_reason": "回答符合工艺制造岗位日常操作细节。",
     "system_score": 53.0,
     "system_label": "risk"
   },
@@ -265,7 +265,7 @@
     "claimed_job": "剧本杀DM",
     "true_label": "real",
     "baseline_label": "fake",
-    "baseline_reason": "缺乏专业DM的即兴能力和细节描述。",
+    "baseline_reason": "缺乏专业术语，准备时间过短，依赖手册。",
     "system_score": 0.0,
     "system_label": "safe"
   },
@@ -283,7 +283,7 @@
     "claimed_job": "语文老师",
     "true_label": "fake",
     "baseline_label": "fake",
-    "baseline_reason": "回答笼统，缺乏具体教学细节和真实案例。",
+    "baseline_reason": "回答笼统，缺乏具体教学细节，回避专业追问。",
     "system_score": 63.7,
     "system_label": "risk"
   },
@@ -292,7 +292,7 @@
     "claimed_job": "教师",
     "true_label": "fake",
     "baseline_label": "real",
-    "baseline_reason": "对话细节符合高中化学教学实际，备课组、周测等描述专业一致。",
+    "baseline_reason": "对话细节符合高中化学教学实际，备课组协作与周测安排真实。",
     "system_score": 11.4,
     "system_label": "safe"
   },
@@ -301,8 +301,98 @@
     "claimed_job": "从事天气监测相关工作",
     "true_label": "fake",
     "baseline_label": "fake",
-    "baseline_reason": "缺乏专业术语，回答幼稚不真实。",
+    "baseline_reason": "缺乏专业术语，回答幼稚，踢云朵不现实。",
     "system_score": 96.4,
     "system_label": "risk"
+  },
+  {
+    "filename": "session_20260607_142914.json",
+    "claimed_job": "学生",
+    "true_label": "real",
+    "baseline_label": "real",
+    "baseline_reason": "对话细节专业，符合学生项目分工实际。",
+    "system_score": 0.0,
+    "system_label": "safe"
+  },
+  {
+    "filename": "session_20260607_142944.json",
+    "claimed_job": "法律相关领域",
+    "true_label": "real",
+    "baseline_label": "real",
+    "baseline_reason": "细节专业，符合检察院实习真实经历。",
+    "system_score": 8.6,
+    "system_label": "safe"
+  },
+  {
+    "filename": "session_20260607_143323.json",
+    "claimed_job": "全职家庭主妇",
+    "true_label": "fake",
+    "baseline_label": "real",
+    "baseline_reason": "描述符合家庭主妇日常，细节真实自然。",
+    "system_score": 55.0,
+    "system_label": "risk"
+  },
+  {
+    "filename": "session_20260607_144306.json",
+    "claimed_job": "潜水员",
+    "true_label": "fake",
+    "baseline_label": "fake",
+    "baseline_reason": "回答过于笼统，缺乏专业细节，顺序表述有误。",
+    "system_score": 68.1,
+    "system_label": "risk"
+  },
+  {
+    "filename": "session_20260607_144812.json",
+    "claimed_job": "用户是一名伐木工",
+    "true_label": "fake",
+    "baseline_label": "fake",
+    "baseline_reason": "砍伐美人松需审批，无手续直接砍不真实。",
+    "system_score": 94.5,
+    "system_label": "risk"
+  },
+  {
+    "filename": "session_20260607_153643.json",
+    "claimed_job": "插画师",
+    "true_label": "fake",
+    "baseline_label": "real",
+    "baseline_reason": "专业术语和流程描述符合游戏角色设计师实际工作。",
+    "system_score": 0.0,
+    "system_label": "safe"
+  },
+  {
+    "filename": "session_20260607_155441.json",
+    "claimed_job": "用户职业是老师",
+    "true_label": "real",
+    "baseline_label": "real",
+    "baseline_reason": "对话细节一致，符合小学教师工作常态。",
+    "system_score": 5.5,
+    "system_label": "safe"
+  },
+  {
+    "filename": "session_20260607_155536.json",
+    "claimed_job": "公务员",
+    "true_label": "fake",
+    "baseline_label": "real",
+    "baseline_reason": "对话细节专业，符合公文写作流程和公务员工作特点。",
+    "system_score": 27.5,
+    "system_label": "safe"
+  },
+  {
+    "filename": "session_20260607_160539.json",
+    "claimed_job": "歌手",
+    "true_label": "real",
+    "baseline_label": "fake",
+    "baseline_reason": "回答笼统模糊，缺乏专业细节和具体经验。",
+    "system_score": 5.0,
+    "system_label": "safe"
+  },
+  {
+    "filename": "session_20260607_164123.json",
+    "claimed_job": "会计师",
+    "true_label": "real",
+    "baseline_label": "fake",
+    "baseline_reason": "回答缺乏专业细节，依赖老板指令，不符会计师职业规范。",
+    "system_score": 2.7,
+    "system_label": "safe"
   }
 ]
