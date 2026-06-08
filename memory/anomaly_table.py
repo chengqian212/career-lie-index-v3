@@ -266,6 +266,14 @@ def update_anomalies_status(
         new_severity = str(final_update.get('new_severity', '') or '').strip().upper()
         new_confidence = str(final_update.get('new_confidence', '') or '').strip().upper()
         if new_severity in VALID_SEVERITIES and new_confidence in VALID_CONFIDENCES:
+            # ???????????????????? severity/confidence
+            # ???????????????????????
+            if generic_answer_flag:
+                old_severity = updated[i].get('severity', '')
+                old_confidence = updated[i].get('confidence', '')
+                severity_dropped = SEVERITY_BASE_SCORE.get(new_severity, 0) < SEVERITY_BASE_SCORE.get(old_severity, 0)
+                if severity_dropped:
+                    continue
             updated[i]['severity'] = new_severity
             updated[i]['confidence'] = new_confidence
             updated[i]['risk_value'] = effective_risk_value(new_severity, new_confidence)
@@ -337,6 +345,7 @@ def apply_specialist_anomaly_updates(
     anomalies_table: List[Dict],
     specialist_results: List[Dict],
     round_id: int,
+    generic_answer_flag: bool = False,
 ) -> List[Dict]:
     """v3 新增：应用专家的 anomaly_updates
 

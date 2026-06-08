@@ -40,30 +40,6 @@ logger = logging.getLogger(__name__)
 
 VALID_LEVELS = {"HIGH", "MEDIUM", "LOW"}
 
-BROAD_OCCUPATION_TERMS = {
-    "公务员",
-    "事业单位",
-    "老师",
-    "教师",
-    "医生",
-    "护士",
-    "律师",
-    "会计",
-    "审计",
-    "金融",
-    "运营",
-    "销售",
-    "工程师",
-    "程序员",
-    "产品经理",
-    "设计师",
-    "咨询师",
-    "心理咨询师",
-    "人事",
-    "行政",
-}
-
-DETAIL_SLOTS = {"role", "work_content", "company", "experience"}
 DETAIL_SHORT_ANSWER_MAX_LEN = 24
 SOFT_DETAIL_TYPES = {"vague", "lack_of_detail"}
 CONCISE_FACT_SLOTS = {"occupation", "role", "company", "time_stage"}
@@ -131,46 +107,6 @@ def _safe_float(value, default: float = 0.0) -> float:
 def _normalize_level(value, default: str = "MEDIUM") -> str:
     level = str(value or "").strip().upper()
     return level if level in VALID_LEVELS else default
-
-
-def _is_broad_occupation_only(current_facts: list[dict], current_user_text: str) -> bool:
-    """
-    Detect occupation categories that are too broad to support experience probing.
-
-    This is deliberately low-risk: it only asks the system to clarify role/system/duty
-    before moving into workflow questions.
-    """
-    if any(
-        isinstance(f, dict)
-        and f.get("slot") in DETAIL_SLOTS
-        and str(f.get("content", "")).strip()
-        for f in current_facts
-    ):
-        return False
-
-    text = str(current_user_text or "").strip()
-    if not text:
-        return False
-
-    occupation_values = [
-        str(f.get("content", "")).strip()
-        for f in current_facts
-        if isinstance(f, dict) and f.get("slot") == "occupation"
-    ]
-    if not occupation_values:
-        return False
-
-    occupation_text = " ".join(occupation_values)
-    has_broad_term = any(term in occupation_text or term in text for term in BROAD_OCCUPATION_TERMS)
-    if not has_broad_term:
-        return False
-
-    detail_markers = [
-        "窗口", "材料", "执法", "基层", "乡镇", "街道", "税务", "公安", "法院", "检察",
-        "科室", "门诊", "住院", "咨询流派", "个案", "班主任", "学科", "后端", "前端",
-        "算法", "测试", "财务", "渠道", "客户", "项目", "负责", "主要做", "具体",
-    ]
-    return not any(marker in text for marker in detail_markers)
 
 
 def _is_concise_but_valid_answer(
@@ -377,7 +313,7 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
 
     previous_streak = int(state.get("generic_answer_streak", 0) or 0)
     previous_count = int(state.get("generic_answer_count", 0) or 0)
-    generic_answer_streak = previous_streak + 1 if generic_answer_flag else 0
+    generic_answer_streak = previous_streak + 1 if generic_answer_flag else max(0, previous_streak - 1)
     generic_answer_count = previous_count + 1 if generic_answer_flag else previous_count
     if generic_answer_flag and suggested_probe_angle not in used_probe_angles:
         used_probe_angles.append(suggested_probe_angle)
@@ -539,23 +475,7 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
         # 加入当前轮异常列表
         normalized_current_anomalies.append(normalized_anomaly)
 
-    if broad_occupation_only and not any(
-        "职业身份粒度过粗" in str(a.get("description", ""))
-        for a in normalized_current_anomalies
-        if isinstance(a, dict)
-    ):
-        normalized_current_anomalies.append({
-            "type": "role_disambiguation",
-            "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向，需要先澄清具体职业类型",
-            "evidence": [current_user_text],
 
-            "severity": "LOW",
-            "confidence": "HIGH",
-            "risk_value": 0.0,
-            "related_facts": [],
-        })
-        severity = "LOW"
-        confidence = "HIGH"
     if _is_concise_but_valid_answer(
         current_user_text,
         normalized_current_facts,
@@ -569,13 +489,13 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
             generic_answer_flag = False
             generic_answer_reason = ""
             experience_density = "MEDIUM"
-            generic_answer_streak = 0
+            generic_answer_streak = max(0, previous_streak - 1)
             generic_answer_count = previous_count
             if suggested_probe_angle in used_probe_angles:
                 used_probe_angles = [angle for angle in used_probe_angles if angle != suggested_probe_angle]
         if not normalized_current_anomalies:
             severity = "LOW"
-    # 如果 generic_answer_flag True，过滤掉 vague/lack_of_detail 避免重复计分
+    # ?? generic_answer_flag True???? vague/lack_of_detail ??????
     if generic_answer_flag:
         normalized_current_anomalies = [
             a for a in normalized_current_anomalies
@@ -585,7 +505,7 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
         surface_risk_score = 0.0
 
 
-    # 把当前轮新异常加入异常表
+    # ????????????
     updated_anomalies_table = add_anomalies(
         anomalies_table=updated_anomalies_table,
         new_anomalies=normalized_current_anomalies,
@@ -593,13 +513,13 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
         source="quick_preanalysis",
     )
 
-    # 复制已有事实表，避免直接修改原列表
+    # ?????????????????
     updated_facts_table = list(facts_table)
 
-    # 把当前轮新事实追加到事实表中
+    # ??????????????
     updated_facts_table.extend(normalized_current_facts)
 
-    # 返回本节点对全局状态的更新内容
+    # ???????????????
     return {
         "facts_table": updated_facts_table,
         "current_facts": normalized_current_facts,
@@ -624,4 +544,3 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
         "schema_error": quick_schema_error or "",
         "schema_errors": result.get("schema_errors", []),
     }
-

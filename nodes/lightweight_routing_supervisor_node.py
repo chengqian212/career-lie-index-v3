@@ -268,6 +268,7 @@ def lightweight_routing_supervisor_node(state: DialogueState) -> dict:
     anomalies_table = state.get("anomalies_table", [])
     surface_risk_score = state.get("surface_risk_score", 0)
     generic_answer_flag = bool(state.get("generic_answer_flag", False))
+    occupation_too_broad = bool(state.get("occupation_too_broad", False))
     generic_answer_reason = state.get("generic_answer_reason", "")
     suggested_probe_angle = state.get("suggested_probe_angle", "")
     generic_answer_streak = int(state.get("generic_answer_streak", 0) or 0)

@@ -178,6 +178,7 @@ def risk_aggregator_node(state: DialogueState) -> dict:
         anomalies_table=anomalies_table,
         specialist_results=specialist_results,
         round_id=round_id,
+        generic_answer_flag=bool(state.get("generic_answer_flag", False)),
     )
 
     # 2. 写入专家产生的新异常

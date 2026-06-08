@@ -1,0 +1,1090 @@
+{
+  "round_id": 8,
+  "saved_at": "2026-06-08 15:24:24",
+  "lie_index": 24.0,
+  "max_rounds": 8,
+  "facts_table": [
+    {
+      "slot": "occupation",
+      "source": "quick_preanalysis",
+      "content": "研究员",
+      "evidence": "我是中科院的一个研究员",
+      "round_id": 1
+    },
+    {
+      "slot": "company",
+      "source": "quick_preanalysis",
+      "content": "中国科学院",
+      "evidence": "我是中科院的一个研究员",
+      "round_id": 1
+    },
+    {
+      "slot": "work_content",
+      "source": "quick_preanalysis",
+      "content": "偏理论方向",
+      "evidence": "偏理论吧",
+      "round_id": 2
+    },
+    {
+      "slot": "work_content",
+      "source": "quick_preanalysis",
+      "content": "工作方式以团队协作为主，有课题",
+      "evidence": "主要是和团队一起吧，有课题",
+      "round_id": 3
+    },
+    {
+      "slot": "work_content",
+      "source": "quick_preanalysis",
+      "content": "课题推进方式为先定大方向再拆任务",
+      "evidence": "肯定是前者",
+      "round_id": 4
+    },
+    {
+      "slot": "work_content",
+      "source": "quick_preanalysis",
+      "content": "有固定的记录习惯或时间节点要求，每周都会进行汇报或写实验日志",
+      "evidence": "有的，每周都会把",
+      "round_id": 5
+    },
+    {
+      "slot": "work_content",
+      "source": "quick_preanalysis",
+      "content": "每周汇报内容包含实验进展和下一步计划",
+      "evidence": "都有",
+      "round_id": 6
+    },
+    {
+      "slot": "work_content",
+      "source": "quick_preanalysis",
+      "content": "课题推进中，有好的进展就继续，遇到困难就讨论解决",
+      "evidence": "有好的进展就继续，如果遇到困难了就讨论解决",
+      "round_id": 7
+    },
+    {
+      "slot": "experience",
+      "source": "quick_preanalysis",
+      "content": "课题遇到常规方法走不通且讨论拿不准时，选择先搁置",
+      "evidence": "先放一边吧",
+      "round_id": 8
+    }
+  ],
+  "final_report": {
+    "lie_index": 24.0,
+    "report_text": "好的，这是根据您提供的数据生成的测评报告。\n\n***\n\n### 测评结果\n\n**1. 用户个人信息总结**\n\n用户自称是中国科学院的研究员，工作方向偏理论。其工作方式以团队协作为主，有明确的课题。课题推进方式为先确定大方向，再拆解为具体任务。用户有固定的工作记录和汇报习惯，每周进行汇报，内容涵盖实验进展和下一步计划。在课题推进中，遇到常规方法无法解决的困难且讨论后仍不确定时，会选择暂时搁置。\n\n**2. 总体结果**\n\n综合分数：24.0/100\n当前职业身份叙述中存在若干待澄清线索，整体叙述的稳定性和一致性有待进一步验证。\n\n**3. 关键依据**\n\n*   **经验密度分数较低（24.0）：** 该维度分数显著偏低，表明用户在描述具体工作细节、流程和挑战时，提供的细节深度和丰富度不足，叙述较为概括和流程化。\n*   **工作流程描述较为通用：** 用户对课题推进、汇报内容、困难处理方式的描述（如“先定大方向再拆任务”、“有好的进展就继续，遇到困难就讨论解决”）均为科研领域的常见通用表述，缺乏个人化的、具体的案例或细节支撑。\n\n**4. 待澄清点**\n\n暂无明显待澄清点。",
+    "dimension_scores": {
+      "experience_density": 24.0
+    }
+  },
+  "round_records": [
+    {
+      "time": "2026-06-08 15:20:16",
+      "round": 1,
+      "elapsed": 8.465221166610718,
+      "lie_index": 0.0,
+      "node_times": {
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 3.034,
+        "followup_generation_node": 3.331,
+        "strategy_supervisor_node": 2.075,
+        "lightweight_routing_supervisor_node": 0.0
+      },
+      "user_input": "我是中科院的一个研究员",
+      "ai_followup": "那你们中科院的研究方向一般是怎么划分的呀，你是偏理论还是偏工程多一些？",
+      "next_action": "generate_followup",
+      "stop_reason": "用户回答过于笼统，仅提到中科院研究员，未说明具体研究领域或系统，需先澄清方向再深入询问",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "occupation",
+          "source": "quick_preanalysis",
+          "content": "研究员",
+          "evidence": "我是中科院的一个研究员",
+          "round_id": 1
+        },
+        {
+          "slot": "company",
+          "source": "quick_preanalysis",
+          "content": "中国科学院",
+          "evidence": "我是中科院的一个研究员",
+          "round_id": 1
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:20:11",
+          "title": "快速预分析",
+          "content": "用户是中国科学院的研究员；职业身份粒度过粗，缺少具体研究方向或岗位性质；经验密度：LOW",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:20:11",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:20:11",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:20:13",
+          "title": "策略决策",
+          "content": "继续追问（用户回答过于笼统，仅提到中科院研究员，未说明具体研究领域或系统，需先澄清方向再深入询问），关注：用户仅说明是中科院研究员，未明确具体研究领域、系统或角色类型，需要澄清研究方向或具体系统，策略：light_clarification",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:20:16",
+          "title": "追问生成",
+          "content": "生成追问：那你们中科院的研究方向一般是怎么划分的呀，你是偏理论还是偏工程多一些？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "routing_decision": {
+        "router_mode": "rule_skip",
+        "priority_issue": "无明显待澄清点",
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "followup_strategy": "daily_routine",
+        "generic_answer_flag": false,
+        "occupation_too_broad": true,
+        "selected_specialists": [],
+        "generic_answer_streak": 0,
+        "suggested_probe_angle": "term_clarification"
+      },
+      "current_anomalies": [],
+      "followup_strategy": "light_clarification",
+      "specificity_level": "LOW",
+      "called_specialists": [],
+      "experience_density": "LOW",
+      "quick_fact_summary": "用户是中国科学院的研究员",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": false,
+      "generic_answer_count": 0,
+      "quick_signal_summary": "职业身份粒度过粗，缺少具体研究方向或岗位性质",
+      "selected_specialists": [],
+      "generic_answer_reason": "",
+      "generic_answer_streak": 0,
+      "suggested_probe_angle": "term_clarification"
+    },
+    {
+      "time": "2026-06-08 15:20:33",
+      "round": 2,
+      "elapsed": 6.874832391738892,
+      "lie_index": 0.0,
+      "node_times": {
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 2.27,
+        "followup_generation_node": 2.526,
+        "strategy_supervisor_node": 2.053,
+        "lightweight_routing_supervisor_node": 0.0
+      },
+      "user_input": "偏理论吧",
+      "ai_followup": "那平时的工作节奏是什么样的，是大部分时间自己琢磨，还是经常跟团队一起讨论推进呀？",
+      "next_action": "generate_followup",
+      "stop_reason": "当前信息仅确认偏理论方向，缺乏具体研究领域和日常流程细节，经验密度低，有进一步探查价值。",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "work_content",
+          "source": "quick_preanalysis",
+          "content": "偏理论方向",
+          "evidence": "偏理论吧",
+          "round_id": 2
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:20:29",
+          "title": "快速预分析",
+          "content": "用户确认自己在中科院从事偏理论的研究方向。；本轮无异常信号。回答简短但直接回应了上一轮追问，提供了有效事实。；经验密度：LOW",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:20:29",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:20:29",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:20:31",
+          "title": "策略决策",
+          "content": "继续追问（当前信息仅确认偏理论方向，缺乏具体研究领域和日常流程细节，经验密度低，有进一步探查价值。），关注：用户仅说明偏理论，但未描述具体的研究领域或工作流程，可进一步探查其日常研究内容与工作模式。，策略：process_sequence",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:20:33",
+          "title": "追问生成",
+          "content": "生成追问：那平时的工作节奏是什么样的，是大部分时间自己琢磨，还是经常跟团队一起讨论推进呀？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "用户仅说明偏理论，但未描述具体的研究领域或工作流程，可进一步探查其日常研究内容与工作模式。",
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "routing_decision": {
+        "router_mode": "rule_skip",
+        "priority_issue": "无明显待澄清点",
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "followup_strategy": "daily_routine",
+        "generic_answer_flag": false,
+        "occupation_too_broad": false,
+        "selected_specialists": [],
+        "generic_answer_streak": 0,
+        "suggested_probe_angle": "process_sequence"
+      },
+      "current_anomalies": [],
+      "followup_strategy": "process_sequence",
+      "specificity_level": "LOW",
+      "called_specialists": [],
+      "experience_density": "LOW",
+      "quick_fact_summary": "用户确认自己在中科院从事偏理论的研究方向。",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": false,
+      "generic_answer_count": 0,
+      "quick_signal_summary": "本轮无异常信号。回答简短但直接回应了上一轮追问，提供了有效事实。",
+      "selected_specialists": [],
+      "generic_answer_reason": "",
+      "generic_answer_streak": 0,
+      "suggested_probe_angle": "process_sequence"
+    },
+    {
+      "time": "2026-06-08 15:21:16",
+      "round": 3,
+      "elapsed": 8.715665102005005,
+      "lie_index": 10.0,
+      "node_times": {
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 3.223,
+        "followup_generation_node": 3.057,
+        "strategy_supervisor_node": 2.421,
+        "lightweight_routing_supervisor_node": 0.0
+      },
+      "user_input": "主要是和团队一起吧，有课题",
+      "ai_followup": "有课题的话，你们一般是怎么推进的呀，是先定大方向再拆任务，还是大家定期碰思路再决定下一步做什么？",
+      "next_action": "generate_followup",
+      "stop_reason": "当前仅3轮，预算充足；用户回答经验密度低且笼统，需按process_sequence追问具体协作细节以获取真实经验痕迹",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "work_content",
+          "source": "quick_preanalysis",
+          "content": "工作方式以团队协作为主，有课题",
+          "evidence": "主要是和团队一起吧，有课题",
+          "round_id": 3
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:21:10",
+          "title": "快速预分析",
+          "content": "用户确认工作方式以团队协作为主，并提及有课题。；本轮回答直接回应了上一轮追问，没有检测到异常信号。；经验密度：LOW；泛泛回答：回答符合科研人员工作方式的常识（团队协作、有课题），但缺少真实经验痕迹，例如未说明团队规模、讨论频率、个人在团队中的具体角色、课题类型或协作中的具体分工。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:21:10",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问；关注点：回答符合科研人员工作方式的常识（团队协作、有课题），但缺少真实经验痕迹，例如未说明团队规模、讨论频率、个人在团队中的具体角色、课题类型或协作中的具体分工。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:21:10",
+          "title": "风险聚合",
+          "content": "风险指数 10.0，经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=10.0",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:21:12",
+          "title": "策略决策",
+          "content": "继续追问（当前仅3轮，预算充足；用户回答经验密度低且笼统，需按process_sequence追问具体协作细节以获取真实经验痕迹），关注：用户回答偏笼统，缺乏具体经验痕迹，需追问团队规模、讨论频率、个人角色等细节，策略：process_sequence",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:21:16",
+          "title": "追问生成",
+          "content": "生成追问：有课题的话，你们一般是怎么推进的呀，是先定大方向再拆任务，还是大家定期碰思路再决定下一步做什么？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "回答符合科研人员工作方式的常识（团队协作、有课题），但缺少真实经验痕迹，例如未说明团队规模、讨论频率、个人在团队中的具体角色、课题类型或协作中的具体分工。；换到过程顺序角度，问对方一般怎么判断先做什么、后做什么",
+      "dimension_scores": {
+        "experience_density": 10.0
+      },
+      "risk_explanation": [
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=10.0"
+      ],
+      "routing_decision": {
+        "router_mode": "rule_skip",
+        "priority_issue": "回答符合科研人员工作方式的常识（团队协作、有课题），但缺少真实经验痕迹，例如未说明团队规模、讨论频率、个人在团队中的具体角色、课题类型或协作中的具体分工。",
+        "routing_reason": "本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问",
+        "followup_strategy": "process_sequence",
+        "generic_answer_flag": true,
+        "occupation_too_broad": false,
+        "selected_specialists": [],
+        "generic_answer_streak": 1,
+        "suggested_probe_angle": "process_sequence"
+      },
+      "current_anomalies": [],
+      "followup_strategy": "process_sequence",
+      "specificity_level": "MEDIUM",
+      "called_specialists": [],
+      "experience_density": "LOW",
+      "quick_fact_summary": "用户确认工作方式以团队协作为主，并提及有课题。",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": true,
+      "generic_answer_count": 1,
+      "quick_signal_summary": "本轮回答直接回应了上一轮追问，没有检测到异常信号。",
+      "selected_specialists": [],
+      "generic_answer_reason": "回答符合科研人员工作方式的常识（团队协作、有课题），但缺少真实经验痕迹，例如未说明团队规模、讨论频率、个人在团队中的具体角色、课题类型或协作中的具体分工。",
+      "generic_answer_streak": 1,
+      "suggested_probe_angle": "process_sequence"
+    },
+    {
+      "time": "2026-06-08 15:21:39",
+      "round": 4,
+      "elapsed": 8.679251194000244,
+      "lie_index": 17.0,
+      "node_times": {
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 3.353,
+        "followup_generation_node": 3.054,
+        "strategy_supervisor_node": 2.253,
+        "lightweight_routing_supervisor_node": 0.0
+      },
+      "user_input": "肯定是前者",
+      "ai_followup": "听起来你们课题推进还挺有规划的，那平时做研究的时候，有没有什么固定的记录习惯或者时间节点要求，比如定期汇报或者写实验日志之类的？",
+      "next_action": "generate_followup",
+      "stop_reason": "经验密度低且连续两次通用回答，需追问实际工作中的约束条件或反例以验证经验真实性",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "work_content",
+          "source": "quick_preanalysis",
+          "content": "课题推进方式为先定大方向再拆任务",
+          "evidence": "肯定是前者",
+          "round_id": 4
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:21:34",
+          "title": "快速预分析",
+          "content": "用户确认课题推进方式是先定大方向再拆任务。；本轮无异常信号。回答简短但直接回应了上一轮追问，提供了有效事实。；经验密度：LOW；泛泛回答：回答正确且直接回应了问题，但仅停留在概括性流程描述（'先定大方向再拆任务'），没有提供任何具体场景、判断节点、边界条件或实际案例，缺乏真实经验痕迹。换成没有亲身经历的人也能说出这个通用流程。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:21:34",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问；关注点：回答正确且直接回应了问题，但仅停留在概括性流程描述（'先定大方向再拆任务'），没有提供任何具体场景、判断节点、边界条件或实际案例，缺乏真实经验痕迹。换成没有亲身经历的人也能说出这个通用流程。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:21:34",
+          "title": "风险聚合",
+          "content": "风险指数 17.0，经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=17.0",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:21:36",
+          "title": "策略决策",
+          "content": "继续追问（经验密度低且连续两次通用回答，需追问实际工作中的约束条件或反例以验证经验真实性），关注：用户连续给出概括性回答，缺乏具体场景和真实经验痕迹，需要追问实际工作中的约束条件或反例，策略：real_constraint",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:21:39",
+          "title": "追问生成",
+          "content": "生成追问：听起来你们课题推进还挺有规划的，那平时做研究的时候，有没有什么固定的记录习惯或者时间节点要求，比如定期汇报或者写实验日志之类的？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "回答正确且直接回应了问题，但仅停留在概括性流程描述（'先定大方向再拆任务'），没有提供任何具体场景、判断节点、边界条件或实际案例，缺乏真实经验痕迹。换成没有亲身经历的人也能说出这个通用流程。；换到真实限制角度，问记录、时间、流程、协作、规范或现实约束",
+      "dimension_scores": {
+        "experience_density": 17.0
+      },
+      "risk_explanation": [
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=17.0"
+      ],
+      "routing_decision": {
+        "router_mode": "rule_skip",
+        "priority_issue": "回答正确且直接回应了问题，但仅停留在概括性流程描述（'先定大方向再拆任务'），没有提供任何具体场景、判断节点、边界条件或实际案例，缺乏真实经验痕迹。换成没有亲身经历的人也能说出这个通用流程。",
+        "routing_reason": "本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问",
+        "followup_strategy": "real_constraint",
+        "generic_answer_flag": true,
+        "occupation_too_broad": false,
+        "selected_specialists": [],
+        "generic_answer_streak": 2,
+        "suggested_probe_angle": "real_constraint"
+      },
+      "current_anomalies": [],
+      "followup_strategy": "real_constraint",
+      "specificity_level": "LOW",
+      "called_specialists": [],
+      "experience_density": "LOW",
+      "quick_fact_summary": "用户确认课题推进方式是先定大方向再拆任务。",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": true,
+      "generic_answer_count": 2,
+      "quick_signal_summary": "本轮无异常信号。回答简短但直接回应了上一轮追问，提供了有效事实。",
+      "selected_specialists": [],
+      "generic_answer_reason": "回答正确且直接回应了问题，但仅停留在概括性流程描述（'先定大方向再拆任务'），没有提供任何具体场景、判断节点、边界条件或实际案例，缺乏真实经验痕迹。换成没有亲身经历的人也能说出这个通用流程。",
+      "generic_answer_streak": 2,
+      "suggested_probe_angle": "real_constraint"
+    },
+    {
+      "time": "2026-06-08 15:22:42",
+      "round": 5,
+      "elapsed": 13.676442861557007,
+      "lie_index": 9.2,
+      "node_times": {
+        "logical_agent_node": 3.757,
+        "semantic_agent_node": 1.404,
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 2.522,
+        "followup_generation_node": 2.834,
+        "strategy_supervisor_node": 2.831,
+        "lightweight_routing_supervisor_node": 1.712
+      },
+      "user_input": "有的，每周都会把",
+      "ai_followup": "那你们每周汇报的时候，一般重点讲什么呀，是实验进展还是下一步的计划？",
+      "next_action": "generate_followup",
+      "stop_reason": "当前回答被截断，未完成关于定期汇报或实验日志的追问；经验密度中等，逻辑时间线存在未解决异常，需完成本轮追问以获取完整信息",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "work_content",
+          "source": "quick_preanalysis",
+          "content": "有固定的记录习惯或时间节点要求，每周都会进行汇报或写实验日志",
+          "evidence": "有的，每周都会把",
+          "round_id": 5
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:22:31",
+          "title": "快速预分析",
+          "content": "用户确认有固定的记录习惯或时间节点要求，每周都会进行汇报或写实验日志。；本轮回答直接回应了上一轮追问，提供了有效事实，未检测到异常信号。；经验密度：MEDIUM",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:22:33",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：当前回答补充了工作节奏细节，无新异常，经验密度中等，无需调用专家。；关注点：当前回答补充了工作节奏细节，无新异常，经验密度中等，无需调用专家。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:22:36",
+          "title": "风险聚合",
+          "content": "风险指数 9.2，逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4；经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=7.0",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:22:39",
+          "title": "策略决策",
+          "content": "继续追问（当前回答被截断，未完成关于定期汇报或实验日志的追问；经验密度中等，逻辑时间线存在未解决异常，需完成本轮追问以获取完整信息），关注：用户回答被截断，需要完成关于定期汇报或实验日志的追问，以获取完整的工作流程细节，策略：boundary_judgment",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:22:42",
+          "title": "追问生成",
+          "content": "生成追问：那你们每周汇报的时候，一般重点讲什么呀，是实验进展还是下一步的计划？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "用户回答被截断，需要完成关于定期汇报或实验日志的追问，以获取完整的工作流程细节",
+      "dimension_scores": {
+        "logical": 2.4,
+        "experience_density": 7.0
+      },
+      "risk_explanation": [
+        "逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4",
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=7.0"
+      ],
+      "routing_decision": {
+        "router_mode": "rule_force_llm_select",
+        "priority_issue": "当前回答补充了工作节奏细节，无新异常，经验密度中等，无需调用专家。",
+        "routing_reason": "当前回答补充了工作节奏细节，无新异常，经验密度中等，无需调用专家。",
+        "followup_strategy": "boundary_judgment",
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ]
+      },
+      "current_anomalies": [],
+      "followup_strategy": "boundary_judgment",
+      "specificity_level": "MEDIUM",
+      "called_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "experience_density": "MEDIUM",
+      "quick_fact_summary": "用户确认有固定的记录习惯或时间节点要求，每周都会进行汇报或写实验日志。",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": false,
+      "generic_answer_count": 2,
+      "quick_signal_summary": "本轮回答直接回应了上一轮追问，提供了有效事实，未检测到异常信号。",
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "generic_answer_reason": "",
+      "generic_answer_streak": 0,
+      "suggested_probe_angle": "boundary_judgment"
+    },
+    {
+      "time": "2026-06-08 15:23:21",
+      "round": 6,
+      "elapsed": 16.389854669570923,
+      "lie_index": 10.0,
+      "node_times": {
+        "logical_agent_node": 4.089,
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 5.414,
+        "followup_generation_node": 2.802,
+        "strategy_supervisor_node": 2.087,
+        "lightweight_routing_supervisor_node": 1.979
+      },
+      "user_input": "都有",
+      "ai_followup": "那你们一般怎么判断哪些进展值得重点讲、哪些可以先放一放呀？",
+      "next_action": "generate_followup",
+      "stop_reason": "已到第6轮，经验密度低但用户连续给出泛泛回答，追问已触及汇报内容仍无突破，继续追问收益有限，建议生成报告。",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "work_content",
+          "source": "quick_preanalysis",
+          "content": "每周汇报内容包含实验进展和下一步计划",
+          "evidence": "都有",
+          "round_id": 6
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:23:10",
+          "title": "快速预分析",
+          "content": "用户确认每周汇报内容包含实验进展和下一步计划。；无新异常信号。历史异常因用户提供部分信息而得到澄清，但仍需进一步了解具体细节。；经验密度：LOW；泛泛回答：回答“都有”虽然直接回应了上一轮问题，但内容过于概括，停留在职责描述层面，没有提供任何具体的场景、判断依据、操作顺序或边界条件，缺乏真实经验痕迹。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:23:12",
+          "title": "路由决策",
+          "content": "调用专家：逻辑分析；原因：历史存在未解决的职业路径异常，当前回答经验密度低且泛泛，需逻辑专家进一步澄清时间线或经历顺序。；关注点：职业路径异常未解决，当前回答未提供新信息来澄清。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:23:16",
+          "title": "风险聚合",
+          "content": "风险指数 10.0，经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=10.0",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:23:18",
+          "title": "策略决策",
+          "content": "继续追问（已到第6轮，经验密度低但用户连续给出泛泛回答，追问已触及汇报内容仍无突破，继续追问收益有限，建议生成报告。），关注：回答“都有”虽然直接回应了上一轮问题，但内容过于概括，停留在职责描述层面，没有提供任何具体的场景、判断依据、操作顺序或边界条件，缺乏真实经验痕迹。，策略：boundary_judgment",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:23:21",
+          "title": "追问生成",
+          "content": "生成追问：那你们一般怎么判断哪些进展值得重点讲、哪些可以先放一放呀？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "回答“都有”虽然直接回应了上一轮问题，但内容过于概括，停留在职责描述层面，没有提供任何具体的场景、判断依据、操作顺序或边界条件，缺乏真实经验痕迹。；换到边界判断角度，问哪些情况需要收住、转介、升级或避免继续推进",
+      "dimension_scores": {
+        "experience_density": 10.0
+      },
+      "risk_explanation": [
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=10.0"
+      ],
+      "routing_decision": {
+        "router_mode": "rule_force_llm_select",
+        "priority_issue": "职业路径异常未解决，当前回答未提供新信息来澄清。",
+        "routing_reason": "历史存在未解决的职业路径异常，当前回答经验密度低且泛泛，需逻辑专家进一步澄清时间线或经历顺序。",
+        "followup_strategy": "boundary_judgment",
+        "selected_specialists": [
+          "logical"
+        ]
+      },
+      "current_anomalies": [],
+      "followup_strategy": "boundary_judgment",
+      "specificity_level": "LOW",
+      "called_specialists": [
+        "logical"
+      ],
+      "experience_density": "LOW",
+      "quick_fact_summary": "用户确认每周汇报内容包含实验进展和下一步计划。",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": true,
+      "generic_answer_count": 3,
+      "quick_signal_summary": "无新异常信号。历史异常因用户提供部分信息而得到澄清，但仍需进一步了解具体细节。",
+      "selected_specialists": [
+        "logical"
+      ],
+      "generic_answer_reason": "回答“都有”虽然直接回应了上一轮问题，但内容过于概括，停留在职责描述层面，没有提供任何具体的场景、判断依据、操作顺序或边界条件，缺乏真实经验痕迹。",
+      "generic_answer_streak": 1,
+      "suggested_probe_angle": "boundary_judgment"
+    },
+    {
+      "time": "2026-06-08 15:23:57",
+      "round": 7,
+      "elapsed": 9.608707189559937,
+      "lie_index": 17.0,
+      "node_times": {
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 4.08,
+        "followup_generation_node": 3.008,
+        "strategy_supervisor_node": 2.507,
+        "lightweight_routing_supervisor_node": 0.0
+      },
+      "user_input": "有好的进展就继续，如果遇到困难了就讨论解决",
+      "ai_followup": "那如果常规方法走不通、讨论也拿不准的时候，你们一般会怎么处理，是换条路还是先搁一搁？",
+      "next_action": "generate_followup",
+      "stop_reason": "经验密度低且连续笼统回答，需用反例追问挖掘具体判断标准和真实场景，尚未达到饱和。",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "work_content",
+          "source": "quick_preanalysis",
+          "content": "课题推进中，有好的进展就继续，遇到困难就讨论解决",
+          "evidence": "有好的进展就继续，如果遇到困难了就讨论解决",
+          "round_id": 7
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:23:51",
+          "title": "快速预分析",
+          "content": "用户描述了课题推进中的基本决策逻辑：进展顺利则继续，遇到困难则讨论解决。；本轮回答简短但直接回应了上一轮追问，没有明显异常信号。；经验密度：LOW；泛泛回答：回答符合科研工作的一般常识（进展好继续、困难讨论），但缺少具体判断标准、场景案例或边界条件，例如如何定义'好进展'、遇到什么类型的困难、讨论后如何决策等。换成没有亲身经历的人也能说出类似回答。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:23:51",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问；关注点：回答符合科研工作的一般常识（进展好继续、困难讨论），但缺少具体判断标准、场景案例或边界条件，例如如何定义'好进展'、遇到什么类型的困难、讨论后如何决策等。换成没有亲身经历的人也能说出类似回答。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:23:51",
+          "title": "风险聚合",
+          "content": "风险指数 17.0，经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=17.0",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:23:54",
+          "title": "策略决策",
+          "content": "继续追问（经验密度低且连续笼统回答，需用反例追问挖掘具体判断标准和真实场景，尚未达到饱和。），关注：用户回答仍偏笼统，缺少具体判断标准和场景案例，例如如何定义'好进展'、遇到什么类型的困难、讨论后如何决策等，策略：counterexample",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:23:57",
+          "title": "追问生成",
+          "content": "生成追问：那如果常规方法走不通、讨论也拿不准的时候，你们一般会怎么处理，是换条路还是先搁一搁？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "回答符合科研工作的一般常识（进展好继续、困难讨论），但缺少具体判断标准、场景案例或边界条件，例如如何定义'好进展'、遇到什么类型的困难、讨论后如何决策等。换成没有亲身经历的人也能说出类似回答。；换到反例和卡点角度，问遇到常规方法不管用时通常怎么处理",
+      "dimension_scores": {
+        "experience_density": 17.0
+      },
+      "risk_explanation": [
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=17.0"
+      ],
+      "routing_decision": {
+        "router_mode": "rule_skip",
+        "priority_issue": "回答符合科研工作的一般常识（进展好继续、困难讨论），但缺少具体判断标准、场景案例或边界条件，例如如何定义'好进展'、遇到什么类型的困难、讨论后如何决策等。换成没有亲身经历的人也能说出类似回答。",
+        "routing_reason": "本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问",
+        "followup_strategy": "counterexample",
+        "generic_answer_flag": true,
+        "occupation_too_broad": false,
+        "selected_specialists": [],
+        "generic_answer_streak": 2,
+        "suggested_probe_angle": "counterexample"
+      },
+      "current_anomalies": [],
+      "followup_strategy": "counterexample",
+      "specificity_level": "LOW",
+      "called_specialists": [],
+      "experience_density": "LOW",
+      "quick_fact_summary": "用户描述了课题推进中的基本决策逻辑：进展顺利则继续，遇到困难则讨论解决。",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": true,
+      "generic_answer_count": 4,
+      "quick_signal_summary": "本轮回答简短但直接回应了上一轮追问，没有明显异常信号。",
+      "selected_specialists": [],
+      "generic_answer_reason": "回答符合科研工作的一般常识（进展好继续、困难讨论），但缺少具体判断标准、场景案例或边界条件，例如如何定义'好进展'、遇到什么类型的困难、讨论后如何决策等。换成没有亲身经历的人也能说出类似回答。",
+      "generic_answer_streak": 2,
+      "suggested_probe_angle": "counterexample"
+    },
+    {
+      "time": "2026-06-08 15:24:20",
+      "round": 8,
+      "elapsed": 10.303815841674805,
+      "lie_index": 24.0,
+      "node_times": {
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 3.694,
+        "report_generation_node": 3.942,
+        "strategy_supervisor_node": 2.654,
+        "lightweight_routing_supervisor_node": 0.0
+      },
+      "user_input": "先放一边吧",
+      "ai_followup": "",
+      "next_action": "final_report",
+      "stop_reason": "经验密度仅24分，连续3轮泛化回答，需追问搁置的具体判断标准和后续流程，避免循环追问同一层面",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "experience",
+          "source": "quick_preanalysis",
+          "content": "课题遇到常规方法走不通且讨论拿不准时，选择先搁置",
+          "evidence": "先放一边吧",
+          "round_id": 8
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:24:13",
+          "title": "快速预分析",
+          "content": "用户补充了课题遇到困难时的处理方式：先搁置。；本轮无异常信号。回答简短但直接回应了上一轮追问，且与历史事实一致。；经验密度：LOW；泛泛回答：回答虽然直接回应了问题，但只给出了一个非常笼统的决策结果（先放一边），没有提供任何判断依据、场景条件、后续处理或具体案例。这种回答符合科研中常见的处理方式，但缺乏真实经验痕迹，换成没有亲身经历的人也能轻易说出。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:24:13",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问；关注点：回答虽然直接回应了问题，但只给出了一个非常笼统的决策结果（先放一边），没有提供任何判断依据、场景条件、后续处理或具体案例。这种回答符合科研中常见的处理方式，但缺乏真实经验痕迹，换成没有亲身经历的人也能轻易说出。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:24:13",
+          "title": "风险聚合",
+          "content": "风险指数 24.0，经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=24.0",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:24:16",
+          "title": "策略决策",
+          "content": "信息已足够，生成最终报告（经验密度仅24分，连续3轮泛化回答，需追问搁置的具体判断标准和后续流程，避免循环追问同一层面）",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "report_generation",
+          "time": "2026-06-08 15:24:20",
+          "title": "报告生成",
+          "content": "最终测评报告已生成",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "用户回答'先放一边'过于笼统，缺乏具体判断依据和场景条件，需要澄清在什么情况下会搁置、搁置后如何处理",
+      "dimension_scores": {
+        "experience_density": 24.0
+      },
+      "risk_explanation": [
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=24.0"
+      ],
+      "routing_decision": {
+        "router_mode": "rule_skip",
+        "priority_issue": "回答虽然直接回应了问题，但只给出了一个非常笼统的决策结果（先放一边），没有提供任何判断依据、场景条件、后续处理或具体案例。这种回答符合科研中常见的处理方式，但缺乏真实经验痕迹，换成没有亲身经历的人也能轻易说出。",
+        "routing_reason": "本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问",
+        "followup_strategy": "term_clarification",
+        "generic_answer_flag": true,
+        "occupation_too_broad": false,
+        "selected_specialists": [],
+        "generic_answer_streak": 3,
+        "suggested_probe_angle": "term_clarification"
+      },
+      "current_anomalies": [],
+      "followup_strategy": "",
+      "specificity_level": "LOW",
+      "called_specialists": [],
+      "experience_density": "LOW",
+      "quick_fact_summary": "用户补充了课题遇到困难时的处理方式：先搁置。",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": true,
+      "generic_answer_count": 5,
+      "quick_signal_summary": "本轮无异常信号。回答简短但直接回应了上一轮追问，且与历史事实一致。",
+      "selected_specialists": [],
+      "generic_answer_reason": "回答虽然直接回应了问题，但只给出了一个非常笼统的决策结果（先放一边），没有提供任何判断依据、场景条件、后续处理或具体案例。这种回答符合科研中常见的处理方式，但缺乏真实经验痕迹，换成没有亲身经历的人也能轻易说出。",
+      "generic_answer_streak": 3,
+      "suggested_probe_angle": "term_clarification"
+    }
+  ],
+  "anomalies_table": [
+    {
+      "type": "career_path_gap",
+      "source": "logical",
+      "status": "resolved",
+      "evidence": [
+        "第1轮：用户说自己是中科院的研究员",
+        "第2轮：用户说偏理论方向",
+        "第3轮：用户说工作方式以团队协作为主，有课题",
+        "第4轮：用户说课题推进方式为先定大方向再拆任务",
+        "第5轮：用户说有固定的记录习惯或时间节点要求，每周都会进行汇报或写实验日志"
+      ],
+      "round_id": 5,
+      "severity": "LOW",
+      "anomaly_id": "a_5_logical_0",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "description": "",
+      "schema_error": "",
+      "created_round": 5,
+      "related_facts": [],
+      "stop_followup": false,
+      "followup_count": 1,
+      "update_history": [
+        {
+          "round_id": 6,
+          "explanation": "用户确认了汇报内容包含实验进展和下一步计划，部分回应了之前关于工作节奏和记录习惯的追问，但未提供具体细节，异常未完全闭合。",
+          "update_type": "clarify",
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "explanation": "第5轮用户回答不完整（“每周都会把”），导致信息缺口。第6轮用户明确补充了汇报内容（“实验进展和下一步计划”），完整且合理地闭合了该信息缺口，未产生新的逻辑矛盾。",
+          "update_type": "resolve",
+          "followup_needed": false
+        }
+      ],
+      "followup_needed": false,
+      "last_update_round": 6,
+      "clarification_status": "sufficient"
+    }
+  ],
+  "dialogue_history": [
+    {
+      "role": "assistant",
+      "content": "你平时是做什么方向的工作呀？"
+    },
+    {
+      "role": "user",
+      "content": "我是中科院的一个研究员"
+    },
+    {
+      "role": "assistant",
+      "content": "那你们中科院的研究方向一般是怎么划分的呀，你是偏理论还是偏工程多一些？"
+    },
+    {
+      "role": "user",
+      "content": "偏理论吧"
+    },
+    {
+      "role": "assistant",
+      "content": "那平时的工作节奏是什么样的，是大部分时间自己琢磨，还是经常跟团队一起讨论推进呀？"
+    },
+    {
+      "role": "user",
+      "content": "主要是和团队一起吧，有课题"
+    },
+    {
+      "role": "assistant",
+      "content": "有课题的话，你们一般是怎么推进的呀，是先定大方向再拆任务，还是大家定期碰思路再决定下一步做什么？"
+    },
+    {
+      "role": "user",
+      "content": "肯定是前者"
+    },
+    {
+      "role": "assistant",
+      "content": "听起来你们课题推进还挺有规划的，那平时做研究的时候，有没有什么固定的记录习惯或者时间节点要求，比如定期汇报或者写实验日志之类的？"
+    },
+    {
+      "role": "user",
+      "content": "有的，每周都会把"
+    },
+    {
+      "role": "assistant",
+      "content": "那你们每周汇报的时候，一般重点讲什么呀，是实验进展还是下一步的计划？"
+    },
+    {
+      "role": "user",
+      "content": "都有"
+    },
+    {
+      "role": "assistant",
+      "content": "那你们一般怎么判断哪些进展值得重点讲、哪些可以先放一放呀？"
+    },
+    {
+      "role": "user",
+      "content": "有好的进展就继续，如果遇到困难了就讨论解决"
+    },
+    {
+      "role": "assistant",
+      "content": "那如果常规方法走不通、讨论也拿不准的时候，你们一般会怎么处理，是换条路还是先搁一搁？"
+    },
+    {
+      "role": "user",
+      "content": "先放一边吧"
+    }
+  ],
+  "dimension_scores": {
+    "experience_density": 24.0
+  },
+  "followup_history": [
+    {
+      "question": "那你们中科院的研究方向一般是怎么划分的呀，你是偏理论还是偏工程多一些？",
+      "round_id": 1,
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "question": "那平时的工作节奏是什么样的，是大部分时间自己琢磨，还是经常跟团队一起讨论推进呀？",
+      "round_id": 2,
+      "priority_issue": "用户仅说明偏理论，但未描述具体的研究领域或工作流程，可进一步探查其日常研究内容与工作模式。",
+      "followup_strategy": "process_sequence"
+    },
+    {
+      "question": "有课题的话，你们一般是怎么推进的呀，是先定大方向再拆任务，还是大家定期碰思路再决定下一步做什么？",
+      "round_id": 3,
+      "priority_issue": "回答符合科研人员工作方式的常识（团队协作、有课题），但缺少真实经验痕迹，例如未说明团队规模、讨论频率、个人在团队中的具体角色、课题类型或协作中的具体分工。；换到过程顺序角度，问对方一般怎么判断先做什么、后做什么",
+      "followup_strategy": "process_sequence"
+    },
+    {
+      "question": "听起来你们课题推进还挺有规划的，那平时做研究的时候，有没有什么固定的记录习惯或者时间节点要求，比如定期汇报或者写实验日志之类的？",
+      "round_id": 4,
+      "priority_issue": "回答正确且直接回应了问题，但仅停留在概括性流程描述（'先定大方向再拆任务'），没有提供任何具体场景、判断节点、边界条件或实际案例，缺乏真实经验痕迹。换成没有亲身经历的人也能说出这个通用流程。；换到真实限制角度，问记录、时间、流程、协作、规范或现实约束",
+      "followup_strategy": "real_constraint"
+    },
+    {
+      "question": "那你们每周汇报的时候，一般重点讲什么呀，是实验进展还是下一步的计划？",
+      "round_id": 5,
+      "priority_issue": "用户回答被截断，需要完成关于定期汇报或实验日志的追问，以获取完整的工作流程细节",
+      "followup_strategy": "boundary_judgment"
+    },
+    {
+      "question": "那你们一般怎么判断哪些进展值得重点讲、哪些可以先放一放呀？",
+      "round_id": 6,
+      "priority_issue": "回答“都有”虽然直接回应了上一轮问题，但内容过于概括，停留在职责描述层面，没有提供任何具体的场景、判断依据、操作顺序或边界条件，缺乏真实经验痕迹。；换到边界判断角度，问哪些情况需要收住、转介、升级或避免继续推进",
+      "followup_strategy": "boundary_judgment"
+    },
+    {
+      "question": "那如果常规方法走不通、讨论也拿不准的时候，你们一般会怎么处理，是换条路还是先搁一搁？",
+      "round_id": 7,
+      "priority_issue": "回答符合科研工作的一般常识（进展好继续、困难讨论），但缺少具体判断标准、场景案例或边界条件，例如如何定义'好进展'、遇到什么类型的困难、讨论后如何决策等。换成没有亲身经历的人也能说出类似回答。；换到反例和卡点角度，问遇到常规方法不管用时通常怎么处理",
+      "followup_strategy": "counterexample"
+    }
+  ],
+  "risk_explanation": [
+    "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=24.0"
+  ],
+  "routing_decision": {
+    "router_mode": "rule_skip",
+    "priority_issue": "回答虽然直接回应了问题，但只给出了一个非常笼统的决策结果（先放一边），没有提供任何判断依据、场景条件、后续处理或具体案例。这种回答符合科研中常见的处理方式，但缺乏真实经验痕迹，换成没有亲身经历的人也能轻易说出。",
+    "routing_reason": "本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问",
+    "followup_strategy": "term_clarification",
+    "generic_answer_flag": true,
+    "occupation_too_broad": false,
+    "selected_specialists": [],
+    "generic_answer_streak": 3,
+    "suggested_probe_angle": "term_clarification"
+  },
+  "indicator_history": [],
+  "specificity_level": "LOW",
+  "used_probe_angles": [
+    "process_sequence",
+    "real_constraint",
+    "boundary_judgment",
+    "counterexample",
+    "term_clarification"
+  ],
+  "called_specialists": [],
+  "experience_density": "LOW",
+  "generic_answer_flag": true,
+  "generic_answer_count": 5,
+  "generic_answer_reason": "回答虽然直接回应了问题，但只给出了一个非常笼统的决策结果（先放一边），没有提供任何判断依据、场景条件、后续处理或具体案例。这种回答符合科研中常见的处理方式，但缺乏真实经验痕迹，换成没有亲身经历的人也能轻易说出。",
+  "generic_answer_streak": 3,
+  "suggested_probe_angle": "term_clarification",
+  "thinking_time_history": [
+    {
+      "time": "15:20:16",
+      "round": 1,
+      "elapsed": 8.465221166610718
+    },
+    {
+      "time": "15:20:33",
+      "round": 2,
+      "elapsed": 6.874832391738892
+    },
+    {
+      "time": "15:21:16",
+      "round": 3,
+      "elapsed": 8.715665102005005
+    },
+    {
+      "time": "15:21:39",
+      "round": 4,
+      "elapsed": 8.679251194000244
+    },
+    {
+      "time": "15:22:42",
+      "round": 5,
+      "elapsed": 13.676442861557007
+    },
+    {
+      "time": "15:23:21",
+      "round": 6,
+      "elapsed": 16.389854669570923
+    },
+    {
+      "time": "15:23:57",
+      "round": 7,
+      "elapsed": 9.608707189559937
+    },
+    {
+      "time": "15:24:20",
+      "round": 8,
+      "elapsed": 10.303815841674805
+    }
+  ]
+}
