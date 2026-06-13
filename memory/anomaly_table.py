@@ -1,4 +1,4 @@
-"""异常表模块：管理对话中发现的异常记录
+﻿"""异常表模块：管理对话中发现的异常记录
 
 v3 改进未分类?
 - 支持五类来源：quick_detection / semantic / logical / domain / psycho_linguistic
@@ -16,6 +16,7 @@ from typing import List, Dict, Optional
 from utils.score_utils import (
     VALID_CONFIDENCES,
     VALID_SEVERITIES,
+    SEVERITY_BASE_SCORE,
     effective_risk_value,
 )
 
