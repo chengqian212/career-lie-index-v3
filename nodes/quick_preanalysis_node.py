@@ -1,4 +1,4 @@
-"""
+﻿"""
 快速预分析节点：一次 LLM 调用同时完成事实抽取和表层异常检测
 
 v3.2 合并：
@@ -486,14 +486,6 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
             anomaly for anomaly in normalized_current_anomalies
             if str(anomaly.get("type", "")).strip() not in SOFT_DETAIL_TYPES
         ]
-        if generic_answer_flag:
-            generic_answer_flag = False
-            generic_answer_reason = ""
-            experience_density = "MEDIUM"
-            generic_answer_streak = max(0, previous_streak - 1)
-            generic_answer_count = previous_count
-            if suggested_probe_angle in used_probe_angles:
-                used_probe_angles = [angle for angle in used_probe_angles if angle != suggested_probe_angle]
         if not normalized_current_anomalies:
             severity = "LOW"
     # ?? generic_answer_flag True???? vague/lack_of_detail ??????
