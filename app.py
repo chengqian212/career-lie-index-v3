@@ -1,4 +1,4 @@
-"""Streamlit 前端：多 Agent 相亲对话小助手 v3.0
+﻿"""Streamlit 前端：多 Agent 相亲对话小助手 v3.0
 
 该模块实现了 v3 版本的 Web 交互界面，主要特性包括：
 - 美观的聊天界面，大字体显示用户回答和AI提问
@@ -426,6 +426,7 @@ def create_initial_state(max_rounds: int = MAX_ROUNDS) -> dict:
         # v3.3 新增字段
         "stop_reason": "",
         "target_anomaly_id": "",
+        "identity_label": "",   # "real" or "fake"
     }
 
 
@@ -530,6 +531,7 @@ def _save_session_to_outputs(state: dict, thinking_history: list, round_records:
         "routing_decision": state.get("routing_decision", {}),
         "final_report": state.get("final_report"),
         "thinking_time_history": thinking_history,
+        "identity_label": state.get("identity_label", ""),
         "saved_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     }
 
@@ -1111,6 +1113,7 @@ def main():
 
         # 操作按钮
         if st.button("重新开始", use_container_width=True):
+            st.session_state.identity_label = "真实身份"
             st.session_state.messages = []
             st.session_state.state = create_initial_state()
             st.session_state.round_num = 0
@@ -1165,10 +1168,17 @@ def render_dialogue_page(monitor_placeholder=None):
         </div>
         """, unsafe_allow_html=True)
 
+        identity = st.radio(
+            "您的回答将基于？",
+            ["真实身份", "虚假身份"],
+            horizontal=True,
+            key="identity_label"
+        )
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
             if st.button("开始测评", use_container_width=True, type="primary"):
                 reset_logger()  # 新会话开始，重置日志
+                st.session_state.state["identity_label"] = ("real" if st.session_state.identity_label == "真实身份" else "fake")
                 st.session_state.started = True
                 st.session_state.live_agent_thoughts = []
                 st.session_state.live_agent_round = None
