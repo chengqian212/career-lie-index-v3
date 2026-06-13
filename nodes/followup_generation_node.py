@@ -354,6 +354,7 @@ def followup_generation_node(state: DialogueState) -> dict:
             "anomalies_table": format_anomalies_table(state.get("anomalies_table", [])),
             "strategy_exec_guide": format_strategy_exec_guide(),
         })
+    )
 
     # 二次质检：修正错词、语义漂移和突兀术语，同时保留聊天感
     followup_question = _polish_followup_question(
