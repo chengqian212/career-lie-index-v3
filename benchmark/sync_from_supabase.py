@@ -126,7 +126,7 @@ def build_new_rows(records):
         rows.append({
             "filename": filename,
             "claimed_job": claimed_job,
-            "true_label": "",
+            "true_label": cj.get("identity_label", ""),
             "valid": "",
             "dialogue": dialogue,
             "system_score": round(float(lie_idx), 1),
