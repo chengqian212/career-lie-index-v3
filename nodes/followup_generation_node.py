@@ -1,4 +1,4 @@
-"""
+﻿"""
 追问生成节点（Followup Generation Node）：
 根据当前对话状态、风险信息和异常分析结果，
 生成下一轮自然追问或继续对话。适用于多轮交互和多智能体评测场景。
@@ -27,7 +27,9 @@ from utils.text_utils import (
     format_dialogue_history,    # 格式化对话历史
 )
 from utils.strategy_utils import (
+    format_strategy_exec_guide,
     normalize_followup_strategy,
+    get_strategy_field,
     probe_angle_hint,
 )
 
@@ -42,7 +44,8 @@ _LOW_RISK_PHRASES = [
     "暂无明显不一致",
 ]
 
-ROLE_DISAMBIGUATION_KEYWORDS = [
+# 从 STRATEGY_REGISTRY 读取，避免硬编码重复
+ROLE_DISAMBIGUATION_KEYWORDS = get_strategy_field("light_clarification", "trigger_keywords") or [
     "职业身份粒度过粗",
     "职业大类过宽",
     "岗位性质",
@@ -310,7 +313,7 @@ def followup_generation_node(state: DialogueState) -> dict:
         followup_strategy = "light_clarification"
         priority_issue = (
             "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；"
-            "不要直接追问日常流程、处理公务、处理客户或处理病人。"
+            ""
         )
     elif state.get("generic_answer_flag"):
         probe_angle = state.get("suggested_probe_angle", "")
@@ -336,7 +339,6 @@ def followup_generation_node(state: DialogueState) -> dict:
 
     # 准备 LLM prompt 输入
     dimension_scores = state.get("dimension_scores", {})
-    anomalies_text = format_anomalies_table(state.get("anomalies_table", []))
     dialogue_text = format_dialogue_history(state.get("dialogue_history", []))
     previous_questions = _collect_previous_questions(state)
     previous_questions_text = _format_previous_questions(previous_questions)
@@ -347,11 +349,11 @@ def followup_generation_node(state: DialogueState) -> dict:
             "priority_issue": priority_issue,
             "followup_strategy": followup_strategy,
             "dimension_scores": dimension_scores,
-            "anomalies_table": anomalies_text,
             "dialogue_history": dialogue_text,
             "previous_questions": previous_questions_text,
+            "anomalies_table": format_anomalies_table(state.get("anomalies_table", [])),
+            "strategy_exec_guide": format_strategy_exec_guide(),
         })
-    )
 
     # 二次质检：修正错词、语义漂移和突兀术语，同时保留聊天感
     followup_question = _polish_followup_question(

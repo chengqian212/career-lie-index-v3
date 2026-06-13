@@ -1,5 +1,5 @@
 ﻿"""Baseline: use a single LLM call (pure dialogue) to judge real vs fake.
-   V2: outputs continuous score (0-100), label is derived from score.
+   Compare results with the multi-agent system.
 """
 
 import csv
@@ -24,16 +24,13 @@ BASELINE_PROMPT = """你是一个职业身份真实性评估助手。
 
 【输出要求】
 只输出两行：
+label: real 或 fake
 reason: 一句话理由（20字以内）
-score: 0-100的虚假风险分数，0=完全可信，100=肯定虚假
 
-评分参考：
-- 0-30: 可信
-- 31-50: 中等风险
-- 51-70: 较高风险
-- 71-100: 虚假
-
-基于对话中的具体细节、专业性、一致性和真实性来判断。
+【规则】
+- real = 可信，用户是真实的该职业从业者
+- fake = 不可信，用户在编造或夸大职业身份
+- 基于对话中的具体细节、专业性、一致性和真实性来判断
 
 【对话】
 {dialogue}
@@ -63,30 +60,27 @@ def extract_pure_dialogue(filename, records):
 
 
 def parse_llm_response(text):
-    """Parse 'reason: ...' and 'score: ...' from LLM output.
-    label is derived from score: score >= 50 -> fake, else real.
-    """
+    """Parse 'label: ...' and 'reason: ...' from LLM output."""
+    label = ""
     reason = ""
-    score = 50.0  # fallback
     for line in text.strip().split("\n"):
         s = line.strip().lower()
-        if s.startswith("reason:"):
+        if s.startswith("label:"):
+            val = s.replace("label:", "").strip()
+            if val in ("real", "fake"):
+                label = val
+        elif s.startswith("reason:"):
             reason = line.replace("reason:", "", 1).strip()
-        elif s.startswith("score:"):
-            try:
-                score = float(s.replace("score:", "").strip())
-                score = max(0.0, min(100.0, score))
-            except ValueError:
-                score = 50.0
-    label = "fake" if score >= 50 else "real"
-    return label, reason, score
+    return label, reason
 
 
 def main():
+    # Load raw data
     with open(RAW_JSON, "r", encoding="utf-8") as f:
         records = json.load(f)
     print("[OK] Loaded {} raw records".format(len(records)))
 
+    # Load annotated CSV (valid samples only)
     with open(ANNOTATED_CSV, "r", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         all_rows = list(reader)
@@ -94,6 +88,7 @@ def main():
     samples = [r for r in all_rows if r.get("valid", "").strip().lower() == "true"]
     print("[OK] {} valid samples to evaluate".format(len(samples)))
 
+    # Initialize LLM
     sys.path.insert(0, str(BASE_DIR.parent))
     from llm_client import get_llm
     llm = get_llm(temperature=0.1)
@@ -114,11 +109,11 @@ def main():
         try:
             resp = llm.invoke(prompt)
             raw = resp.content.strip()
-            label, reason, baseline_score = parse_llm_response(raw)
-            print("-> {} (score={})".format(label, baseline_score))
+            label, reason = parse_llm_response(raw)
+            print("-> {}".format(label))
         except Exception as e:
             print("-> ERROR: {}".format(e))
-            label, reason, baseline_score = "", "", None
+            label, reason = "", ""
 
         true_label = row.get("true_label", "").strip().lower()
         system_score = float(row.get("system_score", 0))
@@ -129,18 +124,19 @@ def main():
             "claimed_job": row.get("claimed_job", ""),
             "true_label": true_label,
             "baseline_label": label,
-            "baseline_score": baseline_score,
             "baseline_reason": reason[:100] if reason else "",
             "system_score": system_score,
             "system_label": system_label,
         })
 
-        time.sleep(0.5)
+        time.sleep(0.5)  # rate limit
 
+    # Save raw results
     with open(BASELINE_RESULTS, "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
     print("\n[OK] Saved raw results: {}".format(BASELINE_RESULTS.name))
 
+    # Compute metrics
     total = len(results)
     valid = [r for r in results if r["baseline_label"] in ("real", "fake") and r["true_label"] in ("real", "fake")]
     print("\n  Valid LLM responses: {}/{}".format(len(valid), total))
@@ -149,12 +145,7 @@ def main():
         print("[ERROR] No valid baseline results to compute metrics.")
         return
 
-    real_scores_ma = [r["system_score"] for r in valid if r["true_label"] == "real"]
-    fake_scores_ma = [r["system_score"] for r in valid if r["true_label"] == "fake"]
-    real_avg_ma = sum(real_scores_ma) / len(real_scores_ma) if real_scores_ma else 0
-    fake_avg_ma = sum(fake_scores_ma) / len(fake_scores_ma) if fake_scores_ma else 0
-    risk_gap_ma = fake_avg_ma - real_avg_ma
-
+    # Baseline metrics
     baseline_correct = sum(1 for r in valid if r["baseline_label"] == r["true_label"])
     baseline_acc = baseline_correct / len(valid) * 100
 
@@ -166,82 +157,58 @@ def main():
     baseline_real_falsed = sum(1 for r in valid if r["baseline_label"] == "fake" and r["true_label"] == "real")
     baseline_false_alarm = baseline_real_falsed / baseline_real_total * 100 if baseline_real_total > 0 else 0
 
-    baseline_real_scores = [r.get("baseline_score") or 0 for r in valid if r["true_label"] == "real"]
-    baseline_fake_scores = [r.get("baseline_score") or 0 for r in valid if r["true_label"] == "fake"]
-    baseline_real_avg = sum(baseline_real_scores) / len(baseline_real_scores) if baseline_real_scores else 0
-    baseline_fake_avg = sum(baseline_fake_scores) / len(baseline_fake_scores) if baseline_fake_scores else 0
-    baseline_risk_gap = baseline_fake_avg - baseline_real_avg
-
+    # System metrics (for comparison)
     sys_correct = sum(1 for r in valid if (r["true_label"] == "real" and r["system_label"] == "safe") or (r["true_label"] == "fake" and r["system_label"] == "risk"))
     sys_acc = sys_correct / len(valid) * 100
+
     sys_fake_caught = sum(1 for r in valid if r["true_label"] == "fake" and r["system_label"] == "risk")
     sys_fake_recall = sys_fake_caught / baseline_fake_total * 100 if baseline_fake_total > 0 else 0
+
     sys_real_falsed = sum(1 for r in valid if r["true_label"] == "real" and r["system_label"] == "risk")
     sys_false_alarm = sys_real_falsed / baseline_real_total * 100 if baseline_real_total > 0 else 0
 
+    # Print comparison table
     print()
-    print("=" * 90)
-    print("  Benchmark Comparison: Baseline vs v3 Multi-Agent System")
-    print("=" * 90)
+    print("=" * 72)
+    print("  Benchmark Comparison: Baseline vs Multi-Agent System")
+    print("=" * 72)
     print("  Total samples: {}  (real={}, fake={})".format(len(valid), baseline_real_total, baseline_fake_total))
-    print("  Baseline label derived from score: score >= 50 -> fake, score < 50 -> real")
     print()
-    h = "  {:<28} {:>8} {:>10} {:>10} {:>8} {:>8} {:>8}".format(
-        "Method", "Accuracy", "Fk Recall", "F. Alarm", "R_avg", "F_avg", "Risk Gap"
+    h = "  {:<30} {:>8} {:>12} {:>12}".format("Method", "Accuracy", "Fake Recall", "False Alarm")
+    s = "  {:<30} {:>8} {:>12} {:>12}".format("-" * 30, "-" * 8, "-" * 12, "-" * 12)
+    r1 = "  {:<30} {:>7.1f}% {:>11.1f}% {:>11.1f}%".format(
+        "Baseline (Single LLM)", baseline_acc, baseline_fake_recall, baseline_false_alarm
     )
-    s = "  {:<28} {:>8} {:>10} {:>10} {:>8} {:>8} {:>8}".format(
-        "-" * 28, "-" * 8, "-" * 10, "-" * 10, "-" * 8, "-" * 8, "-" * 8,
-    )
-    r1 = "  {:<28} {:>7.1f}% {:>9.1f}% {:>9.1f}% {:>7.1f} {:>7.1f} {:>7.1f}".format(
-        "Baseline (Single LLM)",
-        baseline_acc, baseline_fake_recall, baseline_false_alarm,
-        baseline_real_avg, baseline_fake_avg, baseline_risk_gap,
-    )
-    r2 = "  {:<28} {:>7.1f}% {:>9.1f}% {:>9.1f}% {:>7.1f} {:>7.1f} {:>7.1f}".format(
-        "v3 Multi-Agent System",
-        sys_acc, sys_fake_recall, sys_false_alarm,
-        real_avg_ma, fake_avg_ma, risk_gap_ma,
+    r2 = "  {:<30} {:>7.1f}% {:>11.1f}% {:>11.1f}%".format(
+        "Your Multi-Agent System", sys_acc, sys_fake_recall, sys_false_alarm
     )
     print(h)
     print(s)
     print(r1)
     print(r2)
-    print("=" * 90)
+    print("=" * 72)
 
+    # Save comparison table
     comp_path = BASELINE_DIR / "benchmark_comparison.csv"
     with open(comp_path, "w", encoding="utf-8-sig", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["Method", "Accuracy", "Fake Recall", "False Alarm", "Real_avg", "Fake_avg", "Risk Gap"])
-        w.writerow(["Baseline (Single LLM)",
-                     "{:.1f}%".format(baseline_acc),
-                     "{:.1f}%".format(baseline_fake_recall),
-                     "{:.1f}%".format(baseline_false_alarm),
-                     "{:.1f}".format(baseline_real_avg),
-                     "{:.1f}".format(baseline_fake_avg),
-                     "{:.1f}".format(baseline_risk_gap)])
-        w.writerow(["v3 Multi-Agent System",
-                     "{:.1f}%".format(sys_acc),
-                     "{:.1f}%".format(sys_fake_recall),
-                     "{:.1f}%".format(sys_false_alarm),
-                     "{:.1f}".format(real_avg_ma),
-                     "{:.1f}".format(fake_avg_ma),
-                     "{:.1f}".format(risk_gap_ma)])
+        w.writerow(["Method", "Accuracy", "Fake Recall", "False Alarm"])
+        w.writerow(["Baseline (Single LLM)", "{:.1f}%".format(baseline_acc), "{:.1f}%".format(baseline_fake_recall), "{:.1f}%".format(baseline_false_alarm)])
+        w.writerow(["Your Multi-Agent System", "{:.1f}%".format(sys_acc), "{:.1f}%".format(sys_fake_recall), "{:.1f}%".format(sys_false_alarm)])
     print("  Saved: {}".format(comp_path.name))
 
-    detail_fields = ["filename", "claimed_job", "true_label",
-                     "baseline_label", "baseline_score", "baseline_reason",
-                     "system_score", "system_label"]
+    # Save detailed CSV
+    detail_fields = ["filename", "claimed_job", "true_label", "baseline_label", "baseline_reason", "system_score", "system_label"]
     with open(BASELINE_CSV, "w", encoding="utf-8-sig", newline="") as f:
         w = csv.DictWriter(f, fieldnames=detail_fields)
         w.writeheader()
         for r in valid:
             w.writerow({
                 "filename": r["filename"],
-                "claimed_job": r.get("claimed_job", ""),
+                "claimed_job": r["claimed_job"],
                 "true_label": r["true_label"],
                 "baseline_label": r["baseline_label"],
-                "baseline_score": r.get("baseline_score", ""),
-                "baseline_reason": r.get("baseline_reason", ""),
+                "baseline_reason": r["baseline_reason"],
                 "system_score": r["system_score"],
                 "system_label": r["system_label"],
             })

@@ -1,4 +1,4 @@
-"""Prompt 模块：所。Agent 的系统提示词（LangChain 模板格式。
+﻿"""Prompt 模块：所。Agent 的系统提示词（LangChain 模板格式。
 
 每个 Prompt 包含以下结构。
 - 【功能描述】：Agent 的核心功。
@@ -649,6 +649,7 @@ FOLLOWUP_GENERATION_TEMPLATE = """你是对话追问生成器（Follow-up Genera
 【当前数据。
 当前优先问题：{priority_issue}
 追问策略方向：{followup_strategy}
+策略执行指导：{strategy_exec_guide}
 各维度分数：
 {dimension_scores}
 

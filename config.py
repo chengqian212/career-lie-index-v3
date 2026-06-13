@@ -1,4 +1,4 @@
-"""Project configuration loaded from .env or Streamlit Cloud secrets."""
+﻿"""Project configuration loaded from .env or Streamlit Cloud secrets."""
 
 import os
 from dotenv import load_dotenv

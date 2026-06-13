@@ -28,7 +28,7 @@ from utils.text_utils import (
     clean_llm_output,
 )
 from utils.score_utils import normalize_quick_risk_labels
-from utils.strategy_utils import normalize_probe_angle
+from utils.strategy_utils import normalize_probe_angle, get_experience_chain_strategies_pipe
 
 # 异常表更新工具
 from memory.anomaly_table import (
@@ -201,6 +201,7 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
             "current_user_text": current_user_text,
             "facts_table": facts_str,
             "anomalies_table": anomalies_str,
+            "experience_chain_strategies": get_experience_chain_strategies_pipe(),
         })
     )
 

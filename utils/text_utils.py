@@ -86,7 +86,7 @@ def format_anomalies_table(anomalies_table: List[dict]) -> str:
 
         risk_value = anomaly.get("risk_value", 0)
         lines.append(
-            f"  [{i}] [{anomaly_id}] 第{round_id}轮 | 来源:{source} | 类型:{atype} | 风险值:{risk_value} | 状态:{status} | 澄清:{clarification_status} | 需追问:{followup_needed} | {desc}"
+            f"  ID:{anomaly_id} | 第{round_id}轮 | 来源:{source} | 类型:{atype} | 风险值:{risk_value} | 状态:{status} | 澄清:{clarification_status} | 需追问:{followup_needed} | {desc}"
         )
 
 

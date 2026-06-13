@@ -130,7 +130,7 @@ def build_new_rows(records):
             "valid": "",
             "dialogue": dialogue,
             "system_score": round(float(lie_idx), 1),
-            "system_label": "safe" if lie_idx < 30 else "risk",
+            "system_label": "safe" if lie_idx < 25 else "risk",
             "system_reason": system_reason,
             "hit": "",
             "note": "",

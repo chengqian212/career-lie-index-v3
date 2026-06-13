@@ -14,7 +14,7 @@ from llm_client import get_llm
 from prompts import STRATEGY_SUPERVISOR_PROMPT
 from state_schema import DialogueState
 from utils.json_utils import extract_json_from_text
-from utils.strategy_utils import normalize_followup_strategy
+from utils.strategy_utils import normalize_followup_strategy, format_strategy_choices, format_strategy_enum, get_strategy_field
 from utils.text_utils import (
     clean_llm_output,
     format_anomalies_table,
@@ -117,6 +117,9 @@ def strategy_supervisor_node(state: DialogueState) -> dict:
             "generic_answer_streak": state.get("generic_answer_streak", 0),
             "generic_answer_count": state.get("generic_answer_count", 0),
             "suggested_probe_angle": state.get("suggested_probe_angle", ""),
+            "strategy_choices": format_strategy_choices(),
+            "strategy_enum": format_strategy_enum(),
+            "light_clarification_direction_hint": get_strategy_field("light_clarification", "exec_direction"),
         })
     )
 
@@ -186,6 +189,11 @@ def strategy_supervisor_node(state: DialogueState) -> dict:
         )
 
     # 获取 LLM 给出的原因总结
+    # ?? target_anomaly_id????? + ??? + ????
+    raw_target_id = str(result.get("target_anomaly_id", "")).strip().strip("[]")
+    valid_ids = {a.get("anomaly_id", "") for a in state.get("anomalies_table", [])}
+    target_id = raw_target_id if raw_target_id in valid_ids else ""
+
     reason_summary = result.get("reason_summary", "")
     if not isinstance(reason_summary, str):
         reason_summary = str(reason_summary)
@@ -196,5 +204,5 @@ def strategy_supervisor_node(state: DialogueState) -> dict:
         "priority_issue": result.get("priority_issue", ""),
         "followup_strategy": "" if decision == "GENERATE_REPORT" else followup_strategy,
         "stop_reason": reason_summary or decision.lower(),
-        "target_anomaly_id": result.get("target_anomaly_id", ""),
+        "target_anomaly_id": target_id,
     }

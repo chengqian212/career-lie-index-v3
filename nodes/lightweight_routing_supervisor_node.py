@@ -10,7 +10,7 @@ from llm_client import get_llm
 from memory.anomaly_table import count_unresolved
 from prompts import LIGHTWEIGHT_ROUTING_SUPERVISOR_PROMPT
 from state_schema import DialogueState
-from utils.strategy_utils import normalize_followup_strategy
+from utils.strategy_utils import normalize_followup_strategy, format_strategy_choices, format_strategy_enum, get_strategy_field
 from utils.json_utils import extract_json_from_text
 from utils.text_utils import clean_llm_output, format_anomalies_table, format_facts_table
 
@@ -390,6 +390,9 @@ def lightweight_routing_supervisor_node(state: DialogueState) -> dict:
             "occupation_too_broad": occupation_too_broad,
             "generic_answer_streak": generic_answer_streak,
             "suggested_probe_angle": suggested_probe_angle,
+            "strategy_choices": format_strategy_choices(),
+            "strategy_enum": format_strategy_enum(),
+            "light_clarification_direction_hint": get_strategy_field("light_clarification", "exec_direction"),
         },
         max_retries=2,
     )

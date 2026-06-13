@@ -29,7 +29,7 @@ def main():
     # ---------- compute hit ----------
     for r in data:
         score = float(r.get("system_score", 0))
-        sys_label = "safe" if score < 30 else "risk"
+        sys_label = "safe" if score < 25 else "risk"
         true_label = r.get("true_label", "").strip().lower()
         r["_hit"] = (
             1
