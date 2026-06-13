@@ -179,6 +179,7 @@ def update_anomalies_status(
     anomalies_table: List[Dict],
     updates: List[Dict],
     round_id: int,
+    generic_answer_flag: bool = False,
 ) -> List[Dict]:
     """v3 新增：更新旧异常状未分类?
     
@@ -388,6 +389,7 @@ def apply_specialist_anomaly_updates(
         anomalies_table=anomalies_table,
         updates=all_updates,
         round_id=round_id,
+        generic_answer_flag=generic_answer_flag,
     )
 
 def convert_legacy_items_to_anomalies(legacy_items: List[Dict], result: Dict) -> List[Dict]:

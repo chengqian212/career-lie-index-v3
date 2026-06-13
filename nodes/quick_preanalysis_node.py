@@ -419,6 +419,7 @@ def quick_preanalysis_node(state: DialogueState) -> dict:
         anomalies_table=anomalies_table,
         updates=normalized_anomaly_updates,
         round_id=round_id,
+        generic_answer_flag=generic_answer_flag,
     )
 
     # 用于存放当前轮新发现的异常
