@@ -1,0 +1,115 @@
+{
+  "projectRoot": "D:\\lie-deception\\career_lie_index_agent\\v3",
+  "files": [
+    {
+      "path": "__init__.py",
+      "language": "Python",
+      "category": "code",
+      "sizeBytes": 0,
+      "lineCount": 0
+    },
+    {
+      "path": "app.py",
+      "language": "Python",
+      "category": "code",
+      "sizeBytes": 0,
+      "lineCount": 0
+    },
+    {
+      "path": "build_su.py",
+      "language": "Python",
+      "category": "code",
+      "sizeBytes": 0,
+      "lineCount": 0
+    },
+    {
+      "path": "config.py",
+      "language": "Python",
+      "category": "code",
+      "sizeBytes": 0,
+      "lineCount": 0
+    },
+    {
+      "path": "graph.py",
+      "language": "Python",
+      "category": "code",
+      "sizeBytes": 0,
+      "lineCount": 0
+    },
+    {
+      "path": "llm_client.py",
+      "language": "Python",
+      "category": "code",
+      "sizeBytes": 0,
+      "lineCount": 0
+    },
+    {
+      "path": "prompts.py",
+      "language": "Python",
+      "category": "code",
+      "sizeBytes": 0,
+      "lineCount": 0
+    },
+    {
+      "path": "run_cli.py",
+      "language": "Python",
+      "category": "code",
+      "sizeBytes": 0,
+      "lineCount": 0
+    },
+    {
+      "path": "state_schema.py",
+      "language": "Python",
+      "category": "code",
+      "sizeBytes": 0,
+      "lineCount": 0
+    },
+    {
+      "path": "memory/__init__.py",
+      "language": "Python",
+      "category": "code",
+      "sizeBytes": 0,
+      "lineCount": 0
+    },
+    {
+      "path": "memory/anomaly_table.py",
+      "language": "Python",
+      "category": "code",
+      "sizeBytes": 0,
+      "lineCount": 0
+    },
+    {
+      "path": "memory/fact_table.py",
+      "language": "Python",
+      "category": "code",
+      "sizeBytes": 0,
+      "lineCount": 0
+    },
+    {
+      "path": "nodes/__init__.py",
+      "language": "Python",
+      "category": "code",
+      "sizeBytes": 0,
+      "lineCount": 0
+    }
+  ],
+  "totalFiles": 77,
+  "categories": {
+    "code": 42,
+    "config": 24,
+    "docs": 5,
+    "data": 5,
+    "schema": 1
+  },
+  "languages": {
+    "Python": 42,
+    "JSON": 11,
+    "Markdown": 5,
+    "CSV": 3,
+    "TOML": 1,
+    "SQL": 1,
+    "Plain Text": 2,
+    "Unknown": 12
+  },
+  "complexity": "small"
+}

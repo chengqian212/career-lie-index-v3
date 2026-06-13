@@ -1,0 +1,2393 @@
+{
+  "metadata": {
+    "projectName": "career_lie_index_agent",
+    "projectDescription": "??????????Agent????????????? LangGraph + Streamlit + ???????????????????????????????????????????????????????????????????????????Agent??????????????????? (LieIndex) ??????",
+    "languages": [
+      "Python"
+    ],
+    "frameworks": [
+      "LangGraph",
+      "Streamlit",
+      "LangChain",
+      "Pydantic"
+    ],
+    "generatedAt": "2026-06-13T06:02:58.393100+00:00",
+    "version": "1.0.0",
+    "fileCount": 77,
+    "fileCategories": {
+      "config": 24,
+      "code": 42,
+      "docs": 5,
+      "data": 5,
+      "schema": 1
+    },
+    "nodeCount": 137,
+    "edgeCount": 185
+  },
+  "nodes": [
+    {
+      "id": "config:.devcontainer/devcontainer.json",
+      "type": "config",
+      "name": ".devcontainer/devcontainer.json",
+      "filePath": ".devcontainer/devcontainer.json",
+      "language": "JSON",
+      "lineCount": 33,
+      "sizeBytes": 1046
+    },
+    {
+      "id": "file:.gitignore",
+      "type": "file",
+      "name": ".gitignore",
+      "filePath": ".gitignore",
+      "language": "Unknown",
+      "lineCount": 11,
+      "sizeBytes": 102
+    },
+    {
+      "id": "config:.streamlit/config.toml",
+      "type": "config",
+      "name": ".streamlit/config.toml",
+      "filePath": ".streamlit/config.toml",
+      "language": "TOML",
+      "lineCount": 2,
+      "sizeBytes": 36
+    },
+    {
+      "id": "document:AGENT_FLOWCHART.md",
+      "type": "document",
+      "name": "AGENT_FLOWCHART.md",
+      "filePath": "AGENT_FLOWCHART.md",
+      "language": "Markdown",
+      "lineCount": 135,
+      "sizeBytes": 4896
+    },
+    {
+      "id": "document:CODE_GUIDE_v3.md",
+      "type": "document",
+      "name": "CODE_GUIDE_v3.md",
+      "filePath": "CODE_GUIDE_v3.md",
+      "language": "Markdown",
+      "lineCount": 756,
+      "sizeBytes": 30793
+    },
+    {
+      "id": "document:DEPLOYMENT_STREAMLIT_SUPABASE.md",
+      "type": "document",
+      "name": "DEPLOYMENT_STREAMLIT_SUPABASE.md",
+      "filePath": "DEPLOYMENT_STREAMLIT_SUPABASE.md",
+      "language": "Markdown",
+      "lineCount": 48,
+      "sizeBytes": 1180
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "language": "Markdown",
+      "lineCount": 119,
+      "sizeBytes": 4549
+    },
+    {
+      "id": "file:__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "__init__.py",
+      "language": "Python",
+      "lineCount": 2,
+      "sizeBytes": 48
+    },
+    {
+      "id": "file:app.py",
+      "type": "file",
+      "name": "app.py",
+      "filePath": "app.py",
+      "language": "Python",
+      "lineCount": 1542,
+      "sizeBytes": 61642
+    },
+    {
+      "id": "file:benchmark/baseline/__init__.py",
+      "type": "file",
+      "name": "benchmark/baseline/__init__.py",
+      "filePath": "benchmark/baseline/__init__.py",
+      "language": "Python",
+      "lineCount": 0,
+      "sizeBytes": 0
+    },
+    {
+      "id": "data:benchmark/baseline/baseline_results.csv",
+      "type": "data",
+      "name": "benchmark/baseline/baseline_results.csv",
+      "filePath": "benchmark/baseline/baseline_results.csv",
+      "language": "CSV",
+      "lineCount": 45,
+      "sizeBytes": 5619
+    },
+    {
+      "id": "config:benchmark/baseline/baseline_results.json",
+      "type": "config",
+      "name": "benchmark/baseline/baseline_results.json",
+      "filePath": "benchmark/baseline/baseline_results.json",
+      "language": "JSON",
+      "lineCount": 442,
+      "sizeBytes": 14182
+    },
+    {
+      "id": "data:benchmark/baseline/benchmark_comparison.csv",
+      "type": "data",
+      "name": "benchmark/baseline/benchmark_comparison.csv",
+      "filePath": "benchmark/baseline/benchmark_comparison.csv",
+      "language": "CSV",
+      "lineCount": 3,
+      "sizeBytes": 183
+    },
+    {
+      "id": "file:benchmark/baseline/run_baseline.py",
+      "type": "file",
+      "name": "benchmark/baseline/run_baseline.py",
+      "filePath": "benchmark/baseline/run_baseline.py",
+      "language": "Python",
+      "lineCount": 253,
+      "sizeBytes": 10467
+    },
+    {
+      "id": "file:benchmark/baseline/run_baseline_old.py",
+      "type": "file",
+      "name": "benchmark/baseline/run_baseline_old.py",
+      "filePath": "benchmark/baseline/run_baseline_old.py",
+      "language": "Python",
+      "lineCount": 220,
+      "sizeBytes": 8734
+    },
+    {
+      "id": "data:benchmark/benchmark_annotation_template.csv",
+      "type": "data",
+      "name": "benchmark/benchmark_annotation_template.csv",
+      "filePath": "benchmark/benchmark_annotation_template.csv",
+      "language": "CSV",
+      "lineCount": 716,
+      "sizeBytes": 99465
+    },
+    {
+      "id": "data:benchmark/benchmark_detail_output.csv",
+      "type": "data",
+      "name": "benchmark/benchmark_detail_output.csv",
+      "filePath": "benchmark/benchmark_detail_output.csv",
+      "language": "CSV",
+      "lineCount": 45,
+      "sizeBytes": 22790
+    },
+    {
+      "id": "config:benchmark/benchmark_metrics.json",
+      "type": "config",
+      "name": "benchmark/benchmark_metrics.json",
+      "filePath": "benchmark/benchmark_metrics.json",
+      "language": "JSON",
+      "lineCount": 19,
+      "sizeBytes": 472
+    },
+    {
+      "id": "data:benchmark/benchmark_results_table.csv",
+      "type": "data",
+      "name": "benchmark/benchmark_results_table.csv",
+      "filePath": "benchmark/benchmark_results_table.csv",
+      "language": "CSV",
+      "lineCount": 3,
+      "sizeBytes": 183
+    },
+    {
+      "id": "file:benchmark/run_benchmark.py",
+      "type": "file",
+      "name": "benchmark/run_benchmark.py",
+      "filePath": "benchmark/run_benchmark.py",
+      "language": "Python",
+      "lineCount": 149,
+      "sizeBytes": 5500
+    },
+    {
+      "id": "config:benchmark/supabase_raw_export.json",
+      "type": "config",
+      "name": "benchmark/supabase_raw_export.json",
+      "filePath": "benchmark/supabase_raw_export.json",
+      "language": "JSON",
+      "lineCount": 68154,
+      "sizeBytes": 6786736
+    },
+    {
+      "id": "file:benchmark/sync_from_supabase.py",
+      "type": "file",
+      "name": "benchmark/sync_from_supabase.py",
+      "filePath": "benchmark/sync_from_supabase.py",
+      "language": "Python",
+      "lineCount": 195,
+      "sizeBytes": 6395
+    },
+    {
+      "id": "file:build_su.py",
+      "type": "file",
+      "name": "build_su.py",
+      "filePath": "build_su.py",
+      "language": "Python",
+      "lineCount": 185,
+      "sizeBytes": 16117
+    },
+    {
+      "id": "file:config.py",
+      "type": "file",
+      "name": "config.py",
+      "filePath": "config.py",
+      "language": "Python",
+      "lineCount": 95,
+      "sizeBytes": 3027
+    },
+    {
+      "id": "file:graph.py",
+      "type": "file",
+      "name": "graph.py",
+      "filePath": "graph.py",
+      "language": "Python",
+      "lineCount": 134,
+      "sizeBytes": 6053
+    },
+    {
+      "id": "file:llm_client.py",
+      "type": "file",
+      "name": "llm_client.py",
+      "filePath": "llm_client.py",
+      "language": "Python",
+      "lineCount": 38,
+      "sizeBytes": 1142
+    },
+    {
+      "id": "file:memory/__init__.py",
+      "type": "file",
+      "name": "memory/__init__.py",
+      "filePath": "memory/__init__.py",
+      "language": "Python",
+      "lineCount": 2,
+      "sizeBytes": 30
+    },
+    {
+      "id": "file:memory/anomaly_table.py",
+      "type": "file",
+      "name": "memory/anomaly_table.py",
+      "filePath": "memory/anomaly_table.py",
+      "language": "Python",
+      "lineCount": 505,
+      "sizeBytes": 17470
+    },
+    {
+      "id": "file:memory/fact_table.py",
+      "type": "file",
+      "name": "memory/fact_table.py",
+      "filePath": "memory/fact_table.py",
+      "language": "Python",
+      "lineCount": 98,
+      "sizeBytes": 2406
+    },
+    {
+      "id": "file:nodes/__init__.py",
+      "type": "file",
+      "name": "nodes/__init__.py",
+      "filePath": "nodes/__init__.py",
+      "language": "Python",
+      "lineCount": 6,
+      "sizeBytes": 118
+    },
+    {
+      "id": "file:nodes/followup_generation_node.py",
+      "type": "file",
+      "name": "nodes/followup_generation_node.py",
+      "filePath": "nodes/followup_generation_node.py",
+      "language": "Python",
+      "lineCount": 412,
+      "sizeBytes": 15316
+    },
+    {
+      "id": "file:nodes/lightweight_routing_supervisor_node.py",
+      "type": "file",
+      "name": "nodes/lightweight_routing_supervisor_node.py",
+      "filePath": "nodes/lightweight_routing_supervisor_node.py",
+      "language": "Python",
+      "lineCount": 463,
+      "sizeBytes": 19339
+    },
+    {
+      "id": "file:nodes/quick_preanalysis_node.py",
+      "type": "file",
+      "name": "nodes/quick_preanalysis_node.py",
+      "filePath": "nodes/quick_preanalysis_node.py",
+      "language": "Python",
+      "lineCount": 540,
+      "sizeBytes": 18751
+    },
+    {
+      "id": "file:nodes/report_generation_node.py",
+      "type": "file",
+      "name": "nodes/report_generation_node.py",
+      "filePath": "nodes/report_generation_node.py",
+      "language": "Python",
+      "lineCount": 84,
+      "sizeBytes": 2618
+    },
+    {
+      "id": "file:nodes/risk_aggregator_node.py",
+      "type": "file",
+      "name": "nodes/risk_aggregator_node.py",
+      "filePath": "nodes/risk_aggregator_node.py",
+      "language": "Python",
+      "lineCount": 237,
+      "sizeBytes": 8587
+    },
+    {
+      "id": "file:nodes/specialists/__init__.py",
+      "type": "file",
+      "name": "nodes/specialists/__init__.py",
+      "filePath": "nodes/specialists/__init__.py",
+      "language": "Python",
+      "lineCount": 2,
+      "sizeBytes": 41
+    },
+    {
+      "id": "file:nodes/specialists/domain_agent_node.py",
+      "type": "file",
+      "name": "nodes/specialists/domain_agent_node.py",
+      "filePath": "nodes/specialists/domain_agent_node.py",
+      "language": "Python",
+      "lineCount": 90,
+      "sizeBytes": 2811
+    },
+    {
+      "id": "file:nodes/specialists/logical_agent_node.py",
+      "type": "file",
+      "name": "nodes/specialists/logical_agent_node.py",
+      "filePath": "nodes/specialists/logical_agent_node.py",
+      "language": "Python",
+      "lineCount": 88,
+      "sizeBytes": 2751
+    },
+    {
+      "id": "file:nodes/specialists/psycho_linguistic_agent_node.py",
+      "type": "file",
+      "name": "nodes/specialists/psycho_linguistic_agent_node.py",
+      "filePath": "nodes/specialists/psycho_linguistic_agent_node.py",
+      "language": "Python",
+      "lineCount": 78,
+      "sizeBytes": 2502
+    },
+    {
+      "id": "file:nodes/specialists/semantic_agent_node.py",
+      "type": "file",
+      "name": "nodes/specialists/semantic_agent_node.py",
+      "filePath": "nodes/specialists/semantic_agent_node.py",
+      "language": "Python",
+      "lineCount": 92,
+      "sizeBytes": 2906
+    },
+    {
+      "id": "file:nodes/state_update_node.py",
+      "type": "file",
+      "name": "nodes/state_update_node.py",
+      "filePath": "nodes/state_update_node.py",
+      "language": "Python",
+      "lineCount": 59,
+      "sizeBytes": 1813
+    },
+    {
+      "id": "file:nodes/strategy_supervisor_node.py",
+      "type": "file",
+      "name": "nodes/strategy_supervisor_node.py",
+      "filePath": "nodes/strategy_supervisor_node.py",
+      "language": "Python",
+      "lineCount": 208,
+      "sizeBytes": 8914
+    },
+    {
+      "id": "file:outputs/reports/.gitkeep",
+      "type": "file",
+      "name": "outputs/reports/.gitkeep",
+      "filePath": "outputs/reports/.gitkeep",
+      "language": "Unknown",
+      "lineCount": 0,
+      "sizeBytes": 0
+    },
+    {
+      "id": "config:outputs/reports/session_20260524_181501.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260524_181501.json",
+      "filePath": "outputs/reports/session_20260524_181501.json",
+      "language": "JSON",
+      "lineCount": 565,
+      "sizeBytes": 22260
+    },
+    {
+      "id": "config:outputs/reports/session_20260524_183818.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260524_183818.json",
+      "filePath": "outputs/reports/session_20260524_183818.json",
+      "language": "JSON",
+      "lineCount": 1756,
+      "sizeBytes": 77447
+    },
+    {
+      "id": "config:outputs/reports/session_20260524_190917.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260524_190917.json",
+      "filePath": "outputs/reports/session_20260524_190917.json",
+      "language": "JSON",
+      "lineCount": 1194,
+      "sizeBytes": 57422
+    },
+    {
+      "id": "config:outputs/reports/session_20260524_202658.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260524_202658.json",
+      "filePath": "outputs/reports/session_20260524_202658.json",
+      "language": "JSON",
+      "lineCount": 1087,
+      "sizeBytes": 47699
+    },
+    {
+      "id": "config:outputs/reports/session_20260601_160119.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260601_160119.json",
+      "filePath": "outputs/reports/session_20260601_160119.json",
+      "language": "JSON",
+      "lineCount": 427,
+      "sizeBytes": 18237
+    },
+    {
+      "id": "config:outputs/reports/session_20260601_161546.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260601_161546.json",
+      "filePath": "outputs/reports/session_20260601_161546.json",
+      "language": "JSON",
+      "lineCount": 956,
+      "sizeBytes": 43857
+    },
+    {
+      "id": "config:outputs/reports/session_20260601_171654.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260601_171654.json",
+      "filePath": "outputs/reports/session_20260601_171654.json",
+      "language": "JSON",
+      "lineCount": 769,
+      "sizeBytes": 34662
+    },
+    {
+      "id": "config:outputs/reports/session_20260601_174517.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260601_174517.json",
+      "filePath": "outputs/reports/session_20260601_174517.json",
+      "language": "JSON",
+      "lineCount": 690,
+      "sizeBytes": 31154
+    },
+    {
+      "id": "config:outputs/reports/session_20260601_180453.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260601_180453.json",
+      "filePath": "outputs/reports/session_20260601_180453.json",
+      "language": "JSON",
+      "lineCount": 646,
+      "sizeBytes": 29215
+    },
+    {
+      "id": "config:outputs/reports/session_20260602_102012.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260602_102012.json",
+      "filePath": "outputs/reports/session_20260602_102012.json",
+      "language": "JSON",
+      "lineCount": 1647,
+      "sizeBytes": 73732
+    },
+    {
+      "id": "config:outputs/reports/session_20260602_103915.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260602_103915.json",
+      "filePath": "outputs/reports/session_20260602_103915.json",
+      "language": "JSON",
+      "lineCount": 1938,
+      "sizeBytes": 91902
+    },
+    {
+      "id": "config:outputs/reports/session_20260602_122626.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260602_122626.json",
+      "filePath": "outputs/reports/session_20260602_122626.json",
+      "language": "JSON",
+      "lineCount": 764,
+      "sizeBytes": 39473
+    },
+    {
+      "id": "config:outputs/reports/session_20260602_123509.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260602_123509.json",
+      "filePath": "outputs/reports/session_20260602_123509.json",
+      "language": "JSON",
+      "lineCount": 664,
+      "sizeBytes": 31386
+    },
+    {
+      "id": "config:outputs/reports/session_20260602_124622.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260602_124622.json",
+      "filePath": "outputs/reports/session_20260602_124622.json",
+      "language": "JSON",
+      "lineCount": 1184,
+      "sizeBytes": 61212
+    },
+    {
+      "id": "config:outputs/reports/session_20260602_140717.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260602_140717.json",
+      "filePath": "outputs/reports/session_20260602_140717.json",
+      "language": "JSON",
+      "lineCount": 1495,
+      "sizeBytes": 72171
+    },
+    {
+      "id": "config:outputs/reports/session_20260608_151905.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260608_151905.json",
+      "filePath": "outputs/reports/session_20260608_151905.json",
+      "language": "JSON",
+      "lineCount": 1276,
+      "sizeBytes": 62040
+    },
+    {
+      "id": "config:outputs/reports/session_20260608_152424.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260608_152424.json",
+      "filePath": "outputs/reports/session_20260608_152424.json",
+      "language": "JSON",
+      "lineCount": 1090,
+      "sizeBytes": 57211
+    },
+    {
+      "id": "config:outputs/reports/session_20260608_153928.json",
+      "type": "config",
+      "name": "outputs/reports/session_20260608_153928.json",
+      "filePath": "outputs/reports/session_20260608_153928.json",
+      "language": "JSON",
+      "lineCount": 1396,
+      "sizeBytes": 65243
+    },
+    {
+      "id": "file:prompts.py",
+      "type": "file",
+      "name": "prompts.py",
+      "filePath": "prompts.py",
+      "language": "Python",
+      "lineCount": 1344,
+      "sizeBytes": 63726
+    },
+    {
+      "id": "config:requirements.txt",
+      "type": "config",
+      "name": "requirements.txt",
+      "filePath": "requirements.txt",
+      "language": "Plain Text",
+      "lineCount": 7,
+      "sizeBytes": 136
+    },
+    {
+      "id": "file:run_cli.py",
+      "type": "file",
+      "name": "run_cli.py",
+      "filePath": "run_cli.py",
+      "language": "Python",
+      "lineCount": 486,
+      "sizeBytes": 18162
+    },
+    {
+      "id": "file:scripts/upload_outputs_to_supabase.py",
+      "type": "file",
+      "name": "scripts/upload_outputs_to_supabase.py",
+      "filePath": "scripts/upload_outputs_to_supabase.py",
+      "language": "Python",
+      "lineCount": 38,
+      "sizeBytes": 943
+    },
+    {
+      "id": "file:state_schema.py",
+      "type": "file",
+      "name": "state_schema.py",
+      "filePath": "state_schema.py",
+      "language": "Python",
+      "lineCount": 76,
+      "sizeBytes": 4794
+    },
+    {
+      "id": "schema:supabase_schema.sql",
+      "type": "schema",
+      "name": "supabase_schema.sql",
+      "filePath": "supabase_schema.sql",
+      "language": "SQL",
+      "lineCount": 28,
+      "sizeBytes": 866
+    },
+    {
+      "id": "file:utils/__init__.py",
+      "type": "file",
+      "name": "utils/__init__.py",
+      "filePath": "utils/__init__.py",
+      "language": "Python",
+      "lineCount": 2,
+      "sizeBytes": 30
+    },
+    {
+      "id": "file:utils/json_utils.py",
+      "type": "file",
+      "name": "utils/json_utils.py",
+      "filePath": "utils/json_utils.py",
+      "language": "Python",
+      "lineCount": 113,
+      "sizeBytes": 3740
+    },
+    {
+      "id": "file:utils/logger.py",
+      "type": "file",
+      "name": "utils/logger.py",
+      "filePath": "utils/logger.py",
+      "language": "Python",
+      "lineCount": 305,
+      "sizeBytes": 11740
+    },
+    {
+      "id": "file:utils/node_wrapper.py",
+      "type": "file",
+      "name": "utils/node_wrapper.py",
+      "filePath": "utils/node_wrapper.py",
+      "language": "Python",
+      "lineCount": 85,
+      "sizeBytes": 2307
+    },
+    {
+      "id": "file:utils/score_utils.py",
+      "type": "file",
+      "name": "utils/score_utils.py",
+      "filePath": "utils/score_utils.py",
+      "language": "Python",
+      "lineCount": 231,
+      "sizeBytes": 6869
+    },
+    {
+      "id": "file:utils/strategy_utils.py",
+      "type": "file",
+      "name": "utils/strategy_utils.py",
+      "filePath": "utils/strategy_utils.py",
+      "language": "Python",
+      "lineCount": 218,
+      "sizeBytes": 12141
+    },
+    {
+      "id": "file:utils/supabase_outputs.py",
+      "type": "file",
+      "name": "utils/supabase_outputs.py",
+      "filePath": "utils/supabase_outputs.py",
+      "language": "Python",
+      "lineCount": 137,
+      "sizeBytes": 4218
+    },
+    {
+      "id": "file:utils/text_utils.py",
+      "type": "file",
+      "name": "utils/text_utils.py",
+      "filePath": "utils/text_utils.py",
+      "language": "Python",
+      "lineCount": 156,
+      "sizeBytes": 5310
+    },
+    {
+      "id": "document:weekly_progress_report.md",
+      "type": "document",
+      "name": "weekly_progress_report.md",
+      "filePath": "weekly_progress_report.md",
+      "language": "Markdown",
+      "lineCount": 274,
+      "sizeBytes": 14833
+    },
+    {
+      "id": "file:\"\\351\\241\\271\\347\\233\\256\\346\\200\\235\\350\\267\\257\\344\\271\\246.md\"",
+      "type": "file",
+      "name": "\"\\351\\241\\271\\347\\233\\256\\346\\200\\235\\350\\267\\257\\344\\271\\246.md\"",
+      "filePath": "\"\\351\\241\\271\\347\\233\\256\\346\\200\\235\\350\\267\\257\\344\\271\\246.md\"",
+      "language": "Unknown",
+      "lineCount": 0,
+      "sizeBytes": 0
+    },
+    {
+      "id": "module:nodes",
+      "type": "module",
+      "name": "nodes",
+      "description": "Agent ???? ? ??????????/????"
+    },
+    {
+      "id": "module:nodes/specialists",
+      "type": "module",
+      "name": "nodes/specialists",
+      "description": "?? Agent ??? ? ????????????????"
+    },
+    {
+      "id": "module:memory",
+      "type": "module",
+      "name": "memory",
+      "description": "???? ? ?????????"
+    },
+    {
+      "id": "module:utils",
+      "type": "module",
+      "name": "utils",
+      "description": "???? ? JSON????????????????"
+    },
+    {
+      "id": "module:benchmark",
+      "type": "module",
+      "name": "benchmark",
+      "description": "?????? ? ????????????"
+    },
+    {
+      "id": "module:benchmark/baseline",
+      "type": "module",
+      "name": "benchmark/baseline",
+      "description": "???? ? ??Prompt????"
+    },
+    {
+      "id": "module:outputs",
+      "type": "module",
+      "name": "outputs",
+      "description": "???? ? ?????????"
+    },
+    {
+      "id": "module:scripts",
+      "type": "module",
+      "name": "scripts",
+      "description": "?? ? ?????????"
+    },
+    {
+      "id": "function:graph.py:build_graph",
+      "type": "function",
+      "name": "build_graph",
+      "filePath": "graph.py",
+      "description": "?? LangGraph ????"
+    },
+    {
+      "id": "function:graph.py:route_specialists",
+      "type": "function",
+      "name": "route_specialists",
+      "filePath": "graph.py",
+      "description": "Fan-out ??????????"
+    },
+    {
+      "id": "function:graph.py:route_after_routing_supervisor",
+      "type": "function",
+      "name": "route_after_routing_supervisor",
+      "filePath": "graph.py",
+      "description": "????????????"
+    },
+    {
+      "id": "function:graph.py:route_after_strategy_supervisor",
+      "type": "function",
+      "name": "route_after_strategy_supervisor",
+      "filePath": "graph.py",
+      "description": "????????????"
+    },
+    {
+      "id": "function:llm_client.py:get_llm",
+      "type": "function",
+      "name": "get_llm",
+      "filePath": "llm_client.py",
+      "description": "???? ChatOpenAI ??"
+    },
+    {
+      "id": "function:config.py:disable_proxy",
+      "type": "function",
+      "name": "disable_proxy",
+      "filePath": "config.py",
+      "description": "???????? API ??"
+    },
+    {
+      "id": "function:config.py:_get_setting",
+      "type": "function",
+      "name": "_get_setting",
+      "filePath": "config.py",
+      "description": "?????? Streamlit secrets ????"
+    },
+    {
+      "id": "function:memory/fact_table.py:add_facts",
+      "type": "function",
+      "name": "add_facts",
+      "filePath": "memory/fact_table.py",
+      "description": "?????????"
+    },
+    {
+      "id": "function:memory/fact_table.py:init_fact_table",
+      "type": "function",
+      "name": "init_fact_table",
+      "filePath": "memory/fact_table.py",
+      "description": "???????"
+    },
+    {
+      "id": "function:memory/fact_table.py:get_facts_by_round",
+      "type": "function",
+      "name": "get_facts_by_round",
+      "filePath": "memory/fact_table.py",
+      "description": "???????"
+    },
+    {
+      "id": "function:memory/anomaly_table.py:add_anomalies",
+      "type": "function",
+      "name": "add_anomalies",
+      "filePath": "memory/anomaly_table.py",
+      "description": "?????????"
+    },
+    {
+      "id": "function:memory/anomaly_table.py:update_anomalies_status",
+      "type": "function",
+      "name": "update_anomalies_status",
+      "filePath": "memory/anomaly_table.py",
+      "description": "??????"
+    },
+    {
+      "id": "function:memory/anomaly_table.py:add_specialist_results_as_anomalies",
+      "type": "function",
+      "name": "add_specialist_results_as_anomalies",
+      "filePath": "memory/anomaly_table.py",
+      "description": "??????????"
+    },
+    {
+      "id": "function:memory/anomaly_table.py:apply_specialist_anomaly_updates",
+      "type": "function",
+      "name": "apply_specialist_anomaly_updates",
+      "filePath": "memory/anomaly_table.py",
+      "description": "???????????"
+    },
+    {
+      "id": "function:memory/anomaly_table.py:get_active_anomalies",
+      "type": "function",
+      "name": "get_active_anomalies",
+      "filePath": "memory/anomaly_table.py",
+      "description": "????????"
+    },
+    {
+      "id": "function:memory/anomaly_table.py:count_unresolved",
+      "type": "function",
+      "name": "count_unresolved",
+      "filePath": "memory/anomaly_table.py",
+      "description": "????????"
+    },
+    {
+      "id": "function:nodes/quick_preanalysis_node.py:quick_preanalysis_node",
+      "type": "function",
+      "name": "quick_preanalysis_node",
+      "filePath": "nodes/quick_preanalysis_node.py",
+      "description": "??????????+??????"
+    },
+    {
+      "id": "function:nodes/lightweight_routing_supervisor_node.py:lightweight_routing_supervisor_node",
+      "type": "function",
+      "name": "lightweight_routing_supervisor_node",
+      "filePath": "nodes/lightweight_routing_supervisor_node.py",
+      "description": "???????????????"
+    },
+    {
+      "id": "function:nodes/risk_aggregator_node.py:risk_aggregator_node",
+      "type": "function",
+      "name": "risk_aggregator_node",
+      "filePath": "nodes/risk_aggregator_node.py",
+      "description": "???????????"
+    },
+    {
+      "id": "function:nodes/strategy_supervisor_node.py:strategy_supervisor_node",
+      "type": "function",
+      "name": "strategy_supervisor_node",
+      "filePath": "nodes/strategy_supervisor_node.py",
+      "description": "????????????????"
+    },
+    {
+      "id": "function:nodes/followup_generation_node.py:followup_generation_node",
+      "type": "function",
+      "name": "followup_generation_node",
+      "filePath": "nodes/followup_generation_node.py",
+      "description": "????????????????"
+    },
+    {
+      "id": "function:nodes/report_generation_node.py:report_generation_node",
+      "type": "function",
+      "name": "report_generation_node",
+      "filePath": "nodes/report_generation_node.py",
+      "description": "???????????????"
+    },
+    {
+      "id": "function:nodes/state_update_node.py:state_update_node",
+      "type": "function",
+      "name": "state_update_node",
+      "filePath": "nodes/state_update_node.py",
+      "description": "??????????????"
+    },
+    {
+      "id": "function:nodes/specialists/semantic_agent_node.py:semantic_agent_node",
+      "type": "function",
+      "name": "semantic_agent_node",
+      "filePath": "nodes/specialists/semantic_agent_node.py",
+      "description": "?????????"
+    },
+    {
+      "id": "function:nodes/specialists/logical_agent_node.py:logical_agent_node",
+      "type": "function",
+      "name": "logical_agent_node",
+      "filePath": "nodes/specialists/logical_agent_node.py",
+      "description": "?????????"
+    },
+    {
+      "id": "function:nodes/specialists/domain_agent_node.py:domain_agent_node",
+      "type": "function",
+      "name": "domain_agent_node",
+      "filePath": "nodes/specialists/domain_agent_node.py",
+      "description": "????????"
+    },
+    {
+      "id": "function:nodes/specialists/psycho_linguistic_agent_node.py:psycho_linguistic_agent_node",
+      "type": "function",
+      "name": "psycho_linguistic_agent_node",
+      "filePath": "nodes/specialists/psycho_linguistic_agent_node.py",
+      "description": "?????????"
+    },
+    {
+      "id": "function:utils/json_utils.py:extract_json_from_text",
+      "type": "function",
+      "name": "extract_json_from_text",
+      "filePath": "utils/json_utils.py",
+      "description": "? LLM ??????? JSON"
+    },
+    {
+      "id": "function:utils/text_utils.py:format_dialogue_history",
+      "type": "function",
+      "name": "format_dialogue_history",
+      "filePath": "utils/text_utils.py",
+      "description": "???????"
+    },
+    {
+      "id": "function:utils/text_utils.py:clean_llm_output",
+      "type": "function",
+      "name": "clean_llm_output",
+      "filePath": "utils/text_utils.py",
+      "description": "?? LLM ??"
+    },
+    {
+      "id": "function:utils/score_utils.py:effective_risk_value",
+      "type": "function",
+      "name": "effective_risk_value",
+      "filePath": "utils/score_utils.py",
+      "description": "???????"
+    },
+    {
+      "id": "function:utils/score_utils.py:combine_independent_risk_values",
+      "type": "function",
+      "name": "combine_independent_risk_values",
+      "filePath": "utils/score_utils.py",
+      "description": "????????"
+    },
+    {
+      "id": "function:utils/strategy_utils.py:get_experience_chain_strategies_pipe",
+      "type": "function",
+      "name": "get_experience_chain_strategies_pipe",
+      "filePath": "utils/strategy_utils.py",
+      "description": "???????"
+    },
+    {
+      "id": "function:utils/node_wrapper.py:wrap_node",
+      "type": "function",
+      "name": "wrap_node",
+      "filePath": "utils/node_wrapper.py",
+      "description": "????? LangGraph ?????"
+    },
+    {
+      "id": "function:utils/logger.py:get_logger",
+      "type": "function",
+      "name": "get_logger",
+      "filePath": "utils/logger.py",
+      "description": "??????"
+    },
+    {
+      "id": "function:utils/supabase_outputs.py:safe_sync_output_file",
+      "type": "function",
+      "name": "safe_sync_output_file",
+      "filePath": "utils/supabase_outputs.py",
+      "description": "????????? Supabase"
+    },
+    {
+      "id": "function:app.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "app.py",
+      "description": "Streamlit ????"
+    },
+    {
+      "id": "function:run_cli.py:run_cli",
+      "type": "function",
+      "name": "run_cli",
+      "filePath": "run_cli.py",
+      "description": "CLI ???????"
+    },
+    {
+      "id": "function:run_cli.py:create_initial_state",
+      "type": "function",
+      "name": "create_initial_state",
+      "filePath": "run_cli.py",
+      "description": "???? DialogueState"
+    },
+    {
+      "id": "function:benchmark/run_benchmark.py:run_benchmark",
+      "type": "function",
+      "name": "run_benchmark",
+      "filePath": "benchmark/run_benchmark.py",
+      "description": "????????"
+    },
+    {
+      "id": "function:benchmark/sync_from_supabase.py:sync_from_supabase",
+      "type": "function",
+      "name": "sync_from_supabase",
+      "filePath": "benchmark/sync_from_supabase.py",
+      "description": "? Supabase ??????"
+    },
+    {
+      "id": "class:state_schema.py:DialogueState",
+      "type": "class",
+      "name": "DialogueState",
+      "filePath": "state_schema.py",
+      "description": "LangGraph ???? TypedDict????????????????????????????"
+    },
+    {
+      "id": "concept:lie_index",
+      "type": "concept",
+      "name": "???? (LieIndex)",
+      "description": "???????????????????? (0-100)"
+    },
+    {
+      "id": "concept:fan_out",
+      "type": "concept",
+      "name": "Fan-out ????",
+      "description": "LangGraph Send ??????????????"
+    },
+    {
+      "id": "concept:experience_chain",
+      "type": "concept",
+      "name": "?????",
+      "description": "????????????????"
+    },
+    {
+      "id": "concept:anomaly_table",
+      "type": "concept",
+      "name": "???",
+      "description": "?????????????????????????"
+    },
+    {
+      "id": "concept:facts_table",
+      "type": "concept",
+      "name": "???",
+      "description": "????????????????????????"
+    },
+    {
+      "id": "concept:quick_preanalysis",
+      "type": "concept",
+      "name": "?????",
+      "description": "?? LLM ???????????????"
+    },
+    {
+      "id": "concept:on_demand_specialists",
+      "type": "concept",
+      "name": "??????",
+      "description": "?????????????????????"
+    },
+    {
+      "id": "config:.gitignore",
+      "type": "config",
+      "name": ".gitignore",
+      "description": "Git ????"
+    },
+    {
+      "id": "service:app.py",
+      "type": "service",
+      "name": "Streamlit App",
+      "description": "Web UI ????"
+    },
+    {
+      "id": "table:supabase_schema.sql:outputs",
+      "type": "table",
+      "name": "outputs ?",
+      "description": "Supabase ??? outputs ???????? JSON"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:state_schema.py",
+      "target": "file:graph.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "file:nodes/quick_preanalysis_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "file:nodes/lightweight_routing_supervisor_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "file:nodes/risk_aggregator_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "file:nodes/strategy_supervisor_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "file:nodes/followup_generation_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "file:nodes/report_generation_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "file:nodes/state_update_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "file:run_cli.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "file:app.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "file:nodes/specialists/semantic_agent_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "file:nodes/specialists/logical_agent_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "file:nodes/specialists/domain_agent_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "file:nodes/specialists/psycho_linguistic_agent_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:config.py",
+      "target": "file:llm_client.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:config.py",
+      "target": "file:app.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:config.py",
+      "target": "file:run_cli.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:config.py",
+      "target": "file:nodes/lightweight_routing_supervisor_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:llm_client.py",
+      "target": "file:nodes/quick_preanalysis_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:llm_client.py",
+      "target": "file:nodes/lightweight_routing_supervisor_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:llm_client.py",
+      "target": "file:nodes/specialists/semantic_agent_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:llm_client.py",
+      "target": "file:nodes/specialists/logical_agent_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:llm_client.py",
+      "target": "file:nodes/specialists/domain_agent_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:llm_client.py",
+      "target": "file:nodes/specialists/psycho_linguistic_agent_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:llm_client.py",
+      "target": "file:nodes/risk_aggregator_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:llm_client.py",
+      "target": "file:nodes/strategy_supervisor_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:llm_client.py",
+      "target": "file:nodes/followup_generation_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:llm_client.py",
+      "target": "file:nodes/report_generation_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:prompts.py",
+      "target": "file:nodes/quick_preanalysis_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:prompts.py",
+      "target": "file:nodes/lightweight_routing_supervisor_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:prompts.py",
+      "target": "file:nodes/specialists/semantic_agent_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:prompts.py",
+      "target": "file:nodes/specialists/logical_agent_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:prompts.py",
+      "target": "file:nodes/specialists/domain_agent_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:prompts.py",
+      "target": "file:nodes/specialists/psycho_linguistic_agent_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:prompts.py",
+      "target": "file:nodes/strategy_supervisor_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:prompts.py",
+      "target": "file:nodes/followup_generation_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:graph.py",
+      "target": "file:app.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:graph.py",
+      "target": "file:run_cli.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/quick_preanalysis_node.py",
+      "target": "file:memory/fact_table.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/quick_preanalysis_node.py",
+      "target": "file:memory/anomaly_table.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/quick_preanalysis_node.py",
+      "target": "file:utils/json_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/quick_preanalysis_node.py",
+      "target": "file:utils/text_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/quick_preanalysis_node.py",
+      "target": "file:utils/score_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/quick_preanalysis_node.py",
+      "target": "file:utils/strategy_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/lightweight_routing_supervisor_node.py",
+      "target": "file:memory/anomaly_table.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/lightweight_routing_supervisor_node.py",
+      "target": "file:utils/strategy_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/lightweight_routing_supervisor_node.py",
+      "target": "file:utils/json_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/lightweight_routing_supervisor_node.py",
+      "target": "file:utils/text_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/risk_aggregator_node.py",
+      "target": "file:memory/anomaly_table.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/risk_aggregator_node.py",
+      "target": "file:utils/score_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/strategy_supervisor_node.py",
+      "target": "file:memory/anomaly_table.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/strategy_supervisor_node.py",
+      "target": "file:utils/strategy_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/followup_generation_node.py",
+      "target": "file:memory/anomaly_table.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/followup_generation_node.py",
+      "target": "file:utils/strategy_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/report_generation_node.py",
+      "target": "file:utils/text_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nodes/report_generation_node.py",
+      "target": "file:memory/anomaly_table.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:memory/anomaly_table.py",
+      "target": "file:utils/score_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:nodes/report_generation_node.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:utils/supabase_outputs.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:run_cli.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:benchmark/run_benchmark.py",
+      "target": "file:graph.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:benchmark/run_benchmark.py",
+      "target": "file:config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:benchmark/sync_from_supabase.py",
+      "target": "file:config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:scripts/upload_outputs_to_supabase.py",
+      "target": "file:config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:build_su.py",
+      "target": "file:config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:graph.py",
+      "target": "function:graph.py:build_graph",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:graph.py",
+      "target": "function:graph.py:route_specialists",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:graph.py",
+      "target": "function:graph.py:route_after_routing_supervisor",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:graph.py",
+      "target": "function:graph.py:route_after_strategy_supervisor",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:llm_client.py",
+      "target": "function:llm_client.py:get_llm",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:config.py",
+      "target": "function:config.py:disable_proxy",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:config.py",
+      "target": "function:config.py:_get_setting",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:memory/fact_table.py",
+      "target": "function:memory/fact_table.py:add_facts",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:memory/fact_table.py",
+      "target": "function:memory/fact_table.py:init_fact_table",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:memory/fact_table.py",
+      "target": "function:memory/fact_table.py:get_facts_by_round",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:memory/anomaly_table.py",
+      "target": "function:memory/anomaly_table.py:add_anomalies",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:memory/anomaly_table.py",
+      "target": "function:memory/anomaly_table.py:update_anomalies_status",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:memory/anomaly_table.py",
+      "target": "function:memory/anomaly_table.py:add_specialist_results_as_anomalies",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:memory/anomaly_table.py",
+      "target": "function:memory/anomaly_table.py:apply_specialist_anomaly_updates",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:memory/anomaly_table.py",
+      "target": "function:memory/anomaly_table.py:get_active_anomalies",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:memory/anomaly_table.py",
+      "target": "function:memory/anomaly_table.py:count_unresolved",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:nodes/quick_preanalysis_node.py",
+      "target": "function:nodes/quick_preanalysis_node.py:quick_preanalysis_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:nodes/lightweight_routing_supervisor_node.py",
+      "target": "function:nodes/lightweight_routing_supervisor_node.py:lightweight_routing_supervisor_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:nodes/risk_aggregator_node.py",
+      "target": "function:nodes/risk_aggregator_node.py:risk_aggregator_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:nodes/strategy_supervisor_node.py",
+      "target": "function:nodes/strategy_supervisor_node.py:strategy_supervisor_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:nodes/followup_generation_node.py",
+      "target": "function:nodes/followup_generation_node.py:followup_generation_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:nodes/report_generation_node.py",
+      "target": "function:nodes/report_generation_node.py:report_generation_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:nodes/state_update_node.py",
+      "target": "function:nodes/state_update_node.py:state_update_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:nodes/specialists/semantic_agent_node.py",
+      "target": "function:nodes/specialists/semantic_agent_node.py:semantic_agent_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:nodes/specialists/logical_agent_node.py",
+      "target": "function:nodes/specialists/logical_agent_node.py:logical_agent_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:nodes/specialists/domain_agent_node.py",
+      "target": "function:nodes/specialists/domain_agent_node.py:domain_agent_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:nodes/specialists/psycho_linguistic_agent_node.py",
+      "target": "function:nodes/specialists/psycho_linguistic_agent_node.py:psycho_linguistic_agent_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:utils/json_utils.py",
+      "target": "function:utils/json_utils.py:extract_json_from_text",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:utils/text_utils.py",
+      "target": "function:utils/text_utils.py:format_dialogue_history",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:utils/text_utils.py",
+      "target": "function:utils/text_utils.py:clean_llm_output",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:utils/score_utils.py",
+      "target": "function:utils/score_utils.py:effective_risk_value",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:utils/score_utils.py",
+      "target": "function:utils/score_utils.py:combine_independent_risk_values",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:utils/strategy_utils.py",
+      "target": "function:utils/strategy_utils.py:get_experience_chain_strategies_pipe",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:utils/node_wrapper.py",
+      "target": "function:utils/node_wrapper.py:wrap_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:utils/logger.py",
+      "target": "function:utils/logger.py:get_logger",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:utils/supabase_outputs.py",
+      "target": "function:utils/supabase_outputs.py:safe_sync_output_file",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:app.py",
+      "target": "function:app.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:run_cli.py",
+      "target": "function:run_cli.py:run_cli",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:run_cli.py",
+      "target": "function:run_cli.py:create_initial_state",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:benchmark/run_benchmark.py",
+      "target": "function:benchmark/run_benchmark.py:run_benchmark",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:benchmark/sync_from_supabase.py",
+      "target": "function:benchmark/sync_from_supabase.py:sync_from_supabase",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:nodes",
+      "target": "file:nodes/quick_preanalysis_node.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:nodes",
+      "target": "file:nodes/lightweight_routing_supervisor_node.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:nodes",
+      "target": "file:nodes/risk_aggregator_node.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:nodes",
+      "target": "file:nodes/strategy_supervisor_node.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:nodes",
+      "target": "file:nodes/followup_generation_node.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:nodes",
+      "target": "file:nodes/report_generation_node.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:nodes",
+      "target": "file:nodes/state_update_node.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:nodes",
+      "target": "file:nodes/__init__.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:nodes/specialists",
+      "target": "file:nodes/specialists/semantic_agent_node.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:nodes/specialists",
+      "target": "file:nodes/specialists/logical_agent_node.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:nodes/specialists",
+      "target": "file:nodes/specialists/domain_agent_node.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:nodes/specialists",
+      "target": "file:nodes/specialists/psycho_linguistic_agent_node.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:nodes/specialists",
+      "target": "file:nodes/specialists/__init__.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:memory",
+      "target": "file:memory/fact_table.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:memory",
+      "target": "file:memory/anomaly_table.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:memory",
+      "target": "file:memory/__init__.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:utils",
+      "target": "file:utils/json_utils.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:utils",
+      "target": "file:utils/text_utils.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:utils",
+      "target": "file:utils/score_utils.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:utils",
+      "target": "file:utils/strategy_utils.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:utils",
+      "target": "file:utils/node_wrapper.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:utils",
+      "target": "file:utils/logger.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:utils",
+      "target": "file:utils/supabase_outputs.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:utils",
+      "target": "file:utils/__init__.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:benchmark",
+      "target": "file:benchmark/run_benchmark.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:benchmark",
+      "target": "file:benchmark/sync_from_supabase.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:benchmark",
+      "target": "file:benchmark/benchmark_annotation_template.csv",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:benchmark",
+      "target": "file:benchmark/benchmark_detail_output.csv",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:benchmark",
+      "target": "file:benchmark/benchmark_metrics.json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:benchmark",
+      "target": "file:benchmark/benchmark_results_table.csv",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:benchmark",
+      "target": "file:benchmark/supabase_raw_export.json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:benchmark/baseline",
+      "target": "file:benchmark/baseline/run_baseline.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:benchmark/baseline",
+      "target": "file:benchmark/baseline/run_baseline_old.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:benchmark/baseline",
+      "target": "file:benchmark/baseline/baseline_results.csv",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:benchmark/baseline",
+      "target": "file:benchmark/baseline/baseline_results.json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:benchmark/baseline",
+      "target": "file:benchmark/baseline/benchmark_comparison.csv",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:outputs",
+      "target": "file:outputs/reports/.gitkeep",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "module:scripts",
+      "target": "file:scripts/upload_outputs_to_supabase.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "function:graph.py:build_graph",
+      "target": "function:nodes/quick_preanalysis_node.py:quick_preanalysis_node",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:graph.py:build_graph",
+      "target": "function:nodes/lightweight_routing_supervisor_node.py:lightweight_routing_supervisor_node",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:graph.py:build_graph",
+      "target": "function:nodes/specialists/semantic_agent_node.py:semantic_agent_node",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:graph.py:build_graph",
+      "target": "function:nodes/specialists/logical_agent_node.py:logical_agent_node",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:graph.py:build_graph",
+      "target": "function:nodes/specialists/domain_agent_node.py:domain_agent_node",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:graph.py:build_graph",
+      "target": "function:nodes/specialists/psycho_linguistic_agent_node.py:psycho_linguistic_agent_node",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:graph.py:build_graph",
+      "target": "function:nodes/risk_aggregator_node.py:risk_aggregator_node",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:graph.py:build_graph",
+      "target": "function:nodes/strategy_supervisor_node.py:strategy_supervisor_node",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:graph.py:build_graph",
+      "target": "function:nodes/followup_generation_node.py:followup_generation_node",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:graph.py:build_graph",
+      "target": "function:nodes/report_generation_node.py:report_generation_node",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:nodes/quick_preanalysis_node.py:quick_preanalysis_node_node",
+      "target": "function:llm_client.py:get_llm",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:nodes/lightweight_routing_supervisor_node.py:lightweight_routing_supervisor_node_node",
+      "target": "function:llm_client.py:get_llm",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:nodes/specialists/semantic_agent_node.py:semantic_agent_node_node",
+      "target": "function:llm_client.py:get_llm",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:nodes/specialists/logical_agent_node.py:logical_agent_node_node",
+      "target": "function:llm_client.py:get_llm",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:nodes/specialists/domain_agent_node.py:domain_agent_node_node",
+      "target": "function:llm_client.py:get_llm",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:nodes/specialists/psycho_linguistic_agent_node.py:psycho_linguistic_agent_node_node",
+      "target": "function:llm_client.py:get_llm",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:nodes/strategy_supervisor_node.py:strategy_supervisor_node_node",
+      "target": "function:llm_client.py:get_llm",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:nodes/followup_generation_node.py:followup_generation_node_node",
+      "target": "function:llm_client.py:get_llm",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:nodes/report_generation_node.py:report_generation_node_node",
+      "target": "function:llm_client.py:get_llm",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app.py:main",
+      "target": "function:graph.py:build_graph",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:run_cli.py:run_cli",
+      "target": "function:graph.py:build_graph",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "function:run_cli.py:run_cli",
+      "target": "function:run_cli.py:create_initial_state",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app.py",
+      "target": "file:config.py",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "source": "file:run_cli.py",
+      "target": "file:config.py",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "source": "file:llm_client.py",
+      "target": "file:config.py",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "source": "file:nodes/lightweight_routing_supervisor_node.py",
+      "target": "file:config.py",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "source": "config:requirements.txt",
+      "target": "file:app.py",
+      "type": "configures",
+      "weight": 0.5,
+      "description": "Python ????"
+    },
+    {
+      "source": "config:.streamlit/config.toml",
+      "target": "service:app.py",
+      "type": "configures",
+      "weight": 0.5,
+      "description": "Streamlit ????"
+    },
+    {
+      "source": "class:state_schema.py:DialogueState",
+      "target": "file:state_schema.py",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:state_schema.py",
+      "target": "class:state_schema.py:DialogueState",
+      "type": "defines_schema",
+      "weight": 0.8
+    },
+    {
+      "source": "table:supabase_schema.sql:outputs",
+      "target": "file:utils/supabase_outputs.py",
+      "type": "reads_from",
+      "weight": 0.5
+    },
+    {
+      "source": "file:utils/supabase_outputs.py",
+      "target": "table:supabase_schema.sql:outputs",
+      "type": "writes_to",
+      "weight": 0.5
+    },
+    {
+      "source": "concept:lie_index",
+      "target": "function:nodes/risk_aggregator_node.py:risk_aggregator_node",
+      "type": "related",
+      "weight": 0.5
+    },
+    {
+      "source": "concept:fan_out",
+      "target": "function:graph.py:route_specialists",
+      "type": "related",
+      "weight": 0.5
+    },
+    {
+      "source": "concept:experience_chain",
+      "target": "function:utils/strategy_utils.py:get_experience_chain_strategies_pipe",
+      "type": "related",
+      "weight": 0.5
+    },
+    {
+      "source": "concept:anomaly_table",
+      "target": "file:memory/anomaly_table.py",
+      "type": "related",
+      "weight": 0.5
+    },
+    {
+      "source": "concept:facts_table",
+      "target": "file:memory/fact_table.py",
+      "type": "related",
+      "weight": 0.5
+    },
+    {
+      "source": "concept:quick_preanalysis",
+      "target": "function:nodes/quick_preanalysis_node.py:quick_preanalysis_node",
+      "type": "related",
+      "weight": 0.5
+    },
+    {
+      "source": "concept:on_demand_specialists",
+      "target": "function:nodes/lightweight_routing_supervisor_node.py:lightweight_routing_supervisor_node",
+      "type": "related",
+      "weight": 0.5
+    },
+    {
+      "source": "file:graph.py",
+      "target": "file:benchmark/run_benchmark.py",
+      "type": "tested_by",
+      "weight": 0.5
+    }
+  ],
+  "layers": [
+    {
+      "name": "Presentation",
+      "description": "Streamlit Web UI ? CLI ???????",
+      "filePatterns": [
+        "app.py",
+        "run_cli.py"
+      ]
+    },
+    {
+      "name": "Orchestration",
+      "description": "LangGraph ????????????????Fan-out",
+      "filePatterns": [
+        "graph.py",
+        "state_schema.py"
+      ]
+    },
+    {
+      "name": "Agent Nodes",
+      "description": "????????????????????Agent????????????????",
+      "filePatterns": [
+        "nodes/*"
+      ]
+    },
+    {
+      "name": "Specialists",
+      "description": "????Agent???????????????????????",
+      "filePatterns": [
+        "nodes/specialists/*"
+      ]
+    },
+    {
+      "name": "Memory",
+      "description": "????????????????????",
+      "filePatterns": [
+        "memory/*"
+      ]
+    },
+    {
+      "name": "Infrastructure",
+      "description": "LLM?????????Prompt????????",
+      "filePatterns": [
+        "config.py",
+        "llm_client.py",
+        "prompts.py",
+        "utils/*"
+      ]
+    },
+    {
+      "name": "Data & Evaluation",
+      "description": "???????????????????",
+      "filePatterns": [
+        "benchmark/*",
+        "benchmark/baseline/*"
+      ]
+    },
+    {
+      "name": "Storage",
+      "description": "??????????Supabase???",
+      "filePatterns": [
+        "outputs/*",
+        "supabase_schema.sql",
+        "scripts/*"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "title": "????",
+      "description": "??????????Agent????????????? LangGraph + Streamlit + ??????????????????????????????????????????????? (LieIndex)?",
+      "nodeIds": []
+    },
+    {
+      "title": "??????",
+      "description": "?????????Streamlit Web UI (app.py) ? CLI (run_cli.py)?????? graph.py ?? LangGraph ???????????????? ? ???? ? ???? ? ???? ? ???? ? ??/???",
+      "nodeIds": [
+        "function:app.py:main",
+        "function:run_cli.py:run_cli",
+        "function:graph.py:build_graph"
+      ]
+    },
+    {
+      "title": "?????",
+      "description": "Quick Preanalysis Node ??????????? LLM ??????????????????????????????????????????????????",
+      "nodeIds": [
+        "function:nodes/quick_preanalysis_node.py:quick_preanalysis_node",
+        "concept:quick_preanalysis"
+      ]
+    },
+    {
+      "title": "?????????",
+      "description": "Lightweight Routing Supervisor ?????????????????????????????????????? Fan-out ?????????????????????????",
+      "nodeIds": [
+        "function:nodes/lightweight_routing_supervisor_node.py:lightweight_routing_supervisor_node",
+        "concept:fan_out",
+        "concept:on_demand_specialists"
+      ]
+    },
+    {
+      "title": "???? Agent",
+      "description": "Semantic Agent ????????Logical Agent ?????????Domain Agent ???????Psycho-Linguistic Agent ?????????????????????????????????",
+      "nodeIds": [
+        "function:nodes/specialists/semantic_agent_node.py:semantic_agent_node",
+        "function:nodes/specialists/logical_agent_node.py:logical_agent_node",
+        "function:nodes/specialists/domain_agent_node.py:domain_agent_node",
+        "function:nodes/specialists/psycho_linguistic_agent_node.py:psycho_linguistic_agent_node"
+      ]
+    },
+    {
+      "title": "??????",
+      "description": "Risk Aggregator ????????? anomalies_table????????????? LieIndex?LieIndex = 100 * (1 - ?(1 - V_i/100))?????????????? 100?",
+      "nodeIds": [
+        "function:nodes/risk_aggregator_node.py:risk_aggregator_node",
+        "concept:lie_index",
+        "function:utils/score_utils.py:combine_independent_risk_values"
+      ]
+    },
+    {
+      "title": "????",
+      "description": "??? (facts_table) ???????????????????? (anomalies_table) ??????????????????? (clarify/resolve/reinforce) ????????",
+      "nodeIds": [
+        "concept:facts_table",
+        "concept:anomaly_table",
+        "file:memory/fact_table.py",
+        "file:memory/anomaly_table.py"
+      ]
+    },
+    {
+      "title": "????????",
+      "description": "Strategy Supervisor ??????????????Followup Generation ????????????????????????????????????",
+      "nodeIds": [
+        "function:nodes/strategy_supervisor_node.py:strategy_supervisor_node",
+        "function:nodes/followup_generation_node.py:followup_generation_node",
+        "concept:experience_chain"
+      ]
+    },
+    {
+      "title": "????",
+      "description": "benchmark/ ???????????????????run_benchmark.py ???????????????????????baseline/ ??????? Prompt ?????",
+      "nodeIds": [
+        "file:benchmark/run_benchmark.py",
+        "module:benchmark",
+        "module:benchmark/baseline"
+      ]
+    },
+    {
+      "title": "?????",
+      "description": "config.py ? .env ? Streamlit Cloud Secrets ???????????? DashScope API?requirements.txt ?????.streamlit/config.toml ?? Streamlit ???",
+      "nodeIds": [
+        "file:config.py",
+        "config:requirements.txt",
+        "config:.streamlit/config.toml"
+      ]
+    }
+  ]
+}

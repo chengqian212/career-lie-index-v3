@@ -33,7 +33,6 @@ from utils.supabase_outputs import safe_sync_output_file
 # ============== 页面配置 ==============
 st.set_page_config(
     page_title="织心守护·多 Agent 相亲对话小助手 v3.0",
-    page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -476,14 +475,14 @@ def render_message(msg: dict, is_streaming: bool = False):
     if role == "user":
         st.markdown(f"""
         <div class="chat-message">
-            <div class="role-label">👤 用户</div>
+            <div class="role-label">用户</div>
             <div class="user-message">{content}</div>
         </div>
         """, unsafe_allow_html=True)
     else:
         st.markdown(f"""
         <div class="chat-message">
-            <div class="role-label">🤖 AI</div>
+            <div class="role-label">AI</div>
             <div class="ai-message">{content}{cursor_html}</div>
         </div>
         """, unsafe_allow_html=True)
@@ -1040,7 +1039,7 @@ def main():
 
     # ============== 侧边栏 ==============
     with st.sidebar:
-        st.markdown('<div class="sidebar-title">📊 系统状态</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sidebar-title">系统状态</div>', unsafe_allow_html=True)
 
         # 当前轮次
         st.markdown(f"""
@@ -1064,7 +1063,7 @@ def main():
         st.markdown(f'<div class="risk-indicator {risk_class}">{risk_level}</div>', unsafe_allow_html=True)
 
         # 维度分数
-        st.markdown('<div class="sidebar-title">📈 维度分数</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sidebar-title">维度分数</div>', unsafe_allow_html=True)
         dimension_scores = st.session_state.dimension_scores
         if dimension_scores:
             score_names = {
@@ -1084,7 +1083,7 @@ def main():
             st.info("暂无维度分数数据")
 
         # 已调用专家
-        st.markdown('<div class="sidebar-title">🤖 已调用专家</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sidebar-title">已调用专家</div>', unsafe_allow_html=True)
         called = st.session_state.called_specialists
         if called:
             for spec in called:
@@ -1092,7 +1091,7 @@ def main():
         else:
             st.info("本轮尚未调用专家")
         # 思考耗时
-        st.markdown('<div class="sidebar-title">⏱️ 思考耗时</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sidebar-title">思考耗时</div>', unsafe_allow_html=True)
 
         last_time = st.session_state.last_thinking_time
         if last_time > 0:
@@ -1421,7 +1420,7 @@ def _stream_ai_message(message: str, chunk_size: int = 2, delay: float = 0.03):
         # 更新显示，添加光标效果
         placeholder.markdown(f"""
         <div class="chat-message">
-            <div class="role-label">🤖 AI</div>
+            <div class="role-label">AI</div>
             <div class="ai-message">{displayed_text}<span class="streaming-cursor"></span></div>
         </div>
         """, unsafe_allow_html=True)
@@ -1432,7 +1431,7 @@ def _stream_ai_message(message: str, chunk_size: int = 2, delay: float = 0.03):
     st.session_state.messages[msg_index]["content"] = message
     placeholder.markdown(f"""
     <div class="chat-message">
-        <div class="role-label">🤖 AI</div>
+        <div class="role-label">AI</div>
         <div class="ai-message">{message}</div>
     </div>
     """, unsafe_allow_html=True)
@@ -1520,14 +1519,14 @@ def _generate_final_report(monitor_placeholder=None):
         st.session_state.saved_filepath = saved_path
         report_synced, report_sync_msg = safe_sync_output_file(saved_path)
         if report_synced:
-            st.success("☁️ 报告已同步到 Supabase")
+            st.success("报告已同步到 Supabase")
         else:
-            st.warning(f"☁️ 报告未同步到 Supabase：{report_sync_msg}")
-        st.success(f"💾 完整测试记录已保存至：{saved_path}")
+            st.warning(f"报告未同步到 Supabase：{report_sync_msg}")
+        st.success(f"完整测试记录已保存至：{saved_path}")
 
         log_path = logger.finalize_session(st.session_state.state)
         st.session_state.saved_log_filepath = log_path
-        st.success(f"📝 详细日志已保存至：{log_path}")
+        st.success(f"详细日志已保存至：{log_path}")
 
     except Exception as e:
         logger.end_round()
