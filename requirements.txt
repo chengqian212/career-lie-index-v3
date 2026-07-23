@@ -1,0 +1,11 @@
+﻿# Core dependencies (required)
+streamlit==1.56.0
+langgraph==1.2.0
+langchain-openai==1.2.1
+langchain-core==1.4.0
+python-dotenv==1.2.2
+pydantic==2.12.4
+openai==2.36.0
+
+# Optional: Supabase cloud output archiving
+supabase>=2.10.0,<3.0.0

@@ -1,0 +1,30 @@
+﻿# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+distilbert/
+
+# Environment & Secrets
+.env
+*.env
+!.env.example
+
+# Outputs (generated session files)
+outputs/reports/*.json
+outputs/logs/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# Knowledge Graph (auto-generated)
+.understand-anything/
+
+# Supabase raw data (large file)
+benchmark/supabase_raw_export.json
+
+# Streamlit secrets
+.streamlit/secrets.toml
