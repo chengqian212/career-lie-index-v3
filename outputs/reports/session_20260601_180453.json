@@ -1,0 +1,646 @@
+{
+  "round_id": 5,
+  "max_rounds": 8,
+  "round_records": [
+    {
+      "round": 1,
+      "user_input": "大学生，大三，计算机专业",
+      "ai_followup": "哦计算机专业呀，那平时课业压力大不大？我有个朋友也是学计算机的，他说大三开始就要准备实习或者做项目了，你现在是更偏向考研、直接找工作，还是想先做点项目积累经验呀？",
+      "elapsed": 7.493321418762207,
+      "node_times": {
+        "quick_preanalysis_node": 1.837,
+        "lightweight_routing_supervisor_node": 1.34,
+        "semantic_agent_node": 1.045,
+        "logical_agent_node": 1.36,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.661,
+        "followup_generation_node": 1.282
+      },
+      "time": "2026-06-01 17:59:27",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "quick_fact_summary": "用户是一名大三计算机专业的学生，目前没有明确的工作方向。",
+      "quick_signal_summary": "未检测到异常信号。用户回答符合其学生身份，属于正常探索性表达。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "called_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "routing_decision": {
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ],
+        "routing_reason": "用户仅提供基础身份信息，无异常，需语义和逻辑专家核实身份与后续内容一致性。",
+        "priority_issue": "用户身份为计算机专业大三学生，需确认其具体学习方向或实习经历。",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_force_llm_select"
+      },
+      "priority_issue": "用户为计算机专业大三学生，需了解其具体学习方向或实习经历，以评估后续回答的一致性。",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 1,
+          "slot": "occupation",
+          "content": "学生",
+          "evidence": "大学生",
+          "source": "quick_preanalysis"
+        },
+        {
+          "round_id": 1,
+          "slot": "time_stage",
+          "content": "大三",
+          "evidence": "大三",
+          "source": "quick_preanalysis"
+        },
+        {
+          "round_id": 1,
+          "slot": "work_content",
+          "content": "计算机专业",
+          "evidence": "计算机专业",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户是一名大三计算机专业的学生，目前没有明确的工作方向。；未检测到异常信号。用户回答符合其学生身份，属于正常探索性表达。",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 17:59:22"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：用户仅提供基础身份信息，无异常，需语义和逻辑专家核实身份与后续内容一致性。；关注点：用户身份为计算机专业大三学生，需确认其具体学习方向或实习经历。",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 17:59:23"
+        },
+        {
+          "node": "semantic_agent",
+          "title": "语义分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 17:59:24"
+        },
+        {
+          "node": "logical_agent",
+          "title": "逻辑分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 17:59:24"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 17:59:24"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前信息仅为基础身份，无异常但证据不足，需进一步收集专业方向或实践细节以建立基线。），关注：用户为计算机专业大三学生，需了解其具体学习方向或实习经历，以评估后续回答的一致性。，策略：daily_routine",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 17:59:26"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：哦计算机专业呀，那平时课业压力大不大？我有个朋友也是学计算机的，他说大三开始就要准备实习或者做项目了，你现在是更偏向考研、直接找工作，还是想先做点项目积累经验呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 17:59:27"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "user_input": "读研究生吧，现在大学不读个研究生出来工资都很低的",
+      "ai_followup": "哦对，读研确实是个不错的选择，现在好多岗位都看学历了。那你现在大三的话，是不是已经开始准备考研了呀？还是说想先做点项目或者比赛，给简历加点东西再考？",
+      "elapsed": 5.188446998596191,
+      "node_times": {
+        "quick_preanalysis_node": 1.987,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.695,
+        "followup_generation_node": 1.483
+      },
+      "time": "2026-06-01 17:59:58",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "quick_fact_summary": "用户明确表示计划读研究生，并补充了动机（认为不读研究生工资低）。",
+      "quick_signal_summary": "无异常信号。回答直接回应了上一轮问题，符合大三学生常见规划，无回避或冲突。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "用户自称计算机专业大三学生，但尚未验证其专业背景真实性，可追问具体课程或项目经历",
+      "followup_strategy": "knowledge_probe",
+      "current_facts": [
+        {
+          "round_id": 2,
+          "slot": "experience",
+          "content": "计划读研究生",
+          "evidence": "读研究生吧，现在大学不读个研究生出来工资都很低的",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户明确表示计划读研究生，并补充了动机（认为不读研究生工资低）。；无异常信号。回答直接回应了上一轮问题，符合大三学生常见规划，无回避或冲突。",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 17:59:55"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 17:59:55"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 17:59:55"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前信息仅为基础身份声明，缺乏专业细节验证，且对话轮次充裕，可进一步探查以确认真实性。），关注：用户自称计算机专业大三学生，但尚未验证其专业背景真实性，可追问具体课程或项目经历，策略：knowledge_probe",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 17:59:57"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：哦对，读研确实是个不错的选择，现在好多岗位都看学历了。那你现在大三的话，是不是已经开始准备考研了呀？还是说想先做点项目或者比赛，给简历加点东西再考？",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 17:59:58"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "user_input": "差不多吧，我准备保研，保研是肯定需要项目的，现在竞争压力很大，不像前几年拼绩点就能读研究生",
+      "ai_followup": "哦对，保研确实项目经历挺重要的，我听说现在很多学校面试的时候也会问项目细节。那你现在有没有在做什么项目呀，还是说还在想方向？",
+      "elapsed": 4.857560157775879,
+      "node_times": {
+        "quick_preanalysis_node": 2.206,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.257,
+        "followup_generation_node": 1.379
+      },
+      "time": "2026-06-01 18:02:24",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "quick_fact_summary": "用户明确表示计划保研，并指出保研需要项目经历，当前竞争压力大。",
+      "quick_signal_summary": "无明显异常信号。用户回答自然承接上一轮追问，补充了保研计划，属于正常探索性表达。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "温和了解：No active specialist evidence; LieIndex=0.",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 3,
+          "slot": "experience",
+          "content": "计划保研",
+          "evidence": "我准备保研",
+          "source": "quick_preanalysis"
+        },
+        {
+          "round_id": 3,
+          "slot": "work_content",
+          "content": "需要做项目来增加保研竞争力",
+          "evidence": "保研是肯定需要项目的，现在竞争压力很大",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户明确表示计划保研，并指出保研需要项目经历，当前竞争压力大。；无明显异常信号。用户回答自然承接上一轮追问，补充了保研计划，属于正常探索性表达。",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:02:22"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:02:22"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:02:22"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（对话已覆盖用户身份、学业规划及保研意向，信息充分且无异常，LieIndex=0，建议生成报告。），关注：待澄清点，策略：daily_routine",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:02:23"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：哦对，保研确实项目经历挺重要的，我听说现在很多学校面试的时候也会问项目细节。那你现在有没有在做什么项目呀，还是说还在想方向？",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:02:24"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "user_input": "现在在做了，做一个agent的项目",
+      "ai_followup": "哦 agent 项目呀，这个方向现在确实挺火的，我最近也刷到过一些相关的教程，感觉从零开始搭还挺有挑战的。你教教我，这种项目一般怎么从想法到能跑起来呀，第一步是先想功能还是先搭框架？",
+      "elapsed": 5.020039319992065,
+      "node_times": {
+        "quick_preanalysis_node": 2.013,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.427,
+        "followup_generation_node": 1.566
+      },
+      "time": "2026-06-01 18:03:07",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "quick_fact_summary": "用户确认正在做一个agent项目，属于正常的项目探索阶段。",
+      "quick_signal_summary": "未检测到异常信号，回答与历史事实一致，且符合学生身份和保研准备阶段。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "温和了解：No active specialist evidence; LieIndex=0.",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 4,
+          "slot": "work_content",
+          "content": "正在做一个agent项目",
+          "evidence": "现在在做了，做一个agent的项目",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认正在做一个agent项目，属于正常的项目探索阶段。；未检测到异常信号，回答与历史事实一致，且符合学生身份和保研准备阶段。",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:03:04"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:03:04"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:03:04"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（对话已覆盖学业方向、考研/保研规划及项目现状，信息饱和且无异常，LieIndex=0，无需继续追问。），关注：待澄清点，策略：daily_routine",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:03:05"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：哦 agent 项目呀，这个方向现在确实挺火的，我最近也刷到过一些相关的教程，感觉从零开始搭还挺有挑战的。你教教我，这种项目一般怎么从想法到能跑起来呀，第一步是先想功能还是先搭框架？",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:03:07"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "user_input": "那肯定是先确定需求了",
+      "ai_followup": "",
+      "elapsed": 7.350544214248657,
+      "node_times": {
+        "quick_preanalysis_node": 2.046,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.516,
+        "report_generation_node": 3.778
+      },
+      "time": "2026-06-01 18:04:44",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0.",
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "quick_fact_summary": "用户确认正在做agent项目，并说明项目第一步是先确定需求。",
+      "quick_signal_summary": "本轮回答正常，无异常信号。用户作为大三学生，在项目初期阶段回答项目启动步骤，属于正常探索性表达。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "",
+      "followup_strategy": "",
+      "current_facts": [
+        {
+          "round_id": 5,
+          "slot": "work_content",
+          "content": "正在做一个agent项目，项目第一步是先确定需求",
+          "evidence": "那肯定是先确定需求了",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认正在做agent项目，并说明项目第一步是先确定需求。；本轮回答正常，无异常信号。用户作为大三学生，在项目初期阶段回答项目启动步骤，属于正常探索性表达。",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:04:39"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:04:39"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:04:39"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "信息已足够，生成最终报告（已收集用户基本信息（大三计算机、保研、做agent项目），无异常或矛盾，LieIndex=0，继续追问价值低，建议生成报告。）",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:04:41"
+        },
+        {
+          "node": "report_generation",
+          "title": "报告生成",
+          "content": "最终测评报告已生成",
+          "elapsed_seconds": null,
+          "time": "2026-06-01 18:04:44"
+        }
+      ]
+    }
+  ],
+  "dialogue_history": [
+    {
+      "role": "assistant",
+      "content": "你平时是做什么方向的工作呀？"
+    },
+    {
+      "role": "user",
+      "content": "大学生，大三，计算机专业"
+    },
+    {
+      "role": "assistant",
+      "content": "哦计算机专业呀，那平时课业压力大不大？我有个朋友也是学计算机的，他说大三开始就要准备实习或者做项目了，你现在是更偏向考研、直接找工作，还是想先做点项目积累经验呀？"
+    },
+    {
+      "role": "user",
+      "content": "读研究生吧，现在大学不读个研究生出来工资都很低的"
+    },
+    {
+      "role": "assistant",
+      "content": "哦对，读研确实是个不错的选择，现在好多岗位都看学历了。那你现在大三的话，是不是已经开始准备考研了呀？还是说想先做点项目或者比赛，给简历加点东西再考？"
+    },
+    {
+      "role": "user",
+      "content": "差不多吧，我准备保研，保研是肯定需要项目的，现在竞争压力很大，不像前几年拼绩点就能读研究生"
+    },
+    {
+      "role": "assistant",
+      "content": "哦对，保研确实项目经历挺重要的，我听说现在很多学校面试的时候也会问项目细节。那你现在有没有在做什么项目呀，还是说还在想方向？"
+    },
+    {
+      "role": "user",
+      "content": "现在在做了，做一个agent的项目"
+    },
+    {
+      "role": "assistant",
+      "content": "哦 agent 项目呀，这个方向现在确实挺火的，我最近也刷到过一些相关的教程，感觉从零开始搭还挺有挑战的。你教教我，这种项目一般怎么从想法到能跑起来呀，第一步是先想功能还是先搭框架？"
+    },
+    {
+      "role": "user",
+      "content": "那肯定是先确定需求了"
+    }
+  ],
+  "followup_history": [
+    {
+      "round_id": 1,
+      "question": "哦计算机专业呀，那平时课业压力大不大？我有个朋友也是学计算机的，他说大三开始就要准备实习或者做项目了，你现在是更偏向考研、直接找工作，还是想先做点项目积累经验呀？",
+      "priority_issue": "用户为计算机专业大三学生，需了解其具体学习方向或实习经历，以评估后续回答的一致性。",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 2,
+      "question": "哦对，读研确实是个不错的选择，现在好多岗位都看学历了。那你现在大三的话，是不是已经开始准备考研了呀？还是说想先做点项目或者比赛，给简历加点东西再考？",
+      "priority_issue": "用户自称计算机专业大三学生，但尚未验证其专业背景真实性，可追问具体课程或项目经历",
+      "followup_strategy": "knowledge_probe"
+    },
+    {
+      "round_id": 3,
+      "question": "哦对，保研确实项目经历挺重要的，我听说现在很多学校面试的时候也会问项目细节。那你现在有没有在做什么项目呀，还是说还在想方向？",
+      "priority_issue": "温和了解：No active specialist evidence; LieIndex=0.",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 4,
+      "question": "哦 agent 项目呀，这个方向现在确实挺火的，我最近也刷到过一些相关的教程，感觉从零开始搭还挺有挑战的。你教教我，这种项目一般怎么从想法到能跑起来呀，第一步是先想功能还是先搭框架？",
+      "priority_issue": "温和了解：No active specialist evidence; LieIndex=0.",
+      "followup_strategy": "light_clarification"
+    }
+  ],
+  "facts_table": [
+    {
+      "round_id": 1,
+      "slot": "occupation",
+      "content": "学生",
+      "evidence": "大学生",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 1,
+      "slot": "time_stage",
+      "content": "大三",
+      "evidence": "大三",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 1,
+      "slot": "work_content",
+      "content": "计算机专业",
+      "evidence": "计算机专业",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 2,
+      "slot": "experience",
+      "content": "计划读研究生",
+      "evidence": "读研究生吧，现在大学不读个研究生出来工资都很低的",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 3,
+      "slot": "experience",
+      "content": "计划保研",
+      "evidence": "我准备保研",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 3,
+      "slot": "work_content",
+      "content": "需要做项目来增加保研竞争力",
+      "evidence": "保研是肯定需要项目的，现在竞争压力很大",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 4,
+      "slot": "work_content",
+      "content": "正在做一个agent项目",
+      "evidence": "现在在做了，做一个agent的项目",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 5,
+      "slot": "work_content",
+      "content": "正在做一个agent项目，项目第一步是先确定需求",
+      "evidence": "那肯定是先确定需求了",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 8,
+      "slot": "work_content",
+      "content": "agent项目第一步是先确定需求",
+      "evidence": "那肯定是先确定需求了",
+      "source": "quick_preanalysis"
+    }
+  ],
+  "anomalies_table": [],
+  "indicator_history": [],
+  "lie_index": 0.0,
+  "dimension_scores": {},
+  "risk_explanation": [
+    "No active specialist evidence; LieIndex=0.",
+    "No active specialist evidence; LieIndex=0."
+  ],
+  "called_specialists": [
+    "logical",
+    "semantic"
+  ],
+  "routing_decision": {
+    "selected_specialists": [
+      "semantic",
+      "logical"
+    ],
+    "routing_reason": "当前回答简短且与历史事实重复，需确认语义一致性和逻辑连贯性。",
+    "priority_issue": "用户对agent项目的描述过于笼统，需确认其具体工作内容和进展。",
+    "followup_strategy": "work_style",
+    "router_mode": "rule_force_llm_select"
+  },
+  "final_report": {
+    "lie_index": 0.0,
+    "dimension_scores": {},
+    "report_text": "好的，这是为您生成的测评报告。\n\n***\n\n### **测评结果**\n\n**1. 用户个人信息总结**\n\n用户是一名计算机专业的大三学生，目前计划通过保研的方式攻读研究生。为了增加保研竞争力，用户正在着手进行一个Agent相关的项目，该项目目前处于需求确定阶段。用户的职业规划方向是继续深造，尚未明确提及具体的研究生方向或未来的职业领域。\n\n**2. 总体结果**\n\n综合分数：0.0/100。当前职业身份叙述整体稳定，未发现明显矛盾或异常线索。\n\n**3. 关键依据**\n\n当前未发现明显不一致线索。所有陈述（学生身份、年级、专业、保研计划、项目阶段）在逻辑上连贯，且与常见的大学生发展路径相符。\n\n**4. 待澄清点**\n\n暂无明显待澄清点。"
+  },
+  "thinking_time_history": [
+    {
+      "round": 1,
+      "elapsed": 7.493321418762207,
+      "time": "17:59:27"
+    },
+    {
+      "round": 2,
+      "elapsed": 5.188446998596191,
+      "time": "17:59:58"
+    },
+    {
+      "round": 3,
+      "elapsed": 4.857560157775879,
+      "time": "18:02:24"
+    },
+    {
+      "round": 4,
+      "elapsed": 5.020039319992065,
+      "time": "18:03:07"
+    },
+    {
+      "round": 5,
+      "elapsed": 7.350544214248657,
+      "time": "18:04:44"
+    }
+  ],
+  "saved_at": "2026-06-01 18:04:53"
+}

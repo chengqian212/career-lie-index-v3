@@ -1,0 +1,1938 @@
+{
+  "round_id": 8,
+  "max_rounds": 8,
+  "round_records": [
+    {
+      "round": 1,
+      "user_input": "我是一个公务员",
+      "ai_followup": "公务员呀，那你是属于哪个系统或者负责哪块业务呀？",
+      "elapsed": 6.327659368515015,
+      "node_times": {
+        "quick_preanalysis_node": 2.854,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.218,
+        "followup_generation_node": 2.231
+      },
+      "time": "2026-06-02 10:34:01",
+      "lie_index": 2.4,
+      "dimension_scores": {
+        "表层检测": 2.4
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4"
+      ],
+      "quick_fact_summary": "用户当前职业为公务员，但未提供具体系统、岗位或职责方向。",
+      "quick_signal_summary": "职业身份过于宽泛，缺少具体信息，属于低风险模糊信号。",
+      "surface_risk_score": 10.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": false,
+      "generic_answer_reason": "",
+      "suggested_probe_angle": "term_clarification",
+      "generic_answer_streak": 0,
+      "generic_answer_count": 0,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向",
+        "priority_issue": "职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+        "followup_strategy": "light_clarification",
+        "router_mode": "role_disambiguation_skip"
+      },
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 1,
+          "slot": "occupation",
+          "content": "公务员",
+          "evidence": "我是一个公务员",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "vague",
+          "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向",
+          "evidence": [
+            "我是一个公务员"
+          ],
+          "score": 0.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            "occupation: 公务员"
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户当前职业为公务员，但未提供具体系统、岗位或职责方向。；职业身份过于宽泛，缺少具体信息，属于低风险模糊信号。；经验密度：LOW",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:33:58"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向；关注点：职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:33:58"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 2.4，表层检测:vague severity=LOW confidence=HIGH V=2.4",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:33:58"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前仅知用户是公务员，职业粒度过粗，需先澄清具体系统、岗位性质或职责方向，再深入追问工作细节。），关注：职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向，策略：light_clarification",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:33:59"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：公务员呀，那你是属于哪个系统或者负责哪块业务呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:34:01"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "user_input": "我是农业局的",
+      "ai_followup": "你平时主要是在局里办公，还是经常要下到乡镇或者田间地头去跑呀？",
+      "elapsed": 7.484958171844482,
+      "node_times": {
+        "quick_preanalysis_node": 3.165,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.478,
+        "followup_generation_node": 2.834
+      },
+      "time": "2026-06-02 10:34:45",
+      "lie_index": 16.2,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "经验密度": 12.0
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "经验密度:persistent_vague_or_low_detail_answers severity=LOW confidence=HIGH V=12.0"
+      ],
+      "quick_fact_summary": "用户确认自己是公务员，并补充了所属系统为农业局。",
+      "quick_signal_summary": "职业身份从宽泛的'公务员'细化到'农业局'，但岗位性质和具体职责方向仍不明确，存在低度模糊信号。",
+      "surface_risk_score": 10.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": false,
+      "generic_answer_reason": "",
+      "suggested_probe_angle": "term_clarification",
+      "generic_answer_streak": 0,
+      "generic_answer_count": 0,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向",
+        "priority_issue": "职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+        "followup_strategy": "light_clarification",
+        "router_mode": "role_disambiguation_skip"
+      },
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 2,
+          "slot": "occupation",
+          "content": "公务员",
+          "evidence": "我是一个公务员",
+          "source": "quick_preanalysis"
+        },
+        {
+          "round_id": 2,
+          "slot": "work_content",
+          "content": "农业局",
+          "evidence": "我是农业局的",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "vague",
+          "description": "职业身份粒度过粗，虽然明确了所属系统（农业局），但缺少具体岗位性质或职责方向。",
+          "evidence": [
+            "我是农业局的"
+          ],
+          "score": 0.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            1,
+            2
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认自己是公务员，并补充了所属系统为农业局。；职业身份从宽泛的'公务员'细化到'农业局'，但岗位性质和具体职责方向仍不明确，存在低度模糊信号。；经验密度：LOW",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:34:41"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向；关注点：职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:34:41"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 16.2，表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；经验密度:persistent_vague_or_low_detail_answers severity=LOW confidence=HIGH V=12.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:34:41"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前仅知道用户属于农业局，但岗位性质或具体职责方向仍不明确，经验密度低，需先澄清再深入。），关注：职业身份粒度过粗，需要进一步明确岗位性质或职责方向，策略：light_clarification",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:34:42"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：你平时主要是在局里办公，还是经常要下到乡镇或者田间地头去跑呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:34:45"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "user_input": "都有",
+      "ai_followup": "那你平时在农业局主要是偏向行政类的工作，还是技术指导或者项目推进那一块呀？",
+      "elapsed": 7.3746936321258545,
+      "node_times": {
+        "quick_preanalysis_node": 3.714,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.499,
+        "followup_generation_node": 2.138
+      },
+      "time": "2026-06-02 10:35:07",
+      "lie_index": 29.9,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "经验密度": 18.0
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "经验密度:generic_answer_low_experience_density severity=LOW confidence=LOW V=8.0",
+        "经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=18.0"
+      ],
+      "quick_fact_summary": "用户确认在农业局工作，工作地点包括局内和乡镇/田间地头。",
+      "quick_signal_summary": "用户回答简短，未提供具体岗位职责，职业身份仍较模糊。",
+      "surface_risk_score": 10.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答“都有”虽然符合农业局工作的常见情况，但过于概括，缺乏具体的工作场景、任务或流程描述，没有体现出真实的工作经验细节。",
+      "suggested_probe_angle": "boundary_judgment",
+      "generic_answer_streak": 1,
+      "generic_answer_count": 1,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向",
+        "priority_issue": "职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+        "followup_strategy": "light_clarification",
+        "router_mode": "role_disambiguation_skip"
+      },
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 3,
+          "slot": "work_content",
+          "content": "农业局工作，既有局内办公也有下乡镇或田间地头的外勤",
+          "evidence": "都有",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "vague",
+          "description": "职业身份粒度过粗，虽然明确了所属系统（农业局）和工作地点（局内和乡镇），但缺少具体岗位性质或职责方向。",
+          "evidence": [
+            "都有"
+          ],
+          "score": 0.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认在农业局工作，工作地点包括局内和乡镇/田间地头。；用户回答简短，未提供具体岗位职责，职业身份仍较模糊。；经验密度：LOW；泛泛回答：回答“都有”虽然符合农业局工作的常见情况，但过于概括，缺乏具体的工作场景、任务或流程描述，没有体现出真实的工作经验细节。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:35:04"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向；关注点：职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:35:04"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 29.9，表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；经验密度:generic_answer_low_experience_density severity=LOW confidence=LOW V=8.0；经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=18.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:35:04"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前仅澄清了系统和地点，岗位性质仍模糊，需追问具体职责方向以提升经验密度。），关注：职业身份粒度过粗，虽然明确了所属系统（农业局）和工作地点（局内和乡镇），但缺少具体岗位性质或职责方向。，策略：boundary_judgment",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:35:05"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：那你平时在农业局主要是偏向行政类的工作，还是技术指导或者项目推进那一块呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:35:07"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "user_input": "都会负责啊",
+      "ai_followup": "农业局确实事情挺杂的，那你现在手头最常打交道的是哪一类事情呀？",
+      "elapsed": 7.903074026107788,
+      "node_times": {
+        "quick_preanalysis_node": 4.403,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.348,
+        "followup_generation_node": 2.145
+      },
+      "time": "2026-06-02 10:35:27",
+      "lie_index": 37.5,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "经验密度": 18.0
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "经验密度:generic_answer_low_experience_density severity=LOW confidence=HIGH V=16.0",
+        "经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=18.0"
+      ],
+      "quick_fact_summary": "用户确认在农业局同时负责行政、技术指导和项目推进等多方面工作",
+      "quick_signal_summary": "职业身份粒度过粗，虽然补充了工作内容范围，但依然缺少具体岗位性质或主要职责方向",
+      "surface_risk_score": 20.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答停留在概括性职责描述（'都会负责'），没有提供任何具体的工作场景、操作流程、判断节点或实际案例，缺少真实经历痕迹",
+      "suggested_probe_angle": "process_sequence",
+      "generic_answer_streak": 2,
+      "generic_answer_count": 2,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向",
+        "priority_issue": "职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+        "followup_strategy": "light_clarification",
+        "router_mode": "role_disambiguation_skip"
+      },
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 4,
+          "slot": "work_content",
+          "content": "在农业局同时负责行政类、技术指导和项目推进等多方面工作",
+          "evidence": "都会负责啊",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "vague",
+          "description": "职业身份粒度过粗，虽然明确了所属系统（农业局）和工作内容范围（行政、技术、项目），但缺少具体岗位性质或主要职责方向",
+          "evidence": [
+            "都会负责啊"
+          ],
+          "score": 20.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认在农业局同时负责行政、技术指导和项目推进等多方面工作；职业身份粒度过粗，虽然补充了工作内容范围，但依然缺少具体岗位性质或主要职责方向；经验密度：LOW；泛泛回答：回答停留在概括性职责描述（'都会负责'），没有提供任何具体的工作场景、操作流程、判断节点或实际案例，缺少真实经历痕迹",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:35:23"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向；关注点：职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:35:23"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 37.5，表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；经验密度:generic_answer_low_experience_density severity=LOW confidence=HIGH V=16.0；经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=18.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:35:23"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（用户连续给出笼统回答，经验密度低，需先澄清具体岗位性质或主要职责方向，再深入追问工作流程。），关注：职业身份粒度过粗，虽然明确了所属系统（农业局）和工作内容范围（行政、技术、项目），但缺少具体岗位性质或主要职责方向，策略：process_sequence",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:35:25"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：农业局确实事情挺杂的，那你现在手头最常打交道的是哪一类事情呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:35:27"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "user_input": "土地规划吧",
+      "ai_followup": "土地规划这块挺有意思的，你平时主要做的是偏政策执行还是具体的技术方案呀？",
+      "elapsed": 12.839470148086548,
+      "node_times": {
+        "quick_preanalysis_node": 3.677,
+        "lightweight_routing_supervisor_node": 1.431,
+        "semantic_agent_node": 1.764,
+        "psycho_linguistic_agent_node": 3.978,
+        "logical_agent_node": 4.074,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.492,
+        "followup_generation_node": 2.153
+      },
+      "time": "2026-06-02 10:36:16",
+      "lie_index": 45.6,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "心理语言": 1.5,
+        "经验密度": 22.0
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "心理语言:vague_expression severity=LOW confidence=MEDIUM V=1.5",
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=20.0",
+        "经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=22.0"
+      ],
+      "quick_fact_summary": "用户本轮确认当前最常打交道的工作是土地规划。",
+      "quick_signal_summary": "用户给出了一个具体的工作方向，但内容仍较笼统，缺少具体职责和流程细节，存在低度模糊信号。",
+      "surface_risk_score": 15.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答“土地规划吧”虽然指向了一个具体领域，但仅停留在概括性职责名称层面，没有提供任何具体的工作场景、操作流程、判断节点或实际案例，缺乏真实经历痕迹。",
+      "suggested_probe_angle": "real_constraint",
+      "generic_answer_streak": 3,
+      "generic_answer_count": 3,
+      "selected_specialists": [
+        "semantic",
+        "logical",
+        "psycho_linguistic"
+      ],
+      "called_specialists": [
+        "semantic",
+        "psycho_linguistic",
+        "logical"
+      ],
+      "routing_decision": {
+        "selected_specialists": [
+          "semantic",
+          "logical",
+          "psycho_linguistic"
+        ],
+        "routing_reason": "当前异常仅为工作内容粒度过粗，无事实冲突或职业常识错误，无需调用专家。",
+        "priority_issue": "用户连续3轮泛泛回答，工作内容始终停留在'土地规划'大类，需追问具体职责方向。",
+        "followup_strategy": "light_clarification",
+        "router_mode": "rule_force_llm_select"
+      },
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 5,
+          "slot": "work_content",
+          "content": "当前手头最常打交道的是土地规划类工作",
+          "evidence": "土地规划吧",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "vague",
+          "description": "工作内容粒度过粗，虽然明确了当前最常打交道的是土地规划，但缺少具体职责、工作对象（如耕地、建设用地、规划编制、审批等）或工作流程。",
+          "evidence": [
+            "土地规划吧"
+          ],
+          "score": 0.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            6
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户本轮确认当前最常打交道的工作是土地规划。；用户给出了一个具体的工作方向，但内容仍较笼统，缺少具体职责和流程细节，存在低度模糊信号。；经验密度：LOW；泛泛回答：回答“土地规划吧”虽然指向了一个具体领域，但仅停留在概括性职责名称层面，没有提供任何具体的工作场景、操作流程、判断节点或实际案例，缺乏真实经历痕迹。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:06"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析, 心理语言；原因：当前异常仅为工作内容粒度过粗，无事实冲突或职业常识错误，无需调用专家。；关注点：用户连续3轮泛泛回答，工作内容始终停留在'土地规划'大类，需追问具体职责方向。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:08"
+        },
+        {
+          "node": "semantic_agent",
+          "title": "语义分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:10"
+        },
+        {
+          "node": "psycho_linguistic_agent",
+          "title": "心理语言学专家",
+          "content": "该专家评分：1.5",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:12"
+        },
+        {
+          "node": "logical_agent",
+          "title": "逻辑分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:12"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 45.6，表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；心理语言:vague_expression severity=LOW confidence=MEDIUM V=1.5；经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=20.0；经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=22.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:12"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（经验密度低且连续3轮泛泛回答，当前仅5/8轮，有充足预算追问具体职责方向），关注：用户工作内容停留在'土地规划'大类，需追问具体职责方向或工作对象，策略：real_constraint",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:13"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：土地规划这块挺有意思的，你平时主要做的是偏政策执行还是具体的技术方案呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:16"
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "user_input": "政策执行",
+      "ai_followup": "政策执行听起来挺宏观的，我有点好奇，如果上面给的政策到了下面发现不太适用或者执行起来阻力很大，你们一般会怎么处理呀，是直接硬推还是会有一些调整的办法？",
+      "elapsed": 15.986795425415039,
+      "node_times": {
+        "quick_preanalysis_node": 3.972,
+        "lightweight_routing_supervisor_node": 1.219,
+        "logical_agent_node": 4.781,
+        "semantic_agent_node": 5.885,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 2.052,
+        "followup_generation_node": 2.839
+      },
+      "time": "2026-06-02 10:36:45",
+      "lie_index": 49.5,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "心理语言": 1.5,
+        "经验密度": 24.0
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "心理语言:vague_expression severity=LOW confidence=MEDIUM V=1.5",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=24.0",
+        "经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=22.0"
+      ],
+      "quick_fact_summary": "用户确认在农业局土地规划工作中偏向政策执行方向。",
+      "quick_signal_summary": "回答过于简短，缺乏具体职责和流程细节，经验密度低。",
+      "surface_risk_score": 20.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答仅停留在'政策执行'这一概括性职责描述上，没有提供任何具体的工作场景、操作流程、判断节点或实际案例，缺乏真实经历痕迹。",
+      "suggested_probe_angle": "counterexample",
+      "generic_answer_streak": 4,
+      "generic_answer_count": 4,
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "called_specialists": [
+        "logical",
+        "semantic"
+      ],
+      "routing_decision": {
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ],
+        "routing_reason": "当前异常仅为缺少细节，无事实冲突或职业常识错误，无需调用专家。",
+        "priority_issue": "用户连续4轮泛泛回答，需追问具体政策执行流程和实际工作对象。",
+        "followup_strategy": "process_sequence",
+        "router_mode": "rule_force_llm_select"
+      },
+      "priority_issue": "回答仅停留在'政策执行'这一概括性职责描述上，没有提供任何具体的工作场景、操作流程、判断节点或实际案例，缺乏真实经历痕迹。；换到反例和卡点角度，问遇到常规方法不管用时通常怎么处理",
+      "followup_strategy": "counterexample",
+      "current_facts": [
+        {
+          "round_id": 6,
+          "slot": "work_content",
+          "content": "在农业局土地规划工作中偏向政策执行",
+          "evidence": "政策执行",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "lack_of_detail",
+          "description": "用户虽然明确了政策执行方向，但未提供任何具体职责、工作对象（如耕地、建设用地、规划编制、审批等）或工作流程细节。",
+          "evidence": [
+            "政策执行"
+          ],
+          "score": 20.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            6
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认在农业局土地规划工作中偏向政策执行方向。；回答过于简短，缺乏具体职责和流程细节，经验密度低。；经验密度：LOW；泛泛回答：回答仅停留在'政策执行'这一概括性职责描述上，没有提供任何具体的工作场景、操作流程、判断节点或实际案例，缺乏真实经历痕迹。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:33"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：当前异常仅为缺少细节，无事实冲突或职业常识错误，无需调用专家。；关注点：用户连续4轮泛泛回答，需追问具体政策执行流程和实际工作对象。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:34"
+        },
+        {
+          "node": "logical_agent",
+          "title": "逻辑分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:39"
+        },
+        {
+          "node": "semantic_agent",
+          "title": "语义分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:40"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 49.5，表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；心理语言:vague_expression severity=LOW confidence=MEDIUM V=1.5；表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4；经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=24.0；经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=22.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:40"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（经验密度低，连续4轮泛泛回答，第6轮仍缺细节，需追问具体政策执行流程和实际工作对象以验证真实性。），关注：用户虽明确为政策执行方向，但未提供任何具体职责、工作对象或流程细节，需追问具体执行流程和实际工作对象。，策略：counterexample",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:42"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：政策执行听起来挺宏观的，我有点好奇，如果上面给的政策到了下面发现不太适用或者执行起来阻力很大，你们一般会怎么处理呀，是直接硬推还是会有一些调整的办法？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:36:45"
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "user_input": "调整呀，硬推是行不通的",
+      "ai_followup": "你刚才说调整嘛，我挺好奇的，你们一般遇到这种情况，具体会怎么个调法呀？",
+      "elapsed": 16.721381664276123,
+      "node_times": {
+        "quick_preanalysis_node": 6.309,
+        "lightweight_routing_supervisor_node": 1.582,
+        "semantic_agent_node": 4.174,
+        "logical_agent_node": 4.83,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.661,
+        "followup_generation_node": 2.326
+      },
+      "time": "2026-06-02 10:38:20",
+      "lie_index": 50.7,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "心理语言": 1.5,
+        "经验密度": 24.0
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "心理语言:vague_expression severity=LOW confidence=MEDIUM V=1.5",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=24.0",
+        "经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=22.0"
+      ],
+      "quick_fact_summary": "用户确认在政策执行中遇到不适用或阻力大的情况时，会选择调整而非硬推",
+      "quick_signal_summary": "回答过于简短，缺乏具体调整方法、案例或工作场景细节，属于持续的低细节度回答模式",
+      "surface_risk_score": 15.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答'调整呀，硬推是行不通的'属于政策执行领域的常识性认知，任何有基本行政常识的人都能说出，缺少真实经历痕迹——没有说明具体调整方式（如变通执行、暂缓执行、向上反馈、局部试点等）、没有举例说明遇到的阻力类型、没有描述决策过程或实际案例",
+      "suggested_probe_angle": "term_clarification",
+      "generic_answer_streak": 5,
+      "generic_answer_count": 5,
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "called_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "routing_decision": {
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ],
+        "routing_reason": "当前异常仅为回答简短、缺少细节，无事实冲突或职业常识错误，无需调用专家。",
+        "priority_issue": "用户连续5轮泛泛回答，当前回答仍过于简短，需温和追问具体调整方法或案例。",
+        "followup_strategy": "light_clarification",
+        "router_mode": "rule_force_llm_select"
+      },
+      "priority_issue": "回答'调整呀，硬推是行不通的'属于政策执行领域的常识性认知，任何有基本行政常识的人都能说出，缺少真实经历痕迹——没有说明具体调整方式（如变通执行、暂缓执行、向上反馈、局部试点等）、没有举例说明遇到的阻力类型、没有描述决策过程或实际案例；换到术语澄清角度，问对方自己说的关键词在实际场景里具体指什么",
+      "followup_strategy": "term_clarification",
+      "current_facts": [
+        {
+          "round_id": 7,
+          "slot": "work_content",
+          "content": "在政策执行中，如果政策不适用或阻力大，会选择调整而非硬推",
+          "evidence": "调整呀，硬推是行不通的",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "lack_of_detail",
+          "description": "用户回应了政策执行中遇到阻力的处理方式，但回答过于简短（'调整呀，硬推是行不通的'），未提供任何具体调整方法、案例、决策依据或实际工作场景细节",
+          "evidence": [
+            "调整呀，硬推是行不通的"
+          ],
+          "score": 20.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            7
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认在政策执行中遇到不适用或阻力大的情况时，会选择调整而非硬推；回答过于简短，缺乏具体调整方法、案例或工作场景细节，属于持续的低细节度回答模式；经验密度：LOW；泛泛回答：回答'调整呀，硬推是行不通的'属于政策执行领域的常识性认知，任何有基本行政常识的人都能说出，缺少真实经历痕迹——没有说明具体调整方式（如变通执行、暂缓执行、向上反馈、局部试点等）、没有举例说明遇到的阻力类型、没有描述决策过程或实际案例",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:38:10"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：当前异常仅为回答简短、缺少细节，无事实冲突或职业常识错误，无需调用专家。；关注点：用户连续5轮泛泛回答，当前回答仍过于简短，需温和追问具体调整方法或案例。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:38:11"
+        },
+        {
+          "node": "semantic_agent",
+          "title": "语义分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:38:15"
+        },
+        {
+          "node": "logical_agent",
+          "title": "逻辑分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:38:16"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 50.7，表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；心理语言:vague_expression severity=LOW confidence=MEDIUM V=1.5；表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4；表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4；经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=24.0；经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=22.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:38:16"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（经验密度低且连续5轮泛泛回答，当前回答仍极简短，需追问具体调整方法或案例以验证真实性；距最大轮次尚余1轮，可再追问一次。），关注：用户虽承认政策执行中会调整，但未提供任何具体调整方法、案例或决策依据，需追问具体调整方式或实际案例，策略：term_clarification",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:38:18"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：你刚才说调整嘛，我挺好奇的，你们一般遇到这种情况，具体会怎么个调法呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:38:20"
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "user_input": "出现了什么问题就调什么问题",
+      "ai_followup": "",
+      "elapsed": 14.571374893188477,
+      "node_times": {
+        "quick_preanalysis_node": 3.96,
+        "lightweight_routing_supervisor_node": 1.267,
+        "semantic_agent_node": 1.54,
+        "logical_agent_node": 3.4,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.367,
+        "report_generation_node": 4.563
+      },
+      "time": "2026-06-02 10:39:01",
+      "lie_index": 53.8,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "心理语言": 1.5,
+        "逻辑时间线": 2.4,
+        "经验密度": 24.0
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "心理语言:vague_expression severity=LOW confidence=MEDIUM V=1.5",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:causal_issue severity=LOW confidence=MEDIUM V=1.5",
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=24.0",
+        "经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=22.0",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "心理语言:vague_expression severity=LOW confidence=MEDIUM V=1.5",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:causal_issue severity=LOW confidence=MEDIUM V=1.5",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=24.0",
+        "经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=22.0"
+      ],
+      "quick_fact_summary": "本轮未抽取到新的事实。用户重申了政策执行中遇到问题会进行调整，但未提供任何具体细节。",
+      "quick_signal_summary": "用户连续两轮在具体调整方法上给出高度概括的回答，缺乏具体工作场景细节，经验密度低。",
+      "surface_risk_score": 15.0,
+      "has_new_fact": false,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答'出现了什么问题就调什么问题'符合政策执行中常见应对方式的常识，但缺少任何真实工作场景中的具体案例、操作流程或决策依据，换成没有亲身经历的人也容易说出类似的话。",
+      "suggested_probe_angle": "output_evidence",
+      "generic_answer_streak": 6,
+      "generic_answer_count": 6,
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "called_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "routing_decision": {
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ],
+        "routing_reason": "当前异常仅为缺乏细节，无事实冲突或职业常识错误，无需调用专家。",
+        "priority_issue": "用户连续6轮泛泛回答，缺乏具体工作细节，需追问具体产出或案例。",
+        "followup_strategy": "output_evidence",
+        "router_mode": "rule_force_llm_select"
+      },
+      "priority_issue": "",
+      "followup_strategy": "",
+      "current_facts": [],
+      "current_anomalies": [
+        {
+          "type": "lack_of_detail",
+          "description": "用户连续两轮在政策执行调整方法上给出高度概括的回答，本轮回答'出现了什么问题就调什么问题'仍然没有提供任何具体调整流程、案例或决策依据。",
+          "evidence": [
+            "出现了什么问题就调什么问题"
+          ],
+          "score": 0.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            8
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "本轮未抽取到新的事实。用户重申了政策执行中遇到问题会进行调整，但未提供任何具体细节。；用户连续两轮在具体调整方法上给出高度概括的回答，缺乏具体工作场景细节，经验密度低。；经验密度：LOW；泛泛回答：回答'出现了什么问题就调什么问题'符合政策执行中常见应对方式的常识，但缺少任何真实工作场景中的具体案例、操作流程或决策依据，换成没有亲身经历的人也容易说出类似的话。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:38:51"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：当前异常仅为缺乏细节，无事实冲突或职业常识错误，无需调用专家。；关注点：用户连续6轮泛泛回答，缺乏具体工作细节，需追问具体产出或案例。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:38:52"
+        },
+        {
+          "node": "semantic_agent",
+          "title": "语义分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:38:53"
+        },
+        {
+          "node": "logical_agent",
+          "title": "逻辑分析专家",
+          "content": "该专家评分：2.4",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:38:55"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 53.8，表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；表层检测:vague severity=LOW confidence=HIGH V=2.4；心理语言:vague_expression severity=LOW confidence=MEDIUM V=1.5；表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4；表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4；表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4；逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4；逻辑时间线:causal_issue severity=LOW confidence=MEDIUM V=1.5；经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=24.0；经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=22.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:38:55"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "信息已足够，生成最终报告（已满8轮，用户连续6轮泛泛回答且经验密度极低，追问已无新信息，建议终止并生成报告。）",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:38:57"
+        },
+        {
+          "node": "report_generation",
+          "title": "报告生成",
+          "content": "最终测评报告已生成",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 10:39:01"
+        }
+      ]
+    }
+  ],
+  "dialogue_history": [
+    {
+      "role": "assistant",
+      "content": "你平时是做什么方向的工作呀？"
+    },
+    {
+      "role": "user",
+      "content": "我是一个公务员"
+    },
+    {
+      "role": "assistant",
+      "content": "公务员呀，那你是属于哪个系统或者负责哪块业务呀？"
+    },
+    {
+      "role": "user",
+      "content": "我是农业局的"
+    },
+    {
+      "role": "assistant",
+      "content": "你平时主要是在局里办公，还是经常要下到乡镇或者田间地头去跑呀？"
+    },
+    {
+      "role": "user",
+      "content": "都有"
+    },
+    {
+      "role": "assistant",
+      "content": "那你平时在农业局主要是偏向行政类的工作，还是技术指导或者项目推进那一块呀？"
+    },
+    {
+      "role": "user",
+      "content": "都会负责啊"
+    },
+    {
+      "role": "assistant",
+      "content": "农业局确实事情挺杂的，那你现在手头最常打交道的是哪一类事情呀？"
+    },
+    {
+      "role": "user",
+      "content": "土地规划吧"
+    },
+    {
+      "role": "assistant",
+      "content": "土地规划这块挺有意思的，你平时主要做的是偏政策执行还是具体的技术方案呀？"
+    },
+    {
+      "role": "user",
+      "content": "政策执行"
+    },
+    {
+      "role": "assistant",
+      "content": "政策执行听起来挺宏观的，我有点好奇，如果上面给的政策到了下面发现不太适用或者执行起来阻力很大，你们一般会怎么处理呀，是直接硬推还是会有一些调整的办法？"
+    },
+    {
+      "role": "user",
+      "content": "调整呀，硬推是行不通的"
+    },
+    {
+      "role": "assistant",
+      "content": "你刚才说调整嘛，我挺好奇的，你们一般遇到这种情况，具体会怎么个调法呀？"
+    },
+    {
+      "role": "user",
+      "content": "出现了什么问题就调什么问题"
+    }
+  ],
+  "followup_history": [
+    {
+      "round_id": 1,
+      "question": "公务员呀，那你是属于哪个系统或者负责哪块业务呀？",
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 2,
+      "question": "你平时主要是在局里办公，还是经常要下到乡镇或者田间地头去跑呀？",
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 3,
+      "question": "那你平时在农业局主要是偏向行政类的工作，还是技术指导或者项目推进那一块呀？",
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 4,
+      "question": "农业局确实事情挺杂的，那你现在手头最常打交道的是哪一类事情呀？",
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 5,
+      "question": "土地规划这块挺有意思的，你平时主要做的是偏政策执行还是具体的技术方案呀？",
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 6,
+      "question": "政策执行听起来挺宏观的，我有点好奇，如果上面给的政策到了下面发现不太适用或者执行起来阻力很大，你们一般会怎么处理呀，是直接硬推还是会有一些调整的办法？",
+      "priority_issue": "回答仅停留在'政策执行'这一概括性职责描述上，没有提供任何具体的工作场景、操作流程、判断节点或实际案例，缺乏真实经历痕迹。；换到反例和卡点角度，问遇到常规方法不管用时通常怎么处理",
+      "followup_strategy": "counterexample"
+    },
+    {
+      "round_id": 7,
+      "question": "你刚才说调整嘛，我挺好奇的，你们一般遇到这种情况，具体会怎么个调法呀？",
+      "priority_issue": "回答'调整呀，硬推是行不通的'属于政策执行领域的常识性认知，任何有基本行政常识的人都能说出，缺少真实经历痕迹——没有说明具体调整方式（如变通执行、暂缓执行、向上反馈、局部试点等）、没有举例说明遇到的阻力类型、没有描述决策过程或实际案例；换到术语澄清角度，问对方自己说的关键词在实际场景里具体指什么",
+      "followup_strategy": "term_clarification"
+    }
+  ],
+  "facts_table": [
+    {
+      "round_id": 1,
+      "slot": "occupation",
+      "content": "公务员",
+      "evidence": "我是一个公务员",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 2,
+      "slot": "occupation",
+      "content": "公务员",
+      "evidence": "我是一个公务员",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 2,
+      "slot": "work_content",
+      "content": "农业局",
+      "evidence": "我是农业局的",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 3,
+      "slot": "work_content",
+      "content": "农业局工作，既有局内办公也有下乡镇或田间地头的外勤",
+      "evidence": "都有",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 4,
+      "slot": "work_content",
+      "content": "在农业局同时负责行政类、技术指导和项目推进等多方面工作",
+      "evidence": "都会负责啊",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 5,
+      "slot": "work_content",
+      "content": "当前手头最常打交道的是土地规划类工作",
+      "evidence": "土地规划吧",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 6,
+      "slot": "work_content",
+      "content": "在农业局土地规划工作中偏向政策执行",
+      "evidence": "政策执行",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 7,
+      "slot": "work_content",
+      "content": "在政策执行中，如果政策不适用或阻力大，会选择调整而非硬推",
+      "evidence": "调整呀，硬推是行不通的",
+      "source": "quick_preanalysis"
+    }
+  ],
+  "anomalies_table": [
+    {
+      "anomaly_id": "a_1_quick_preanalysis_0",
+      "round_id": 1,
+      "source": "quick_preanalysis",
+      "type": "vague",
+      "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向",
+      "evidence": [
+        "我是一个公务员"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 1,
+      "stop_followup": false,
+      "related_facts": [
+        "occupation: 公务员"
+      ],
+      "created_round": 1,
+      "last_update_round": 7,
+      "update_history": [
+        {
+          "round_id": 2,
+          "update_type": "clarify",
+          "explanation": "用户从'公务员'细化到了'农业局'，明确了所属系统，但岗位性质和具体职责方向仍不明确，异常未完全解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 3,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答确认了工作地点（局内和乡镇），但未提供具体岗位性质或职责方向，因此该异常仍未解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 4,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答虽然补充了工作内容范围，但依然没有说明具体系统或岗位性质，原始异常未得到解决",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户仅回答了当前最常打交道的工作是土地规划，并未回溯或澄清第1轮中职业身份粒度过粗的问题（缺少具体系统、岗位性质或职责方向）。因此该异常状态保持不变。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次未涉及第1轮关于职业身份粒度过粗的异常，用户未提供新的具体系统、岗位性质或职责方向信息。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "用户未明确具体系统、岗位性质或职责方向，该异常未得到回应",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及职业身份的具体系统或岗位性质，该异常仍未被回应或澄清。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_2_quick_preanalysis_1",
+      "round_id": 2,
+      "source": "quick_preanalysis",
+      "type": "vague",
+      "description": "职业身份粒度过粗，虽然明确了所属系统（农业局），但缺少具体岗位性质或职责方向。",
+      "evidence": [
+        "我是农业局的"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 1,
+      "stop_followup": false,
+      "related_facts": [
+        1,
+        2
+      ],
+      "created_round": 2,
+      "last_update_round": 7,
+      "update_history": [
+        {
+          "round_id": 3,
+          "update_type": "clarify",
+          "explanation": "当前回答提供了工作地点信息（局内和乡镇），部分澄清了工作内容，但岗位性质或职责方向仍不明确。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 4,
+          "update_type": "clarify",
+          "explanation": "当前回答确认了工作内容涵盖行政、技术指导和项目推进，部分澄清了职责范围，但依然没有说明具体岗位性质或主要方向",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户仅回答了当前最常打交道的工作是土地规划，并未回溯或澄清第2轮中职业身份粒度过粗的问题（缺少具体岗位性质或职责方向）。因此该异常状态保持不变。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次未涉及第2轮关于职业身份粒度过粗的异常，用户未提供新的具体岗位性质或职责方向信息。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "用户未明确具体岗位性质或职责方向，该异常未得到回应",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未提供具体岗位性质或职责方向，该异常仍未被回应或澄清。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_3_quick_preanalysis_2",
+      "round_id": 3,
+      "source": "quick_preanalysis",
+      "type": "vague",
+      "description": "职业身份粒度过粗，虽然明确了所属系统（农业局）和工作地点（局内和乡镇），但缺少具体岗位性质或职责方向。",
+      "evidence": [
+        "都有"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 1,
+      "stop_followup": false,
+      "related_facts": [
+        1,
+        2,
+        3
+      ],
+      "created_round": 3,
+      "last_update_round": 7,
+      "update_history": [
+        {
+          "round_id": 4,
+          "update_type": "clarify",
+          "explanation": "当前回答补充了工作内容的多面性，部分澄清了职责方向，但依然没有说明具体岗位性质或主要方向",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户仅回答了当前最常打交道的工作是土地规划，并未回溯或澄清第3轮中职业身份粒度过粗的问题（缺少具体岗位性质或职责方向）。因此该异常状态保持不变。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次未涉及第3轮关于职业身份粒度过粗的异常，用户未提供新的具体岗位性质或职责方向信息。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "用户未明确具体岗位性质或职责方向，该异常未得到回应",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未提供具体岗位性质或职责方向，该异常仍未被回应或澄清。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_4_quick_preanalysis_3",
+      "round_id": 4,
+      "source": "quick_preanalysis",
+      "type": "vague",
+      "description": "职业身份粒度过粗，虽然明确了所属系统（农业局）和工作内容范围（行政、技术、项目），但缺少具体岗位性质或主要职责方向",
+      "evidence": [
+        "都会负责啊"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 1,
+      "stop_followup": false,
+      "related_facts": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "created_round": 4,
+      "last_update_round": 7,
+      "update_history": [
+        {
+          "round_id": 5,
+          "update_type": "clarify",
+          "explanation": "用户本轮给出了一个相对具体的工作内容方向（土地规划），但尚未说明具体职责、工作对象或流程，属于部分澄清，仍需继续追问以获取更详细的信息。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户仅回答了当前最常打交道的工作是土地规划，并未回溯或澄清第4轮中职业身份粒度过粗的问题（缺少具体岗位性质或主要职责方向）。因此该异常状态保持不变。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次未涉及第4轮关于职业身份粒度过粗的异常，用户未提供新的具体岗位性质或主要职责方向信息。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "用户未明确具体岗位性质或主要职责方向，该异常未得到回应",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未提供具体岗位性质或主要职责方向，该异常仍未被回应或澄清。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_5_quick_preanalysis_4",
+      "round_id": 5,
+      "source": "quick_preanalysis",
+      "type": "vague",
+      "description": "工作内容粒度过粗，虽然明确了当前最常打交道的是土地规划，但缺少具体职责、工作对象（如耕地、建设用地、规划编制、审批等）或工作流程。",
+      "evidence": [
+        "土地规划吧"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 1,
+      "stop_followup": false,
+      "related_facts": [
+        6
+      ],
+      "created_round": 5,
+      "last_update_round": 7,
+      "update_history": [
+        {
+          "round_id": 5,
+          "update_type": "reinforce",
+          "explanation": "当前回答“土地规划吧”虽然确认了工作方向，但依然缺乏具体职责、工作对象或流程细节，与第5轮异常描述一致，且未提供任何新信息来澄清，因此强化了该异常。",
+          "new_score": 20.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "clarify",
+          "explanation": "用户明确了在土地规划工作中偏向政策执行，部分回应了上一轮追问，但依然缺乏具体职责、工作对象或流程细节，异常未完全解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "clarify",
+          "explanation": "用户在第6轮明确了在土地规划工作中偏向政策执行，这为第5轮关于工作内容粒度过粗的异常提供了部分澄清，但未提供具体职责、工作对象或工作流程细节，因此异常未完全解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "用户未提供土地规划工作的具体职责、工作对象或流程细节，该异常未得到回应",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及土地规划的具体职责或工作流程，该异常仍未被回应或澄清。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_5_psycho_linguistic_5",
+      "round_id": 5,
+      "source": "psycho_linguistic",
+      "type": "vague_expression",
+      "description": "",
+      "evidence": [
+        "第6轮：用户回答“土地规划吧”，使用了模糊的概括性表述，未提供具体职责、工作对象或流程。"
+      ],
+      "score": 0.0,
+      "severity": "LOW",
+      "confidence": "MEDIUM",
+      "risk_value": 1.5,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [],
+      "created_round": 5,
+      "last_update_round": 7,
+      "update_history": [
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未直接回应或澄清该语言风格异常。",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户回答'政策执行'，表述清晰，未出现模糊表达。但该异常来源为psycho_linguistic，语义分析不判断语言风格，因此保持状态不变。",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "用户未提供更具体的表达，该异常未得到回应",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及语言风格或表达模糊性问题，该异常仍未被回应或澄清。",
+          "new_score": 0.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_6_quick_preanalysis_6",
+      "round_id": 6,
+      "source": "quick_preanalysis",
+      "type": "lack_of_detail",
+      "description": "用户虽然明确了政策执行方向，但未提供任何具体职责、工作对象（如耕地、建设用地、规划编制、审批等）或工作流程细节。",
+      "evidence": [
+        "政策执行"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 1,
+      "stop_followup": false,
+      "related_facts": [
+        6
+      ],
+      "created_round": 6,
+      "last_update_round": 7,
+      "update_history": [
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户仅回答了'政策执行'，未提供任何具体职责、工作对象或工作流程细节，与异常描述完全一致，未产生任何澄清。",
+          "new_score": 20.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "clarify",
+          "explanation": "用户回应了上一轮关于政策执行中遇到阻力如何处理的追问，给出了'调整'而非'硬推'的回应，但回答仍然非常简短，没有提供任何具体调整方式、案例或流程细节，属于部分回应但未充分闭合异常",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未提供政策执行的具体职责、工作对象或流程细节，该异常仍未被回应或澄清。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_7_quick_preanalysis_7",
+      "round_id": 7,
+      "source": "quick_preanalysis",
+      "type": "lack_of_detail",
+      "description": "用户回应了政策执行中遇到阻力的处理方式，但回答过于简短（'调整呀，硬推是行不通的'），未提供任何具体调整方法、案例、决策依据或实际工作场景细节",
+      "evidence": [
+        "调整呀，硬推是行不通的"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "reinforced",
+      "clarification_status": "insufficient",
+      "followup_needed": true,
+      "followup_count": 1,
+      "stop_followup": false,
+      "related_facts": [
+        7
+      ],
+      "created_round": 7,
+      "last_update_round": 8,
+      "update_history": [
+        {
+          "round_id": 7,
+          "update_type": "clarify",
+          "explanation": "用户当前回答（'调整呀，硬推是行不通的'）与第7轮异常中提到的回答完全一致，未提供新的具体调整方法或案例，因此仅视为对原回答的重复，未解决异常。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "update_type": "reinforce",
+          "explanation": "用户当前回答'出现了什么问题就调什么问题'是对上一轮追问'具体会怎么个调法'的回应，但回答仍然停留在高度概括的层面，没有提供任何具体调整方法、案例或决策依据，使得原异常（lack_of_detail）更加明显。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "update_type": "reinforce",
+          "explanation": "用户本轮回答'出现了什么问题就调什么问题'仍然没有提供任何具体调整方法、案例或决策依据，与上一轮回答'调整呀，硬推是行不通的'一样高度概括，未提供任何新细节，使得该异常更加明显。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_8_quick_preanalysis_8",
+      "round_id": 8,
+      "source": "quick_preanalysis",
+      "type": "lack_of_detail",
+      "description": "用户连续两轮在政策执行调整方法上给出高度概括的回答，本轮回答'出现了什么问题就调什么问题'仍然没有提供任何具体调整流程、案例或决策依据。",
+      "evidence": [
+        "出现了什么问题就调什么问题"
+      ],
+      "score": 10.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "reinforced",
+      "clarification_status": "insufficient",
+      "followup_needed": true,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [
+        8
+      ],
+      "created_round": 8,
+      "last_update_round": 8,
+      "update_history": [
+        {
+          "round_id": 8,
+          "update_type": "reinforce",
+          "explanation": "用户本轮回答'出现了什么问题就调什么问题'延续了上一轮的高度概括风格，没有提供任何具体调整流程、案例或决策依据，使得该异常（lack_of_detail）更加明显。",
+          "new_score": 10.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "update_type": "reinforce",
+          "explanation": "用户连续三轮在政策执行调整方法上给出高度概括的回答，本轮回答'出现了什么问题就调什么问题'仍然没有提供任何具体调整流程、案例或决策依据，使得该异常更加明显。",
+          "new_score": 10.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_8_logical_9",
+      "round_id": 8,
+      "source": "logical",
+      "type": "career_path_gap",
+      "description": "",
+      "evidence": [
+        "第1轮：我是一个公务员",
+        "第2轮：我是农业局的",
+        "第4轮：都会负责啊",
+        "第5轮：土地规划吧",
+        "第6轮：政策执行"
+      ],
+      "score": 0.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [],
+      "created_round": 8,
+      "last_update_round": 8,
+      "update_history": [
+        {
+          "round_id": 8,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户未提供新的职业路径信息，无法对career_path_gap异常进行澄清或解决。",
+          "new_score": 0.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_8_logical_10",
+      "round_id": 8,
+      "source": "logical",
+      "type": "causal_issue",
+      "description": "",
+      "evidence": [
+        "第7轮：调整呀，硬推是行不通的",
+        "第8轮：出现了什么问题就调什么问题"
+      ],
+      "score": 0.0,
+      "severity": "LOW",
+      "confidence": "MEDIUM",
+      "risk_value": 1.5,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [],
+      "created_round": 8,
+      "last_update_round": 8,
+      "update_history": [
+        {
+          "round_id": 8,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户未提供新的因果关系信息，无法对causal_issue异常进行澄清或解决。",
+          "new_score": 0.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_8_quick_preanalysis_11",
+      "round_id": 8,
+      "source": "quick_preanalysis",
+      "type": "lack_of_detail",
+      "description": "用户连续三轮在政策执行调整方法上给出高度概括的回答，本轮回答'出现了什么问题就调什么问题'仍然没有提供任何具体调整流程、案例或决策依据。",
+      "evidence": [
+        "出现了什么问题就调什么问题"
+      ],
+      "score": 0.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [
+        8
+      ],
+      "created_round": 8,
+      "last_update_round": 8,
+      "update_history": []
+    }
+  ],
+  "indicator_history": [],
+  "lie_index": 54.9,
+  "dimension_scores": {
+    "表层检测": 2.4,
+    "心理语言": 1.5,
+    "逻辑时间线": 2.4,
+    "经验密度": 24.0
+  },
+  "risk_explanation": [
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "心理语言:vague_expression severity=LOW confidence=MEDIUM V=1.5",
+    "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+    "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+    "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+    "逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4",
+    "逻辑时间线:causal_issue severity=LOW confidence=MEDIUM V=1.5",
+    "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=24.0",
+    "经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=22.0",
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+    "心理语言:vague_expression severity=LOW confidence=MEDIUM V=1.5",
+    "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+    "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+    "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+    "逻辑时间线:career_path_gap severity=LOW confidence=HIGH V=2.4",
+    "逻辑时间线:causal_issue severity=LOW confidence=MEDIUM V=1.5",
+    "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+    "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=24.0",
+    "经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=22.0"
+  ],
+  "experience_density": "LOW",
+  "specificity_level": "LOW",
+  "generic_answer_flag": true,
+  "generic_answer_reason": "回答'出现了什么问题就调什么问题'属于高度概括的常识层表达，任何有基本问题解决经验的人都能说出，缺少真实工作场景中的具体调整流程、判断依据、案例或限制条件等真实经历痕迹。",
+  "suggested_probe_angle": "counterexample",
+  "generic_answer_streak": 7,
+  "generic_answer_count": 7,
+  "used_probe_angles": [
+    "boundary_judgment",
+    "process_sequence",
+    "real_constraint",
+    "counterexample",
+    "term_clarification",
+    "output_evidence"
+  ],
+  "called_specialists": [
+    "semantic",
+    "logical"
+  ],
+  "routing_decision": {
+    "selected_specialists": [
+      "semantic",
+      "logical"
+    ],
+    "routing_reason": "当前异常均为缺乏细节，无事实冲突或职业常识错误，无需调用专家。",
+    "priority_issue": "用户连续三轮在政策执行调整方法上给出高度概括的回答，缺乏具体流程、案例或决策依据。",
+    "followup_strategy": "counterexample",
+    "router_mode": "rule_force_llm_select"
+  },
+  "final_report": {
+    "lie_index": 54.9,
+    "dimension_scores": {
+      "表层检测": 2.4,
+      "心理语言": 1.5,
+      "逻辑时间线": 2.4,
+      "经验密度": 24.0
+    },
+    "report_text": "好的，这是根据您提供的输入数据生成的测评报告。\n\n***\n\n### **测评结果**\n\n**1. 用户个人信息总结**\n\n用户自述为一名公务员，工作单位是农业局。其工作模式兼具局内办公与下乡镇、田间地头的外勤。职责范围较广，同时涉及行政类、技术指导和项目推进等多方面工作。当前手头最常打交道的是土地规划类工作，在该工作中偏向政策执行方向。用户表示，在执行政策时，若遇到不适用或阻力大的情况，会选择调整而非硬推，调整方式为“出现了什么问题就调什么问题”。用户的专业背景、具体岗位性质、学历等个人信息未明确。\n\n**2. 总体结果**\n\n综合分数为 **54.9/100**。当前职业身份叙述中存在若干待澄清线索，整体稳定性一般，部分关键信息有待进一步验证。\n\n**3. 关键依据**\n\n*   **职业身份描述过于笼统：** 用户虽明确了“公务员”身份和“农业局”系统，但在多轮对话中，始终未能提供具体的岗位性质（如科员、主任等）、主要职责方向或所属科室，导致职业身份的核心信息粒度不足。\n*   **工作内容缺乏具体细节：** 用户提及负责“土地规划”和“政策执行”，但当被问及具体工作对象、流程或调整方法时，回答高度概括（如“出现了什么问题就调什么问题”），缺乏可验证的具体案例或工作场景细节。\n*   **经验密度分数显著偏高：** 在“经验密度”维度的分数为24.0，远高于其他维度（均低于3.0），表明用户在描述工作经历时，未能提供足够具体、有深度的细节来支撑其叙述，这是当前评估中的主要风险点。\n\n**4. 待澄清点**\n\n*   用户在农业局的具体岗位名称、所属科室及主要职责方向仍不够清楚。\n*   用户所从事的“土地规划”工作，其具体工作对象（如耕地、建设用地）、工作流程或审批环节等细节有待补充。\n*   用户提到的“政策执行调整”方法，其具体决策依据、操作流程或过往案例仍缺乏详细说明。"
+  },
+  "thinking_time_history": [
+    {
+      "round": 1,
+      "elapsed": 6.327659368515015,
+      "time": "10:34:01"
+    },
+    {
+      "round": 2,
+      "elapsed": 7.484958171844482,
+      "time": "10:34:45"
+    },
+    {
+      "round": 3,
+      "elapsed": 7.3746936321258545,
+      "time": "10:35:07"
+    },
+    {
+      "round": 4,
+      "elapsed": 7.903074026107788,
+      "time": "10:35:27"
+    },
+    {
+      "round": 5,
+      "elapsed": 12.839470148086548,
+      "time": "10:36:16"
+    },
+    {
+      "round": 6,
+      "elapsed": 15.986795425415039,
+      "time": "10:36:45"
+    },
+    {
+      "round": 7,
+      "elapsed": 16.721381664276123,
+      "time": "10:38:20"
+    },
+    {
+      "round": 8,
+      "elapsed": 14.571374893188477,
+      "time": "10:39:01"
+    }
+  ],
+  "saved_at": "2026-06-02 10:39:15"
+}

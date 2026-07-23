@@ -1,0 +1,764 @@
+{
+  "round_id": 6,
+  "max_rounds": 8,
+  "round_records": [
+    {
+      "round": 1,
+      "user_input": "我是一个心理咨询师",
+      "ai_followup": "你平时接触的来访者，一般是哪一类情况比较多呀？",
+      "elapsed": 6.087770223617554,
+      "node_times": {
+        "quick_preanalysis_node": 2.556,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.493,
+        "followup_generation_node": 2.015
+      },
+      "time": "2026-06-02 12:23:33",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "quick_fact_summary": "用户明确职业为心理咨询师，但未说明具体工作方向、服务对象或工作场景。",
+      "quick_signal_summary": "本轮回答简短但提供了有效事实，未发现明显异常。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": false,
+      "generic_answer_reason": "",
+      "suggested_probe_angle": "term_clarification",
+      "generic_answer_streak": 0,
+      "generic_answer_count": 0,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip",
+        "generic_answer_flag": false,
+        "suggested_probe_angle": "term_clarification",
+        "generic_answer_streak": 0
+      },
+      "priority_issue": "心理咨询师的具体工作方向与场景",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 1,
+          "slot": "occupation",
+          "content": "心理咨询师",
+          "evidence": "我是一个心理咨询师",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户明确职业为心理咨询师，但未说明具体工作方向、服务对象或工作场景。；本轮回答简短但提供了有效事实，未发现明显异常。；经验密度：LOW",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:23:30"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:23:30"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:23:30"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（用户仅给出职业名称，缺乏具体工作方向（如儿童/婚姻/临床等）和场景信息，需先澄清角色细节再深入提问），关注：心理咨询师的具体工作方向与场景，策略：light_clarification",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:23:31"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：你平时接触的来访者，一般是哪一类情况比较多呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:23:33"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "user_input": "心理压力比较大的成年人，或者焦虑抑郁的学生吧",
+      "ai_followup": "你平时接触这些来访者，一般会用什么方式帮他们缓解压力呀？",
+      "elapsed": 6.296306848526001,
+      "node_times": {
+        "quick_preanalysis_node": 2.674,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.889,
+        "followup_generation_node": 1.71
+      },
+      "time": "2026-06-02 12:24:12",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "quick_fact_summary": "用户是心理咨询师，主要接触心理压力大的成年人和焦虑抑郁的学生。",
+      "quick_signal_summary": "本轮回答简短但提供了有效事实，未发现明显异常。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "specificity_level": "MEDIUM",
+      "experience_density": "MEDIUM",
+      "generic_answer_flag": false,
+      "generic_answer_reason": "",
+      "suggested_probe_angle": "term_clarification",
+      "generic_answer_streak": 0,
+      "generic_answer_count": 0,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip",
+        "generic_answer_flag": false,
+        "suggested_probe_angle": "term_clarification",
+        "generic_answer_streak": 0
+      },
+      "priority_issue": "用户仅笼统提及‘心理压力大的成年人’和‘焦虑抑郁的学生’，未说明具体工作场景（如医院、学校、私人诊所）及典型工作流程，存在信息缺口",
+      "followup_strategy": "light_clarification",
+      "current_facts": [
+        {
+          "round_id": 2,
+          "slot": "work_content",
+          "content": "接触的来访者类型包括心理压力较大的成年人和焦虑抑郁的学生",
+          "evidence": "心理压力比较大的成年人，或者焦虑抑郁的学生吧",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户是心理咨询师，主要接触心理压力大的成年人和焦虑抑郁的学生。；本轮回答简短但提供了有效事实，未发现明显异常。；经验密度：MEDIUM",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:09"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:09"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:09"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前仅获知职业类别和来访者类型，缺乏具体工作场景和流程细节，且轮次充裕，应澄清工作系统后再深入），关注：用户仅笼统提及‘心理压力大的成年人’和‘焦虑抑郁的学生’，未说明具体工作场景（如医院、学校、私人诊所）及典型工作流程，存在信息缺口，策略：light_clarification",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:11"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：你平时接触这些来访者，一般会用什么方式帮他们缓解压力呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:12"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "user_input": "和他们聊天沟通，安抚他们的情绪",
+      "ai_followup": "感觉心理咨询师挺不容易的，不光要听还要想办法帮对方走出来。那你一般跟来访者聊的时候，是先了解背景、还是先处理当下的情绪，怎么判断第一步该做什么呀？",
+      "elapsed": 5.354962110519409,
+      "node_times": {
+        "quick_preanalysis_node": 2.091,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.579,
+        "followup_generation_node": 1.679
+      },
+      "time": "2026-06-02 12:24:32",
+      "lie_index": 8.0,
+      "dimension_scores": {
+        "经验密度": 8.0
+      },
+      "risk_explanation": [
+        "经验密度:generic_answer_low_experience_density severity=LOW confidence=LOW V=8.0"
+      ],
+      "quick_fact_summary": "用户本轮补充了工作方式：通过聊天沟通和情绪安抚来帮助来访者缓解压力。",
+      "quick_signal_summary": "本轮未检测到明显异常信号。回答简短但直接回应了上一轮追问，没有回避或冲突。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答方向正确，但仅停留在心理咨询的通用职责描述（聊天、安抚），缺少具体场景、操作流程、判断节点或边界条件。换成没有亲身经历的人也容易说出类似内容。",
+      "suggested_probe_angle": "process_sequence",
+      "generic_answer_streak": 1,
+      "generic_answer_count": 1,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问",
+        "priority_issue": "回答方向正确，但仅停留在心理咨询的通用职责描述（聊天、安抚），缺少具体场景、操作流程、判断节点或边界条件。换成没有亲身经历的人也容易说出类似内容。",
+        "followup_strategy": "process_sequence",
+        "router_mode": "rule_skip",
+        "generic_answer_flag": true,
+        "suggested_probe_angle": "process_sequence",
+        "generic_answer_streak": 1
+      },
+      "priority_issue": "回答方向正确，但仅停留在心理咨询的通用职责描述（聊天、安抚），缺少具体场景、操作流程、判断节点或边界条件。换成没有亲身经历的人也容易说出类似内容。；换到过程顺序角度，问对方一般怎么判断先做什么、后做什么",
+      "followup_strategy": "process_sequence",
+      "current_facts": [
+        {
+          "round_id": 3,
+          "slot": "work_content",
+          "content": "通过聊天沟通和情绪安抚来帮助来访者缓解压力",
+          "evidence": "和他们聊天沟通，安抚他们的情绪",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户本轮补充了工作方式：通过聊天沟通和情绪安抚来帮助来访者缓解压力。；本轮未检测到明显异常信号。回答简短但直接回应了上一轮追问，没有回避或冲突。；经验密度：LOW；泛泛回答：回答方向正确，但仅停留在心理咨询的通用职责描述（聊天、安抚），缺少具体场景、操作流程、判断节点或边界条件。换成没有亲身经历的人也容易说出类似内容。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:28"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问；关注点：回答方向正确，但仅停留在心理咨询的通用职责描述（聊天、安抚），缺少具体场景、操作流程、判断节点或边界条件。换成没有亲身经历的人也容易说出类似内容。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:28"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 8.0，经验密度:generic_answer_low_experience_density severity=LOW confidence=LOW V=8.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:28"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前经验密度低，用户回答泛化，需追问具体流程或判断节点以验证真实经验。），关注：回答停留在通用职责描述，缺少具体场景、操作流程或判断节点，策略：process_sequence",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:30"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：感觉心理咨询师挺不容易的，不光要听还要想办法帮对方走出来。那你一般跟来访者聊的时候，是先了解背景、还是先处理当下的情绪，怎么判断第一步该做什么呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:32"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "user_input": "如果情绪很激动的话，就先安抚一下",
+      "ai_followup": "那确实，情绪上来的时候直接讲道理肯定不行。我有点好奇，如果安抚了一阵对方还是很难平静下来，或者聊着聊着情绪反而更激动了，一般到什么程度你会觉得需要先收住、或者建议对方转介给其他资源呀？",
+      "elapsed": 6.529969930648804,
+      "node_times": {
+        "quick_preanalysis_node": 2.469,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.887,
+        "followup_generation_node": 2.146
+      },
+      "time": "2026-06-02 12:25:00",
+      "lie_index": 16.0,
+      "dimension_scores": {
+        "经验密度": 16.0
+      },
+      "risk_explanation": [
+        "经验密度:generic_answer_low_experience_density severity=LOW confidence=HIGH V=16.0"
+      ],
+      "quick_fact_summary": "用户补充了工作流程中的一个判断节点：当来访者情绪激动时，会优先进行安抚。",
+      "quick_signal_summary": "本轮回答简短但直接回应了上一轮追问，没有明显异常信号。回答符合职业常识，但经验密度较低，缺少具体判断依据和后续步骤。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答方向正确，但只停留在概括性动作层面（'先安抚一下'），没有说明如何判断'情绪很激动'的标准、安抚的具体方式、安抚后的下一步处理、或遇到过哪些边界情况。换成没有亲身经历的人也能说出这个回答。",
+      "suggested_probe_angle": "boundary_judgment",
+      "generic_answer_streak": 2,
+      "generic_answer_count": 2,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问",
+        "priority_issue": "回答方向正确，但只停留在概括性动作层面（'先安抚一下'），没有说明如何判断'情绪很激动'的标准、安抚的具体方式、安抚后的下一步处理、或遇到过哪些边界情况。换成没有亲身经历的人也能说出这个回答。",
+        "followup_strategy": "boundary_judgment",
+        "router_mode": "rule_skip",
+        "generic_answer_flag": true,
+        "suggested_probe_angle": "boundary_judgment",
+        "generic_answer_streak": 2
+      },
+      "priority_issue": "回答方向正确，但只停留在概括性动作层面（'先安抚一下'），没有说明如何判断'情绪很激动'的标准、安抚的具体方式、安抚后的下一步处理、或遇到过哪些边界情况。换成没有亲身经历的人也能说出这个回答。；换到边界判断角度，问哪些情况需要收住、转介、升级或避免继续推进",
+      "followup_strategy": "boundary_judgment",
+      "current_facts": [
+        {
+          "round_id": 4,
+          "slot": "work_content",
+          "content": "如果来访者情绪很激动，会先进行安抚",
+          "evidence": "如果情绪很激动的话，就先安抚一下",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户补充了工作流程中的一个判断节点：当来访者情绪激动时，会优先进行安抚。；本轮回答简短但直接回应了上一轮追问，没有明显异常信号。回答符合职业常识，但经验密度较低，缺少具体判断依据和后续步骤。；经验密度：LOW；泛泛回答：回答方向正确，但只停留在概括性动作层面（'先安抚一下'），没有说明如何判断'情绪很激动'的标准、安抚的具体方式、安抚后的下一步处理、或遇到过哪些边界情况。换成没有亲身经历的人也能说出这个回答。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:56"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问；关注点：回答方向正确，但只停留在概括性动作层面（'先安抚一下'），没有说明如何判断'情绪很激动'的标准、安抚的具体方式、安抚后的下一步处理、或遇到过哪些边界情况。换成没有亲身经历的人也能说出这个回答。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:56"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 16.0，经验密度:generic_answer_low_experience_density severity=LOW confidence=HIGH V=16.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:56"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（经验密度低，回答过于概括，需追问具体判断标准和边界案例以验证真实经验），关注：用户回答停留在概括性动作层面，未说明判断情绪激动程度的标准、具体安抚方式、安抚后的下一步处理或边界情况，策略：boundary_judgment",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:24:57"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：那确实，情绪上来的时候直接讲道理肯定不行。我有点好奇，如果安抚了一阵对方还是很难平静下来，或者聊着聊着情绪反而更激动了，一般到什么程度你会觉得需要先收住、或者建议对方转介给其他资源呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:25:00"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "user_input": "那就给他换个话题，从另一方面安抚他",
+      "ai_followup": "你们一次咨询大概多长时间呀，是固定时间还是看情况灵活调整的？",
+      "elapsed": 5.753977060317993,
+      "node_times": {
+        "quick_preanalysis_node": 2.419,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.563,
+        "followup_generation_node": 1.758
+      },
+      "time": "2026-06-02 12:25:54",
+      "lie_index": 20.0,
+      "dimension_scores": {
+        "经验密度": 20.0
+      },
+      "risk_explanation": [
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=20.0"
+      ],
+      "quick_fact_summary": "用户补充了情绪安抚的具体方法：换话题从另一方面安抚。",
+      "quick_signal_summary": "本轮回答简短，但直接回应了上一轮追问，没有明显异常信号。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答方向正确（换话题），但缺少具体判断标准（什么程度需要换）、场景细节（换什么话题、如何判断‘另一方面’）、以及边界意识（什么情况下换话题无效或需要转介）。回答停留在常识层，缺乏真实经验痕迹。",
+      "suggested_probe_angle": "real_constraint",
+      "generic_answer_streak": 3,
+      "generic_answer_count": 3,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问",
+        "priority_issue": "回答方向正确（换话题），但缺少具体判断标准（什么程度需要换）、场景细节（换什么话题、如何判断‘另一方面’）、以及边界意识（什么情况下换话题无效或需要转介）。回答停留在常识层，缺乏真实经验痕迹。",
+        "followup_strategy": "real_constraint",
+        "router_mode": "rule_skip",
+        "generic_answer_flag": true,
+        "suggested_probe_angle": "real_constraint",
+        "generic_answer_streak": 3
+      },
+      "priority_issue": "回答方向正确（换话题），但缺少具体判断标准（什么程度需要换）、场景细节（换什么话题、如何判断‘另一方面’）、以及边界意识（什么情况下换话题无效或需要转介）。回答停留在常识层，缺乏真实经验痕迹。；换到真实限制角度，问记录、时间、流程、协作、规范或现实约束",
+      "followup_strategy": "real_constraint",
+      "current_facts": [
+        {
+          "round_id": 5,
+          "slot": "work_content",
+          "content": "当来访者情绪激动难以平静时，会通过换话题的方式从另一方面进行安抚",
+          "evidence": "那就给他换个话题，从另一方面安抚他",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户补充了情绪安抚的具体方法：换话题从另一方面安抚。；本轮回答简短，但直接回应了上一轮追问，没有明显异常信号。；经验密度：LOW；泛泛回答：回答方向正确（换话题），但缺少具体判断标准（什么程度需要换）、场景细节（换什么话题、如何判断‘另一方面’）、以及边界意识（什么情况下换话题无效或需要转介）。回答停留在常识层，缺乏真实经验痕迹。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:25:50"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问；关注点：回答方向正确（换话题），但缺少具体判断标准（什么程度需要换）、场景细节（换什么话题、如何判断‘另一方面’）、以及边界意识（什么情况下换话题无效或需要转介）。回答停留在常识层，缺乏真实经验痕迹。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:25:50"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 20.0，经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=20.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:25:50"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（经验密度仅20，连续3轮通用回答，需追问真实约束条件（如换话题无效的临界点）以突破常识层），关注：追问具体场景：换话题时如何选择话题、判断换话题无效的标准、以及转介的边界条件，策略：real_constraint",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:25:52"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：你们一次咨询大概多长时间呀，是固定时间还是看情况灵活调整的？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:25:54"
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "user_input": "一般一个小时或者两个小时",
+      "ai_followup": "",
+      "elapsed": 5.510507106781006,
+      "node_times": {
+        "quick_preanalysis_node": 1.611,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.086,
+        "report_generation_node": 2.798
+      },
+      "time": "2026-06-02 12:26:19",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0.",
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "quick_fact_summary": "用户补充了咨询时长信息：通常为一小时或两小时，属于固定时长范围。",
+      "quick_signal_summary": "本轮回答简短直接，无异常信号。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "specificity_level": "MEDIUM",
+      "experience_density": "MEDIUM",
+      "generic_answer_flag": false,
+      "generic_answer_reason": "",
+      "suggested_probe_angle": "counterexample",
+      "generic_answer_streak": 0,
+      "generic_answer_count": 3,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip",
+        "generic_answer_flag": false,
+        "suggested_probe_angle": "counterexample",
+        "generic_answer_streak": 0
+      },
+      "priority_issue": "",
+      "followup_strategy": "",
+      "current_facts": [
+        {
+          "round_id": 6,
+          "slot": "work_content",
+          "content": "咨询时长通常为一小时或两小时",
+          "evidence": "一般一个小时或者两个小时",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户补充了咨询时长信息：通常为一小时或两小时，属于固定时长范围。；本轮回答简短直接，无异常信号。；经验密度：MEDIUM",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:26:15"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:26:15"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:26:15"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "信息已足够，生成最终报告（已收集足够基础信息，无异常或高风险信号，且接近最大轮次，建议生成报告。）",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:26:16"
+        },
+        {
+          "node": "report_generation",
+          "title": "报告生成",
+          "content": "最终测评报告已生成",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 12:26:19"
+        }
+      ]
+    }
+  ],
+  "dialogue_history": [
+    {
+      "role": "assistant",
+      "content": "你平时是做什么方向的工作呀？"
+    },
+    {
+      "role": "user",
+      "content": "我是一个心理咨询师"
+    },
+    {
+      "role": "assistant",
+      "content": "你平时接触的来访者，一般是哪一类情况比较多呀？"
+    },
+    {
+      "role": "user",
+      "content": "心理压力比较大的成年人，或者焦虑抑郁的学生吧"
+    },
+    {
+      "role": "assistant",
+      "content": "你平时接触这些来访者，一般会用什么方式帮他们缓解压力呀？"
+    },
+    {
+      "role": "user",
+      "content": "和他们聊天沟通，安抚他们的情绪"
+    },
+    {
+      "role": "assistant",
+      "content": "感觉心理咨询师挺不容易的，不光要听还要想办法帮对方走出来。那你一般跟来访者聊的时候，是先了解背景、还是先处理当下的情绪，怎么判断第一步该做什么呀？"
+    },
+    {
+      "role": "user",
+      "content": "如果情绪很激动的话，就先安抚一下"
+    },
+    {
+      "role": "assistant",
+      "content": "那确实，情绪上来的时候直接讲道理肯定不行。我有点好奇，如果安抚了一阵对方还是很难平静下来，或者聊着聊着情绪反而更激动了，一般到什么程度你会觉得需要先收住、或者建议对方转介给其他资源呀？"
+    },
+    {
+      "role": "user",
+      "content": "那就给他换个话题，从另一方面安抚他"
+    },
+    {
+      "role": "assistant",
+      "content": "你们一次咨询大概多长时间呀，是固定时间还是看情况灵活调整的？"
+    },
+    {
+      "role": "user",
+      "content": "一般一个小时或者两个小时"
+    }
+  ],
+  "followup_history": [
+    {
+      "round_id": 1,
+      "question": "你平时接触的来访者，一般是哪一类情况比较多呀？",
+      "priority_issue": "心理咨询师的具体工作方向与场景",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 2,
+      "question": "你平时接触这些来访者，一般会用什么方式帮他们缓解压力呀？",
+      "priority_issue": "用户仅笼统提及‘心理压力大的成年人’和‘焦虑抑郁的学生’，未说明具体工作场景（如医院、学校、私人诊所）及典型工作流程，存在信息缺口",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 3,
+      "question": "感觉心理咨询师挺不容易的，不光要听还要想办法帮对方走出来。那你一般跟来访者聊的时候，是先了解背景、还是先处理当下的情绪，怎么判断第一步该做什么呀？",
+      "priority_issue": "回答方向正确，但仅停留在心理咨询的通用职责描述（聊天、安抚），缺少具体场景、操作流程、判断节点或边界条件。换成没有亲身经历的人也容易说出类似内容。；换到过程顺序角度，问对方一般怎么判断先做什么、后做什么",
+      "followup_strategy": "process_sequence"
+    },
+    {
+      "round_id": 4,
+      "question": "那确实，情绪上来的时候直接讲道理肯定不行。我有点好奇，如果安抚了一阵对方还是很难平静下来，或者聊着聊着情绪反而更激动了，一般到什么程度你会觉得需要先收住、或者建议对方转介给其他资源呀？",
+      "priority_issue": "回答方向正确，但只停留在概括性动作层面（'先安抚一下'），没有说明如何判断'情绪很激动'的标准、安抚的具体方式、安抚后的下一步处理、或遇到过哪些边界情况。换成没有亲身经历的人也能说出这个回答。；换到边界判断角度，问哪些情况需要收住、转介、升级或避免继续推进",
+      "followup_strategy": "boundary_judgment"
+    },
+    {
+      "round_id": 5,
+      "question": "你们一次咨询大概多长时间呀，是固定时间还是看情况灵活调整的？",
+      "priority_issue": "回答方向正确（换话题），但缺少具体判断标准（什么程度需要换）、场景细节（换什么话题、如何判断‘另一方面’）、以及边界意识（什么情况下换话题无效或需要转介）。回答停留在常识层，缺乏真实经验痕迹。；换到真实限制角度，问记录、时间、流程、协作、规范或现实约束",
+      "followup_strategy": "real_constraint"
+    }
+  ],
+  "facts_table": [
+    {
+      "round_id": 1,
+      "slot": "occupation",
+      "content": "心理咨询师",
+      "evidence": "我是一个心理咨询师",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 2,
+      "slot": "work_content",
+      "content": "接触的来访者类型包括心理压力较大的成年人和焦虑抑郁的学生",
+      "evidence": "心理压力比较大的成年人，或者焦虑抑郁的学生吧",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 3,
+      "slot": "work_content",
+      "content": "通过聊天沟通和情绪安抚来帮助来访者缓解压力",
+      "evidence": "和他们聊天沟通，安抚他们的情绪",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 4,
+      "slot": "work_content",
+      "content": "如果来访者情绪很激动，会先进行安抚",
+      "evidence": "如果情绪很激动的话，就先安抚一下",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 5,
+      "slot": "work_content",
+      "content": "当来访者情绪激动难以平静时，会通过换话题的方式从另一方面进行安抚",
+      "evidence": "那就给他换个话题，从另一方面安抚他",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 6,
+      "slot": "work_content",
+      "content": "咨询时长通常为一小时或两小时",
+      "evidence": "一般一个小时或者两个小时",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 8,
+      "slot": "work_content",
+      "content": "咨询时长通常为一小时或两小时",
+      "evidence": "一般一个小时或者两个小时",
+      "source": "quick_preanalysis"
+    }
+  ],
+  "anomalies_table": [],
+  "indicator_history": [],
+  "lie_index": 0.0,
+  "dimension_scores": {},
+  "risk_explanation": [
+    "No active specialist evidence; LieIndex=0.",
+    "No active specialist evidence; LieIndex=0."
+  ],
+  "experience_density": "LOW",
+  "specificity_level": "MEDIUM",
+  "generic_answer_flag": false,
+  "generic_answer_reason": "",
+  "suggested_probe_angle": "counterexample",
+  "generic_answer_streak": 0,
+  "generic_answer_count": 3,
+  "used_probe_angles": [
+    "process_sequence",
+    "boundary_judgment",
+    "real_constraint"
+  ],
+  "called_specialists": [
+    "semantic",
+    "logical"
+  ],
+  "routing_decision": {
+    "selected_specialists": [
+      "semantic",
+      "logical"
+    ],
+    "routing_reason": "当前回答仅补充了咨询时长，无事实冲突或异常，无需专家分析。",
+    "priority_issue": "咨询时长信息已确认，但经验密度低，需追问真实工作流程。",
+    "followup_strategy": "counterexample",
+    "router_mode": "rule_force_llm_select"
+  },
+  "final_report": {
+    "lie_index": 0.0,
+    "dimension_scores": {},
+    "report_text": "好的，这是为您生成的测评报告。\n\n***\n\n### 测评结果\n\n**1. 用户个人信息总结**\n\n用户自称是一名心理咨询师，主要接触的来访者类型包括心理压力较大的成年人和焦虑抑郁的学生。在咨询工作中，用户表示会通过聊天沟通和情绪安抚来帮助来访者缓解压力，当来访者情绪激动时，会先进行安抚，若仍难以平静，则会通过换话题的方式从另一方面进行安抚。用户提及单次咨询时长通常为一小时或两小时。\n\n**2. 总体结果**\n\n综合分数：**0.0/100**\n\n当前职业身份叙述整体稳定，未发现明显不一致或矛盾之处。\n\n**3. 关键依据**\n\n*   用户对职业身份（心理咨询师）的表述清晰且前后一致。\n*   用户对工作方法（聊天安抚、情绪激动时换话题）的描述在逻辑上连贯，符合该职业的常见实践。\n*   各维度分析（语义、逻辑）均未发现异常线索，证据列表为空。\n\n**4. 待澄清点**\n\n暂无明显待澄清点。"
+  },
+  "thinking_time_history": [
+    {
+      "round": 1,
+      "elapsed": 6.087770223617554,
+      "time": "12:23:33"
+    },
+    {
+      "round": 2,
+      "elapsed": 6.296306848526001,
+      "time": "12:24:12"
+    },
+    {
+      "round": 3,
+      "elapsed": 5.354962110519409,
+      "time": "12:24:32"
+    },
+    {
+      "round": 4,
+      "elapsed": 6.529969930648804,
+      "time": "12:25:00"
+    },
+    {
+      "round": 5,
+      "elapsed": 5.753977060317993,
+      "time": "12:25:54"
+    },
+    {
+      "round": 6,
+      "elapsed": 5.510507106781006,
+      "time": "12:26:19"
+    }
+  ],
+  "saved_at": "2026-06-02 12:26:26"
+}

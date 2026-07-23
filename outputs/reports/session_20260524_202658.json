@@ -1,0 +1,1087 @@
+{
+  "round_id": 8,
+  "max_rounds": 8,
+  "round_records": [
+    {
+      "round": 1,
+      "user_input": "本科在读大学生",
+      "ai_followup": "我最近也在帮一个学弟看论文选题，感觉选专业方向这事还挺头疼的，你现在是学什么方向的呀，平时课多不多呀？",
+      "elapsed": 22.89385175704956,
+      "node_times": {
+        "quick_preanalysis_node": 5.958,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 9.244,
+        "followup_generation_node": 7.686
+      },
+      "time": "2026-05-24 20:14:45",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户表明自己是本科在读大学生，这是明确的身份信息",
+      "quick_signal_summary": "用户正常回答了身份问题，作为在读学生暂无工作方向属于正常情况，无异常信号",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "了解对方的基本背景和日常状态",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 1,
+          "slot": "occupation",
+          "content": "本科在读大学生",
+          "evidence": "本科在读大学生",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户表明自己是本科在读大学生，这是明确的身份信息；用户正常回答了身份问题，作为在读学生暂无工作方向属于正常情况，无异常信号",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:14:28"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:14:28"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，当前轮次未发现明显风险信号",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:14:28"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（need_more_information_or_clarification），关注：了解对方的基本背景和日常状态，策略：daily_routine",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:14:37"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：我最近也在帮一个学弟看论文选题，感觉选专业方向这事还挺头疼的，你现在是学什么方向的呀，平时课多不多呀？",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:14:45"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "user_input": "我学的是食品安全检验专业，偏工科，平时化学生物类型课较多",
+      "ai_followup": "我之前有朋友也学过类似的专业，感觉化学生物类的实验课应该挺有意思的，你们平时实验多不多呀，一般都做些什么实验呀？",
+      "elapsed": 45.529242277145386,
+      "node_times": {
+        "quick_preanalysis_node": 11.287,
+        "lightweight_routing_supervisor_node": 9.29,
+        "logical_agent_node": 8.815,
+        "semantic_agent_node": 9.149,
+        "debate_gate_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 8.064,
+        "followup_generation_node": 7.729
+      },
+      "time": "2026-05-24 20:16:09",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "semantic": 0.0,
+        "logical": 0.0
+      },
+      "risk_explanation": [
+        "暂无明显不一致"
+      ],
+      "quick_fact_summary": "用户补充了专业信息：食品安全检验专业（偏工科），课程以化学生物类型为主。",
+      "quick_signal_summary": "用户正常回应了专业方向和课业问题，回答具体且符合学生身份阶段，无异常信号。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": true,
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "called_specialists": [
+        "logical",
+        "semantic"
+      ],
+      "routing_decision": {
+        "need_specialist": true,
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ],
+        "routing_reason": "新用户提供学业背景信息，事实一致无异常，选择基础语义和逻辑分析",
+        "priority_issue": "用户刚提供专业背景，需确认信息完整性和后续方向",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_force_llm_select"
+      },
+      "priority_issue": "用户刚提供专业背景，需确认信息完整性和后续方向",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 2,
+          "slot": "occupation",
+          "content": "本科在读大学生",
+          "evidence": "本科在读大学生",
+          "source": "quick_preanalysis"
+        },
+        {
+          "round_id": 2,
+          "slot": "other",
+          "content": "专业：食品安全检验专业",
+          "evidence": "我学的是食品安全检验专业",
+          "source": "quick_preanalysis"
+        },
+        {
+          "round_id": 2,
+          "slot": "other",
+          "content": "学科类型：偏工科",
+          "evidence": "偏工科",
+          "source": "quick_preanalysis"
+        },
+        {
+          "round_id": 2,
+          "slot": "experience",
+          "content": "课程类型：化学生物类型课较多",
+          "evidence": "平时化学生物类型课较多",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户补充了专业信息：食品安全检验专业（偏工科），课程以化学生物类型为主。；用户正常回应了专业方向和课业问题，回答具体且符合学生身份阶段，无异常信号。",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:15:35"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：新用户提供学业背景信息，事实一致无异常，选择基础语义和逻辑分析；关注点：用户刚提供专业背景，需确认信息完整性和后续方向",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:15:44"
+        },
+        {
+          "node": "logical_agent",
+          "title": "逻辑分析专家",
+          "content": "该专家评分：0",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:15:53"
+        },
+        {
+          "node": "semantic_agent",
+          "title": "语义分析专家",
+          "content": "该专家评分：0",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:15:53"
+        },
+        {
+          "node": "debate_gate",
+          "title": "辩论门控",
+          "content": "无需争议处理",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:15:53"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，暂无明显不一致",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:15:53"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（need_more_information_or_clarification），关注：用户刚提供专业背景，需确认信息完整性和后续方向，策略：daily_routine",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:16:02"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：我之前有朋友也学过类似的专业，感觉化学生物类的实验课应该挺有意思的，你们平时实验多不多呀，一般都做些什么实验呀？",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:16:09"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "user_input": "实验较多，我做过食品加工保藏实验，生物化学实验，有机化学无机化学实验，物理化学实验，食品分析实验，仪器分析实验，食品生物技术实验等",
+      "ai_followup": "感觉你们实验课类型还挺丰富的，我之前看朋友学化学的天天泡实验室还挺有意思的，你们平时做实验一般都在什么时间段呀，是上午下午晚上都可能有吗？",
+      "elapsed": 37.89240050315857,
+      "node_times": {
+        "quick_preanalysis_node": 12.921,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 10.421,
+        "followup_generation_node": 14.545
+      },
+      "time": "2026-05-24 20:18:04",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户补充了实验经历，具体列举了8种实验类型，包括食品加工保藏、生化、有机、无机、物化、食品分析、仪器分析、食品生物技术实验，与食品安全检验专业高度相关",
+      "quick_signal_summary": "用户正面回答了实验相关问题，列举具体实验类型，表述自然流畅，符合本科生的课程经历特征，无异常信号",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "继续了解对方的日常状态",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 3,
+          "slot": "experience",
+          "content": "做过食品加工保藏实验、生物化学实验、有机化学实验、无机化学实验、物理化学实验、食品分析实验、仪器分析实验、食品生物技术实验",
+          "evidence": "实验较多，我做过食品加工保藏实验，生物化学实验，有机化学无机化学实验，物理化学实验，食品分析实验，仪器分析实验，食品生物技术实验等",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户补充了实验经历，具体列举了8种实验类型，包括食品加工保藏、生化、有机、无机、物化、食品分析、仪器分析、食品生物技术实验，与食品安全检验专业高度相关；用户正面回答了实验相关问题，列举具体实验类型，表述自然流畅，符合本科生的课程经历特征，无异常信号",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:17:39"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:17:39"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，当前轮次未发现明显风险信号",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:17:39"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（need_more_information_or_clarification），关注：继续了解对方的日常状态，策略：daily_routine",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:17:49"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：感觉你们实验课类型还挺丰富的，我之前看朋友学化学的天天泡实验室还挺有意思的，你们平时做实验一般都在什么时间段呀，是上午下午晚上都可能有吗？",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:18:04"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "user_input": "一般从中午一点开始到晚上6点左右做实验，上午课程较少可能会安排到上午",
+      "ai_followup": "感觉你们实验课时间还挺长的，那平时课余时间一般会做些什么呀？",
+      "elapsed": 32.767319679260254,
+      "node_times": {
+        "quick_preanalysis_node": 12.837,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 9.234,
+        "followup_generation_node": 10.689
+      },
+      "time": "2026-05-24 20:19:29",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户补充了实验时间段信息：通常从中午1点至晚上6点，上午较少安排实验",
+      "quick_signal_summary": "本轮回答具体且合理，提供了实验时间的具体范围，与前文实验课丰富的描述一致，无异常信号",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "了解对方的日常节奏和近期状态",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 4,
+          "slot": "experience",
+          "content": "实验时间通常从中午1点开始到晚上6点左右，上午课程较少时可能会安排实验",
+          "evidence": "一般从中午一点开始到晚上6点左右做实验，上午课程较少可能会安排到上午",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户补充了实验时间段信息：通常从中午1点至晚上6点，上午较少安排实验；本轮回答具体且合理，提供了实验时间的具体范围，与前文实验课丰富的描述一致，无异常信号",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:19:09"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:19:09"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，当前轮次未发现明显风险信号",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:19:09"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（need_more_information_or_clarification），关注：了解对方的日常节奏和近期状态，策略：daily_routine",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:19:18"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：感觉你们实验课时间还挺长的，那平时课余时间一般会做些什么呀？",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:19:29"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "user_input": "会和同学相约去打球，若条件不允许则在宿舍打电脑游戏",
+      "ai_followup": "我之前也偶尔会打打游戏放松一下，感觉你们大学生现在都玩什么类型的游戏比较多呀，是那种竞技类的还是休闲娱乐的比较常见呀？",
+      "elapsed": 30.28386402130127,
+      "node_times": {
+        "quick_preanalysis_node": 10.531,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 10.208,
+        "followup_generation_node": 9.538
+      },
+      "time": "2026-05-24 20:20:52",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户分享了课余活动安排：平时与同学相约打球，条件不允许时在宿舍打电脑游戏。这是正常的大学生课余生活描述。",
+      "quick_signal_summary": "本轮回答自然流畅，直接回应了上一轮关于课余时间的追问，提供了具体的活动内容（打球、玩游戏），与学生身份相符，无任何异常信号。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "继续了解对方的日常状态和学习节奏",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 5,
+          "slot": "experience",
+          "content": "课余时间与同学相约去打球",
+          "evidence": "会和同学相约去打球",
+          "source": "quick_preanalysis"
+        },
+        {
+          "round_id": 5,
+          "slot": "experience",
+          "content": "条件不允许时在宿舍打电脑游戏",
+          "evidence": "若条件不允许则在宿舍打电脑游戏",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户分享了课余活动安排：平时与同学相约打球，条件不允许时在宿舍打电脑游戏。这是正常的大学生课余生活描述。；本轮回答自然流畅，直接回应了上一轮关于课余时间的追问，提供了具体的活动内容（打球、玩游戏），与学生身份相符，无任何异常信号。",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:20:32"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:20:32"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，当前轮次未发现明显风险信号",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:20:32"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（need_more_information_or_clarification），关注：继续了解对方的日常状态和学习节奏，策略：daily_routine",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:20:42"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：我之前也偶尔会打打游戏放松一下，感觉你们大学生现在都玩什么类型的游戏比较多呀，是那种竞技类的还是休闲娱乐的比较常见呀？",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:20:52"
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "user_input": "一般竞技类的，休闲类也会玩但玩的比较少",
+      "ai_followup": "我之前也偶尔会打打游戏放松一下，感觉你们大学生现在都玩什么类型的游戏比较多呀，是那种竞技类的还是休闲娱乐的比较常见呀？",
+      "elapsed": 27.87572145462036,
+      "node_times": {
+        "quick_preanalysis_node": 11.616,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 7.336,
+        "followup_generation_node": 8.914
+      },
+      "time": "2026-05-24 20:22:16",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户分享了游戏偏好：主要玩竞技类游戏，休闲类游戏也会玩但玩得较少",
+      "quick_signal_summary": "上一轮是闲聊性质的游戏话题，用户正常回答了竞技类vs休闲类的偏好，没有回避、答非所问或表达异常，是一个自然的兴趣分享",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "继续了解对方背景",
+      "followup_strategy": "daily_routine",
+      "current_facts": [
+        {
+          "round_id": 6,
+          "slot": "other",
+          "content": "游戏偏好：主要玩竞技类游戏，休闲类游戏也会玩但玩得较少",
+          "evidence": "一般竞技类的，休闲类也会玩但玩的比较少",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户分享了游戏偏好：主要玩竞技类游戏，休闲类游戏也会玩但玩得较少；上一轮是闲聊性质的游戏话题，用户正常回答了竞技类vs休闲类的偏好，没有回避、答非所问或表达异常，是一个自然的兴趣分享",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:21:59"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:21:59"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，当前轮次未发现明显风险信号",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:21:59"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（need_more_information_or_clarification），关注：继续了解对方背景，策略：daily_routine",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:22:07"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：我之前也偶尔会打打游戏放松一下，感觉你们大学生现在都玩什么类型的游戏比较多呀，是那种竞技类的还是休闲娱乐的比较常见呀？",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:22:16"
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "user_input": "一般竞技类的，休闲类也会玩但玩的比较少，只有在陪朋友休闲放松时才会玩",
+      "ai_followup": "感觉你们大学生平时学习任务也挺重的，除了打球和玩游戏放松之外，还会通过什么方式解压呀？",
+      "elapsed": 26.054718732833862,
+      "node_times": {
+        "quick_preanalysis_node": 8.621,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 10.533,
+        "followup_generation_node": 6.894
+      },
+      "time": "2026-05-24 20:24:53",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "本轮未抽取到新事实。用户回答与已有事实一致（游戏偏好：主要竞技类，休闲类少），属于补充说明。",
+      "quick_signal_summary": "无异常信号。用户正常回答游戏类型问题，提供了具体偏好信息（竞技类为主，休闲类仅陪朋友时玩），回答具体且符合大学生身份。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": false,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "对话已进行较充分，暂无明显待澄清点",
+      "followup_strategy": "daily_routine",
+      "current_facts": [],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "本轮未抽取到新事实。用户回答与已有事实一致（游戏偏好：主要竞技类，休闲类少），属于补充说明。；无异常信号。用户正常回答游戏类型问题，提供了具体偏好信息（竞技类为主，休闲类仅陪朋友时玩），回答具体且符合大学生身份。",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:24:36"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:24:36"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，当前轮次未发现明显风险信号",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:24:36"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（need_more_information_or_clarification），关注：对话已进行较充分，暂无明显待澄清点，策略：daily_routine",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:24:46"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：感觉你们大学生平时学习任务也挺重的，除了打球和玩游戏放松之外，还会通过什么方式解压呀？",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:24:53"
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "user_input": "健身运动和去外面玩吃吃喝喝",
+      "ai_followup": "感觉你们大学生平时学习任务也挺重的，除了打球和玩游戏放松之外，还会通过什么方式解压呀？",
+      "elapsed": 19.013248205184937,
+      "node_times": {
+        "quick_preanalysis_node": 10.813,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 0.0,
+        "report_generation_node": 8.194
+      },
+      "time": "2026-05-24 20:26:39",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号",
+        "当前轮次未发现明显风险信号"
+      ],
+      "quick_fact_summary": "用户补充了课余解压方式，包括健身运动和外出游玩吃吃喝喝，与之前提到的打球、玩游戏形成完整的课余生活图景。",
+      "quick_signal_summary": "本轮回答正常回应了上一轮关于解压方式的问题，无异常信号。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "need_specialist": false,
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip"
+      },
+      "priority_issue": "",
+      "followup_strategy": "",
+      "current_facts": [
+        {
+          "round_id": 8,
+          "slot": "experience",
+          "content": "课余解压方式：健身运动、去外面玩吃吃喝喝",
+          "evidence": "健身运动和去外面玩吃吃喝喝",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户补充了课余解压方式，包括健身运动和外出游玩吃吃喝喝，与之前提到的打球、玩游戏形成完整的课余生活图景。；本轮回答正常回应了上一轮关于解压方式的问题，无异常信号。",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:26:30"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:26:30"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，当前轮次未发现明显风险信号",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:26:30"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "信息已足够，生成最终报告（max_rounds）",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:26:30"
+        },
+        {
+          "node": "report_generation",
+          "title": "报告生成",
+          "content": "最终测评报告已生成",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:26:39"
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "user_input": "（自动生成最终报告）",
+      "ai_followup": "",
+      "elapsed": 19.297032117843628,
+      "node_times": {
+        "quick_preanalysis_node": 12.289,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 0.0,
+        "report_generation_node": 7.005
+      },
+      "time": "2026-05-24 20:26:58",
+      "lie_index": 0.0,
+      "dimension_scores": {
+        "lightweight_surface": 0.0,
+        "unresolved_anomalies": 0
+      },
+      "risk_explanation": [
+        "当前轮次未发现明显风险信号",
+        "当前轮次未发现明显风险信号"
+      ],
+      "need_specialist": false,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "quick_fact_summary": "",
+      "quick_signal_summary": "",
+      "surface_risk_score": 0.0,
+      "has_new_fact": false,
+      "routing_decision": {},
+      "priority_issue": "",
+      "followup_strategy": "",
+      "current_facts": [],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户补充了课余解压方式：健身运动和去外面玩吃吃喝喝；用户正常回答了问题，无异常信号",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:26:51"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:26:51"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，当前轮次未发现明显风险信号",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:26:51"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "信息已足够，生成最终报告（max_rounds）",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:26:51"
+        },
+        {
+          "node": "report_generation",
+          "title": "报告生成",
+          "content": "最终测评报告已生成",
+          "elapsed_seconds": null,
+          "time": "2026-05-24 20:26:58"
+        }
+      ]
+    }
+  ],
+  "dialogue_history": [
+    {
+      "role": "assistant",
+      "content": "你平时是做什么方向的工作呀？"
+    },
+    {
+      "role": "user",
+      "content": "本科在读大学生"
+    },
+    {
+      "role": "assistant",
+      "content": "我最近也在帮一个学弟看论文选题，感觉选专业方向这事还挺头疼的，你现在是学什么方向的呀，平时课多不多呀？"
+    },
+    {
+      "role": "user",
+      "content": "我学的是食品安全检验专业，偏工科，平时化学生物类型课较多"
+    },
+    {
+      "role": "assistant",
+      "content": "我之前有朋友也学过类似的专业，感觉化学生物类的实验课应该挺有意思的，你们平时实验多不多呀，一般都做些什么实验呀？"
+    },
+    {
+      "role": "user",
+      "content": "实验较多，我做过食品加工保藏实验，生物化学实验，有机化学无机化学实验，物理化学实验，食品分析实验，仪器分析实验，食品生物技术实验等"
+    },
+    {
+      "role": "assistant",
+      "content": "感觉你们实验课类型还挺丰富的，我之前看朋友学化学的天天泡实验室还挺有意思的，你们平时做实验一般都在什么时间段呀，是上午下午晚上都可能有吗？"
+    },
+    {
+      "role": "user",
+      "content": "一般从中午一点开始到晚上6点左右做实验，上午课程较少可能会安排到上午"
+    },
+    {
+      "role": "assistant",
+      "content": "感觉你们实验课时间还挺长的，那平时课余时间一般会做些什么呀？"
+    },
+    {
+      "role": "user",
+      "content": "会和同学相约去打球，若条件不允许则在宿舍打电脑游戏"
+    },
+    {
+      "role": "assistant",
+      "content": "我之前也偶尔会打打游戏放松一下，感觉你们大学生现在都玩什么类型的游戏比较多呀，是那种竞技类的还是休闲娱乐的比较常见呀？"
+    },
+    {
+      "role": "user",
+      "content": "一般竞技类的，休闲类也会玩但玩的比较少"
+    },
+    {
+      "role": "assistant",
+      "content": "我之前也偶尔会打打游戏放松一下，感觉你们大学生现在都玩什么类型的游戏比较多呀，是那种竞技类的还是休闲娱乐的比较常见呀？"
+    },
+    {
+      "role": "user",
+      "content": "一般竞技类的，休闲类也会玩但玩的比较少，只有在陪朋友休闲放松时才会玩"
+    },
+    {
+      "role": "assistant",
+      "content": "感觉你们大学生平时学习任务也挺重的，除了打球和玩游戏放松之外，还会通过什么方式解压呀？"
+    },
+    {
+      "role": "user",
+      "content": "健身运动和去外面玩吃吃喝喝"
+    }
+  ],
+  "followup_history": [
+    {
+      "round_id": 1,
+      "question": "我最近也在帮一个学弟看论文选题，感觉选专业方向这事还挺头疼的，你现在是学什么方向的呀，平时课多不多呀？",
+      "priority_issue": "了解对方的基本背景和日常状态",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 2,
+      "question": "我之前有朋友也学过类似的专业，感觉化学生物类的实验课应该挺有意思的，你们平时实验多不多呀，一般都做些什么实验呀？",
+      "priority_issue": "用户刚提供专业背景，需确认信息完整性和后续方向",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 3,
+      "question": "感觉你们实验课类型还挺丰富的，我之前看朋友学化学的天天泡实验室还挺有意思的，你们平时做实验一般都在什么时间段呀，是上午下午晚上都可能有吗？",
+      "priority_issue": "继续了解对方的日常状态",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 4,
+      "question": "感觉你们实验课时间还挺长的，那平时课余时间一般会做些什么呀？",
+      "priority_issue": "了解对方的日常节奏和近期状态",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 5,
+      "question": "我之前也偶尔会打打游戏放松一下，感觉你们大学生现在都玩什么类型的游戏比较多呀，是那种竞技类的还是休闲娱乐的比较常见呀？",
+      "priority_issue": "继续了解对方的日常状态和学习节奏",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 6,
+      "question": "我之前也偶尔会打打游戏放松一下，感觉你们大学生现在都玩什么类型的游戏比较多呀，是那种竞技类的还是休闲娱乐的比较常见呀？",
+      "priority_issue": "继续了解对方背景",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 7,
+      "question": "感觉你们大学生平时学习任务也挺重的，除了打球和玩游戏放松之外，还会通过什么方式解压呀？",
+      "priority_issue": "对话已进行较充分，暂无明显待澄清点",
+      "followup_strategy": "daily_routine"
+    }
+  ],
+  "facts_table": [
+    {
+      "round_id": 1,
+      "slot": "occupation",
+      "content": "本科在读大学生",
+      "evidence": "本科在读大学生",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 2,
+      "slot": "occupation",
+      "content": "本科在读大学生",
+      "evidence": "本科在读大学生",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 2,
+      "slot": "other",
+      "content": "专业：食品安全检验专业",
+      "evidence": "我学的是食品安全检验专业",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 2,
+      "slot": "other",
+      "content": "学科类型：偏工科",
+      "evidence": "偏工科",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 2,
+      "slot": "experience",
+      "content": "课程类型：化学生物类型课较多",
+      "evidence": "平时化学生物类型课较多",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 3,
+      "slot": "experience",
+      "content": "做过食品加工保藏实验、生物化学实验、有机化学实验、无机化学实验、物理化学实验、食品分析实验、仪器分析实验、食品生物技术实验",
+      "evidence": "实验较多，我做过食品加工保藏实验，生物化学实验，有机化学无机化学实验，物理化学实验，食品分析实验，仪器分析实验，食品生物技术实验等",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 4,
+      "slot": "experience",
+      "content": "实验时间通常从中午1点开始到晚上6点左右，上午课程较少时可能会安排实验",
+      "evidence": "一般从中午一点开始到晚上6点左右做实验，上午课程较少可能会安排到上午",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 5,
+      "slot": "experience",
+      "content": "课余时间与同学相约去打球",
+      "evidence": "会和同学相约去打球",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 5,
+      "slot": "experience",
+      "content": "条件不允许时在宿舍打电脑游戏",
+      "evidence": "若条件不允许则在宿舍打电脑游戏",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 6,
+      "slot": "other",
+      "content": "游戏偏好：主要玩竞技类游戏，休闲类游戏也会玩但玩得较少",
+      "evidence": "一般竞技类的，休闲类也会玩但玩的比较少",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 8,
+      "slot": "experience",
+      "content": "课余解压方式：健身运动、去外面玩吃吃喝喝",
+      "evidence": "健身运动和去外面玩吃吃喝喝",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 8,
+      "slot": "experience",
+      "content": "课余解压方式：健身运动、去外面玩吃吃喝喝",
+      "evidence": "健身运动和去外面玩吃吃喝喝",
+      "source": "quick_preanalysis"
+    }
+  ],
+  "anomalies_table": [],
+  "indicator_history": [],
+  "lie_index": 0.0,
+  "dimension_scores": {
+    "lightweight_surface": 0.0,
+    "unresolved_anomalies": 0
+  },
+  "risk_explanation": [
+    "当前轮次未发现明显风险信号",
+    "当前轮次未发现明显风险信号"
+  ],
+  "called_specialists": [],
+  "routing_decision": {
+    "need_specialist": false,
+    "selected_specialists": [],
+    "routing_reason": "规则判定为极低风险：无新事实、无当前异常、无未解决异常，跳过专家分析",
+    "priority_issue": "无明显待澄清点",
+    "followup_strategy": "daily_routine",
+    "router_mode": "rule_skip"
+  },
+  "final_report": {
+    "lie_index": 0.0,
+    "dimension_scores": {
+      "lightweight_surface": 0.0,
+      "unresolved_anomalies": 0
+    },
+    "report_text": "## 测评报告\n\n### 1. 总体结果\n**综合分数：0/100**\n\n当前职业身份叙述整体稳定性较高，未检测到明显的不一致线索。\n\n### 2. 关键依据\n当前未发现明显不一致线索。\n\n### 3. 待澄清点\n暂无明显待澄清点。"
+  },
+  "thinking_time_history": [
+    {
+      "round": 1,
+      "elapsed": 22.89385175704956,
+      "time": "20:14:45"
+    },
+    {
+      "round": 2,
+      "elapsed": 45.529242277145386,
+      "time": "20:16:09"
+    },
+    {
+      "round": 3,
+      "elapsed": 37.89240050315857,
+      "time": "20:18:04"
+    },
+    {
+      "round": 4,
+      "elapsed": 32.767319679260254,
+      "time": "20:19:29"
+    },
+    {
+      "round": 5,
+      "elapsed": 30.28386402130127,
+      "time": "20:20:52"
+    },
+    {
+      "round": 6,
+      "elapsed": 27.87572145462036,
+      "time": "20:22:16"
+    },
+    {
+      "round": 7,
+      "elapsed": 26.054718732833862,
+      "time": "20:24:53"
+    },
+    {
+      "round": 8,
+      "elapsed": 19.013248205184937,
+      "time": "20:26:39"
+    }
+  ],
+  "saved_at": "2026-05-24 20:26:58"
+}

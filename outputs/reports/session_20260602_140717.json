@@ -1,0 +1,1495 @@
+{
+  "round_id": 7,
+  "max_rounds": 8,
+  "round_records": [
+    {
+      "round": 1,
+      "user_input": "我是一个语文老师",
+      "ai_followup": "语文老师呀，那挺有意思的。我上学那会儿语文课最怕文言文了，感觉你们教这个应该挺有方法的。你是教小学、初中还是高中呀？",
+      "elapsed": 6.846029996871948,
+      "node_times": {
+        "quick_preanalysis_node": 3.005,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.615,
+        "followup_generation_node": 2.197
+      },
+      "time": "2026-06-02 14:03:21",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "quick_fact_summary": "用户明确告知职业为语文老师",
+      "quick_signal_summary": "本轮回答简短但提供了有效事实，未发现明显异常。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": false,
+      "generic_answer_reason": "",
+      "suggested_probe_angle": "term_clarification",
+      "generic_answer_streak": 0,
+      "generic_answer_count": 0,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip",
+        "generic_answer_flag": false,
+        "suggested_probe_angle": "term_clarification",
+        "generic_answer_streak": 0
+      },
+      "priority_issue": "用户仅说明是语文老师，但未明确具体学段（小学/初中/高中）及教学侧重点（如阅读、写作、文言文等），需要进一步澄清以获取更具体的经验信息。",
+      "followup_strategy": "light_clarification",
+      "stop_reason": "当前信息仅确认职业身份，缺乏具体学段和教学方向，需先澄清角色细节再深入提问。",
+      "next_action": "generate_followup",
+      "current_facts": [
+        {
+          "round_id": 1,
+          "slot": "occupation",
+          "content": "语文老师",
+          "evidence": "我是一个语文老师",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户明确告知职业为语文老师；本轮回答简短但提供了有效事实，未发现明显异常。；经验密度：LOW",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:03:17"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:03:17"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:03:17"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前信息仅确认职业身份，缺乏具体学段和教学方向，需先澄清角色细节再深入提问。），关注：用户仅说明是语文老师，但未明确具体学段（小学/初中/高中）及教学侧重点（如阅读、写作、文言文等），需要进一步澄清以获取更具体的经验信息。，策略：light_clarification",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:03:19"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：语文老师呀，那挺有意思的。我上学那会儿语文课最怕文言文了，感觉你们教这个应该挺有方法的。你是教小学、初中还是高中呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:03:21"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "user_input": "我是教初中的",
+      "ai_followup": "初中语文确实挺有挑战的，既要抓基础又要帮他们过渡到高中。你们平时备课是不是得花不少心思在课文分析和考点梳理上呀？",
+      "elapsed": 6.147670745849609,
+      "node_times": {
+        "quick_preanalysis_node": 2.673,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.183,
+        "followup_generation_node": 2.277
+      },
+      "time": "2026-06-02 14:03:40",
+      "lie_index": 0.0,
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "quick_fact_summary": "用户确认自己是初中语文老师，学段从笼统的语文老师细化为初中阶段。",
+      "quick_signal_summary": "本轮回答简短但提供了有效事实，未发现明显异常。",
+      "surface_risk_score": 0.0,
+      "has_new_fact": true,
+      "specificity_level": "MEDIUM",
+      "experience_density": "LOW",
+      "generic_answer_flag": false,
+      "generic_answer_reason": "",
+      "suggested_probe_angle": "term_clarification",
+      "generic_answer_streak": 0,
+      "generic_answer_count": 0,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "priority_issue": "无明显待澄清点",
+        "followup_strategy": "daily_routine",
+        "router_mode": "rule_skip",
+        "generic_answer_flag": false,
+        "suggested_probe_angle": "term_clarification",
+        "generic_answer_streak": 0
+      },
+      "priority_issue": "初中语文教师的具体工作内容与教学流程",
+      "followup_strategy": "daily_routine",
+      "stop_reason": "当前仅确认了学段，尚未获取具体工作内容、教学流程等细节，信息饱和度低，且轮次充裕，应继续追问。",
+      "next_action": "generate_followup",
+      "current_facts": [
+        {
+          "round_id": 2,
+          "slot": "occupation",
+          "content": "初中语文老师",
+          "evidence": "我是教初中的",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认自己是初中语文老师，学段从笼统的语文老师细化为初中阶段。；本轮回答简短但提供了有效事实，未发现明显异常。；经验密度：LOW",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:03:36"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:03:36"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:03:36"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前仅确认了学段，尚未获取具体工作内容、教学流程等细节，信息饱和度低，且轮次充裕，应继续追问。），关注：初中语文教师的具体工作内容与教学流程，策略：daily_routine",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:03:37"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：初中语文确实挺有挑战的，既要抓基础又要帮他们过渡到高中。你们平时备课是不是得花不少心思在课文分析和考点梳理上呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:03:40"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "user_input": "那肯定的，我们备课都很认真，这些都是我们该做的",
+      "ai_followup": "我有个朋友也是初中语文老师，她说每次备课最头疼的就是时间不够用，课文分析和考点梳理经常不知道先抓哪个。你一般是怎么判断先做哪块、后做哪块的呀？",
+      "elapsed": 6.937270402908325,
+      "node_times": {
+        "quick_preanalysis_node": 3.154,
+        "lightweight_routing_supervisor_node": 0.0,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.883,
+        "followup_generation_node": 1.879
+      },
+      "time": "2026-06-02 14:04:08",
+      "lie_index": 7.3,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "经验密度": 5.0
+      },
+      "risk_explanation": [
+        "表层检测:generic_answer severity=LOW confidence=HIGH V=2.4",
+        "经验密度:generic_answer_low_experience_density severity=LOW confidence=LOW V=5.0"
+      ],
+      "quick_fact_summary": "本轮未抽取到新事实。用户确认了备课认真，但未提供任何具体内容。",
+      "quick_signal_summary": "回答正确但停留在职责概括层面，缺少真实备课过程的经验痕迹。",
+      "surface_risk_score": 5.0,
+      "has_new_fact": false,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "用户确认了备课认真，但回答是职业职责的概括性表达，没有提供任何具体的备课流程、课文分析案例、考点梳理方法或遇到的真实教学场景，换成任何一位声称负责的教师都可能说出同样的话。",
+      "suggested_probe_angle": "process_sequence",
+      "generic_answer_streak": 1,
+      "generic_answer_count": 1,
+      "selected_specialists": [],
+      "called_specialists": [],
+      "routing_decision": {
+        "selected_specialists": [],
+        "routing_reason": "本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问",
+        "priority_issue": "用户确认了备课认真，但回答是职业职责的概括性表达，没有提供任何具体的备课流程、课文分析案例、考点梳理方法或遇到的真实教学场景，换成任何一位声称负责的教师都可能说出同样的话。",
+        "followup_strategy": "process_sequence",
+        "router_mode": "rule_skip",
+        "generic_answer_flag": true,
+        "suggested_probe_angle": "process_sequence",
+        "generic_answer_streak": 1
+      },
+      "priority_issue": "用户确认了备课认真，但回答是职业职责的概括性表达，没有提供任何具体的备课流程、课文分析案例、考点梳理方法或遇到的真实教学场景，换成任何一位声称负责的教师都可能说出同样的话。；换到过程顺序角度，问对方一般怎么判断先做什么、后做什么",
+      "followup_strategy": "process_sequence",
+      "stop_reason": "当前仅3轮，预算充足；用户连续给出概括性回答，经验密度低，需追问具体备课流程以获取细节证据。",
+      "next_action": "generate_followup",
+      "current_facts": [],
+      "current_anomalies": [
+        {
+          "type": "generic_answer",
+          "description": "回答停留在职业口号和职责概括层面，缺少备课的具体过程、判断依据或场景细节。",
+          "evidence": [
+            "那肯定的，我们备课都很认真，这些都是我们该做的"
+          ],
+          "score": 0.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            "occupation: 初中语文老师"
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "本轮未抽取到新事实。用户确认了备课认真，但未提供任何具体内容。；回答正确但停留在职责概括层面，缺少真实备课过程的经验痕迹。；经验密度：LOW；泛泛回答：用户确认了备课认真，但回答是职业职责的概括性表达，没有提供任何具体的备课流程、课文分析案例、考点梳理方法或遇到的真实教学场景，换成任何一位声称负责的教师都可能说出同样的话。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:04:04"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：本轮无明显事实冲突，但回答经验密度偏低，跳过专家并进入经验链追问；关注点：用户确认了备课认真，但回答是职业职责的概括性表达，没有提供任何具体的备课流程、课文分析案例、考点梳理方法或遇到的真实教学场景，换成任何一位声称负责的教师都可能说出同样的话。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:04:04"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 7.3，表层检测:generic_answer severity=LOW confidence=HIGH V=2.4；经验密度:generic_answer_low_experience_density severity=LOW confidence=LOW V=5.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:04:04"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（当前仅3轮，预算充足；用户连续给出概括性回答，经验密度低，需追问具体备课流程以获取细节证据。），关注：用户回答停留在职责概括层面，未提供任何具体的备课流程、课文分析案例或考点梳理方法，经验密度低，需追问具体过程。，策略：process_sequence",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:04:06"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：我有个朋友也是初中语文老师，她说每次备课最头疼的就是时间不够用，课文分析和考点梳理经常不知道先抓哪个。你一般是怎么判断先做哪块、后做哪块的呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:04:08"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "user_input": "课文分析是肯定要做的，如果要临近考试了就得做做考点整理，",
+      "ai_followup": "你刚才说课文分析肯定要做，那有没有遇到过讲着讲着发现某个点再往下挖反而学生更懵的情况？一般怎么判断该收住、不用再往深讲了？",
+      "elapsed": 11.600142478942871,
+      "node_times": {
+        "quick_preanalysis_node": 3.572,
+        "lightweight_routing_supervisor_node": 1.207,
+        "semantic_agent_node": 1.672,
+        "logical_agent_node": 2.976,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.443,
+        "followup_generation_node": 2.373
+      },
+      "time": "2026-06-02 14:04:54",
+      "lie_index": 15.4,
+      "dimension_scores": {
+        "表层检测": 2.4,
+        "逻辑时间线": 1.5,
+        "经验密度": 12.0
+      },
+      "risk_explanation": [
+        "表层检测:generic_answer severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5",
+        "经验密度:generic_answer_low_experience_density severity=LOW confidence=HIGH V=12.0"
+      ],
+      "quick_fact_summary": "用户确认备课中课文分析是常规工作，临近考试时会做考点整理，但未说明具体判断依据或操作顺序",
+      "quick_signal_summary": "回答方向正确但经验密度不足，缺少备课过程中的具体判断节点、场景细节或边界条件",
+      "surface_risk_score": 5.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答符合初中语文老师的职业常识（课文分析+考点整理），但缺少真实备课经验痕迹：没有说明如何判断课文分析的深度、考点整理的优先级、时间分配的具体策略、或遇到过哪些实际困难与应对方式，换成没有亲身备课经验的人也容易说出类似内容",
+      "suggested_probe_angle": "boundary_judgment",
+      "generic_answer_streak": 2,
+      "generic_answer_count": 2,
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "called_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "routing_decision": {
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ],
+        "routing_reason": "当前回答仍较泛泛，但无事实冲突或职业常识错误，无需调用专家。",
+        "priority_issue": "用户回答停留在常规工作描述，缺乏备课的具体过程、判断依据或场景细节。",
+        "followup_strategy": "boundary_judgment",
+        "router_mode": "rule_force_llm_select"
+      },
+      "priority_issue": "回答符合初中语文老师的职业常识（课文分析+考点整理），但缺少真实备课经验痕迹：没有说明如何判断课文分析的深度、考点整理的优先级、时间分配的具体策略、或遇到过哪些实际困难与应对方式，换成没有亲身备课经验的人也容易说出类似内容；换到边界判断角度，问哪些情况需要收住、转介、升级或避免继续推进",
+      "followup_strategy": "boundary_judgment",
+      "stop_reason": "经验密度低且存在未解决的泛化回答异常，需追问备课决策的具体边界条件以获取细节证据。",
+      "next_action": "generate_followup",
+      "current_facts": [
+        {
+          "round_id": 4,
+          "slot": "work_content",
+          "content": "备课中课文分析是常规工作，临近考试时会做考点整理",
+          "evidence": "课文分析是肯定要做的，如果要临近考试了就得做做考点整理",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户确认备课中课文分析是常规工作，临近考试时会做考点整理，但未说明具体判断依据或操作顺序；回答方向正确但经验密度不足，缺少备课过程中的具体判断节点、场景细节或边界条件；经验密度：LOW；泛泛回答：回答符合初中语文老师的职业常识（课文分析+考点整理），但缺少真实备课经验痕迹：没有说明如何判断课文分析的深度、考点整理的优先级、时间分配的具体策略、或遇到过哪些实际困难与应对方式，换成没有亲身备课经验的人也容易说出类似内容",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:04:46"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：当前回答仍较泛泛，但无事实冲突或职业常识错误，无需调用专家。；关注点：用户回答停留在常规工作描述，缺乏备课的具体过程、判断依据或场景细节。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:04:48"
+        },
+        {
+          "node": "semantic_agent",
+          "title": "语义分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:04:49"
+        },
+        {
+          "node": "logical_agent",
+          "title": "逻辑分析专家",
+          "content": "该专家评分：1.5",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:04:51"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 15.4，表层检测:generic_answer severity=LOW confidence=HIGH V=2.4；逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5；经验密度:generic_answer_low_experience_density severity=LOW confidence=HIGH V=12.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:04:51"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（经验密度低且存在未解决的泛化回答异常，需追问备课决策的具体边界条件以获取细节证据。），关注：用户回答停留在常规工作描述，缺乏备课的具体过程、判断依据或场景细节。，策略：boundary_judgment",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:04:52"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：你刚才说课文分析肯定要做，那有没有遇到过讲着讲着发现某个点再往下挖反而学生更懵的情况？一般怎么判断该收住、不用再往深讲了？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:04:54"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "user_input": "这个我们都有教学的要求，组长会开会，讲整个学期课文的讲课要求，我们会根据他的指示来",
+      "ai_followup": "那你们组长开会定的那些要求，平时执行的时候有没有遇到过跟自己的想法不太一样的情况？",
+      "elapsed": 12.548702239990234,
+      "node_times": {
+        "quick_preanalysis_node": 4.23,
+        "lightweight_routing_supervisor_node": 1.709,
+        "semantic_agent_node": 2.803,
+        "logical_agent_node": 3.025,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.442,
+        "followup_generation_node": 2.122
+      },
+      "time": "2026-06-02 14:06:10",
+      "lie_index": 19.2,
+      "dimension_scores": {
+        "逻辑时间线": 1.5,
+        "表层检测": 2.4,
+        "经验密度": 16.0
+      },
+      "risk_explanation": [
+        "逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=16.0"
+      ],
+      "quick_fact_summary": "用户说明教学要求由组长开会确定，教师根据组长指示执行",
+      "quick_signal_summary": "回答停留在职责概括层面，缺少个人判断过程、课堂场景或具体案例，旧异常未解决",
+      "surface_risk_score": 10.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答符合职业常识（按上级指示执行），但缺少个人判断过程、课堂场景、具体案例或边界意识，换成没有亲身经历的人也容易说出类似回答",
+      "suggested_probe_angle": "real_constraint",
+      "generic_answer_streak": 3,
+      "generic_answer_count": 3,
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "called_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "routing_decision": {
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ],
+        "routing_reason": "连续3轮泛泛回答且经验密度低，需语义一致性检查和逻辑追问，但无职业常识冲突，不调用domain",
+        "priority_issue": "用户连续3轮停留在概括层面，未提供任何个人判断过程或具体场景，需追问真实约束条件",
+        "followup_strategy": "real_constraint",
+        "router_mode": "rule_force_llm_select"
+      },
+      "priority_issue": "回答符合职业常识（按上级指示执行），但缺少个人判断过程、课堂场景、具体案例或边界意识，换成没有亲身经历的人也容易说出类似回答；换到真实限制角度，问记录、时间、流程、协作、规范或现实约束",
+      "followup_strategy": "real_constraint",
+      "stop_reason": "经验密度极低，连续3轮泛泛回答，需追问真实约束条件打破概括模式，且预算充足",
+      "next_action": "generate_followup",
+      "current_facts": [
+        {
+          "round_id": 5,
+          "slot": "work_content",
+          "content": "教学要求由组长开会确定，教师根据组长指示执行",
+          "evidence": "这个我们都有教学的要求，组长会开会，讲整个学期课文的讲课要求，我们会根据他的指示来",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "lack_of_detail",
+          "description": "回答停留在按上级指示执行的概括层面，未提供任何个人判断过程、课堂场景或具体案例",
+          "evidence": [
+            "这个我们都有教学的要求，组长会开会，讲整个学期课文的讲课要求，我们会根据他的指示来"
+          ],
+          "score": 0.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            3
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户说明教学要求由组长开会确定，教师根据组长指示执行；回答停留在职责概括层面，缺少个人判断过程、课堂场景或具体案例，旧异常未解决；经验密度：LOW；泛泛回答：回答符合职业常识（按上级指示执行），但缺少个人判断过程、课堂场景、具体案例或边界意识，换成没有亲身经历的人也容易说出类似回答",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:01"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：连续3轮泛泛回答且经验密度低，需语义一致性检查和逻辑追问，但无职业常识冲突，不调用domain；关注点：用户连续3轮停留在概括层面，未提供任何个人判断过程或具体场景，需追问真实约束条件",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:03"
+        },
+        {
+          "node": "semantic_agent",
+          "title": "语义分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:06"
+        },
+        {
+          "node": "logical_agent",
+          "title": "逻辑分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:06"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 19.2，逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5；表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4；经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=16.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:06"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（经验密度极低，连续3轮泛泛回答，需追问真实约束条件打破概括模式，且预算充足），关注：用户连续3轮停留在概括层面，未提供任何个人判断过程或具体场景，需追问真实约束条件，策略：real_constraint",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:08"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：那你们组长开会定的那些要求，平时执行的时候有没有遇到过跟自己的想法不太一样的情况？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:10"
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "user_input": "还好吧，如果出现了就积极沟通",
+      "ai_followup": "那也挺好的，能沟通说明大家目标一致。不过有时候光沟通也不一定马上能解决，有没有遇到过那种常规沟通不管用、得想点别的办法才能推进的情况呀？",
+      "elapsed": 13.318995952606201,
+      "node_times": {
+        "quick_preanalysis_node": 4.688,
+        "lightweight_routing_supervisor_node": 1.314,
+        "semantic_agent_node": 2.994,
+        "logical_agent_node": 3.199,
+        "risk_aggregator_node": 0.001,
+        "strategy_supervisor_node": 2.009,
+        "followup_generation_node": 2.08
+      },
+      "time": "2026-06-02 14:06:35",
+      "lie_index": 32.0,
+      "dimension_scores": {
+        "逻辑时间线": 1.5,
+        "表层检测": 2.4,
+        "经验密度": 20.0
+      },
+      "risk_explanation": [
+        "逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5",
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=20.0",
+        "经验密度:persistent_vague_or_low_detail_answers severity=LOW confidence=HIGH V=8.0"
+      ],
+      "quick_fact_summary": "用户表示当与组长要求不一致时会积极沟通",
+      "quick_signal_summary": "回答仍然非常概括，缺少具体沟通场景和细节，经验密度低",
+      "surface_risk_score": 10.0,
+      "has_new_fact": true,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": true,
+      "generic_answer_reason": "回答符合职场沟通的常识性表达（'积极沟通'），但缺少任何真实经历痕迹，如具体分歧内容、沟通对象、沟通方式、沟通结果或后续调整，换成没有亲身经历的人也容易说出同样的话",
+      "suggested_probe_angle": "counterexample",
+      "generic_answer_streak": 4,
+      "generic_answer_count": 4,
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "called_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "routing_decision": {
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ],
+        "routing_reason": "当前回答为概括性表态，无事实冲突或职业常识错误，无需调用专家。",
+        "priority_issue": "用户连续4轮泛泛回答，需追问具体沟通场景、分歧内容及处理方式。",
+        "followup_strategy": "counterexample",
+        "router_mode": "rule_force_llm_select"
+      },
+      "priority_issue": "回答符合职场沟通的常识性表达（'积极沟通'），但缺少任何真实经历痕迹，如具体分歧内容、沟通对象、沟通方式、沟通结果或后续调整，换成没有亲身经历的人也容易说出同样的话；换到反例和卡点角度，问遇到常规方法不管用时通常怎么处理",
+      "followup_strategy": "counterexample",
+      "stop_reason": "经验密度极低，连续4轮泛泛回答，尚有2轮预算，应追问具体分歧案例以突破概括性表态。",
+      "next_action": "generate_followup",
+      "current_facts": [
+        {
+          "round_id": 6,
+          "slot": "experience",
+          "content": "当与组长要求不一致时，会采取积极沟通的方式",
+          "evidence": "还好吧，如果出现了就积极沟通",
+          "source": "quick_preanalysis"
+        }
+      ],
+      "current_anomalies": [
+        {
+          "type": "lack_of_detail",
+          "description": "回答停留在概括性表态层面，未提供任何具体沟通场景、分歧内容、沟通方式或结果",
+          "evidence": [
+            "还好吧，如果出现了就积极沟通"
+          ],
+          "score": 10.0,
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "related_facts": [
+            4
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "用户表示当与组长要求不一致时会积极沟通；回答仍然非常概括，缺少具体沟通场景和细节，经验密度低；经验密度：LOW；泛泛回答：回答符合职场沟通的常识性表达（'积极沟通'），但缺少任何真实经历痕迹，如具体分歧内容、沟通对象、沟通方式、沟通结果或后续调整，换成没有亲身经历的人也容易说出同样的话",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:26"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：当前回答为概括性表态，无事实冲突或职业常识错误，无需调用专家。；关注点：用户连续4轮泛泛回答，需追问具体沟通场景、分歧内容及处理方式。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:28"
+        },
+        {
+          "node": "semantic_agent",
+          "title": "语义分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:31"
+        },
+        {
+          "node": "logical_agent",
+          "title": "逻辑分析专家",
+          "content": "该专家评分：1.5",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:31"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 32.0，逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5；表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4；表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4；逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5；经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=20.0；经验密度:persistent_vague_or_low_detail_answers severity=LOW confidence=HIGH V=8.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:31"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "继续追问（经验密度极低，连续4轮泛泛回答，尚有2轮预算，应追问具体分歧案例以突破概括性表态。），关注：用户连续4轮泛泛回答，需追问具体沟通场景、分歧内容及处理方式。，策略：counterexample",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:33"
+        },
+        {
+          "node": "followup_generation",
+          "title": "追问生成",
+          "content": "生成追问：那也挺好的，能沟通说明大家目标一致。不过有时候光沟通也不一定马上能解决，有没有遇到过那种常规沟通不管用、得想点别的办法才能推进的情况呀？",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:35"
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "user_input": "没有",
+      "ai_followup": "",
+      "elapsed": 20.321365356445312,
+      "node_times": {
+        "quick_preanalysis_node": 4.441,
+        "lightweight_routing_supervisor_node": 1.687,
+        "semantic_agent_node": 2.327,
+        "logical_agent_node": 2.49,
+        "psycho_linguistic_agent_node": 8.283,
+        "risk_aggregator_node": 0.0,
+        "strategy_supervisor_node": 1.656,
+        "report_generation_node": 4.224
+      },
+      "time": "2026-06-02 14:07:13",
+      "lie_index": 63.7,
+      "dimension_scores": {
+        "逻辑时间线": 1.5,
+        "表层检测": 8.0,
+        "心理语言": 20.0,
+        "经验密度": 17.0
+      },
+      "risk_explanation": [
+        "逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5",
+        "表层检测:avoidance severity=MEDIUM confidence=HIGH V=8.0",
+        "心理语言:avoidance severity=HIGH confidence=HIGH V=20.0",
+        "心理语言:vague_expression severity=HIGH confidence=HIGH V=20.0",
+        "心理语言:over_explanation severity=MEDIUM confidence=MEDIUM V=5.0",
+        "心理语言:self_correction severity=MEDIUM confidence=MEDIUM V=5.0",
+        "经验密度:generic_answer_low_experience_density severity=LOW confidence=HIGH V=11.0",
+        "经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=17.0"
+      ],
+      "quick_fact_summary": "本轮未抽取到新事实。用户回答'没有'，未提供任何新信息。",
+      "quick_signal_summary": "用户直接回避了上一轮追问，未提供任何替代方案或例外情况。所有历史异常均未得到解决。",
+      "surface_risk_score": 20.0,
+      "has_new_fact": false,
+      "specificity_level": "LOW",
+      "experience_density": "LOW",
+      "generic_answer_flag": false,
+      "generic_answer_reason": "",
+      "suggested_probe_angle": "term_clarification",
+      "generic_answer_streak": 0,
+      "generic_answer_count": 4,
+      "selected_specialists": [
+        "semantic",
+        "logical",
+        "psycho_linguistic"
+      ],
+      "called_specialists": [
+        "semantic",
+        "logical",
+        "psycho_linguistic"
+      ],
+      "routing_decision": {
+        "selected_specialists": [
+          "semantic",
+          "logical",
+          "psycho_linguistic"
+        ],
+        "routing_reason": "用户回避追问，无新事实或异常冲突，无需专家分析。",
+        "priority_issue": "用户连续回避具体场景追问，需温和转换话题方向以降低防御。",
+        "followup_strategy": "topic_shift_buffer",
+        "router_mode": "rule_force_llm_select"
+      },
+      "priority_issue": "",
+      "followup_strategy": "",
+      "stop_reason": "已到第7轮，用户连续回避具体场景追问，经验密度持续偏低，心理语言回避和模糊表达高置信度，继续追问收益低，建议生成报告。",
+      "next_action": "final_report",
+      "current_facts": [],
+      "current_anomalies": [
+        {
+          "type": "avoidance",
+          "description": "用户直接回答'没有'，回避了上一轮关于'常规沟通不管用时如何推进'的具体问题，未提供任何替代方案或例外情况。",
+          "evidence": [
+            "没有"
+          ],
+          "score": 0.0,
+          "severity": "MEDIUM",
+          "confidence": "HIGH",
+          "related_facts": [
+            5
+          ]
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "title": "快速预分析",
+          "content": "本轮未抽取到新事实。用户回答'没有'，未提供任何新信息。；用户直接回避了上一轮追问，未提供任何替代方案或例外情况。所有历史异常均未得到解决。；经验密度：LOW",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:57"
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析, 心理语言；原因：用户回避追问，无新事实或异常冲突，无需专家分析。；关注点：用户连续回避具体场景追问，需温和转换话题方向以降低防御。",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:06:59"
+        },
+        {
+          "node": "semantic_agent",
+          "title": "语义分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:07:01"
+        },
+        {
+          "node": "logical_agent",
+          "title": "逻辑分析专家",
+          "content": "该专家评分：0.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:07:01"
+        },
+        {
+          "node": "psycho_linguistic_agent",
+          "title": "心理语言学专家",
+          "content": "该专家评分：20.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:07:07"
+        },
+        {
+          "node": "risk_aggregator",
+          "title": "风险聚合",
+          "content": "风险指数 63.7，逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5；表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4；表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4；逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5；表层检测:avoidance severity=MEDIUM confidence=HIGH V=8.0；心理语言:avoidance severity=HIGH confidence=HIGH V=20.0；心理语言:vague_expression severity=HIGH confidence=HIGH V=20.0；心理语言:over_explanation severity=MEDIUM confidence=MEDIUM V=5.0；心理语言:self_correction severity=MEDIUM confidence=MEDIUM V=5.0；经验密度:generic_answer_low_experience_density severity=LOW confidence=HIGH V=11.0；经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=17.0",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:07:07"
+        },
+        {
+          "node": "strategy_supervisor",
+          "title": "策略决策",
+          "content": "信息已足够，生成最终报告（已到第7轮，用户连续回避具体场景追问，经验密度持续偏低，心理语言回避和模糊表达高置信度，继续追问收益低，建议生成报告。）",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:07:09"
+        },
+        {
+          "node": "report_generation",
+          "title": "报告生成",
+          "content": "最终测评报告已生成",
+          "elapsed_seconds": null,
+          "time": "2026-06-02 14:07:13"
+        }
+      ]
+    }
+  ],
+  "dialogue_history": [
+    {
+      "role": "assistant",
+      "content": "你平时是做什么方向的工作呀？"
+    },
+    {
+      "role": "user",
+      "content": "我是一个语文老师"
+    },
+    {
+      "role": "assistant",
+      "content": "语文老师呀，那挺有意思的。我上学那会儿语文课最怕文言文了，感觉你们教这个应该挺有方法的。你是教小学、初中还是高中呀？"
+    },
+    {
+      "role": "user",
+      "content": "我是教初中的"
+    },
+    {
+      "role": "assistant",
+      "content": "初中语文确实挺有挑战的，既要抓基础又要帮他们过渡到高中。你们平时备课是不是得花不少心思在课文分析和考点梳理上呀？"
+    },
+    {
+      "role": "user",
+      "content": "那肯定的，我们备课都很认真，这些都是我们该做的"
+    },
+    {
+      "role": "assistant",
+      "content": "我有个朋友也是初中语文老师，她说每次备课最头疼的就是时间不够用，课文分析和考点梳理经常不知道先抓哪个。你一般是怎么判断先做哪块、后做哪块的呀？"
+    },
+    {
+      "role": "user",
+      "content": "课文分析是肯定要做的，如果要临近考试了就得做做考点整理，"
+    },
+    {
+      "role": "assistant",
+      "content": "你刚才说课文分析肯定要做，那有没有遇到过讲着讲着发现某个点再往下挖反而学生更懵的情况？一般怎么判断该收住、不用再往深讲了？"
+    },
+    {
+      "role": "user",
+      "content": "这个我们都有教学的要求，组长会开会，讲整个学期课文的讲课要求，我们会根据他的指示来"
+    },
+    {
+      "role": "assistant",
+      "content": "那你们组长开会定的那些要求，平时执行的时候有没有遇到过跟自己的想法不太一样的情况？"
+    },
+    {
+      "role": "user",
+      "content": "还好吧，如果出现了就积极沟通"
+    },
+    {
+      "role": "assistant",
+      "content": "那也挺好的，能沟通说明大家目标一致。不过有时候光沟通也不一定马上能解决，有没有遇到过那种常规沟通不管用、得想点别的办法才能推进的情况呀？"
+    },
+    {
+      "role": "user",
+      "content": "没有"
+    }
+  ],
+  "followup_history": [
+    {
+      "round_id": 1,
+      "question": "语文老师呀，那挺有意思的。我上学那会儿语文课最怕文言文了，感觉你们教这个应该挺有方法的。你是教小学、初中还是高中呀？",
+      "priority_issue": "用户仅说明是语文老师，但未明确具体学段（小学/初中/高中）及教学侧重点（如阅读、写作、文言文等），需要进一步澄清以获取更具体的经验信息。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "round_id": 2,
+      "question": "初中语文确实挺有挑战的，既要抓基础又要帮他们过渡到高中。你们平时备课是不是得花不少心思在课文分析和考点梳理上呀？",
+      "priority_issue": "初中语文教师的具体工作内容与教学流程",
+      "followup_strategy": "daily_routine"
+    },
+    {
+      "round_id": 3,
+      "question": "我有个朋友也是初中语文老师，她说每次备课最头疼的就是时间不够用，课文分析和考点梳理经常不知道先抓哪个。你一般是怎么判断先做哪块、后做哪块的呀？",
+      "priority_issue": "用户确认了备课认真，但回答是职业职责的概括性表达，没有提供任何具体的备课流程、课文分析案例、考点梳理方法或遇到的真实教学场景，换成任何一位声称负责的教师都可能说出同样的话。；换到过程顺序角度，问对方一般怎么判断先做什么、后做什么",
+      "followup_strategy": "process_sequence"
+    },
+    {
+      "round_id": 4,
+      "question": "你刚才说课文分析肯定要做，那有没有遇到过讲着讲着发现某个点再往下挖反而学生更懵的情况？一般怎么判断该收住、不用再往深讲了？",
+      "priority_issue": "回答符合初中语文老师的职业常识（课文分析+考点整理），但缺少真实备课经验痕迹：没有说明如何判断课文分析的深度、考点整理的优先级、时间分配的具体策略、或遇到过哪些实际困难与应对方式，换成没有亲身备课经验的人也容易说出类似内容；换到边界判断角度，问哪些情况需要收住、转介、升级或避免继续推进",
+      "followup_strategy": "boundary_judgment"
+    },
+    {
+      "round_id": 5,
+      "question": "那你们组长开会定的那些要求，平时执行的时候有没有遇到过跟自己的想法不太一样的情况？",
+      "priority_issue": "回答符合职业常识（按上级指示执行），但缺少个人判断过程、课堂场景、具体案例或边界意识，换成没有亲身经历的人也容易说出类似回答；换到真实限制角度，问记录、时间、流程、协作、规范或现实约束",
+      "followup_strategy": "real_constraint"
+    },
+    {
+      "round_id": 6,
+      "question": "那也挺好的，能沟通说明大家目标一致。不过有时候光沟通也不一定马上能解决，有没有遇到过那种常规沟通不管用、得想点别的办法才能推进的情况呀？",
+      "priority_issue": "回答符合职场沟通的常识性表达（'积极沟通'），但缺少任何真实经历痕迹，如具体分歧内容、沟通对象、沟通方式、沟通结果或后续调整，换成没有亲身经历的人也容易说出同样的话；换到反例和卡点角度，问遇到常规方法不管用时通常怎么处理",
+      "followup_strategy": "counterexample"
+    }
+  ],
+  "facts_table": [
+    {
+      "round_id": 1,
+      "slot": "occupation",
+      "content": "语文老师",
+      "evidence": "我是一个语文老师",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 2,
+      "slot": "occupation",
+      "content": "初中语文老师",
+      "evidence": "我是教初中的",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 4,
+      "slot": "work_content",
+      "content": "备课中课文分析是常规工作，临近考试时会做考点整理",
+      "evidence": "课文分析是肯定要做的，如果要临近考试了就得做做考点整理",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 5,
+      "slot": "work_content",
+      "content": "教学要求由组长开会确定，教师根据组长指示执行",
+      "evidence": "这个我们都有教学的要求，组长会开会，讲整个学期课文的讲课要求，我们会根据他的指示来",
+      "source": "quick_preanalysis"
+    },
+    {
+      "round_id": 6,
+      "slot": "experience",
+      "content": "当与组长要求不一致时，会采取积极沟通的方式",
+      "evidence": "还好吧，如果出现了就积极沟通",
+      "source": "quick_preanalysis"
+    }
+  ],
+  "anomalies_table": [
+    {
+      "anomaly_id": "a_3_quick_preanalysis_0",
+      "round_id": 3,
+      "source": "quick_preanalysis",
+      "type": "generic_answer",
+      "description": "回答停留在职业口号和职责概括层面，缺少备课的具体过程、判断依据或场景细节。",
+      "evidence": [
+        "那肯定的，我们备课都很认真，这些都是我们该做的"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 2,
+      "stop_followup": true,
+      "related_facts": [
+        "occupation: 初中语文老师"
+      ],
+      "created_round": 3,
+      "last_update_round": 7,
+      "update_history": [
+        {
+          "round_id": 4,
+          "update_type": "remain_unresolved",
+          "explanation": "用户虽然补充了'临近考试做考点整理'这一时间条件，但回答仍然停留在职责层面的概括，没有给出具体的判断依据、操作顺序或场景细节，未能充分解释或闭合旧异常",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 4,
+          "update_type": "clarify",
+          "explanation": "用户在第5轮提供了备课中的具体工作内容（课文分析和考点整理），并给出了判断依据（是否临近考试），这比之前的概括性回答更具体，部分回应了异常。但回答仍停留在职责描述层面，未提供具体的备课过程、场景细节或个人经验，因此属于部分澄清，未完全解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答仍然停留在职责概括层面（按组长指示执行），没有提供任何个人判断过程、场景细节或具体案例，旧异常未得到解决",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及备课的具体过程或判断依据，与第3轮异常无关，因此状态保持不变。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答仍然停留在概括性表达层面，没有提供备课或教学中的具体过程、判断依据或场景细节，原异常未得到回应。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户回答未涉及备课具体过程或判断依据，未对原异常提供任何澄清或解决信息。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未提供任何备课过程或判断依据，无法解决该异常。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及第3轮关于备课细节的异常，该异常仍然未解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_4_logical_1",
+      "round_id": 4,
+      "source": "logical",
+      "type": "career_path_gap",
+      "description": "",
+      "evidence": [
+        "第4轮：课文分析是肯定要做的，如果要临近考试了就得做做考点整理"
+      ],
+      "score": 0.0,
+      "severity": "LOW",
+      "confidence": "MEDIUM",
+      "risk_value": 1.5,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [],
+      "created_round": 4,
+      "last_update_round": 7,
+      "update_history": [
+        {
+          "round_id": 5,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及职业路径相关内容，未回应此异常",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及职业路径或岗位变化，与第4轮异常无关，因此状态保持不变。",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及职业路径或发展相关话题，原异常未得到回应。",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户回答未涉及职业路径相关内容，未对原异常提供任何澄清或解决信息。",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户回答'没有'，未提供任何关于职业路径或经历顺序的新信息，无法对第4轮提出的职业路径缺口异常进行澄清或解决。",
+          "new_score": 0.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_5_quick_preanalysis_2",
+      "round_id": 5,
+      "source": "quick_preanalysis",
+      "type": "lack_of_detail",
+      "description": "回答停留在按上级指示执行的概括层面，未提供任何个人判断过程、课堂场景或具体案例",
+      "evidence": [
+        "这个我们都有教学的要求，组长会开会，讲整个学期课文的讲课要求，我们会根据他的指示来"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 1,
+      "stop_followup": false,
+      "related_facts": [
+        3
+      ],
+      "created_round": 5,
+      "last_update_round": 7,
+      "update_history": [
+        {
+          "round_id": 5,
+          "update_type": "reinforce",
+          "explanation": "当前轮次用户回答再次停留在按上级指示执行的概括层面，未提供任何个人判断过程、课堂场景或具体案例，强化了原异常。",
+          "new_score": 10.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "clarify",
+          "explanation": "用户回应了上一轮关于‘与组长想法不一致’的追问，给出了‘积极沟通’的处理方式，但回答仍然非常概括，没有提供任何具体沟通场景、分歧内容或沟通后的结果，因此原异常得到部分澄清但未解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户回答仍停留在概括性表态层面，未提供任何个人判断过程或具体案例，原异常未得到解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未提供任何个人判断过程或课堂场景细节，无法解决该异常。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及第5轮关于个人判断过程的异常，该异常仍然未解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_6_quick_preanalysis_3",
+      "round_id": 6,
+      "source": "quick_preanalysis",
+      "type": "lack_of_detail",
+      "description": "回答停留在概括性表态层面，未提供任何具体沟通场景、分歧内容、沟通方式或结果",
+      "evidence": [
+        "还好吧，如果出现了就积极沟通"
+      ],
+      "score": 30.0,
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "risk_value": 2.4000000000000004,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 1,
+      "stop_followup": false,
+      "related_facts": [
+        4
+      ],
+      "created_round": 6,
+      "last_update_round": 7,
+      "update_history": [
+        {
+          "round_id": 6,
+          "update_type": "clarify",
+          "explanation": "用户当前回答'如果出现了就积极沟通'，对原异常中'沟通方式'进行了部分回应，但未提供具体沟通场景、分歧内容或结果，属于部分澄清。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答为'没有'，未对上一轮关于'常规沟通不管用时的处理方式'的追问提供任何信息，也未回应此前关于沟通场景细节的缺失。",
+          "new_score": 30.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未涉及第6轮关于具体沟通场景的异常，该异常仍然未解决。",
+          "new_score": 30.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_6_logical_4",
+      "round_id": 6,
+      "source": "logical",
+      "type": "career_path_gap",
+      "description": "",
+      "evidence": [
+        "第4轮：课文分析是肯定要做的，如果要临近考试了就得做做考点整理",
+        "第5轮：这个我们都有教学的要求，组长会开会，讲整个学期课文的讲课要求，我们会根据他的指示来",
+        "第6轮：还好吧，如果出现了就积极沟通"
+      ],
+      "score": 0.0,
+      "severity": "LOW",
+      "confidence": "MEDIUM",
+      "risk_value": 1.5,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [],
+      "created_round": 6,
+      "last_update_round": 7,
+      "update_history": [
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前回答未提供任何职业经历细节，无法解决职业路径缺口异常。",
+          "new_score": 0.0,
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "update_type": "remain_unresolved",
+          "explanation": "当前轮次用户回答'没有'，未提供任何关于沟通场景或职业经历的新信息，无法对第6轮提出的职业路径缺口异常进行澄清或解决。",
+          "new_score": 0.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_7_quick_preanalysis_5",
+      "round_id": 7,
+      "source": "quick_preanalysis",
+      "type": "avoidance",
+      "description": "用户直接回答'没有'，回避了上一轮关于'常规沟通不管用时如何推进'的具体问题，未提供任何替代方案或例外情况。",
+      "evidence": [
+        "没有"
+      ],
+      "score": 0.0,
+      "severity": "MEDIUM",
+      "confidence": "HIGH",
+      "risk_value": 8.0,
+      "schema_error": "",
+      "status": "reinforced",
+      "clarification_status": "insufficient",
+      "followup_needed": true,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [
+        5
+      ],
+      "created_round": 7,
+      "last_update_round": 7,
+      "update_history": [
+        {
+          "round_id": 7,
+          "update_type": "reinforce",
+          "explanation": "用户在当前轮次直接回答'没有'，进一步确认了回避行为，使得第7轮已识别的回避异常更加明显。",
+          "new_score": 0.0,
+          "followup_needed": true
+        }
+      ]
+    },
+    {
+      "anomaly_id": "a_7_psycho_linguistic_6",
+      "round_id": 7,
+      "source": "psycho_linguistic",
+      "type": "avoidance",
+      "description": "",
+      "evidence": [
+        "第7轮：用户直接回答'没有'，回避了上一轮关于'常规沟通不管用时如何推进'的具体问题"
+      ],
+      "score": 0.0,
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "risk_value": 20.0,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [],
+      "created_round": 7,
+      "last_update_round": 7,
+      "update_history": []
+    },
+    {
+      "anomaly_id": "a_7_psycho_linguistic_7",
+      "round_id": 7,
+      "source": "psycho_linguistic",
+      "type": "vague_expression",
+      "description": "",
+      "evidence": [
+        "第3轮：'那肯定的，我们备课都很认真，这些都是我们该做的'",
+        "第5轮：'这个我们都有教学的要求，组长会开会，讲整个学期课文的讲课要求，我们会根据他的指示来'",
+        "第6轮：'还好吧，如果出现了就积极沟通'"
+      ],
+      "score": 0.0,
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "risk_value": 20.0,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [],
+      "created_round": 7,
+      "last_update_round": 7,
+      "update_history": []
+    },
+    {
+      "anomaly_id": "a_7_psycho_linguistic_8",
+      "round_id": 7,
+      "source": "psycho_linguistic",
+      "type": "over_explanation",
+      "description": "",
+      "evidence": [
+        "第5轮：'这个我们都有教学的要求，组长会开会，讲整个学期课文的讲课要求，我们会根据他的指示来'"
+      ],
+      "score": 0.0,
+      "severity": "MEDIUM",
+      "confidence": "MEDIUM",
+      "risk_value": 5.0,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [],
+      "created_round": 7,
+      "last_update_round": 7,
+      "update_history": []
+    },
+    {
+      "anomaly_id": "a_7_psycho_linguistic_9",
+      "round_id": 7,
+      "source": "psycho_linguistic",
+      "type": "self_correction",
+      "description": "",
+      "evidence": [
+        "第4轮：'课文分析是肯定要做的，如果要临近考试了就得做做考点整理'"
+      ],
+      "score": 0.0,
+      "severity": "MEDIUM",
+      "confidence": "MEDIUM",
+      "risk_value": 5.0,
+      "schema_error": "",
+      "status": "unresolved",
+      "clarification_status": "none",
+      "followup_needed": true,
+      "followup_count": 0,
+      "stop_followup": false,
+      "related_facts": [],
+      "created_round": 7,
+      "last_update_round": 7,
+      "update_history": []
+    }
+  ],
+  "indicator_history": [],
+  "lie_index": 63.7,
+  "dimension_scores": {
+    "逻辑时间线": 1.5,
+    "表层检测": 8.0,
+    "心理语言": 20.0,
+    "经验密度": 17.0
+  },
+  "risk_explanation": [
+    "逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5",
+    "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+    "表层检测:lack_of_detail severity=LOW confidence=HIGH V=2.4",
+    "逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5",
+    "表层检测:avoidance severity=MEDIUM confidence=HIGH V=8.0",
+    "心理语言:avoidance severity=HIGH confidence=HIGH V=20.0",
+    "心理语言:vague_expression severity=HIGH confidence=HIGH V=20.0",
+    "心理语言:over_explanation severity=MEDIUM confidence=MEDIUM V=5.0",
+    "心理语言:self_correction severity=MEDIUM confidence=MEDIUM V=5.0",
+    "经验密度:generic_answer_low_experience_density severity=LOW confidence=HIGH V=11.0",
+    "经验密度:persistent_vague_or_low_detail_answers severity=MEDIUM confidence=HIGH V=17.0"
+  ],
+  "experience_density": "LOW",
+  "specificity_level": "LOW",
+  "generic_answer_flag": false,
+  "generic_answer_reason": "",
+  "suggested_probe_angle": "term_clarification",
+  "generic_answer_streak": 0,
+  "generic_answer_count": 4,
+  "used_probe_angles": [
+    "process_sequence",
+    "boundary_judgment",
+    "real_constraint",
+    "counterexample"
+  ],
+  "called_specialists": [
+    "semantic",
+    "logical",
+    "psycho_linguistic"
+  ],
+  "routing_decision": {
+    "selected_specialists": [
+      "semantic",
+      "logical",
+      "psycho_linguistic"
+    ],
+    "routing_reason": "用户回避追问，无新事实或异常冲突，无需专家分析。",
+    "priority_issue": "用户连续回避具体场景追问，需温和转换话题方向以降低防御。",
+    "followup_strategy": "topic_shift_buffer",
+    "router_mode": "rule_force_llm_select"
+  },
+  "final_report": {
+    "lie_index": 63.7,
+    "dimension_scores": {
+      "逻辑时间线": 1.5,
+      "表层检测": 8.0,
+      "心理语言": 20.0,
+      "经验密度": 17.0
+    },
+    "report_text": "好的，这是根据您提供的所有数据生成的测评报告。\n\n***\n\n### **测评结果**\n\n**1. 用户个人信息总结**\n\n用户自述为一名初中语文老师。在备课工作中，用户表示课文分析是常规工作，临近考试时会进行考点整理。在教学执行层面，用户提到教学要求由组长开会确定，教师会根据组长指示执行，当与组长要求不一致时，会采取积极沟通的方式。关于更具体的个人教学经验、课堂管理细节或职业发展路径，目前信息尚不明确。\n\n**2. 总体结果**\n\n综合分数：**63.7/100**\n\n当前职业身份叙述中存在若干待澄清线索，整体稳定性有待进一步验证。\n\n**3. 关键依据**\n\n*   **心理语言分析显示回避与模糊表述：** 专家发现用户在回答关于具体教学决策、沟通分歧及例外情况时，多次使用“没有”、“还好吧”、“积极沟通”等概括性、回避性表述，缺乏具体场景和个人判断细节，这降低了叙述的可信度。\n*   **经验密度维度分数较低：** 在“经验密度”维度上得分为17.0，表明用户未能提供足够具体、有细节的个人经历来支撑其职业身份，回答多停留在流程和规则层面。\n\n**4. 待澄清点**\n\n*   用户提到的“积极沟通”具体指何种方式、在何种场景下发生，以及沟通的具体内容和结果仍不够清楚。\n*   用户作为初中语文老师，其个人在教学中的独立判断和具体课堂操作经验（如如何判断学生理解程度、如何调整教学节奏等）有待进一步了解。"
+  },
+  "thinking_time_history": [
+    {
+      "round": 1,
+      "elapsed": 6.846029996871948,
+      "time": "14:03:21"
+    },
+    {
+      "round": 2,
+      "elapsed": 6.147670745849609,
+      "time": "14:03:40"
+    },
+    {
+      "round": 3,
+      "elapsed": 6.937270402908325,
+      "time": "14:04:08"
+    },
+    {
+      "round": 4,
+      "elapsed": 11.600142478942871,
+      "time": "14:04:54"
+    },
+    {
+      "round": 5,
+      "elapsed": 12.548702239990234,
+      "time": "14:06:10"
+    },
+    {
+      "round": 6,
+      "elapsed": 13.318995952606201,
+      "time": "14:06:35"
+    },
+    {
+      "round": 7,
+      "elapsed": 20.321365356445312,
+      "time": "14:07:13"
+    }
+  ],
+  "saved_at": "2026-06-02 14:07:17"
+}

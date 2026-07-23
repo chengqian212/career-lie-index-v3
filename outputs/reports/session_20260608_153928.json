@@ -1,0 +1,1396 @@
+{
+  "round_id": 8,
+  "saved_at": "2026-06-08 15:39:28",
+  "lie_index": 29.7,
+  "max_rounds": 8,
+  "facts_table": [
+    {
+      "slot": "occupation",
+      "source": "quick_preanalysis",
+      "content": "高校讲师",
+      "evidence": "我是高校的讲师",
+      "round_id": 1
+    },
+    {
+      "slot": "occupation",
+      "source": "quick_preanalysis",
+      "content": "高校讲师",
+      "evidence": "我是高校的讲师",
+      "round_id": 2
+    },
+    {
+      "slot": "work_content",
+      "source": "quick_preanalysis",
+      "content": "生物",
+      "evidence": "生物",
+      "round_id": 2
+    },
+    {
+      "slot": "work_content",
+      "source": "quick_preanalysis",
+      "content": "从事生物方向的教学，同时参与实际的横向项目",
+      "evidence": "都有吧，我也在做一些实际的横向项目",
+      "round_id": 3
+    },
+    {
+      "slot": "work_content",
+      "source": "quick_preanalysis",
+      "content": "从事生物检测技术相关的横向项目",
+      "evidence": "生物的一些检测技术",
+      "round_id": 4
+    },
+    {
+      "slot": "work_content",
+      "source": "quick_preanalysis",
+      "content": "在生物检测技术项目中负责实验操作和实验策划",
+      "evidence": "做实验，还有策划实验",
+      "round_id": 5
+    },
+    {
+      "slot": "time_stage",
+      "source": "quick_preanalysis",
+      "content": "生物检测技术项目周期约两个月",
+      "evidence": "两个月吧",
+      "round_id": 6
+    },
+    {
+      "slot": "work_content",
+      "source": "quick_preanalysis",
+      "content": "在生物检测技术项目中，策划实验方案时第一步是先定检测目标",
+      "evidence": "先定检测目标",
+      "round_id": 7
+    }
+  ],
+  "final_report": {
+    "lie_index": 29.7,
+    "report_text": "好的，这是为您生成的测评报告。\n\n***\n\n### **测评结果**\n\n**1. 用户个人信息总结**\n\n用户当前身份为高校讲师，专业方向为生物。其工作内容不仅包括教学，还参与实际的横向项目，具体方向为生物检测技术。在项目中，用户负责实验操作和实验方案策划，并提到项目周期约为两个月，策划实验的第一步是确定检测目标。\n\n**2. 总体结果**\n\n综合分数为 **29.7/100**。当前职业身份叙述中存在若干待澄清线索，整体稳定性较低。\n\n**3. 关键依据**\n\n*   **职业路径与项目细节的匹配度不足：** 用户身份为高校讲师，但其描述的“策划实验”和“实验操作”职责更偏向于技术研发或实验员角色，与通常理解的讲师核心职责（教学、科研项目申报与管理）存在一定差异，且未提及教学相关细节。\n*   **项目经验描述较为笼统：** 用户对生物检测技术项目的描述停留在“先定检测目标”等基础流程层面，缺乏对具体技术难点、方法选择或项目成果的深入阐述，使得项目经验的真实性和深度有待验证。\n\n**4. 待澄清点**\n\n*   用户作为高校讲师，其教学工作的具体内容（如授课科目、课时量）以及教学与横向项目的时间精力分配情况尚不明确。\n*   在生物检测技术项目中，用户所承担的“策划实验”职责的具体边界和决策权（例如，是独立设计实验方案还是执行既定方案）需要进一步澄清。",
+    "dimension_scores": {
+      "logical": 8.0,
+      "experience_density": 17.0
+    }
+  },
+  "round_records": [
+    {
+      "time": "2026-06-08 15:33:17",
+      "round": 1,
+      "elapsed": 7.35672664642334,
+      "lie_index": 0.0,
+      "node_times": {
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 2.633,
+        "followup_generation_node": 2.811,
+        "strategy_supervisor_node": 1.892,
+        "lightweight_routing_supervisor_node": 0.0
+      },
+      "user_input": "我是高校的讲师",
+      "ai_followup": "那你平时上课主要讲什么方向的内容呀？",
+      "next_action": "generate_followup",
+      "stop_reason": "职业信息过于笼统，需先澄清具体学科或研究方向，为后续经验挖掘奠定基础",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "occupation",
+          "source": "quick_preanalysis",
+          "content": "高校讲师",
+          "evidence": "我是高校的讲师",
+          "round_id": 1
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:33:12",
+          "title": "快速预分析",
+          "content": "用户当前职业为高校讲师；职业身份粒度过粗，缺少具体学科或专业方向，属于正常澄清需求，非风险信号；经验密度：LOW",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:33:12",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析；关注点：无明显待澄清点",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:33:12",
+          "title": "风险聚合",
+          "content": "风险指数 0.0，No active specialist evidence; LieIndex=0.",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:33:14",
+          "title": "策略决策",
+          "content": "继续追问（职业信息过于笼统，需先澄清具体学科或研究方向，为后续经验挖掘奠定基础），关注：用户仅回答'高校讲师'，职业类别过于宽泛，需明确具体学科、职称或研究方向，策略：light_clarification",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:33:17",
+          "title": "追问生成",
+          "content": "生成追问：那你平时上课主要讲什么方向的内容呀？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "用户仅回答'高校讲师'，职业类别过于宽泛，需明确具体学科、职称或研究方向",
+      "dimension_scores": {},
+      "risk_explanation": [
+        "No active specialist evidence; LieIndex=0."
+      ],
+      "routing_decision": {
+        "router_mode": "rule_skip",
+        "priority_issue": "无明显待澄清点",
+        "routing_reason": "规则判定为极低风险：无当前异常、无未解决异常，跳过专家分析",
+        "followup_strategy": "daily_routine",
+        "generic_answer_flag": false,
+        "occupation_too_broad": true,
+        "selected_specialists": [],
+        "generic_answer_streak": 0,
+        "suggested_probe_angle": "term_clarification"
+      },
+      "current_anomalies": [],
+      "followup_strategy": "light_clarification",
+      "specificity_level": "LOW",
+      "called_specialists": [],
+      "experience_density": "LOW",
+      "quick_fact_summary": "用户当前职业为高校讲师",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": false,
+      "generic_answer_count": 0,
+      "quick_signal_summary": "职业身份粒度过粗，缺少具体学科或专业方向，属于正常澄清需求，非风险信号",
+      "selected_specialists": [],
+      "generic_answer_reason": "",
+      "generic_answer_streak": 0,
+      "suggested_probe_angle": "term_clarification"
+    },
+    {
+      "time": "2026-06-08 15:33:55",
+      "round": 2,
+      "elapsed": 7.242619514465332,
+      "lie_index": 2.4,
+      "node_times": {
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 2.952,
+        "followup_generation_node": 2.721,
+        "strategy_supervisor_node": 1.556,
+        "lightweight_routing_supervisor_node": 0.0
+      },
+      "user_input": "生物",
+      "ai_followup": "生物方向啊，那你们学院里这个方向主要是偏理论多一些，还是偏实际应用多一些呀？",
+      "next_action": "generate_followup",
+      "stop_reason": "当前仅知用户是高校生物讲师，但未明确具体教学系统、课程类型或研究方向，职业粒度仍过粗，需先澄清再深入。",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "occupation",
+          "source": "quick_preanalysis",
+          "content": "高校讲师",
+          "evidence": "我是高校的讲师",
+          "round_id": 2
+        },
+        {
+          "slot": "work_content",
+          "source": "quick_preanalysis",
+          "content": "生物",
+          "evidence": "生物",
+          "round_id": 2
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:33:51",
+          "title": "快速预分析",
+          "content": "用户确认自己是高校讲师，教授生物方向。；用户回答简短，职业身份粒度过粗，缺少具体系统、岗位性质或职责方向。；经验密度：LOW",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:33:51",
+          "title": "路由决策",
+          "content": "系统判定本轮无需调用专家，直接进入风险聚合；原因：当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向；关注点：职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:33:51",
+          "title": "风险聚合",
+          "content": "风险指数 2.4，表层检测:vague severity=LOW confidence=HIGH V=2.4",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:33:53",
+          "title": "策略决策",
+          "content": "继续追问（当前仅知用户是高校生物讲师，但未明确具体教学系统、课程类型或研究方向，职业粒度仍过粗，需先澄清再深入。），关注：职业身份粒度过粗，缺少具体系统、岗位性质或职责方向，策略：light_clarification",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:33:55",
+          "title": "追问生成",
+          "content": "生成追问：生物方向啊，那你们学院里这个方向主要是偏理论多一些，还是偏实际应用多一些呀？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "dimension_scores": {
+        "quick_preanalysis": 2.4
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4"
+      ],
+      "routing_decision": {
+        "router_mode": "role_disambiguation_skip",
+        "priority_issue": "职业身份粒度过粗，需要先了解具体系统、岗位性质或职责方向",
+        "routing_reason": "当前只是职业类别过宽，先澄清具体系统、岗位性质或职责方向",
+        "followup_strategy": "light_clarification",
+        "selected_specialists": []
+      },
+      "current_anomalies": [
+        {
+          "type": "vague",
+          "evidence": [
+            "生物"
+          ],
+          "severity": "LOW",
+          "confidence": "HIGH",
+          "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向",
+          "related_facts": [
+            1
+          ]
+        }
+      ],
+      "followup_strategy": "light_clarification",
+      "specificity_level": "LOW",
+      "called_specialists": [],
+      "experience_density": "LOW",
+      "quick_fact_summary": "用户确认自己是高校讲师，教授生物方向。",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": false,
+      "generic_answer_count": 0,
+      "quick_signal_summary": "用户回答简短，职业身份粒度过粗，缺少具体系统、岗位性质或职责方向。",
+      "selected_specialists": [],
+      "generic_answer_reason": "",
+      "generic_answer_streak": 0,
+      "suggested_probe_angle": "term_clarification"
+    },
+    {
+      "time": "2026-06-08 15:34:54",
+      "round": 3,
+      "elapsed": 12.53313136100769,
+      "lie_index": 3.9,
+      "node_times": {
+        "logical_agent_node": 3.238,
+        "semantic_agent_node": 2.968,
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 3.458,
+        "followup_generation_node": 2.214,
+        "strategy_supervisor_node": 1.884,
+        "lightweight_routing_supervisor_node": 1.725
+      },
+      "user_input": "都有吧，我也在做一些实际的横向项目",
+      "ai_followup": "你们做的横向项目主要是偏哪类实际应用呀？",
+      "next_action": "generate_followup",
+      "stop_reason": "职业身份粒度过粗，仅知讲师和生物方向，需澄清具体系统、岗位性质或职责方向后再深入追问。",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "work_content",
+          "source": "quick_preanalysis",
+          "content": "从事生物方向的教学，同时参与实际的横向项目",
+          "evidence": "都有吧，我也在做一些实际的横向项目",
+          "round_id": 3
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:34:45",
+          "title": "快速预分析",
+          "content": "用户是高校讲师，从事生物方向教学，并参与实际横向项目。；无新增异常信号。历史异常（职业身份粒度过粗）得到部分澄清，但具体岗位性质仍需进一步了解。；经验密度：MEDIUM",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:34:47",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：当前无新异常，仅历史异常为职业身份粒度过粗，需温和澄清，无需专家介入；关注点：职业身份粒度过粗，需进一步了解具体系统、岗位性质或职责方向",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:34:50",
+          "title": "风险聚合",
+          "content": "风险指数 3.9，表层检测:vague severity=LOW confidence=HIGH V=2.4；逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:34:52",
+          "title": "策略决策",
+          "content": "继续追问（职业身份粒度过粗，仅知讲师和生物方向，需澄清具体系统、岗位性质或职责方向后再深入追问。），关注：职业身份粒度过粗，需进一步了解具体系统、岗位性质或职责方向，策略：light_clarification",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:34:54",
+          "title": "追问生成",
+          "content": "生成追问：你们做的横向项目主要是偏哪类实际应用呀？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "dimension_scores": {
+        "logical": 1.5,
+        "quick_preanalysis": 2.4
+      },
+      "risk_explanation": [
+        "表层检测:vague severity=LOW confidence=HIGH V=2.4",
+        "逻辑时间线:career_path_gap severity=LOW confidence=MEDIUM V=1.5"
+      ],
+      "routing_decision": {
+        "router_mode": "rule_force_llm_select",
+        "priority_issue": "职业身份粒度过粗，需进一步了解具体系统、岗位性质或职责方向",
+        "routing_reason": "当前无新异常，仅历史异常为职业身份粒度过粗，需温和澄清，无需专家介入",
+        "followup_strategy": "light_clarification",
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ]
+      },
+      "current_anomalies": [],
+      "followup_strategy": "light_clarification",
+      "specificity_level": "MEDIUM",
+      "called_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "experience_density": "MEDIUM",
+      "quick_fact_summary": "用户是高校讲师，从事生物方向教学，并参与实际横向项目。",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": false,
+      "generic_answer_count": 0,
+      "quick_signal_summary": "无新增异常信号。历史异常（职业身份粒度过粗）得到部分澄清，但具体岗位性质仍需进一步了解。",
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "generic_answer_reason": "",
+      "generic_answer_streak": 0,
+      "suggested_probe_angle": "real_constraint"
+    },
+    {
+      "time": "2026-06-08 15:35:59",
+      "round": 4,
+      "elapsed": 13.933581113815308,
+      "lie_index": 15.4,
+      "node_times": {
+        "logical_agent_node": 4.321,
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 4.27,
+        "followup_generation_node": 2.064,
+        "strategy_supervisor_node": 1.757,
+        "lightweight_routing_supervisor_node": 1.504
+      },
+      "user_input": "生物的一些检测技术",
+      "ai_followup": "听起来你们做的检测项目还挺落地的，你平时在项目里主要负责哪个环节呀？",
+      "next_action": "generate_followup",
+      "stop_reason": "职业路径缺口异常未解决，用户回答仍偏笼统，需追问具体工作流程以验证经验真实性",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "work_content",
+          "source": "quick_preanalysis",
+          "content": "从事生物检测技术相关的横向项目",
+          "evidence": "生物的一些检测技术",
+          "round_id": 4
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:35:50",
+          "title": "快速预分析",
+          "content": "用户本轮确认其横向项目方向为生物检测技术，属于生物领域的实际应用层面。；本轮无新增异常信号。用户对上一轮追问给出了直接且具体的回答，未出现回避、模糊或矛盾。；经验密度：MEDIUM",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:35:51",
+          "title": "路由决策",
+          "content": "调用专家：逻辑分析；原因：历史存在职业路径缺口异常，需追问具体流程以验证经验真实性；关注点：从高校讲师到生物检测技术横向项目的具体工作流程和角色转换",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:35:55",
+          "title": "风险聚合",
+          "content": "风险指数 15.4，逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0；逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:35:57",
+          "title": "策略决策",
+          "content": "继续追问（职业路径缺口异常未解决，用户回答仍偏笼统，需追问具体工作流程以验证经验真实性），关注：从高校讲师到生物检测技术横向项目的具体工作流程和角色转换，策略：process_sequence",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:35:59",
+          "title": "追问生成",
+          "content": "生成追问：听起来你们做的检测项目还挺落地的，你平时在项目里主要负责哪个环节呀？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "从高校讲师到生物检测技术横向项目的具体工作流程和角色转换",
+      "dimension_scores": {
+        "logical": 8.0
+      },
+      "risk_explanation": [
+        "逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0",
+        "逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0"
+      ],
+      "routing_decision": {
+        "router_mode": "rule_force_llm_select",
+        "priority_issue": "从高校讲师到生物检测技术横向项目的具体工作流程和角色转换",
+        "routing_reason": "历史存在职业路径缺口异常，需追问具体流程以验证经验真实性",
+        "followup_strategy": "process_sequence",
+        "selected_specialists": [
+          "logical"
+        ]
+      },
+      "current_anomalies": [],
+      "followup_strategy": "process_sequence",
+      "specificity_level": "MEDIUM",
+      "called_specialists": [
+        "logical"
+      ],
+      "experience_density": "MEDIUM",
+      "quick_fact_summary": "用户本轮确认其横向项目方向为生物检测技术，属于生物领域的实际应用层面。",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": false,
+      "generic_answer_count": 0,
+      "quick_signal_summary": "本轮无新增异常信号。用户对上一轮追问给出了直接且具体的回答，未出现回避、模糊或矛盾。",
+      "selected_specialists": [
+        "logical"
+      ],
+      "generic_answer_reason": "",
+      "generic_answer_streak": 0,
+      "suggested_probe_angle": "process_sequence"
+    },
+    {
+      "time": "2026-06-08 15:37:04",
+      "round": 5,
+      "elapsed": 19.37085747718811,
+      "lie_index": 22.1,
+      "node_times": {
+        "logical_agent_node": 5.853,
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 6.363,
+        "followup_generation_node": 2.553,
+        "strategy_supervisor_node": 2.551,
+        "lightweight_routing_supervisor_node": 2.038
+      },
+      "user_input": "做实验，还有策划实验",
+      "ai_followup": "那你们做这种检测实验，从策划到出结果，一般一个项目周期大概要多久呀？",
+      "next_action": "generate_followup",
+      "stop_reason": "职业路径断层异常持续未解决，当前仅知用户做实验和策划实验，需追问从讲师到检测项目的具体转变过程及时间节点",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "work_content",
+          "source": "quick_preanalysis",
+          "content": "在生物检测技术项目中负责实验操作和实验策划",
+          "evidence": "做实验，还有策划实验",
+          "round_id": 5
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:36:51",
+          "title": "快速预分析",
+          "content": "用户明确自己在生物检测技术项目中负责实验操作和实验策划两个环节；本轮无新增异常信号，用户直接回答了上一轮追问，提供了具体工作内容；经验密度：MEDIUM",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:36:53",
+          "title": "路由决策",
+          "content": "调用专家：逻辑分析；原因：历史异常中存在未解决的职业路径断层，需逻辑专家分析经历连续性；关注点：从高校讲师到生物检测技术项目的职业路径断层",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:36:59",
+          "title": "风险聚合",
+          "content": "风险指数 22.1，逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0；逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0；逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:37:01",
+          "title": "策略决策",
+          "content": "继续追问（职业路径断层异常持续未解决，当前仅知用户做实验和策划实验，需追问从讲师到检测项目的具体转变过程及时间节点），关注：从高校讲师到生物检测技术项目的职业路径断层，策略：process_sequence",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:37:04",
+          "title": "追问生成",
+          "content": "生成追问：那你们做这种检测实验，从策划到出结果，一般一个项目周期大概要多久呀？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "从高校讲师到生物检测技术项目的职业路径断层",
+      "dimension_scores": {
+        "logical": 8.0
+      },
+      "risk_explanation": [
+        "逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0",
+        "逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0",
+        "逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0"
+      ],
+      "routing_decision": {
+        "router_mode": "rule_force_llm_select",
+        "priority_issue": "从高校讲师到生物检测技术项目的职业路径断层",
+        "routing_reason": "历史异常中存在未解决的职业路径断层，需逻辑专家分析经历连续性",
+        "followup_strategy": "process_sequence",
+        "selected_specialists": [
+          "logical"
+        ]
+      },
+      "current_anomalies": [],
+      "followup_strategy": "process_sequence",
+      "specificity_level": "MEDIUM",
+      "called_specialists": [
+        "logical"
+      ],
+      "experience_density": "MEDIUM",
+      "quick_fact_summary": "用户明确自己在生物检测技术项目中负责实验操作和实验策划两个环节",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": false,
+      "generic_answer_count": 0,
+      "quick_signal_summary": "本轮无新增异常信号，用户直接回答了上一轮追问，提供了具体工作内容",
+      "selected_specialists": [
+        "logical"
+      ],
+      "generic_answer_reason": "",
+      "generic_answer_streak": 0,
+      "suggested_probe_angle": "process_sequence"
+    },
+    {
+      "time": "2026-06-08 15:38:13",
+      "round": 6,
+      "elapsed": 17.3150897026062,
+      "lie_index": 36.0,
+      "node_times": {
+        "logical_agent_node": 6.098,
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 4.303,
+        "followup_generation_node": 2.508,
+        "strategy_supervisor_node": 2.729,
+        "lightweight_routing_supervisor_node": 1.666
+      },
+      "user_input": "两个月吧",
+      "ai_followup": "两个月能走完一个周期还挺高效的，你们策划实验方案的时候，一般第一步是先定检测目标还是先选检测方法呀？",
+      "next_action": "generate_followup",
+      "stop_reason": "当前仅获得项目周期，缺乏流程细节；career_path_gap异常持续未澄清，经验密度低，需追问具体操作步骤以验证经历真实性。",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "time_stage",
+          "source": "quick_preanalysis",
+          "content": "生物检测技术项目周期约两个月",
+          "evidence": "两个月吧",
+          "round_id": 6
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:38:00",
+          "title": "快速预分析",
+          "content": "用户明确回答了项目周期，为两个月。；本轮无新增异常信号。回答简短但直接回应了上一轮问题，提供了新的有效事实。；经验密度：LOW",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:38:02",
+          "title": "路由决策",
+          "content": "调用专家：逻辑分析；原因：历史存在多条career_path_gap异常，当前回答经验密度低，需追问流程细节以验证经历真实性；关注点：生物检测技术项目的完整工作流程和具体操作细节",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:38:08",
+          "title": "风险聚合",
+          "content": "风险指数 36.0，逻辑时间线:career_path_gap severity=HIGH confidence=HIGH V=20.0；逻辑时间线:career_path_gap severity=HIGH confidence=HIGH V=20.0",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:38:11",
+          "title": "策略决策",
+          "content": "继续追问（当前仅获得项目周期，缺乏流程细节；career_path_gap异常持续未澄清，经验密度低，需追问具体操作步骤以验证经历真实性。），关注：生物检测技术项目的完整工作流程和具体操作细节，策略：process_sequence",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:38:13",
+          "title": "追问生成",
+          "content": "生成追问：两个月能走完一个周期还挺高效的，你们策划实验方案的时候，一般第一步是先定检测目标还是先选检测方法呀？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "生物检测技术项目的完整工作流程和具体操作细节",
+      "dimension_scores": {
+        "logical": 20.0
+      },
+      "risk_explanation": [
+        "逻辑时间线:career_path_gap severity=HIGH confidence=HIGH V=20.0",
+        "逻辑时间线:career_path_gap severity=HIGH confidence=HIGH V=20.0"
+      ],
+      "routing_decision": {
+        "router_mode": "rule_force_llm_select",
+        "priority_issue": "生物检测技术项目的完整工作流程和具体操作细节",
+        "routing_reason": "历史存在多条career_path_gap异常，当前回答经验密度低，需追问流程细节以验证经历真实性",
+        "followup_strategy": "process_sequence",
+        "selected_specialists": [
+          "logical"
+        ]
+      },
+      "current_anomalies": [],
+      "followup_strategy": "process_sequence",
+      "specificity_level": "HIGH",
+      "called_specialists": [
+        "logical"
+      ],
+      "experience_density": "LOW",
+      "quick_fact_summary": "用户明确回答了项目周期，为两个月。",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": false,
+      "generic_answer_count": 0,
+      "quick_signal_summary": "本轮无新增异常信号。回答简短但直接回应了上一轮问题，提供了新的有效事实。",
+      "selected_specialists": [
+        "logical"
+      ],
+      "generic_answer_reason": "",
+      "generic_answer_streak": 0,
+      "suggested_probe_angle": "process_sequence"
+    },
+    {
+      "time": "2026-06-08 15:38:54",
+      "round": 7,
+      "elapsed": 20.266637086868286,
+      "lie_index": 42.4,
+      "node_times": {
+        "logical_agent_node": 6.98,
+        "semantic_agent_node": 3.646,
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 6.198,
+        "followup_generation_node": 2.809,
+        "strategy_supervisor_node": 2.562,
+        "lightweight_routing_supervisor_node": 1.702
+      },
+      "user_input": "先定检测目标",
+      "ai_followup": "那你们定好目标之后，实际动手前一般最先卡在哪个环节呀，是设备排不开还是样本不好凑？",
+      "next_action": "generate_followup",
+      "stop_reason": "当前仅7轮，仍有追问空间；职业路径断层异常（风险20）未澄清，经验密度低，需追问真实约束条件（如入职时间、职称晋升）来验证身份连贯性。",
+      "has_new_fact": true,
+      "current_facts": [
+        {
+          "slot": "work_content",
+          "source": "quick_preanalysis",
+          "content": "在生物检测技术项目中，策划实验方案时第一步是先定检测目标",
+          "evidence": "先定检测目标",
+          "round_id": 7
+        }
+      ],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:38:40",
+          "title": "快速预分析",
+          "content": "用户确认在生物检测技术项目中，策划实验方案的第一步是确定检测目标。；本轮回答简短但直接回应了上一轮追问，没有回避或答非所问，未发现新的异常信号。历史异常均未得到回应或解决。；经验密度：LOW；泛泛回答：回答'先定检测目标'虽然正确且直接回应了问题，但这是一个非常基础的实验策划常识，缺乏具体场景、判断依据或操作细节。任何从事过实验工作的人都能给出这个答案，没有体现出用户亲身经历该流程的独特痕迹（如：如何确定目标、与谁讨论、考虑哪些约束条件等）。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:38:41",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：当前回答经验密度低且泛泛，历史存在职业路径异常，需语义和逻辑专家分析身份一致性及经历连贯性。；关注点：用户职业身份从高校讲师到生物检测技术项目负责人的路径不清晰，存在职业路径断层。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:38:48",
+          "title": "风险聚合",
+          "content": "风险指数 42.4，逻辑时间线:career_path_gap severity=HIGH confidence=HIGH V=20.0；逻辑时间线:career_path_gap severity=HIGH confidence=HIGH V=20.0；经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=10.0",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:38:51",
+          "title": "策略决策",
+          "content": "继续追问（当前仅7轮，仍有追问空间；职业路径断层异常（风险20）未澄清，经验密度低，需追问真实约束条件（如入职时间、职称晋升）来验证身份连贯性。），关注：职业路径断层：从高校讲师到生物检测技术项目负责人的具体转变过程不清晰，策略：real_constraint",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "followup_generation",
+          "time": "2026-06-08 15:38:54",
+          "title": "追问生成",
+          "content": "生成追问：那你们定好目标之后，实际动手前一般最先卡在哪个环节呀，是设备排不开还是样本不好凑？",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "回答'先定检测目标'虽然正确且直接回应了问题，但这是一个非常基础的实验策划常识，缺乏具体场景、判断依据或操作细节。任何从事过实验工作的人都能给出这个答案，没有体现出用户亲身经历该流程的独特痕迹（如：如何确定目标、与谁讨论、考虑哪些约束条件等）。；换到真实限制角度，问记录、时间、流程、协作、规范或现实约束",
+      "dimension_scores": {
+        "logical": 20.0,
+        "experience_density": 10.0
+      },
+      "risk_explanation": [
+        "逻辑时间线:career_path_gap severity=HIGH confidence=HIGH V=20.0",
+        "逻辑时间线:career_path_gap severity=HIGH confidence=HIGH V=20.0",
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=10.0"
+      ],
+      "routing_decision": {
+        "router_mode": "rule_force_llm_select",
+        "priority_issue": "用户职业身份从高校讲师到生物检测技术项目负责人的路径不清晰，存在职业路径断层。",
+        "routing_reason": "当前回答经验密度低且泛泛，历史存在职业路径异常，需语义和逻辑专家分析身份一致性及经历连贯性。",
+        "followup_strategy": "real_constraint",
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ]
+      },
+      "current_anomalies": [],
+      "followup_strategy": "real_constraint",
+      "specificity_level": "MEDIUM",
+      "called_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "experience_density": "LOW",
+      "quick_fact_summary": "用户确认在生物检测技术项目中，策划实验方案的第一步是确定检测目标。",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": true,
+      "generic_answer_count": 1,
+      "quick_signal_summary": "本轮回答简短但直接回应了上一轮追问，没有回避或答非所问，未发现新的异常信号。历史异常均未得到回应或解决。",
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "generic_answer_reason": "回答'先定检测目标'虽然正确且直接回应了问题，但这是一个非常基础的实验策划常识，缺乏具体场景、判断依据或操作细节。任何从事过实验工作的人都能给出这个答案，没有体现出用户亲身经历该流程的独特痕迹（如：如何确定目标、与谁讨论、考虑哪些约束条件等）。",
+      "generic_answer_streak": 1,
+      "suggested_probe_angle": "real_constraint"
+    },
+    {
+      "time": "2026-06-08 15:39:23",
+      "round": 8,
+      "elapsed": 18.7372624874115,
+      "lie_index": 29.7,
+      "node_times": {
+        "logical_agent_node": 4.052,
+        "semantic_agent_node": 3.757,
+        "risk_aggregator_node": 0.0,
+        "quick_preanalysis_node": 5.961,
+        "report_generation_node": 4.357,
+        "strategy_supervisor_node": 2.511,
+        "lightweight_routing_supervisor_node": 1.841
+      },
+      "user_input": "都有吧",
+      "ai_followup": "",
+      "next_action": "final_report",
+      "stop_reason": "当前为第8轮，但职业身份粒度过粗（仅'高校讲师'），且经验密度低、泛答连续，需先澄清具体系统/岗位方向，再追问流程细节。",
+      "has_new_fact": false,
+      "current_facts": [],
+      "agent_thoughts": [
+        {
+          "node": "quick_preanalysis",
+          "time": "2026-06-08 15:39:11",
+          "title": "快速预分析",
+          "content": "本轮未抽取到新的事实。用户对项目卡点问题给出了模糊回答。；检测到1个新的模糊回答异常，4个历史异常未得到解决。用户回答缺乏具体细节，经验密度低。；经验密度：LOW；泛泛回答：回答'都有吧'是典型的概括性回应，没有提供任何具体的卡点场景、设备类型、样本问题或处理方式，缺乏真实项目经历的痕迹。",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "lightweight_routing_supervisor",
+          "time": "2026-06-08 15:39:12",
+          "title": "路由决策",
+          "content": "调用专家：语义分析, 逻辑分析；原因：用户连续泛泛回答，经验密度低，需通过追问验证事实一致性及经历逻辑；关注点：用户连续2轮泛泛回答，经验密度低，需验证其是否具备真实项目经验",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "risk_aggregator",
+          "time": "2026-06-08 15:39:16",
+          "title": "风险聚合",
+          "content": "风险指数 29.7，逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0；逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0；经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=17.0",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "strategy_supervisor",
+          "time": "2026-06-08 15:39:19",
+          "title": "策略决策",
+          "content": "信息已足够，生成最终报告（当前为第8轮，但职业身份粒度过粗（仅'高校讲师'），且经验密度低、泛答连续，需先澄清具体系统/岗位方向，再追问流程细节。）",
+          "elapsed_seconds": null
+        },
+        {
+          "node": "report_generation",
+          "time": "2026-06-08 15:39:23",
+          "title": "报告生成",
+          "content": "最终测评报告已生成",
+          "elapsed_seconds": null
+        }
+      ],
+      "priority_issue": "用户职业身份粒度过粗，缺少具体系统、岗位性质或职责方向，且经验密度持续偏低",
+      "dimension_scores": {
+        "logical": 8.0,
+        "experience_density": 17.0
+      },
+      "risk_explanation": [
+        "逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0",
+        "逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0",
+        "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=17.0"
+      ],
+      "routing_decision": {
+        "router_mode": "rule_force_llm_select",
+        "priority_issue": "用户连续2轮泛泛回答，经验密度低，需验证其是否具备真实项目经验",
+        "routing_reason": "用户连续泛泛回答，经验密度低，需通过追问验证事实一致性及经历逻辑",
+        "followup_strategy": "process_sequence",
+        "selected_specialists": [
+          "semantic",
+          "logical"
+        ]
+      },
+      "current_anomalies": [],
+      "followup_strategy": "",
+      "specificity_level": "LOW",
+      "called_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "experience_density": "LOW",
+      "quick_fact_summary": "本轮未抽取到新的事实。用户对项目卡点问题给出了模糊回答。",
+      "surface_risk_score": 0.0,
+      "generic_answer_flag": true,
+      "generic_answer_count": 2,
+      "quick_signal_summary": "检测到1个新的模糊回答异常，4个历史异常未得到解决。用户回答缺乏具体细节，经验密度低。",
+      "selected_specialists": [
+        "semantic",
+        "logical"
+      ],
+      "generic_answer_reason": "回答'都有吧'是典型的概括性回应，没有提供任何具体的卡点场景、设备类型、样本问题或处理方式，缺乏真实项目经历的痕迹。",
+      "generic_answer_streak": 2,
+      "suggested_probe_angle": "process_sequence"
+    }
+  ],
+  "anomalies_table": [
+    {
+      "type": "vague",
+      "source": "quick_preanalysis",
+      "status": "unresolved",
+      "evidence": [
+        "生物"
+      ],
+      "round_id": 2,
+      "severity": "MEDIUM",
+      "anomaly_id": "a_2_quick_preanalysis_0",
+      "confidence": "HIGH",
+      "risk_value": 8.0,
+      "description": "职业身份粒度过粗，缺少具体系统、岗位性质或职责方向",
+      "schema_error": "",
+      "created_round": 2,
+      "related_facts": [
+        1
+      ],
+      "stop_followup": true,
+      "followup_count": 2,
+      "update_history": [
+        {
+          "round_id": 3,
+          "explanation": "用户补充了具体方向（生物）和实际工作内容（横向项目），部分回应了职业身份粒度过粗的问题，但具体岗位性质（如教学科研岗、实验岗等）仍不明确，需要继续澄清。",
+          "update_type": "clarify",
+          "followup_needed": true
+        },
+        {
+          "round_id": 3,
+          "explanation": "当前回答（第3轮）虽然补充了用户参与横向项目的信息，但并未提供更具体的系统、岗位性质或职责方向，因此原异常（职业身份粒度过粗）仍未得到有效澄清或解决。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 4,
+          "explanation": "用户补充了横向项目的具体方向为'生物检测技术'，部分澄清了职业身份，但'高校讲师'和'生物'仍较宽泛，未完全解决",
+          "update_type": "clarify",
+          "followup_needed": true
+        },
+        {
+          "round_id": 4,
+          "explanation": "用户在第4轮提供了更具体的项目方向（生物检测技术），但职业身份仍为高校讲师，未提供更具体的系统、岗位性质或职责方向，因此该异常未得到解决或澄清。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "explanation": "用户补充了具体工作内容（实验和策划），部分回应了职业身份粒度过粗的问题，但仍未明确具体岗位性质或职责方向",
+          "update_type": "clarify",
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "explanation": "当前回答（第5轮）仅补充了具体职责（实验操作和策划），但未提供更具体的系统、岗位性质或职责方向信息，因此该异常状态保持不变。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "explanation": "当前回答未涉及职业身份的具体化，未提供具体系统、岗位性质或职责方向，因此该异常状态保持不变。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "explanation": "当前轮次（第6轮）补充了项目周期信息，但未涉及职业身份的具体化（如具体系统、岗位性质或职责方向），因此该异常状态保持不变。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "explanation": "当前回答是关于实验流程的细节，没有回应用户职业身份粒度过粗的问题（高校讲师->生物->检测技术，仍不够具体）。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "explanation": "当前轮次用户回答的是实验策划的具体步骤（先定检测目标），并未提供更具体的职业身份信息（如具体学院、职称、研究方向细分等），因此该异常状态保持不变。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "explanation": "当前回答'都有吧'未提供任何关于具体系统、岗位性质或职责方向的信息，职业身份粒度过粗的问题仍未解决。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "explanation": "当前轮次用户未提供新的职业身份信息，仅回答了关于项目流程的细节问题，未对'职业身份粒度过粗'的异常进行任何澄清或补充。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        }
+      ],
+      "followup_needed": true,
+      "last_update_round": 8,
+      "clarification_status": "none"
+    },
+    {
+      "type": "career_path_gap",
+      "source": "logical",
+      "status": "unresolved",
+      "evidence": [
+        "第1轮：用户说“我是高校的讲师”",
+        "第3轮：用户说“都有吧，我也在做一些实际的横向项目”"
+      ],
+      "round_id": 3,
+      "severity": "MEDIUM",
+      "anomaly_id": "a_3_logical_1",
+      "confidence": "HIGH",
+      "risk_value": 8.0,
+      "description": "",
+      "schema_error": "",
+      "created_round": 3,
+      "related_facts": [],
+      "stop_followup": true,
+      "followup_count": 4,
+      "update_history": [
+        {
+          "round_id": 4,
+          "explanation": "用户回应了横向项目方向，提供了'检测技术'这一具体应用领域，部分解释了职业路径中的实践环节",
+          "update_type": "clarify",
+          "followup_needed": true
+        },
+        {
+          "round_id": 4,
+          "explanation": "用户在第4轮提供了横向项目的具体方向（生物检测技术），部分解释了从教学到应用的转变，但未说明其具体角色或如何参与项目，因此仅部分澄清了职业路径缺口。",
+          "update_type": "clarify",
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "explanation": "用户补充了在项目中的具体环节（实验和策划），部分回应了职业路径gap问题，但尚未形成完整的职业发展链条",
+          "update_type": "clarify",
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "explanation": "第5轮回答明确了用户在项目中的具体角色（实验操作和策划），部分解释了第3轮中关于职业路径的模糊性，但未完全闭合，因为用户仍未说明讲师身份与实验职责之间的正式关系。",
+          "update_type": "clarify",
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "explanation": "当前回答未涉及职业路径的澄清，因此该异常状态保持不变。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "explanation": "当前轮次（第6轮）补充了项目周期信息，但未对'讲师'与'做横向项目'之间的职业路径gap提供任何解释，因此该异常状态保持不变。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "explanation": "当前回答未涉及职业路径的连贯性，未对career_path_gap异常提供新信息。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "explanation": "当前轮次用户回答的是实验策划的具体步骤（先定检测目标），并未解释从高校讲师到生物检测技术项目负责人的职业路径转变，因此该异常状态保持不变。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "explanation": "当前回答未涉及职业路径相关细节，该异常未得到回应。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "explanation": "当前轮次用户未提供新的职业身份信息，未对'career_path_gap'异常进行任何回应或解释。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        }
+      ],
+      "followup_needed": true,
+      "last_update_round": 8,
+      "clarification_status": "none"
+    },
+    {
+      "type": "career_path_gap",
+      "source": "logical",
+      "status": "unresolved",
+      "evidence": [
+        "第1轮：用户表示自己是高校讲师",
+        "第4轮：用户表示从事生物检测技术相关的横向项目"
+      ],
+      "round_id": 4,
+      "severity": "MEDIUM",
+      "anomaly_id": "a_4_logical_2",
+      "confidence": "HIGH",
+      "risk_value": 8.0,
+      "description": "",
+      "schema_error": "",
+      "created_round": 4,
+      "related_facts": [],
+      "stop_followup": false,
+      "followup_count": 0,
+      "update_history": [
+        {
+          "round_id": 5,
+          "explanation": "用户补充了在检测项目中的具体角色（实验和策划），部分回应了职业路径gap问题，但信息仍不够完整",
+          "update_type": "clarify",
+          "followup_needed": true
+        },
+        {
+          "round_id": 5,
+          "explanation": "第5轮回答补充了用户在检测项目中的具体职责，部分回应了第4轮中关于项目角色的疑问，但未解释为何讲师会承担实验操作职责，以及该职责是否与教学岗位一致。",
+          "update_type": "clarify",
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "explanation": "当前回答未涉及职业路径的澄清，因此该异常状态保持不变。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "explanation": "当前轮次（第6轮）补充了项目周期信息，但未对'讲师'与'生物检测技术'之间的职业路径gap提供任何解释，因此该异常状态保持不变。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "explanation": "当前回答未涉及职业路径的连贯性，未对career_path_gap异常提供新信息。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "explanation": "当前轮次用户回答的是实验策划的具体步骤（先定检测目标），并未解释从高校讲师到生物检测技术项目负责人的职业路径转变，因此该异常状态保持不变。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "explanation": "当前回答未涉及职业路径相关细节，该异常未得到回应。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "explanation": "当前轮次用户未提供新的职业身份信息，未对'career_path_gap'异常进行任何回应或解释。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        }
+      ],
+      "followup_needed": true,
+      "last_update_round": 8,
+      "clarification_status": "none"
+    },
+    {
+      "type": "career_path_gap",
+      "source": "logical",
+      "status": "unresolved",
+      "evidence": [
+        "第1轮：用户表示自己是高校讲师",
+        "第5轮：用户表示在生物检测技术项目中负责实验操作和实验策划"
+      ],
+      "round_id": 5,
+      "severity": "MEDIUM",
+      "anomaly_id": "a_5_logical_3",
+      "confidence": "HIGH",
+      "risk_value": 8.0,
+      "description": "",
+      "schema_error": "",
+      "created_round": 5,
+      "related_facts": [],
+      "stop_followup": false,
+      "followup_count": 0,
+      "update_history": [
+        {
+          "round_id": 6,
+          "explanation": "当前回答未涉及职业路径的澄清，因此该异常状态保持不变。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 6,
+          "explanation": "当前轮次（第6轮）补充了项目周期信息，但未对'讲师'与'负责实验'之间的职业路径gap提供任何解释，因此该异常状态保持不变。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "explanation": "当前回答未涉及职业路径的连贯性，未对career_path_gap异常提供新信息。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 7,
+          "explanation": "当前轮次用户回答的是实验策划的具体步骤（先定检测目标），并未解释从高校讲师到生物检测技术项目负责人的职业路径转变，因此该异常状态保持不变。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "explanation": "当前回答未涉及职业路径相关细节，该异常未得到回应。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        },
+        {
+          "round_id": 8,
+          "explanation": "当前轮次用户未提供新的职业身份信息，未对'career_path_gap'异常进行任何回应或解释。",
+          "update_type": "remain_unresolved",
+          "followup_needed": true
+        }
+      ],
+      "followup_needed": true,
+      "last_update_round": 8,
+      "clarification_status": "none"
+    }
+  ],
+  "dialogue_history": [
+    {
+      "role": "assistant",
+      "content": "你平时是做什么方向的工作呀？"
+    },
+    {
+      "role": "user",
+      "content": "我是高校的讲师"
+    },
+    {
+      "role": "assistant",
+      "content": "那你平时上课主要讲什么方向的内容呀？"
+    },
+    {
+      "role": "user",
+      "content": "生物"
+    },
+    {
+      "role": "assistant",
+      "content": "生物方向啊，那你们学院里这个方向主要是偏理论多一些，还是偏实际应用多一些呀？"
+    },
+    {
+      "role": "user",
+      "content": "都有吧，我也在做一些实际的横向项目"
+    },
+    {
+      "role": "assistant",
+      "content": "你们做的横向项目主要是偏哪类实际应用呀？"
+    },
+    {
+      "role": "user",
+      "content": "生物的一些检测技术"
+    },
+    {
+      "role": "assistant",
+      "content": "听起来你们做的检测项目还挺落地的，你平时在项目里主要负责哪个环节呀？"
+    },
+    {
+      "role": "user",
+      "content": "做实验，还有策划实验"
+    },
+    {
+      "role": "assistant",
+      "content": "那你们做这种检测实验，从策划到出结果，一般一个项目周期大概要多久呀？"
+    },
+    {
+      "role": "user",
+      "content": "两个月吧"
+    },
+    {
+      "role": "assistant",
+      "content": "两个月能走完一个周期还挺高效的，你们策划实验方案的时候，一般第一步是先定检测目标还是先选检测方法呀？"
+    },
+    {
+      "role": "user",
+      "content": "先定检测目标"
+    },
+    {
+      "role": "assistant",
+      "content": "那你们定好目标之后，实际动手前一般最先卡在哪个环节呀，是设备排不开还是样本不好凑？"
+    },
+    {
+      "role": "user",
+      "content": "都有吧"
+    }
+  ],
+  "dimension_scores": {
+    "logical": 8.0,
+    "experience_density": 17.0
+  },
+  "followup_history": [
+    {
+      "question": "那你平时上课主要讲什么方向的内容呀？",
+      "round_id": 1,
+      "priority_issue": "用户仅回答'高校讲师'，职业类别过于宽泛，需明确具体学科、职称或研究方向",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "question": "生物方向啊，那你们学院里这个方向主要是偏理论多一些，还是偏实际应用多一些呀？",
+      "round_id": 2,
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "question": "你们做的横向项目主要是偏哪类实际应用呀？",
+      "round_id": 3,
+      "priority_issue": "职业身份粒度过粗，需要先自然了解对方属于哪个系统、岗位性质或职责方向；不要直接追问日常流程、处理公务、处理客户或处理病人。",
+      "followup_strategy": "light_clarification"
+    },
+    {
+      "question": "听起来你们做的检测项目还挺落地的，你平时在项目里主要负责哪个环节呀？",
+      "round_id": 4,
+      "priority_issue": "从高校讲师到生物检测技术横向项目的具体工作流程和角色转换",
+      "followup_strategy": "process_sequence"
+    },
+    {
+      "question": "那你们做这种检测实验，从策划到出结果，一般一个项目周期大概要多久呀？",
+      "round_id": 5,
+      "priority_issue": "从高校讲师到生物检测技术项目的职业路径断层",
+      "followup_strategy": "process_sequence"
+    },
+    {
+      "question": "两个月能走完一个周期还挺高效的，你们策划实验方案的时候，一般第一步是先定检测目标还是先选检测方法呀？",
+      "round_id": 6,
+      "priority_issue": "生物检测技术项目的完整工作流程和具体操作细节",
+      "followup_strategy": "process_sequence"
+    },
+    {
+      "question": "那你们定好目标之后，实际动手前一般最先卡在哪个环节呀，是设备排不开还是样本不好凑？",
+      "round_id": 7,
+      "priority_issue": "回答'先定检测目标'虽然正确且直接回应了问题，但这是一个非常基础的实验策划常识，缺乏具体场景、判断依据或操作细节。任何从事过实验工作的人都能给出这个答案，没有体现出用户亲身经历该流程的独特痕迹（如：如何确定目标、与谁讨论、考虑哪些约束条件等）。；换到真实限制角度，问记录、时间、流程、协作、规范或现实约束",
+      "followup_strategy": "real_constraint"
+    }
+  ],
+  "risk_explanation": [
+    "逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0",
+    "逻辑时间线:career_path_gap severity=MEDIUM confidence=HIGH V=8.0",
+    "经验密度:generic_answer_low_experience_density severity=MEDIUM confidence=HIGH V=17.0"
+  ],
+  "routing_decision": {
+    "router_mode": "rule_force_llm_select",
+    "priority_issue": "用户连续2轮泛泛回答，经验密度低，需验证其是否具备真实项目经验",
+    "routing_reason": "用户连续泛泛回答，经验密度低，需通过追问验证事实一致性及经历逻辑",
+    "followup_strategy": "process_sequence",
+    "selected_specialists": [
+      "semantic",
+      "logical"
+    ]
+  },
+  "indicator_history": [],
+  "specificity_level": "LOW",
+  "used_probe_angles": [
+    "real_constraint",
+    "process_sequence"
+  ],
+  "called_specialists": [
+    "semantic",
+    "logical"
+  ],
+  "experience_density": "LOW",
+  "generic_answer_flag": true,
+  "generic_answer_count": 2,
+  "generic_answer_reason": "回答'都有吧'是典型的概括性回应，没有提供任何具体的卡点场景、设备类型、样本问题或处理方式，缺乏真实项目经历的痕迹。",
+  "generic_answer_streak": 2,
+  "suggested_probe_angle": "process_sequence",
+  "thinking_time_history": [
+    {
+      "time": "15:33:17",
+      "round": 1,
+      "elapsed": 7.35672664642334
+    },
+    {
+      "time": "15:33:55",
+      "round": 2,
+      "elapsed": 7.242619514465332
+    },
+    {
+      "time": "15:34:54",
+      "round": 3,
+      "elapsed": 12.53313136100769
+    },
+    {
+      "time": "15:35:59",
+      "round": 4,
+      "elapsed": 13.933581113815308
+    },
+    {
+      "time": "15:37:04",
+      "round": 5,
+      "elapsed": 19.37085747718811
+    },
+    {
+      "time": "15:38:13",
+      "round": 6,
+      "elapsed": 17.3150897026062
+    },
+    {
+      "time": "15:38:54",
+      "round": 7,
+      "elapsed": 20.266637086868286
+    },
+    {
+      "time": "15:39:23",
+      "round": 8,
+      "elapsed": 18.7372624874115
+    }
+  ]
+}
